@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-23T06:06:00.220Z",
+  "generated_at": "2026-10-23T06:12:11.431Z",
   "stats": {
     "planned": 94,
-    "built": 46,
-    "verified": 46,
+    "built": 55,
+    "verified": 55,
     "draft": 0,
     "updated": "2026-10-23"
   },
@@ -1122,6 +1122,248 @@
       "related": [],
       "summary": "确认怀孕后先建档，出生后先办出生医学证明，再上户口和医保；生育津贴、陪产假按本省规定走。",
       "path": "book/05-家庭与育儿/E-01-第一次当爸爸.md"
+    },
+    {
+      "id": "E-02",
+      "title": "第一次备孕与产检",
+      "domain": "家庭与育儿",
+      "stage": [
+        "新婚",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "结婚证"
+      ],
+      "duration": "长期",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "E-01",
+        "E-03"
+      ],
+      "summary": "孕前 3 个月补叶酸、做孕前检查，怀孕后尽早建档，按医生安排产检，异常出血腹痛立即就医。",
+      "path": "book/05-家庭与育儿/E-02-第一次备孕与产检.md"
+    },
+    {
+      "id": "E-03",
+      "title": "第一次陪产",
+      "domain": "家庭与育儿",
+      "stage": [
+        "新婚",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "结婚证",
+        "待产包"
+      ],
+      "duration": "1-3天",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分机构",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "E-02",
+        "E-04"
+      ],
+      "summary": "提前备好待产包和证件，认准入院信号，陪产听医院安排，签字前问清风险，产后盯紧出血和情绪。",
+      "path": "book/05-家庭与育儿/E-03-第一次陪产.md"
+    },
+    {
+      "id": "E-04",
+      "title": "第一次照顾新生儿",
+      "domain": "家庭与育儿",
+      "stage": [
+        "新手父母"
+      ],
+      "prerequisites": [
+        "出生医学证明",
+        "母婴用品"
+      ],
+      "duration": "长期",
+      "cost": "千元级",
+      "risk": "高",
+      "volatility": "S",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "E-03",
+        "E-05"
+      ],
+      "summary": "按需喂养、仰卧睡、不捂热，黄疸加重和发热立即就医，脐带保持干燥，出生 24 小时内接种疫苗。",
+      "path": "book/05-家庭与育儿/E-04-第一次照顾新生儿.md"
+    },
+    {
+      "id": "E-05",
+      "title": "第一次给孩子上户口/办医保",
+      "domain": "家庭与育儿",
+      "stage": [
+        "新手父母"
+      ],
+      "prerequisites": [
+        "出生医学证明",
+        "户口簿",
+        "身份证"
+      ],
+      "duration": "半天",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "E-04",
+        "F-09"
+      ],
+      "summary": "先办出生医学证明，出生一个月内到派出所落户，再凭户口参加城乡居民医保，90 天内参保可追溯待遇。",
+      "path": "book/05-家庭与育儿/E-05-第一次给孩子上户口办医保.md"
+    },
+    {
+      "id": "E-06",
+      "title": "第一次选幼儿园",
+      "domain": "家庭与育儿",
+      "stage": [
+        "新手父母"
+      ],
+      "prerequisites": [
+        "户口簿",
+        "出生证明",
+        "预防接种证"
+      ],
+      "duration": "长期",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "E-05",
+        "E-07"
+      ],
+      "summary": "先看办学许可和收费公示，再比距离、师资、伙食和安全管理，报名按区县招生政策走，不提前抢跑小学内容。",
+      "path": "book/05-家庭与育儿/E-06-第一次选幼儿园.md"
+    },
+    {
+      "id": "E-07",
+      "title": "第一次送孩子上小学",
+      "domain": "家庭与育儿",
+      "stage": [
+        "新手父母"
+      ],
+      "prerequisites": [
+        "户口簿",
+        "房产证或居住证",
+        "预防接种证"
+      ],
+      "duration": "长期",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "E-06",
+        "E-05"
+      ],
+      "summary": "年满 6 周岁按区县政策报名，免试就近入学，材料提前一年准备，开学前调作息、练自理。",
+      "path": "book/05-家庭与育儿/E-07-第一次送孩子上小学.md"
+    },
+    {
+      "id": "E-08",
+      "title": "第一次照顾生病的孩子",
+      "domain": "家庭与育儿",
+      "stage": [
+        "新手父母"
+      ],
+      "prerequisites": [
+        "体温计",
+        "医保卡"
+      ],
+      "duration": "1-3天",
+      "cost": "百元内",
+      "risk": "高",
+      "volatility": "S",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "F-01",
+        "E-04"
+      ],
+      "summary": "先量体温看精神状态，退烧药按体重给，补液别断，出现抽搐、呼吸困难、精神差立即就医。",
+      "path": "book/05-家庭与育儿/E-08-第一次照顾生病的孩子.md"
+    },
+    {
+      "id": "E-09",
+      "title": "第一次照顾年迈父母",
+      "domain": "家庭与育儿",
+      "stage": [
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "医保卡"
+      ],
+      "duration": "长期",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "F-03",
+        "J-07"
+      ],
+      "summary": "先做一次全面体检和用药梳理，家里做防跌倒改造，慢病定期复查，提前了解医保、长护险和养老资源。",
+      "path": "book/05-家庭与育儿/E-09-第一次照顾年迈父母.md"
+    },
+    {
+      "id": "E-10",
+      "title": "第一次面对亲人离世",
+      "domain": "家庭与育儿",
+      "stage": [
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "户口簿"
+      ],
+      "duration": "1-3天",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "J-08",
+        "E-09"
+      ],
+      "summary": "先开死亡证明、联系殡仪馆，再注销户口和社保，处理遗产前清点财产和债务，照顾好自己的情绪。",
+      "path": "book/05-家庭与育儿/E-10-第一次面对亲人离世.md"
     },
     {
       "id": "F-01",

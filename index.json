@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-23T06:00:39.803Z",
+  "generated_at": "2026-10-23T06:06:00.220Z",
   "stats": {
     "planned": 94,
-    "built": 38,
-    "verified": 38,
+    "built": 46,
+    "verified": 46,
     "draft": 0,
     "updated": "2026-10-23"
   },
@@ -874,6 +874,229 @@
       "related": [],
       "summary": "先选 C1 还是 C2，再选驾校；科目一考完约科目二，科目二和科目三各有 5 次预约机会，拿证后 12 个月是实习期。",
       "path": "book/04-学习与技能/D-02-第一次学车.md"
+    },
+    {
+      "id": "D-03",
+      "title": "第一次考职业资格证",
+      "domain": "学习与技能",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "学历证明"
+      ],
+      "duration": "长期",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "C-02",
+        "D-07"
+      ],
+      "summary": "先查证书在不在国家职业资格目录，再看报名条件和考试时间，按官方教材备考，不信“包过”和“挂靠”。",
+      "path": "book/04-学习与技能/D-03-第一次考职业资格证.md"
+    },
+    {
+      "id": "D-04",
+      "title": "第一次自学编程",
+      "domain": "学习与技能",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "电脑",
+        "网络"
+      ],
+      "duration": "长期",
+      "cost": "免费",
+      "risk": "低",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "D-10",
+        "C-02"
+      ],
+      "summary": "先定方向，只学够用的基础，边学边做项目，代码传到 Git 仓库，遇到问题先读官方文档。",
+      "path": "book/04-学习与技能/D-04-第一次自学编程.md"
+    },
+    {
+      "id": "D-05",
+      "title": "第一次公开演讲",
+      "domain": "学习与技能",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "演讲主题",
+        "演示材料"
+      ],
+      "duration": "半天",
+      "cost": "免费",
+      "risk": "低",
+      "volatility": "S",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "C-06",
+        "D-01"
+      ],
+      "summary": "只讲一个核心观点，用三个例子支撑，写逐字稿但只记关键词，提前到场试设备，把紧张当成正常反应。",
+      "path": "book/04-学习与技能/D-05-第一次公开演讲.md"
+    },
+    {
+      "id": "D-06",
+      "title": "第一次写论文",
+      "domain": "学习与技能",
+      "stage": [
+        "学生"
+      ],
+      "prerequisites": [
+        "选题",
+        "文献",
+        "指导老师"
+      ],
+      "duration": "长期",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "S",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "D-07",
+        "D-04"
+      ],
+      "summary": "先和导师定选题，读够文献再动笔，按学校格式写，引用必标出处，查重前留足修改时间。",
+      "path": "book/04-学习与技能/D-06-第一次写论文.md"
+    },
+    {
+      "id": "D-07",
+      "title": "第一次考研/考公",
+      "domain": "学习与技能",
+      "stage": [
+        "学生",
+        "初入职场"
+      ],
+      "prerequisites": [
+        "学历证明",
+        "身份证"
+      ],
+      "duration": "长期",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "H",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "D-06",
+        "C-02"
+      ],
+      "summary": "先看官方公告确认条件和时间，按考试大纲备考，报名信息一次填对，作弊和造假会记入诚信档案。",
+      "path": "book/04-学习与技能/D-07-第一次考研考公.md"
+    },
+    {
+      "id": "D-08",
+      "title": "第一次学游泳",
+      "domain": "学习与技能",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "泳衣",
+        "泳镜",
+        "泳帽"
+      ],
+      "duration": "长期",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "S",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "F-07",
+        "A-09"
+      ],
+      "summary": "只在有救生员的正规泳池学，先熟悉水性再学动作，不逞强、不野泳，儿童全程有人看护。",
+      "path": "book/04-学习与技能/D-08-第一次学游泳.md"
+    },
+    {
+      "id": "D-09",
+      "title": "第一次自己做饭",
+      "domain": "学习与技能",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "厨具",
+        "食材"
+      ],
+      "duration": "半小时内",
+      "cost": "百元内",
+      "risk": "中",
+      "volatility": "S",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "H-01",
+        "H-04"
+      ],
+      "summary": "生熟分开、烧熟煮透、剩菜及时冷藏，燃气用完关阀，油锅起火盖锅盖，别用水浇。",
+      "path": "book/04-学习与技能/D-09-第一次自己做饭.md"
+    },
+    {
+      "id": "D-10",
+      "title": "第一次用 AI 工具办事",
+      "domain": "学习与技能",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "网络",
+        "账号"
+      ],
+      "duration": "半小时内",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "H",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "D-04",
+        "I-01"
+      ],
+      "summary": "给清楚背景和格式要求，把 AI 当助手不当权威，事实要回官方来源核对，隐私和商业秘密不上传。",
+      "path": "book/04-学习与技能/D-10-第一次用AI工具办事.md"
     },
     {
       "id": "E-01",

@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-23T03:58:20.736Z",
+  "generated_at": "2026-10-23T04:34:07.668Z",
   "stats": {
     "planned": 94,
-    "built": 8,
-    "verified": 8,
+    "built": 16,
+    "verified": 16,
     "draft": 0,
     "updated": "2026-10-23"
   },
@@ -141,6 +141,90 @@
       "path": "book/03-工作与职业/C-01-第一次入职.md"
     },
     {
+      "id": "C-02",
+      "title": "第一次面试",
+      "domain": "工作与职业",
+      "stage": [
+        "学生",
+        "初入职场"
+      ],
+      "prerequisites": [
+        "简历",
+        "身份证",
+        "学历证明"
+      ],
+      "duration": "半天",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 10,
+      "related": [
+        "C-01",
+        "C-03"
+      ],
+      "summary": "面试前查清公司和岗位，面试时用事实讲经历，拿到 offer 要书面确认岗位、工资、试用期和社保。",
+      "path": "book/03-工作与职业/C-02-第一次面试.md"
+    },
+    {
+      "id": "C-03",
+      "title": "第一次签劳动合同",
+      "domain": "工作与职业",
+      "stage": [
+        "学生",
+        "初入职场"
+      ],
+      "prerequisites": [
+        "身份证",
+        "学历证明"
+      ],
+      "duration": "半小时内",
+      "cost": "免费",
+      "risk": "高",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 8,
+      "related": [
+        "C-01",
+        "C-02"
+      ],
+      "summary": "用工 1 个月内必须签书面合同；签之前逐条看期限、试用期、工资、社保、违约金，签完拿一份原件。",
+      "path": "book/03-工作与职业/C-03-第一次签劳动合同.md"
+    },
+    {
+      "id": "C-04",
+      "title": "第一次拿工资与五险一金",
+      "domain": "工作与职业",
+      "stage": [
+        "学生",
+        "初入职场"
+      ],
+      "prerequisites": [
+        "身份证",
+        "银行卡",
+        "劳动合同"
+      ],
+      "duration": "半小时内",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 10,
+      "related": [
+        "C-01",
+        "C-03",
+        "G-06"
+      ],
+      "summary": "第一份工资到手，先看工资条上的应发、代扣和实发，再去查社保、公积金有没有按时缴。",
+      "path": "book/03-工作与职业/C-04-第一次拿工资与五险一金.md"
+    },
+    {
       "id": "D-01",
       "title": "第一次学外语入门",
       "domain": "学习与技能",
@@ -209,6 +293,144 @@
       "related": [],
       "summary": "确认怀孕后先建档，出生后先办出生医学证明，再上户口和医保；生育津贴、陪产假按本省规定走。",
       "path": "book/05-家庭与育儿/E-01-第一次当爸爸.md"
+    },
+    {
+      "id": "F-01",
+      "title": "第一次自己挂号看病",
+      "domain": "健康与医疗",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年",
+        "退休"
+      ],
+      "prerequisites": [
+        "身份证",
+        "医保卡或医保码"
+      ],
+      "duration": "半天",
+      "cost": "百元内",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 9,
+      "related": [
+        "F-09"
+      ],
+      "summary": "先确认医保凭证和证件，按症状选科，线上或现场挂号，按预约时段就诊，票据和报告都留好。",
+      "path": "book/06-健康与医疗/F-01-第一次自己挂号看病.md"
+    },
+    {
+      "id": "F-09",
+      "title": "第一次医保报销",
+      "domain": "健康与医疗",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年",
+        "退休"
+      ],
+      "prerequisites": [
+        "医保卡或医保码",
+        "身份证"
+      ],
+      "duration": "半天",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "H",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 9,
+      "related": [
+        "F-01"
+      ],
+      "summary": "先看药品和项目在不在医保目录，再看起付线、报销比例和封顶线；异地就医先备案，没直接结算就回参保地手工报销。",
+      "path": "book/06-健康与医疗/F-09-第一次医保报销.md"
+    },
+    {
+      "id": "G-02",
+      "title": "第一次租房",
+      "domain": "钱与消费",
+      "stage": [
+        "学生",
+        "初入职场"
+      ],
+      "prerequisites": [
+        "身份证",
+        "银行卡"
+      ],
+      "duration": "1-3天",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 10,
+      "related": [
+        "C-01"
+      ],
+      "summary": "找已备案的中介或租赁企业，看房核验证件，合同写清押金和维修责任，交接时拍照留底。",
+      "path": "book/07-钱与消费/G-02-第一次租房.md"
+    },
+    {
+      "id": "G-06",
+      "title": "第一次个税申报",
+      "domain": "钱与消费",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "银行卡",
+        "个人所得税 App"
+      ],
+      "duration": "半小时内",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 8,
+      "related": [
+        "C-04"
+      ],
+      "summary": "先下载“个人所得税”App，填好专项附加扣除，次年 3 月到 6 月做年度汇算，退税补税都在 App 里办。",
+      "path": "book/07-钱与消费/G-06-第一次个税申报.md"
+    },
+    {
+      "id": "I-01",
+      "title": "第一次防诈骗",
+      "domain": "数字与网络",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年",
+        "退休"
+      ],
+      "prerequisites": [
+        "手机",
+        "银行卡"
+      ],
+      "duration": "半小时内",
+      "cost": "免费",
+      "risk": "高",
+      "volatility": "H",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 9,
+      "related": [
+        "G-01"
+      ],
+      "summary": "未知链接不点，陌生来电不信，个人信息不透露，转账前多核实；被骗先拨 110 止付，96110 来电要接。",
+      "path": "book/09-数字与网络/I-01-第一次防诈骗.md"
     }
   ]
 }

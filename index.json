@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-23T06:27:30.001Z",
+  "generated_at": "2026-10-23T06:35:35.097Z",
   "stats": {
     "planned": 94,
-    "built": 79,
-    "verified": 79,
+    "built": 94,
+    "verified": 94,
     "draft": 0,
     "updated": "2026-10-23"
   },
@@ -2168,6 +2168,420 @@
       ],
       "summary": "未知链接不点，陌生来电不信，个人信息不透露，转账前多核实；被骗先拨 110 止付，96110 来电要接。",
       "path": "book/09-数字与网络/I-01-第一次防诈骗.md"
+    },
+    {
+      "id": "I-02",
+      "title": "第一次账号被盗/找回",
+      "domain": "数字与网络",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "手机",
+        "身份证明"
+      ],
+      "duration": "1-3天",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "I-01",
+        "I-06"
+      ],
+      "summary": "先冻结账号，再用官方申诉找回，改密码开二次验证，检查绑定设备，有财产损失立即报警。",
+      "path": "book/09-数字与网络/I-02-第一次账号被盗找回.md"
+    },
+    {
+      "id": "I-03",
+      "title": "第一次网购与退货",
+      "domain": "数字与网络",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "支付账户",
+        "收货地址"
+      ],
+      "duration": "半小时内",
+      "cost": "百元内",
+      "risk": "低",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "G-08",
+        "I-01"
+      ],
+      "summary": "只在正规平台下单，收货先验货再签收，七天内可无理由退货，商品完好、吊牌在，退款走平台。",
+      "path": "book/09-数字与网络/I-03-第一次网购与退货.md"
+    },
+    {
+      "id": "I-04",
+      "title": "第一次数据备份",
+      "domain": "数字与网络",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "存储设备或云盘"
+      ],
+      "duration": "半小时内",
+      "cost": "百元内",
+      "risk": "低",
+      "volatility": "S",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "I-02",
+        "I-06"
+      ],
+      "summary": "按 3-2-1 原则备份，三份数据、两种介质、一份异地，定期做恢复演练，别等硬盘坏了才后悔。",
+      "path": "book/09-数字与网络/I-04-第一次数据备份.md"
+    },
+    {
+      "id": "I-05",
+      "title": "第一次发布作品与版权",
+      "domain": "数字与网络",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "作品原件",
+        "身份证明"
+      ],
+      "duration": "半小时内",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "I-03",
+        "I-06"
+      ],
+      "summary": "作品完成即有著作权，发布前确认素材授权，发布时保留署名和时间证据，被侵权先通知删除再起诉。",
+      "path": "book/09-数字与网络/I-05-第一次发布作品与版权.md"
+    },
+    {
+      "id": "I-06",
+      "title": "第一次实名认证与隐私",
+      "domain": "数字与网络",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "手机"
+      ],
+      "duration": "半小时内",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "I-02",
+        "I-07"
+      ],
+      "summary": "只在对的官方渠道实名，按最小必要提供信息，身份证照片加水印，不用的账号及时注销。",
+      "path": "book/09-数字与网络/I-06-第一次实名认证与隐私.md"
+    },
+    {
+      "id": "I-07",
+      "title": "第一次网上办事",
+      "domain": "数字与网络",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年",
+        "退休"
+      ],
+      "prerequisites": [
+        "身份证",
+        "手机",
+        "实名账号"
+      ],
+      "duration": "半天",
+      "cost": "免费",
+      "risk": "低",
+      "volatility": "M",
+      "region": "分省",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "I-06",
+        "H-07"
+      ],
+      "summary": "认准政务平台官方入口，先实名认证，材料拍清楚，提交后记下办件编号，按进度查询或补正。",
+      "path": "book/09-数字与网络/I-07-第一次网上办事.md"
+    },
+    {
+      "id": "I-08",
+      "title": "第一次二手交易",
+      "domain": "数字与网络",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "实名账号",
+        "商品"
+      ],
+      "duration": "半天",
+      "cost": "百元内",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "I-03",
+        "G-08"
+      ],
+      "summary": "只在平台内交易，不脱离平台转账，面交选白天公共场所，验货再确认收货，保留聊天和交易记录。",
+      "path": "book/09-数字与网络/I-08-第一次二手交易.md"
+    },
+    {
+      "id": "J-01",
+      "title": "第一次结婚登记",
+      "domain": "人生节点",
+      "stage": [
+        "新婚"
+      ],
+      "prerequisites": [
+        "身份证",
+        "双方合影照片"
+      ],
+      "duration": "半天",
+      "cost": "免费",
+      "risk": "低",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "J-02",
+        "E-02"
+      ],
+      "summary": "双方自愿、达到法定婚龄、无禁止结婚的亲属关系，带身份证到婚姻登记机关，可全国通办，现场领证。",
+      "path": "book/10-人生节点/J-01-第一次结婚登记.md"
+    },
+    {
+      "id": "J-02",
+      "title": "第一次办婚礼",
+      "domain": "人生节点",
+      "stage": [
+        "新婚"
+      ],
+      "prerequisites": [
+        "结婚证",
+        "预算"
+      ],
+      "duration": "长期",
+      "cost": "万元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "J-01",
+        "G-08"
+      ],
+      "summary": "先定预算和宾客名单，再订酒店婚庆，合同写清服务、定金、违约，婚礼当天留好影像和票据。",
+      "path": "book/10-人生节点/J-02-第一次办婚礼.md"
+    },
+    {
+      "id": "J-03",
+      "title": "第一次独自过年/离家",
+      "domain": "人生节点",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "住宿"
+      ],
+      "duration": "1-3天",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "A-09",
+        "H-01"
+      ],
+      "summary": "提前订好交通和住宿，年夜饭和物资早准备，每天和家里报平安，独居注意门锁和燃气，情绪低落要求助。",
+      "path": "book/10-人生节点/J-03-第一次独自过年离家.md"
+    },
+    {
+      "id": "J-04",
+      "title": "第一次跨城定居",
+      "domain": "人生节点",
+      "stage": [
+        "初入职场",
+        "新婚",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "劳动合同或房产"
+      ],
+      "duration": "长期",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "H-07",
+        "G-02"
+      ],
+      "summary": "先定工作和住处，再办居住证或落户，转移社保、公积金和档案，最后处理车牌、子女入学和医保备案。",
+      "path": "book/10-人生节点/J-04-第一次跨城定居.md"
+    },
+    {
+      "id": "J-05",
+      "title": "第一次失业",
+      "domain": "人生节点",
+      "stage": [
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "社保卡",
+        "离职证明"
+      ],
+      "duration": "长期",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "C-09",
+        "C-08"
+      ],
+      "summary": "非本人意愿失业、缴失业保险满一年，及时办失业登记和申领失业金，医保由失业保险基金缴，同时尽快找工作。",
+      "path": "book/10-人生节点/J-05-第一次失业.md"
+    },
+    {
+      "id": "J-06",
+      "title": "第一次退休",
+      "domain": "人生节点",
+      "stage": [
+        "退休"
+      ],
+      "prerequisites": [
+        "身份证",
+        "社保卡",
+        "档案"
+      ],
+      "duration": "长期",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "H",
+      "region": "分省",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "C-04",
+        "E-09"
+      ],
+      "summary": "先查自己的法定退休年龄和养老保险缴费年限，提前 3 个月准备档案和材料，办退休手续并做生存认证。",
+      "path": "book/10-人生节点/J-06-第一次退休.md"
+    },
+    {
+      "id": "J-07",
+      "title": "第一次立遗嘱/意定监护",
+      "domain": "人生节点",
+      "stage": [
+        "中年",
+        "退休"
+      ],
+      "prerequisites": [
+        "身份证",
+        "财产清单"
+      ],
+      "duration": "半天",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "S",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "E-10",
+        "J-08"
+      ],
+      "summary": "遗嘱形式要合法，打印和录像遗嘱要有两名见证人，多份遗嘱以最后一份为准，意定监护要书面并最好公证。",
+      "path": "book/10-人生节点/J-07-第一次立遗嘱意定监护.md"
+    },
+    {
+      "id": "J-08",
+      "title": "第一次面对身后事安排",
+      "domain": "人生节点",
+      "stage": [
+        "中年",
+        "退休"
+      ],
+      "prerequisites": [
+        "身份证",
+        "意愿说明"
+      ],
+      "duration": "长期",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分省",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "J-07",
+        "E-10"
+      ],
+      "summary": "趁清醒时写清捐献意愿、殡葬方式和财产安排，告知家人并留下书面文件，别把难题全留给他们。",
+      "path": "book/10-人生节点/J-08-第一次面对身后事安排.md"
     }
   ]
 }

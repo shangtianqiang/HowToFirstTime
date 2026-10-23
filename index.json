@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-23T04:34:07.668Z",
+  "generated_at": "2026-10-23T06:00:39.803Z",
   "stats": {
     "planned": 94,
-    "built": 16,
-    "verified": 16,
+    "built": 38,
+    "verified": 38,
     "draft": 0,
     "updated": "2026-10-23"
   },
@@ -88,6 +88,202 @@
       "path": "book/01-出行与交通/A-03-第一次坐火车.md"
     },
     {
+      "id": "A-04",
+      "title": "第一次坐地铁",
+      "domain": "出行与交通",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "手机或现金"
+      ],
+      "duration": "半小时内",
+      "cost": "百元内",
+      "risk": "低",
+      "volatility": "S",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "A-02",
+        "A-06"
+      ],
+      "summary": "进站先看线路和终点站方向，进出闸都要刷卡或扫码，坐过站别出站，到对面坐回去。",
+      "path": "book/01-出行与交通/A-04-第一次坐地铁.md"
+    },
+    {
+      "id": "A-05",
+      "title": "第一次坐长途大巴",
+      "domain": "出行与交通",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证"
+      ],
+      "duration": "1-3天",
+      "cost": "百元内",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "A-02",
+        "A-06"
+      ],
+      "summary": "到正规客运站实名买票、提前进站检票、全程系安全带，不要在站外揽客点上车。",
+      "path": "book/01-出行与交通/A-05-第一次坐长途大巴.md"
+    },
+    {
+      "id": "A-06",
+      "title": "第一次打网约车/出租车",
+      "domain": "出行与交通",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "手机",
+        "支付账户"
+      ],
+      "duration": "半小时内",
+      "cost": "百元内",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "A-04",
+        "A-09"
+      ],
+      "summary": "上车前核对车牌、车型和司机，行程分享给家人，不坐无资质车辆，下车带好随身物品并要发票。",
+      "path": "book/01-出行与交通/A-06-第一次打网约车与出租车.md"
+    },
+    {
+      "id": "A-07",
+      "title": "第一次租车自驾",
+      "domain": "出行与交通",
+      "stage": [
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "驾驶证",
+        "信用卡"
+      ],
+      "duration": "1-3天",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "D-02",
+        "A-08"
+      ],
+      "summary": "取车先绕车拍照录像，看清保险和免赔条款，还车加满油、留好凭证，事故先报警报保险不私了。",
+      "path": "book/01-出行与交通/A-07-第一次租车自驾.md"
+    },
+    {
+      "id": "A-08",
+      "title": "第一次骑电动车上路",
+      "domain": "出行与交通",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "购车发票",
+        "合格证"
+      ],
+      "duration": "半天",
+      "cost": "千元级",
+      "risk": "高",
+      "volatility": "M",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 5,
+      "related": [
+        "A-07",
+        "D-02"
+      ],
+      "summary": "先分清电动自行车和电动摩托车，该上牌的上牌、该考证的考证，头盔戴好，电池不进楼不飞线。",
+      "path": "book/01-出行与交通/A-08-第一次骑电动车上路.md"
+    },
+    {
+      "id": "A-09",
+      "title": "第一次独自旅行",
+      "domain": "出行与交通",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "手机",
+        "支付账户"
+      ],
+      "duration": "1-3天",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "A-01",
+        "A-06"
+      ],
+      "summary": "行程留一份给家人，住宿只选正规店，证件和钱分开放，夜里不去偏僻地方，遇事先找警察。",
+      "path": "book/01-出行与交通/A-09-第一次独自旅行.md"
+    },
+    {
+      "id": "A-10",
+      "title": "第一次春运回家",
+      "domain": "出行与交通",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "12306 账户"
+      ],
+      "duration": "1-3天",
+      "cost": "百元内",
+      "risk": "中",
+      "volatility": "H",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "A-02",
+        "A-03"
+      ],
+      "summary": "按起售时间抢票，抢不到就用候补，不买黄牛和加速包，提前到站、少带违禁品。",
+      "path": "book/01-出行与交通/A-10-第一次春运回家.md"
+    },
+    {
       "id": "B-01",
       "title": "第一次出国",
       "domain": "证件与跨境",
@@ -114,6 +310,201 @@
       ],
       "summary": "先办护照，再按目的地办签证，出发前查清入境和海关要求，把使领馆电话和 12308 存进手机。",
       "path": "book/02-证件与跨境/B-01-第一次出国.md"
+    },
+    {
+      "id": "B-02",
+      "title": "第一次办护照/通行证",
+      "domain": "证件与跨境",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证"
+      ],
+      "duration": "半天",
+      "cost": "百元内",
+      "risk": "低",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "B-01",
+        "B-03"
+      ],
+      "summary": "先在国家移民管理局平台预约，带身份证到出入境窗口采集照片和指纹，取证时核对姓名、拼音和号码。",
+      "path": "book/02-证件与跨境/B-02-第一次办护照与通行证.md"
+    },
+    {
+      "id": "B-03",
+      "title": "第一次办签证",
+      "domain": "证件与跨境",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "护照",
+        "照片",
+        "资金证明"
+      ],
+      "duration": "长期",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "H",
+      "region": "分机构",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "B-01",
+        "B-02"
+      ],
+      "summary": "先定目的国和出行目的，再按该国官方要求准备材料，宁可多留时间，不造假、不找“包过”中介。",
+      "path": "book/02-证件与跨境/B-03-第一次办签证.md"
+    },
+    {
+      "id": "B-04",
+      "title": "第一次过海关",
+      "domain": "证件与跨境",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "护照",
+        "登机牌"
+      ],
+      "duration": "半小时内",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "B-01",
+        "B-08"
+      ],
+      "summary": "如实申报、走对通道，烟酒和购物额度别超，肉类水果不带来，不确定就选“申报”通道。",
+      "path": "book/02-证件与跨境/B-04-第一次过海关.md"
+    },
+    {
+      "id": "B-05",
+      "title": "第一次境外支付与通讯",
+      "domain": "证件与跨境",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "银行卡",
+        "手机"
+      ],
+      "duration": "半小时内",
+      "cost": "百元内",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "B-01",
+        "B-04"
+      ],
+      "summary": "一张能境外使用的银行卡、一点当地现金、一个能上网的方案，分开准备，别把全部钱和通讯押在手机上。",
+      "path": "book/02-证件与跨境/B-05-第一次境外支付与通讯.md"
+    },
+    {
+      "id": "B-06",
+      "title": "第一次出国留学",
+      "domain": "证件与跨境",
+      "stage": [
+        "学生",
+        "初入职场"
+      ],
+      "prerequisites": [
+        "护照",
+        "录取通知书",
+        "资金证明"
+      ],
+      "duration": "长期",
+      "cost": "万元级",
+      "risk": "高",
+      "volatility": "H",
+      "region": "分机构",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "B-03",
+        "B-05"
+      ],
+      "summary": "先查学校资质，再办学生签证，落地后尽快办住宿登记、银行开户、保险和居留许可，别逾期停留。",
+      "path": "book/02-证件与跨境/B-06-第一次出国留学.md"
+    },
+    {
+      "id": "B-07",
+      "title": "第一次境外务工",
+      "domain": "证件与跨境",
+      "stage": [
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "护照",
+        "技能证明",
+        "体检"
+      ],
+      "duration": "长期",
+      "cost": "万元级",
+      "risk": "高",
+      "volatility": "H",
+      "region": "分机构",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "B-03",
+        "C-09"
+      ],
+      "summary": "只走有对外劳务合作经营资格的企业，签书面合同、办工作签证，持旅游签出境打工是违法的。",
+      "path": "book/02-证件与跨境/B-07-第一次境外务工.md"
+    },
+    {
+      "id": "B-08",
+      "title": "第一次回国入境",
+      "domain": "证件与跨境",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "护照"
+      ],
+      "duration": "半小时内",
+      "cost": "免费",
+      "risk": "低",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "B-01",
+        "B-04"
+      ],
+      "summary": "走中国公民通道，护照在有效期内，行李如实申报，肉类水果不带，落地后按需办理学历认证和社保接续。",
+      "path": "book/02-证件与跨境/B-08-第一次回国入境.md"
     },
     {
       "id": "C-01",
@@ -223,6 +614,221 @@
       ],
       "summary": "第一份工资到手，先看工资条上的应发、代扣和实发，再去查社保、公积金有没有按时缴。",
       "path": "book/03-工作与职业/C-04-第一次拿工资与五险一金.md"
+    },
+    {
+      "id": "C-05",
+      "title": "第一次过试用期",
+      "domain": "工作与职业",
+      "stage": [
+        "学生",
+        "初入职场"
+      ],
+      "prerequisites": [
+        "劳动合同"
+      ],
+      "duration": "长期",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "C-01",
+        "C-03"
+      ],
+      "summary": "试用期也是劳动关系，社保要缴、工资有下限，转正看书面考核标准，被辞退要书面理由和证据。",
+      "path": "book/03-工作与职业/C-05-第一次过试用期.md"
+    },
+    {
+      "id": "C-06",
+      "title": "第一次汇报/述职",
+      "domain": "工作与职业",
+      "stage": [
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "工作记录",
+        "演示材料"
+      ],
+      "duration": "半天",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "S",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "C-05",
+        "C-07"
+      ],
+      "summary": "先给结论，再讲三件关键事，用数字和事实支撑，控制时长，留出问答时间。",
+      "path": "book/03-工作与职业/C-06-第一次汇报述职.md"
+    },
+    {
+      "id": "C-07",
+      "title": "第一次谈涨薪",
+      "domain": "工作与职业",
+      "stage": [
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "工作业绩记录",
+        "薪酬数据"
+      ],
+      "duration": "半天",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "C-06",
+        "C-08"
+      ],
+      "summary": "选对时机，用业绩和市场数据说话，提明确数字，被拒要反馈和时间表，别拿离职威胁。",
+      "path": "book/03-工作与职业/C-07-第一次谈涨薪.md"
+    },
+    {
+      "id": "C-08",
+      "title": "第一次跳槽",
+      "domain": "工作与职业",
+      "stage": [
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "新offer",
+        "劳动合同"
+      ],
+      "duration": "长期",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 5,
+      "related": [
+        "C-02",
+        "C-03"
+      ],
+      "summary": "先拿到书面 offer 再提离职，提前 30 天书面通知，交接留痕，社保公积金别断，竞业条款先看清。",
+      "path": "book/03-工作与职业/C-08-第一次跳槽.md"
+    },
+    {
+      "id": "C-09",
+      "title": "第一次被裁员",
+      "domain": "工作与职业",
+      "stage": [
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "劳动合同",
+        "工资流水"
+      ],
+      "duration": "长期",
+      "cost": "免费",
+      "risk": "高",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 5,
+      "related": [
+        "C-08",
+        "J-05"
+      ],
+      "summary": "不签空白协议、不写“个人原因”辞职，算清 N 或 2N，确认代通知金和社保，再办失业登记。",
+      "path": "book/03-工作与职业/C-09-第一次被裁员.md"
+    },
+    {
+      "id": "C-10",
+      "title": "第一次出差",
+      "domain": "工作与职业",
+      "stage": [
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "公司差旅制度"
+      ],
+      "duration": "1-3天",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "A-01",
+        "C-04"
+      ],
+      "summary": "先看公司差旅制度，订票住宿走指定渠道，发票抬头和税号别错，行程报备，回来按期限报销。",
+      "path": "book/03-工作与职业/C-10-第一次出差.md"
+    },
+    {
+      "id": "C-11",
+      "title": "第一次开公司/个体户",
+      "domain": "工作与职业",
+      "stage": [
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "经营场所证明"
+      ],
+      "duration": "长期",
+      "cost": "千元级",
+      "risk": "高",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "C-04",
+        "G-06"
+      ],
+      "summary": "先选主体类型，再做名称和经营范围登记，领执照后 30 日内办税务、开对公户、按时记账报税和年报。",
+      "path": "book/03-工作与职业/C-11-第一次开公司个体户.md"
+    },
+    {
+      "id": "C-12",
+      "title": "第一次请年假/病假/婚假",
+      "domain": "工作与职业",
+      "stage": [
+        "初入职场",
+        "中年",
+        "新婚"
+      ],
+      "prerequisites": [
+        "劳动合同"
+      ],
+      "duration": "1-3天",
+      "cost": "免费",
+      "risk": "低",
+      "volatility": "M",
+      "region": "分省",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "C-03",
+        "C-04"
+      ],
+      "summary": "先查清自己的年假天数，病假要正规病假条，婚假看当地奖励天数，请假走书面流程并留记录。",
+      "path": "book/03-工作与职业/C-12-第一次请年假病假婚假.md"
     },
     {
       "id": "D-01",

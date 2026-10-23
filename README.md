@@ -93,7 +93,7 @@
 检索页是纯静态的，没有后端。因为浏览器不允许网页直接读本地 JSON，需要起一个静态服务：
 
 ```bash
-cd 人生第一次
+cd HowToFirstTime   # 或你的本地目录名
 node tools/serve.mjs
 ```
 

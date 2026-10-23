@@ -1,0 +1,44 @@
+name: 纠错
+description: 报告一处内容错误或过时说法
+title: "[纠错] "
+labels: ["纠错"]
+body:
+  - type: input
+    id: entry
+    attributes:
+      label: 条目 ID
+      description: 例如 A-01
+      placeholder: A-01
+    validations:
+      required: true
+  - type: textarea
+    id: quote
+    attributes:
+      label: 正文原句
+      description: 复制要纠正的那句话
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: 正确说法
+      description: 你查到的正确内容
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: 来源链接
+      description: 官方页面或原始文献的链接
+      placeholder: https://
+    validations:
+      required: true
+  - type: input
+    id: visited
+    attributes:
+      label: 访问日期
+      placeholder: 2026-10-23
+    validations:
+      required: true

@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>人生第一次 · 检索</title>
+<style>
+  :root {
+    --paper: #fbfaf7;
+    --card: #ffffff;
+    --ink: #1f1d19;
+    --muted: #6f6a60;
+    --line: #e5e0d6;
+    --accent: #2f6b4f;
+    --accent-soft: #e8f0ea;
+    --warn: #9a5b13;
+    --warn-soft: #fbefd9;
+    --danger: #9b2c2c;
+    --danger-soft: #fbe7e7;
+    --shadow: 0 1px 2px rgba(31, 29, 25, .04), 0 8px 24px rgba(31, 29, 25, .05);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.65;
+  }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+  .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+  .masthead {
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(circle at 85% 0%, rgba(47, 107, 79, .08), transparent 42%),
+      var(--paper);
+    padding: 54px 0 40px;
+  }
+
+  .kicker {
+    margin: 0 0 10px;
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: .18em;
+    font-weight: 600;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: "Songti SC", "Noto Serif SC", "SimSun", serif;
+    font-size: clamp(30px, 5vw, 46px);
+    line-height: 1.2;
+    letter-spacing: -.02em;
+  }
+
+  .lede { margin: 14px 0 0; color: var(--muted); max-width: 640px; }
+
+  .stats {
+    margin: 18px 0 0;
+    font-size: 13px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 264px minmax(0, 1fr);
+    gap: 36px;
+    padding: 34px 0 64px;
+    align-items: start;
+  }
+
+  .filters {
+    position: sticky;
+    top: 20px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+  }
+
+  .filters h2 {
+    margin: 0 0 14px;
+    font-size: 13px;
+    letter-spacing: .12em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .search { display: block; margin-bottom: 16px; font-size: 13px; color: var(--muted); }
+
+  .search input {
+    width: 100%;
+    margin-top: 6px;
+    padding: 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+    font-size: 14px;
+    outline: none;
+  }
+
+  .search input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+  .filter-group { margin-bottom: 14px; }
+
+  .filter-group label {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 5px;
+  }
+
+  select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--paper);
+    color: var(--ink);
+    font: inherit;
+    font-size: 13px;
+  }
+
+  .switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--ink);
+    margin: 10px 0;
+    cursor: pointer;
+  }
+
+  .switch input { accent-color: var(--accent); width: 16px; height: 16px; }
+
+  #reset {
+    width: 100%;
+    margin-top: 8px;
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  #reset:hover { border-color: var(--accent); color: var(--accent); }
+
+  .count {
+    margin: 0 0 16px;
+    font-size: 13px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px 18px 16px;
+    box-shadow: var(--shadow);
+    transition: transform .15s ease, border-color .15s ease;
+  }
+
+  .card:hover { transform: translateY(-2px); border-color: #cfc8ba; }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .id {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .status {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .status-draft { color: var(--warn); background: var(--warn-soft); }
+  .status-verified { color: var(--accent); background: var(--accent-soft); }
+  .status-stale { color: var(--danger); background: var(--danger-soft); }
+  .status-disputed { color: var(--danger); background: var(--danger-soft); }
+
+  .card h2 {
+    margin: 0 0 8px;
+    font-family: "Songti SC", "Noto Serif SC", "SimSun", serif;
+    font-size: 21px;
+    line-height: 1.35;
+  }
+
+  .card h2 a { color: var(--ink); text-decoration: none; }
+  .card h2 a:hover { color: var(--accent); }
+
+  .summary {
+    margin: 0 0 14px;
+    color: var(--muted);
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px 12px;
+    margin: auto 0 0;
+    padding-top: 12px;
+    border-top: 1px dashed var(--line);
+  }
+
+  .meta div { min-width: 0; }
+  .meta dt { font-size: 11px; color: var(--muted); }
+  .meta dd { margin: 0; font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .verified { margin: 10px 0 0; font-size: 11.5px; color: var(--muted); }
+
+  .empty {
+    padding: 40px 20px;
+    border: 1px dashed var(--line);
+    border-radius: 14px;
+    text-align: center;
+    color: var(--muted);
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 26px 0 40px;
+    color: var(--muted);
+    font-size: 12.5px;
+  }
+
+  body.field-mode .meta,
+  body.field-mode .verified { display: none; }
+
+  body.field-mode .grid { grid-template-columns: 1fr; }
+
+  body.field-mode .summary { font-size: 16px; color: var(--ink); }
+
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; gap: 20px; }
+    .filters { position: static; }
+    .masthead { padding-top: 38px; }
+  }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <p class="kicker">人生第一次</p>
+    <h1>第一次做这件事，先查一遍</h1>
+    <p class="lede">按场景、耗时、花费和风险筛选。默认只显示已核实的条目；骨架阶段可以打开「显示初稿」。</p>
+    <p class="stats" id="stats">正在读取索引…</p>
+  </div>
+</header>
+
+<div class="wrap layout">
+  <aside class="filters" aria-label="筛选">
+    <h2>筛选</h2>
+
+    <label class="search">关键词
+      <input id="q" type="search" placeholder="例如：安检、劳动合同、产检" autocomplete="off">
+    </label>
+
+    <div class="filter-group">
+      <label for="domain">栏目</label>
+      <select id="domain"><option value="">全部</option></select>
+    </div>
+
+    <div class="filter-group">
+      <label for="stage">人生阶段</label>
+      <select id="stage"><option value="">全部</option></select>
+    </div>
+
+    <div class="filter-group">
+      <label for="duration">预计耗时</label>
+      <select id="duration"><option value="">全部</option></select>
+    </div>
+
+    <div class="filter-group">
+      <label for="cost">花费</label>
+      <select id="cost"><option value="">全部</option></select>
+    </div>
+
+    <div class="filter-group">
+      <label for="risk">风险</label>
+      <select id="risk"><option value="">全部</option></select>
+    </div>
+
+    <div class="filter-group">
+      <label for="volatility">时效</label>
+      <select id="volatility"><option value="">全部</option></select>
+    </div>
+
+    <div class="filter-group">
+      <label for="status">状态</label>
+      <select id="status"><option value="">全部</option></select>
+    </div>
+
+    <label class="switch"><input id="onlyVerified" type="checkbox" checked> 只看已核实</label>
+    <label class="switch"><input id="showDraft" type="checkbox" checked> 显示初稿</label>
+    <label class="switch"><input id="fieldMode" type="checkbox"> 现场模式（只看结论）</label>
+
+    <button id="reset" type="button">重置筛选</button>
+  </aside>
+
+  <main>
+    <p class="count" id="count"></p>
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden>没有符合条件的条目。</p>
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    本页数据来自 <code>index.json</code>，由 <code>node tools/build-index.mjs</code> 生成。内容只提供流程与公开信息，不构成医疗、法律、投资建议。
+  </div>
+</footer>
+
+<script>
+const DURATIONS = ['半小时内', '半天', '1-3天', '长期'];
+const COSTS = ['免费', '百元内', '千元级', '万元级'];
+const RISKS = ['低', '中', '高'];
+const VOLATILITY = { S: '稳定', M: '易变', H: '高频变动' };
+const STATUSES = ['初稿', '已核实', '待更新', '有争议'];
+const STAGES = ['学生', '初入职场', '新婚', '新手父母', '中年', '退休'];
+const STATUS_CLASS = {
+  '初稿': 'status-draft',
+  '已核实': 'status-verified',
+  '待更新': 'status-stale',
+  '有争议': 'status-disputed'
+};
+
+let items = [];
+let stats = null;
+
+const $ = (id) => document.getElementById(id);
+
+function fillSelect(id, values, labels = {}) {
+  const select = $(id);
+  for (const value of values) {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = labels[value] || value;
+    select.appendChild(option);
+  }
+}
+
+function renderStats() {
+  if (!stats) return;
+  $('stats').textContent =
+    '规划 ' + stats.planned + ' 篇 · 已建 ' + stats.built + ' 篇 · 已核实 ' + stats.verified +
+    ' 篇 · 最近更新 ' + (stats.updated || '—');
+}
+
+function renderFilters() {
+  const domains = [...new Set(items.map((item) => item.domain))].sort();
+  fillSelect('domain', domains);
+  fillSelect('stage', STAGES);
+  fillSelect('duration', DURATIONS);
+  fillSelect('cost', COSTS);
+  fillSelect('risk', RISKS);
+  fillSelect('volatility', Object.keys(VOLATILITY), VOLATILITY);
+  fillSelect('status', STATUSES);
+}
+
+function matches(item) {
+  const q = $('q').value.trim().toLowerCase();
+  if (q) {
+    const haystack = [item.id, item.title, item.summary, item.domain]
+      .join(' ')
+      .toLowerCase();
+    if (!haystack.includes(q)) return false;
+  }
+
+  if ($('domain').value && item.domain !== $('domain').value) return false;
+  if ($('stage').value && !(Array.isArray(item.stage) && item.stage.includes($('stage').value))) return false;
+  if ($('duration').value && item.duration !== $('duration').value) return false;
+  if ($('cost').value && item.cost !== $('cost').value) return false;
+  if ($('risk').value && item.risk !== $('risk').value) return false;
+  if ($('volatility').value && item.volatility !== $('volatility').value) return false;
+  if ($('status').value && item.status !== $('status').value) return false;
+
+  if ($('onlyVerified').checked && item.status !== '已核实') return false;
+  if (!$('showDraft').checked && item.status === '初稿') return false;
+
+  return true;
+}
+
+function card(item) {
+  const article = document.createElement('article');
+  article.className = 'card';
+
+  const top = document.createElement('div');
+  top.className = 'card-top';
+
+  const id = document.createElement('span');
+  id.className = 'id';
+  id.textContent = item.id;
+
+  const status = document.createElement('span');
+  status.className = 'status ' + (STATUS_CLASS[item.status] || 'status-draft');
+  status.textContent = item.status;
+
+  top.append(id, status);
+
+  const heading = document.createElement('h2');
+  const link = document.createElement('a');
+  link.href = encodeURI(item.path);
+  link.textContent = item.title;
+  heading.appendChild(link);
+
+  const summary = document.createElement('p');
+  summary.className = 'summary';
+  summary.textContent = item.summary || '（尚未填写一句话摘要）';
+
+  const meta = document.createElement('dl');
+  meta.className = 'meta';
+  const fields = [
+    ['耗时', item.duration],
+    ['花费', item.cost],
+    ['风险', item.risk],
+    ['时效', VOLATILITY[item.volatility] || item.volatility]
+  ];
+  for (const [label, value] of fields) {
+    const wrap = document.createElement('div');
+    const dt = document.createElement('dt');
+    dt.textContent = label;
+    const dd = document.createElement('dd');
+    dd.textContent = value || '—';
+    wrap.append(dt, dd);
+    meta.appendChild(wrap);
+  }
+
+  const verified = document.createElement('p');
+  verified.className = 'verified';
+  verified.textContent = '最近核实 ' + (item.last_verified || '—') + ' · 来源 ' + (item.source_count ?? 0) + ' 条';
+
+  article.append(top, heading, summary, meta, verified);
+  return article;
+}
+
+function render() {
+  const grid = $('grid');
+  grid.textContent = '';
+  const result = items.filter(matches);
+
+  for (const item of result) grid.appendChild(card(item));
+
+  $('count').textContent = '共 ' + result.length + ' 篇';
+  $('empty').hidden = result.length !== 0;
+}
+
+function reset() {
+  $('q').value = '';
+  for (const id of ['domain', 'stage', 'duration', 'cost', 'risk', 'volatility', 'status']) {
+    $(id).value = '';
+  }
+  $('onlyVerified').checked = false;
+  $('showDraft').checked = true;
+  $('fieldMode').checked = false;
+  document.body.classList.remove('field-mode');
+  render();
+}
+
+async function load() {
+  try {
+    const response = await fetch('index.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    const data = await response.json();
+    items = data.items || [];
+    stats = data.stats || null;
+    renderStats();
+    if (stats && stats.verified === 0) {
+      $('onlyVerified').checked = false;
+    }
+    renderFilters();
+    render();
+  } catch (error) {
+    $('stats').textContent =
+      '读取 index.json 失败。请通过本地静态服务打开本页，例如在项目根目录运行 python -m http.server 8000，然后访问 http://localhost:8000/。';
+    $('count').textContent = '';
+  }
+}
+
+for (const id of ['q', 'domain', 'stage', 'duration', 'cost', 'risk', 'volatility', 'status', 'onlyVerified', 'showDraft']) {
+  $(id).addEventListener('input', render);
+  $(id).addEventListener('change', render);
+}
+
+$('fieldMode').addEventListener('change', (event) => {
+  document.body.classList.toggle('field-mode', event.target.checked);
+});
+
+$('reset').addEventListener('click', reset);
+
+load();
+</script>
+</body>
+</html>

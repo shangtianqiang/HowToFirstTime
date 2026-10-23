@@ -1,0 +1,34 @@
+name: 新条目
+description: 提议一个「人生第一次」主题
+title: "[新条目] "
+labels: ["新条目"]
+body:
+  - type: input
+    id: topic
+    attributes:
+      label: 主题
+      description: 一句话说明是哪个第一次
+      placeholder: 第一次坐地铁
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: 为什么是第一次
+      description: 目标读者是谁，会在什么场景下需要
+    validations:
+      required: true
+  - type: textarea
+    id: questions
+    attributes:
+      label: 三个核心问题
+      description: 这篇最需要回答的三个问题
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: 两个官方来源
+      description: 至少两个可核对的官方页面或文件
+    validations:
+      required: true

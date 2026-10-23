@@ -1,0 +1,36 @@
+name: check
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 1 * * 1'
+
+jobs:
+  content:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 元数据
+        run: node tools/check-frontmatter.mjs
+      - name: 结构
+        run: node tools/check-structure.mjs
+      - name: 交叉引用
+        run: node tools/check-refs.mjs
+      - name: 时效
+        run: node tools/check-stale.mjs
+      - name: 待核实
+        run: node tools/check-todo.mjs
+
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 链接
+        run: node tools/check-links.mjs

@@ -1,0 +1,214 @@
+{
+  "generated_at": "2026-10-23T03:46:03.605Z",
+  "stats": {
+    "planned": 94,
+    "built": 8,
+    "verified": 8,
+    "draft": 0,
+    "updated": "2026-10-23"
+  },
+  "items": [
+    {
+      "id": "A-01",
+      "title": "第一次坐飞机",
+      "domain": "出行与交通",
+      "stage": [
+        "学生",
+        "初入职场"
+      ],
+      "prerequisites": [
+        "有效身份证件"
+      ],
+      "duration": "半天",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "H",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 11,
+      "related": [
+        "B-01",
+        "A-02"
+      ],
+      "summary": "国内航班通常提前 2 小时到机场，带购票时用的身份证，充电宝只能随身并看清标识，跟着指示牌走。",
+      "path": "book/01-出行与交通/A-01-第一次坐飞机.md"
+    },
+    {
+      "id": "A-02",
+      "title": "第一次坐高铁",
+      "domain": "出行与交通",
+      "stage": [
+        "学生",
+        "初入职场"
+      ],
+      "prerequisites": [
+        "有效身份证件",
+        "12306 账号"
+      ],
+      "duration": "半天",
+      "cost": "百元内",
+      "risk": "低",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 10,
+      "related": [
+        "A-01",
+        "A-03"
+      ],
+      "summary": "先在 12306 买票并完成实名核验，带购票用的身份证进站，过安检后找检票口，开车前留意停止检票时间。",
+      "path": "book/01-出行与交通/A-02-第一次坐高铁.md"
+    },
+    {
+      "id": "A-03",
+      "title": "第一次坐火车",
+      "domain": "出行与交通",
+      "stage": [
+        "学生",
+        "初入职场"
+      ],
+      "prerequisites": [
+        "有效身份证件"
+      ],
+      "duration": "1-3天",
+      "cost": "百元内",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 10,
+      "related": [
+        "A-02",
+        "A-01"
+      ],
+      "summary": "普速火车先选席别，再按 12306 的起售时间买票；长途夜车把贵重物品随身放，坐过站别出站，先找列车员。",
+      "path": "book/01-出行与交通/A-03-第一次坐火车.md"
+    },
+    {
+      "id": "B-01",
+      "title": "第一次出国",
+      "domain": "证件与跨境",
+      "stage": [
+        "学生",
+        "初入职场",
+        "新婚"
+      ],
+      "prerequisites": [
+        "有效普通护照",
+        "目的地签证（如需）",
+        "往返机票"
+      ],
+      "duration": "长期",
+      "cost": "万元级",
+      "risk": "高",
+      "volatility": "H",
+      "region": "分机构",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 11,
+      "related": [
+        "A-01"
+      ],
+      "summary": "先办护照，再按目的地办签证，出发前查清入境和海关要求，把使领馆电话和 12308 存进手机。",
+      "path": "book/02-证件与跨境/B-01-第一次出国.md"
+    },
+    {
+      "id": "C-01",
+      "title": "第一次入职",
+      "domain": "工作与职业",
+      "stage": [
+        "学生",
+        "初入职场"
+      ],
+      "prerequisites": [
+        "身份证",
+        "学历证明",
+        "银行卡"
+      ],
+      "duration": "1-3天",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 8,
+      "related": [],
+      "summary": "入职一个月内必须签书面劳动合同，签之前看清试用期、工资、社保和违约金，别只听口头承诺。",
+      "path": "book/03-工作与职业/C-01-第一次入职.md"
+    },
+    {
+      "id": "D-01",
+      "title": "第一次学外语入门",
+      "domain": "学习与技能",
+      "stage": [
+        "学生",
+        "初入职场"
+      ],
+      "prerequisites": [],
+      "duration": "长期",
+      "cost": "百元内",
+      "risk": "低",
+      "volatility": "M",
+      "region": "分机构",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 9,
+      "related": [],
+      "summary": "先按 CEFR 定一个能检查的目标，再从发音和高频句起步，每天固定练，90 天后用考试或自测检验。",
+      "path": "book/04-学习与技能/D-01-第一次学外语入门.md"
+    },
+    {
+      "id": "D-02",
+      "title": "第一次学车",
+      "domain": "学习与技能",
+      "stage": [
+        "学生",
+        "初入职场"
+      ],
+      "prerequisites": [
+        "身份证",
+        "体检证明"
+      ],
+      "duration": "长期",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 8,
+      "related": [],
+      "summary": "先选 C1 还是 C2，再选驾校；科目一考完约科目二，科目二和科目三各有 5 次预约机会，拿证后 12 个月是实习期。",
+      "path": "book/04-学习与技能/D-02-第一次学车.md"
+    },
+    {
+      "id": "E-01",
+      "title": "第一次当爸爸",
+      "domain": "家庭与育儿",
+      "stage": [
+        "新婚",
+        "新手父母"
+      ],
+      "prerequisites": [
+        "身份证",
+        "医保卡",
+        "结婚证（如适用）"
+      ],
+      "duration": "长期",
+      "cost": "万元级",
+      "risk": "高",
+      "volatility": "H",
+      "region": "分省",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 10,
+      "related": [],
+      "summary": "确认怀孕后先建档，出生后先办出生医学证明，再上户口和医保；生育津贴、陪产假按本省规定走。",
+      "path": "book/05-家庭与育儿/E-01-第一次当爸爸.md"
+    }
+  ]
+}

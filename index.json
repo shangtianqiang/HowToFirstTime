@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-23T06:12:11.431Z",
+  "generated_at": "2026-10-23T06:17:21.246Z",
   "stats": {
     "planned": 94,
-    "built": 55,
-    "verified": 55,
+    "built": 63,
+    "verified": 63,
     "draft": 0,
     "updated": "2026-10-23"
   },
@@ -1394,6 +1394,202 @@
       "path": "book/06-健康与医疗/F-01-第一次自己挂号看病.md"
     },
     {
+      "id": "F-02",
+      "title": "第一次体检",
+      "domain": "健康与医疗",
+      "stage": [
+        "初入职场",
+        "中年",
+        "退休"
+      ],
+      "prerequisites": [
+        "身份证",
+        "医保卡"
+      ],
+      "duration": "半天",
+      "cost": "千元级",
+      "risk": "低",
+      "volatility": "S",
+      "region": "分机构",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "F-01",
+        "F-03"
+      ],
+      "summary": "选正规体检机构，基础项目做全，提前空腹 8–12 小时，报告异常项按医生建议复查。",
+      "path": "book/06-健康与医疗/F-02-第一次体检.md"
+    },
+    {
+      "id": "F-03",
+      "title": "第一次住院/手术",
+      "domain": "健康与医疗",
+      "stage": [
+        "初入职场",
+        "中年",
+        "退休"
+      ],
+      "prerequisites": [
+        "身份证",
+        "医保卡",
+        "住院证"
+      ],
+      "duration": "1-3天",
+      "cost": "万元级",
+      "risk": "高",
+      "volatility": "M",
+      "region": "分机构",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "F-01",
+        "F-09"
+      ],
+      "summary": "带齐证件办入院和医保登记，术前禁食禁水听医嘱，签字前问清手术风险和替代方案，出院拿好小结和发票。",
+      "path": "book/06-健康与医疗/F-03-第一次住院手术.md"
+    },
+    {
+      "id": "F-04",
+      "title": "第一次看牙",
+      "domain": "健康与医疗",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "医保卡"
+      ],
+      "duration": "半小时内",
+      "cost": "百元内",
+      "risk": "低",
+      "volatility": "S",
+      "region": "分机构",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "F-01",
+        "F-02"
+      ],
+      "summary": "选有执业许可证的口腔机构，先检查再治疗，治疗类项目医保可报、修复类多为自费，拔牙后按医嘱咬棉球不漱口。",
+      "path": "book/06-健康与医疗/F-04-第一次看牙.md"
+    },
+    {
+      "id": "F-05",
+      "title": "第一次配眼镜",
+      "domain": "健康与医疗",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证"
+      ],
+      "duration": "半天",
+      "cost": "千元级",
+      "risk": "低",
+      "volatility": "S",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "F-01",
+        "F-04"
+      ],
+      "summary": "先做医学验光，儿童青少年要散瞳，按瞳距和脸型选框，镜片折射率不是越高越好，取镜后试戴适应。",
+      "path": "book/06-健康与医疗/F-05-第一次配眼镜.md"
+    },
+    {
+      "id": "F-06",
+      "title": "第一次看心理医生",
+      "domain": "健康与医疗",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "医保卡"
+      ],
+      "duration": "半天",
+      "cost": "百元内",
+      "risk": "低",
+      "volatility": "S",
+      "region": "分机构",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "F-01",
+        "I-01"
+      ],
+      "summary": "情绪持续两周影响生活就去看，精神科能诊断开药、心理咨询做谈话治疗，如实说、按医嘱用药，不自行停药。",
+      "path": "book/06-健康与医疗/F-06-第一次看心理医生.md"
+    },
+    {
+      "id": "F-07",
+      "title": "第一次拨 120/急救",
+      "domain": "健康与医疗",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年",
+        "退休"
+      ],
+      "prerequisites": [
+        "手机"
+      ],
+      "duration": "半小时内",
+      "cost": "免费",
+      "risk": "高",
+      "volatility": "S",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "F-01",
+        "D-08"
+      ],
+      "summary": "先判断意识和呼吸，立即拨 120 说清地址和伤情，无呼吸就做心肺复苏，附近有 AED 尽快取用。",
+      "path": "book/06-健康与医疗/F-07-第一次拨120急救.md"
+    },
+    {
+      "id": "F-08",
+      "title": "第一次买商业保险",
+      "domain": "健康与医疗",
+      "stage": [
+        "初入职场",
+        "新婚",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "银行卡"
+      ],
+      "duration": "半天",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "F-09",
+        "C-04"
+      ],
+      "summary": "先配医保再买商业险，健康告知如实填，看清等待期、免赔额和免责条款，犹豫期内可全额退保。",
+      "path": "book/06-健康与医疗/F-08-第一次买商业保险.md"
+    },
+    {
       "id": "F-09",
       "title": "第一次医保报销",
       "domain": "健康与医疗",
@@ -1420,6 +1616,33 @@
       ],
       "summary": "先看药品和项目在不在医保目录，再看起付线、报销比例和封顶线；异地就医先备案，没直接结算就回参保地手工报销。",
       "path": "book/06-健康与医疗/F-09-第一次医保报销.md"
+    },
+    {
+      "id": "F-10",
+      "title": "第一次献血",
+      "domain": "健康与医疗",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证"
+      ],
+      "duration": "半小时内",
+      "cost": "免费",
+      "risk": "低",
+      "volatility": "S",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "F-02",
+        "F-07"
+      ],
+      "summary": "到正规血站或献血屋，带身份证，吃过饭再去，献血后按压 10 分钟、24 小时不剧烈运动。",
+      "path": "book/06-健康与医疗/F-10-第一次献血.md"
     },
     {
       "id": "G-02",

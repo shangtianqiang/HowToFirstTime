@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-10-23T06:17:21.246Z",
+  "generated_at": "2026-10-23T06:22:37.287Z",
   "stats": {
     "planned": 94,
-    "built": 63,
-    "verified": 63,
+    "built": 71,
+    "verified": 71,
     "draft": 0,
     "updated": "2026-10-23"
   },
@@ -1645,6 +1645,33 @@
       "path": "book/06-健康与医疗/F-10-第一次献血.md"
     },
     {
+      "id": "G-01",
+      "title": "第一次办银行卡",
+      "domain": "钱与消费",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证"
+      ],
+      "duration": "半小时内",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "G-05",
+        "I-01"
+      ],
+      "summary": "带身份证到银行网点实名开户，问清一类二类和费用，卡不出租出借出售，丢了先挂失。",
+      "path": "book/07-钱与消费/G-01-第一次办银行卡.md"
+    },
+    {
       "id": "G-02",
       "title": "第一次租房",
       "domain": "钱与消费",
@@ -1669,6 +1696,90 @@
       ],
       "summary": "找已备案的中介或租赁企业，看房核验证件，合同写清押金和维修责任，交接时拍照留底。",
       "path": "book/07-钱与消费/G-02-第一次租房.md"
+    },
+    {
+      "id": "G-03",
+      "title": "第一次买房/办房贷",
+      "domain": "钱与消费",
+      "stage": [
+        "新婚",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "收入证明",
+        "首付款"
+      ],
+      "duration": "长期",
+      "cost": "万元级",
+      "risk": "高",
+      "volatility": "H",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "G-02",
+        "G-01"
+      ],
+      "summary": "先查购房资格和五证，首付走资金监管，合同看清面积、交付和违约，房贷量力而行、保留 12 个月月供。",
+      "path": "book/07-钱与消费/G-03-第一次买房办房贷.md"
+    },
+    {
+      "id": "G-04",
+      "title": "第一次买车",
+      "domain": "钱与消费",
+      "stage": [
+        "初入职场",
+        "新婚",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "驾驶证",
+        "购车款"
+      ],
+      "duration": "1-3天",
+      "cost": "万元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "D-02",
+        "A-07"
+      ],
+      "summary": "先算落地价不只裸车价，合同写清车型配置和交车日期，提车验生产日期和手续，保险三者险买够。",
+      "path": "book/07-钱与消费/G-04-第一次买车.md"
+    },
+    {
+      "id": "G-05",
+      "title": "第一次用信用卡",
+      "domain": "钱与消费",
+      "stage": [
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "收入证明"
+      ],
+      "duration": "半小时内",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 3,
+      "related": [
+        "G-01",
+        "G-07"
+      ],
+      "summary": "看清账单日、还款日和免息期，全额还款不付利息，最低还款和分期成本高，逾期上征信。",
+      "path": "book/07-钱与消费/G-05-第一次用信用卡.md"
     },
     {
       "id": "G-06",
@@ -1697,6 +1808,118 @@
       ],
       "summary": "先下载“个人所得税”App，填好专项附加扣除，次年 3 月到 6 月做年度汇算，退税补税都在 App 里办。",
       "path": "book/07-钱与消费/G-06-第一次个税申报.md"
+    },
+    {
+      "id": "G-07",
+      "title": "第一次理财",
+      "domain": "钱与消费",
+      "stage": [
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "银行卡"
+      ],
+      "duration": "半小时内",
+      "cost": "千元级",
+      "risk": "中",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "G-05",
+        "G-08"
+      ],
+      "summary": "先留 3–6 个月应急金，再按风险承受能力选产品，不借钱投资、不信保本高息，收益越高风险越大。",
+      "path": "book/07-钱与消费/G-07-第一次理财.md"
+    },
+    {
+      "id": "G-08",
+      "title": "第一次消费维权",
+      "domain": "钱与消费",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "订单记录",
+        "支付凭证"
+      ],
+      "duration": "1-3天",
+      "cost": "免费",
+      "risk": "低",
+      "volatility": "M",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "G-07",
+        "I-03"
+      ],
+      "summary": "先留证据，再找商家，谈不拢上 12315 或平台投诉，网购七天内可无理由退货，欺诈可主张退一赔三。",
+      "path": "book/07-钱与消费/G-08-第一次消费维权.md"
+    },
+    {
+      "id": "G-09",
+      "title": "第一次报警/报案",
+      "domain": "钱与消费",
+      "stage": [
+        "学生",
+        "初入职场",
+        "中年",
+        "退休"
+      ],
+      "prerequisites": [
+        "身份证",
+        "证据"
+      ],
+      "duration": "半天",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "S",
+      "region": "全国",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "I-01",
+        "G-10"
+      ],
+      "summary": "正在发生的危险拨 110，说清地点和事件；事后报案带证据到派出所做笔录，一定要拿受案回执。",
+      "path": "book/07-钱与消费/G-09-第一次报警报案.md"
+    },
+    {
+      "id": "G-10",
+      "title": "第一次劳动仲裁/打官司",
+      "domain": "钱与消费",
+      "stage": [
+        "初入职场",
+        "中年"
+      ],
+      "prerequisites": [
+        "身份证",
+        "劳动合同",
+        "证据"
+      ],
+      "duration": "长期",
+      "cost": "免费",
+      "risk": "中",
+      "volatility": "M",
+      "region": "分市",
+      "last_verified": "2026-10-23",
+      "status": "已核实",
+      "source_count": 4,
+      "related": [
+        "C-09",
+        "G-09"
+      ],
+      "summary": "劳动争议先仲裁，时效一年，仲裁免费；证据比道理重要，诉求写清楚，不服裁决 15 日内起诉。",
+      "path": "book/07-钱与消费/G-10-第一次劳动仲裁打官司.md"
     },
     {
       "id": "I-01",

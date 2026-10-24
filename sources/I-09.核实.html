@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>I-09 第一次发短视频/开直播 · 核实记录 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">I-09 第一次发短视频/开直播 · 核实记录</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">关键核实项</a><a href="#sec-1">原文摘录</a><a href="#sec-2">未确定事项与处理</a><a href="#sec-3">争议与差异</a></nav>
+  <main class="content">
+
+<ul>
+<li>核实人：项目组</li>
+<li>核实日期：2026-10-24</li>
+<li>对应版本：v1.0</li>
+<li>当前状态：已核实</li>
+<li>访问日期：所有来源均为 2026-10-24 访问</li>
+</ul>
+<h2 id="sec-0">关键核实项</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>文中说法</th>
+<th>依据等级</th>
+<th>来源</th>
+<th>URL</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>直播平台按「后台实名、前台自愿」对用户实名、对主播做身份证件认证登记；违规可警示、暂停发布、关闭账号</td>
+<td>Ⅰ</td>
+<td>《互联网直播服务管理规定》（国家网信办）</td>
+<td><a href="https://www.cac.gov.cn/2016-11/04/c_1119847629.htm">https://www.cac.gov.cn/2016-11/04/c_1119847629.htm</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>2</td>
+<td>主播适用范围含上传音视频发声出镜者；医疗、财经、法律、教育直播需执业资质并报备；禁止未经授权用他人著作权作品、数据造假、诱导大额打赏；屡教不改者封禁并纳入黑名单</td>
+<td>Ⅰ</td>
+<td>《网络主播行为规范》（广电总局、文旅部）</td>
+<td><a href="https://zwgk.mct.gov.cn/zfxxgkml/qt/202206/t20220622_934011.html">https://zwgk.mct.gov.cn/zfxxgkml/qt/202206/t20220622_934011.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>3</td>
+<td>直播营销人员或直播间运营者为自然人应年满十六周岁，十六周岁以上未成年人需监护人同意；平台需身份动态核验；禁止虚假或引人误解的信息</td>
+<td>Ⅰ</td>
+<td>《网络直播营销管理办法（试行）》</td>
+<td><a href="http://www.cac.gov.cn/2021-04/22/c_1620670982794847.htm">http://www.cac.gov.cn/2021-04/22/c_1620670982794847.htm</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>4</td>
+<td>直播电商经营者需核验行政许可、强制性产品认证、产品合格证明文件等；禁止虚假商业宣传；构成商业广告的履行广告法义务</td>
+<td>Ⅰ</td>
+<td>《直播电商监督管理办法》（市场监管总局、国家网信办，2026年2月1日施行）</td>
+<td><a href="https://www.cac.gov.cn/2026-01/07/c_1769516655383334.htm">https://www.cac.gov.cn/2026-01/07/c_1769516655383334.htm</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>5</td>
+<td>平台不得为未满十六周岁未成年人提供直播发布者账号注册；年满十六周岁需身份认证并经监护人同意</td>
+<td>Ⅰ</td>
+<td>《未成年人保护法》第七十六条（最高人民法院公报网）</td>
+<td><a href="http://gongbao.court.gov.cn/Details/84226b8c6617e656358391189d54de.html">http://gongbao.court.gov.cn/Details/84226b8c6617e656358391189d54de.html</a></td>
+<td>已核实（检索摘要引用原文）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>互联网广告应可识别；知识介绍、体验分享、消费测评推销并附购物链接的应显著标明「广告」；直播营销人员推荐证明构成广告代言的承担代言人义务</td>
+<td>Ⅰ</td>
+<td>《互联网广告管理办法》（湖南省市场监管局转载全文）</td>
+<td><a href="https://amr.hunan.gov.cn/amr/zwx/xxgkmlx/zcfgx/flfggzx/202303/t20230331_29302232.html">https://amr.hunan.gov.cn/amr/zwx/xxgkmlx/zcfgx/flfggzx/202303/t20230331_29302232.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>7</td>
+<td>网络暴力信息定义；平台提供一键防护选项、快捷投诉举报入口、快捷取证功能；2024年8月1日施行</td>
+<td>Ⅰ</td>
+<td>《网络暴力信息治理规定》（网信办等四部门）</td>
+<td><a href="https://www.cac.gov.cn/2024-06/14/c_1720043894161555.htm">https://www.cac.gov.cn/2024-06/14/c_1720043894161555.htm</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>8</td>
+<td>限制民事行为能力人未经监护人同意打赏，支出与年龄智力不相适应的，监护人请求返还，法院应予支持</td>
+<td>Ⅰ</td>
+<td>最高人民法院《指导意见（二）》第九条（北京普法网转载）</td>
+<td><a href="https://www.bj148.org/wq/szfdw/202304/t20230418_1650120.html">https://www.bj148.org/wq/szfdw/202304/t20230418_1650120.html</a></td>
+<td>已核实（转载页）</td>
+</tr>
+<tr>
+<td>9</td>
+<td>未经肖像权人同意不得制作、使用、公开其肖像；自然人享有隐私权，私密空间、活动、信息受保护</td>
+<td>Ⅰ</td>
+<td>《民法典》第一千零一十九条、第一千零三十二条</td>
+<td><a href="https://www.cac.gov.cn/2020-06/01/c_15925617772683193.htm">https://www.cac.gov.cn/2020-06/01/c_15925617772683193.htm</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>10</td>
+<td>短视频不得出现未经授权自行剪切、改编影视剧等各类视听节目及片段的内容</td>
+<td>Ⅲ</td>
+<td>《网络短视频内容审核标准细则》（2021）报道（中国雄安官网）</td>
+<td><a href="https://www.xiongan.gov.cn/2022-01/05/c_1211518450.htm">https://www.xiongan.gov.cn/2022-01/05/c_1211518450.htm</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>11</td>
+<td>国家版权局受理文字、影视、音乐、游戏、软件等作品及网络平台的侵权盗版举报，举报电话 12390</td>
+<td>Ⅱ</td>
+<td>国家版权局在线举报入口</td>
+<td><a href="https://www.ncac.gov.cn/bsfw/zxjb">https://www.ncac.gov.cn/bsfw/zxjb</a></td>
+<td>已核实（检索摘要）</td>
+</tr>
+<tr>
+<td>12</td>
+<td>中央网信办违法和不良信息举报中心举报电话 12377</td>
+<td>Ⅱ</td>
+<td>中央网信办互动服务页</td>
+<td><a href="https://www.cac.gov.cn/hdfw/A0938index_1.htm">https://www.cac.gov.cn/hdfw/A0938index_1.htm</a></td>
+<td>已核实（检索摘要）</td>
+</tr>
+<tr>
+<td>13</td>
+<td>卖食品需食品经营许可；通过网络卖图书需出版物经营许可证</td>
+<td>Ⅰ</td>
+<td>《食品安全法》第三十五条、《出版管理条例》第三十六条（多方检索一致）</td>
+<td><a href="https://www.moj.gov.cn/pub/sfbgw/flfggz/flfggzbmgz/201611/t20161118_145923.html">https://www.moj.gov.cn/pub/sfbgw/flfggz/flfggzbmgz/201611/t20161118_145923.html</a></td>
+<td>已核实（检索摘要，未抓取法律原文页）</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-1">原文摘录</h2>
+<p>以下摘录均为 2026-10-24 访问时真实获取的文字，按上表编号对应。</p>
+<ol>
+<li>「互联网直播服务提供者应当按照&quot;后台实名、前台自愿&quot;的原则，对互联网直播用户进行基于移动电话号码等方式的真实身份信息认证」「对互联网直播发布者进行基于身份证件、营业执照、组织机构代码证等的认证登记」；「不得利用互联网直播服务从事危害国家安全、破坏社会稳定、扰乱社会秩序、侵犯他人合法权益、传播淫秽色情等法律法规禁止的活动」；「视情采取警示、暂停发布、关闭账号等处置措施」。</li>
+<li>「通过互联网提供网络表演、视听节目服务的主播人员，包括在网络平台直播、与用户进行实时交流互动、以上传音视频节目形式发声出镜的人员」；「对于需要较高专业水平（如医疗卫生、财经金融、法律、教育）的直播内容，主播应取得相应执业资质，并向直播平台进行执业资质报备」；「未经授权使用他人拥有著作权的作品」；「虚构或者篡改交易、关注度、浏览量、点赞量等数据流量造假」；「对问题性质严重、多次出现问题且屡教不改的网络主播，应当封禁账号，将相关网络主播纳入&quot;黑名单&quot;或&quot;警示名单&quot;」「不允许以更换账号或更换平台等形式再度开播」。</li>
+<li>「直播营销平台应当对直播间运营者、直播营销人员进行基于身份证件信息、统一社会信用代码等真实身份信息认证」；「直播营销人员或者直播间运营者为自然人的，应当年满十六周岁」「十六周岁以上的未成年人申请成为直播营销人员或者直播间运营者的，应当经监护人同意。」；「发布虚假或者引人误解的信息，欺骗、误导用户」；「直播间运营者、直播营销人员发布的直播内容构成商业广告的，应当履行广告发布者、广告经营者或者广告代言人的责任和义务。」；「直播营销平台应当建立健全未成年人保护机制，注重保护未成年人身心健康。」</li>
+<li>「核验实际销售商品或者提供服务的经营者的名称（姓名）、统一社会信用代码（身份证件号码）、实际经营地址、联系方式、行政许可、强制性产品认证、产品合格证明文件等信息」；「直播间运营者、直播营销人员不得对商品或者服务的经营主体以及性能、功能、质量、销售情况、用户评价、曾获荣誉、资格资质等作虚假或者引人误解的商业宣传」；「直播间运营者、直播营销人员发布的直播内容构成商业广告的，应当依照《中华人民共和国广告法》的有关规定履行广告发布者、广告经营者或者广告代言人的义务。」发布信息：市场监管总局、国家网信办令第117号，2025年12月18日公布，自2026年2月1日起施行。</li>
+<li>「网络直播服务提供者不得为未满十六周岁的未成年人提供网络直播发布者账号注册服务；为年满十六周岁的未成年人提供网络直播发布者账号注册服务时，应当对其身份信息进行认证，并征得其父母或者其他监护人同意。」</li>
+<li>「互联网广告应当具有可识别性，能够使消费者辨明其为广告。」；此类内容推销并附购物链接的「广告发布者应当显著标明&#39;广告&#39;。」；「直播营销人员以自己的名义或者形象对商品、服务作推荐、证明，构成广告代言的，应当依法承担广告代言人的责任和义务。」；「本办法自2023年5月1日起施行」。</li>
+<li>「本规定所称网络暴力信息，是指通过网络以文本、图像、音频、视频等形式对个人集中发布的，含有侮辱谩骂、造谣诽谤、煽动仇恨、威逼胁迫、侵犯隐私，以及影响身心健康的指责嘲讽、贬低歧视等内容的违法和不良信息。」；「网络信息服务提供者应当建立健全网络暴力信息防护功能，提供便利用户设置屏蔽陌生用户或者特定用户、本人发布信息可见范围、禁止转载或者评论本人发布信息等网络暴力信息防护选项。」；「在服务显著位置设置专门的网络暴力信息快捷投诉、举报入口」；「网络信息服务提供者应当向用户提供网络暴力信息快捷取证等功能」；「本规定自2024年8月1日起施行。」</li>
+<li>「限制民事行为能力人未经其监护人同意，参与网络付费游戏或者网络直播平台&quot;打赏&quot;等方式支出与其年龄、智力不相适应的款项，监护人请求网络服务提供者返还该款项的，人民法院应予支持。」（转载页部分内容因页面限制分段获取，关键句与检索摘要一致）</li>
+<li>「任何组织或者个人不得以丑化、污损，或者利用信息技术手段伪造等方式侵害他人的肖像权。」「未经肖像权人同意，不得制作、使用、公开肖像权人的肖像，但是法律另有规定的除外。」；「自然人享有隐私权。任何组织或者个人不得以刺探、侵扰、泄露、公开等方式侵害他人的隐私权。」「隐私是自然人的私人生活安宁和不愿为他人知晓的私密空间、私密活动、私密信息。」</li>
+<li>短视频节目等不得出现「未经授权自行剪切、改编电影、电视剧、网络影视剧等各类视听节目及片段」的内容。</li>
+<li>「欢迎您举报有关文字、影视、音乐、游戏、软件等作品以及互联网网站、网络销售平台、移动智能终端应用软件商店等领域涉及侵权盗版的违法行为。」</li>
+<li>页面栏目信息含「中央网信办（国家互联网信息办公室）违法和不良信息举报中心·举报电话：12377」。</li>
+</ol>
+<h2 id="sec-2">未确定事项与处理</h2>
+<ol>
+<li>各平台开播与带货的具体粉丝数门槛、保证金金额、违规考试要求：各平台不同且高频调整，正文写「以平台规则页为准」，不写死具体数字。</li>
+<li>食品经营许可、出版物经营许可的法律原文页未直接抓取全文，依据为多方一致的检索结果；正文仅写「需相应证照」，办理费用和流程写「以当地为准」。</li>
+<li>《互联网广告管理办法》的总局令编号在两个官方转载页显示不一致，正文不引用令号，只写公布和施行日期。</li>
+<li>平台对未成年人开播时段、打赏功能的限制各不相同，正文写「以平台规则页为准」。</li>
+</ol>
+<h2 id="sec-3">争议与差异</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>说法</th>
+<th>冲突来源</th>
+<th>采用口径</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>《互联网广告管理办法》令号</td>
+<td>不同转载页显示第67号/第72号</td>
+<td>不引用令号</td>
+<td>原文页无法直接访问，避免写错</td>
+</tr>
+<tr>
+<td>2</td>
+<td>未授权影视剪辑的违规等级</td>
+<td>属行业协会细则而非法规</td>
+<td>按 Ⅲ 级写，注明平台据此处置</td>
+<td>中国网络视听节目服务协会发布，平台普遍执行</td>
+</tr>
+</tbody></table></div>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

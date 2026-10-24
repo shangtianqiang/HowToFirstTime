@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>F-11 第一次打成人疫苗 · 核实记录 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">F-11 第一次打成人疫苗 · 核实记录</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">关键核实项</a><a href="#sec-1">未确定事项与处理</a><a href="#sec-2">争议与差异</a></nav>
+  <main class="content">
+
+<ul>
+<li>核实人：项目组</li>
+<li>核实日期：2026-10-24</li>
+<li>对应版本：v1.0</li>
+<li>当前状态：已核实</li>
+<li>核实方式：WebSearch / WebFetch，正文与摘录均为当日实际抓取所得；未抓到原文的不写摘录，登记进「未确定事项」。</li>
+</ul>
+<h2 id="sec-0">关键核实项</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>文中说法</th>
+<th>依据等级</th>
+<th>来源（URL）</th>
+<th>原文摘录</th>
+<th>访问日期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>预防接种实行居住地管理，异地可在现居住地接种单位接续</td>
+<td>Ⅰ</td>
+<td>《中华人民共和国疫苗管理法》第四十七条，中英对照全文（China Justice Observer 转载）<a href="https://www.chinajusticeobserver.com/law/x/vaccine-administration-law-20190629/enchn">https://www.chinajusticeobserver.com/law/x/vaccine-administration-law-20190629/enchn</a></td>
+<td>「预防接种实行居住地管理，儿童离开原居住地期间，由现居住地承担预防接种工作的接种单位负责对其实施接种。」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>2</td>
+<td>接种前医生会告知疫苗品种、作用、禁忌、不良反应并询问健康状况、如实记录</td>
+<td>Ⅰ</td>
+<td>《中华人民共和国疫苗管理法》第四十五条，中英对照全文（China Justice Observer 转载）<a href="https://www.chinajusticeobserver.com/law/x/vaccine-administration-law-20190629/enchn">https://www.chinajusticeobserver.com/law/x/vaccine-administration-law-20190629/enchn</a></td>
+<td>「医疗卫生人员实施接种，应当告知受种者或者其监护人所接种疫苗的品种、作用、禁忌、不良反应以及现场留观等注意事项」「询问受种者的健康状况以及是否有接种禁忌等情况，并如实记录告知和询问情况」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>3</td>
+<td>《预防接种工作规范（2023年版）》由国家疾控局、国家卫健委印发</td>
+<td>Ⅰ</td>
+<td>国家疾控局《关于印发预防接种工作规范（2023年版）的通知》<a href="https://www.ndcpa.gov.cn/jbkzzx/c100014/common/content/content_1734730268199014400.html">https://www.ndcpa.gov.cn/jbkzzx/c100014/common/content/content_1734730268199014400.html</a></td>
+<td>标题「国家疾控局综合司 国家卫生健康委办公厅关于印发预防接种工作规范（2023年版）的通知」，文号国疾控综卫免发〔2023〕17号，2023年11月30日印发。</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>4</td>
+<td>接种后应在现场留观 30 分钟</td>
+<td>Ⅱ</td>
+<td>重庆市疾病预防控制中心《打完疫苗为什么偏偏要留观30分钟？不是小题大做！》<a href="https://www.cqcdc.org/index.php?a=shows&catid=132&id=4186">https://www.cqcdc.org/index.php?a=shows&amp;catid=132&amp;id=4186</a></td>
+<td>「根据《预防接种工作规范》，接种人员必须告知受种者或其监护人，接种后需在现场留观30分钟。」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>5</td>
+<td>严重过敏反应绝大多数发生在接种后 30 分钟内</td>
+<td>Ⅱ</td>
+<td>重庆市疾病预防控制中心（同上）<a href="https://www.cqcdc.org/index.php?a=shows&catid=132&id=4186">https://www.cqcdc.org/index.php?a=shows&amp;catid=132&amp;id=4186</a></td>
+<td>「接种疫苗后的严重过敏反应（如过敏性休克），绝大多数发生在接种后的30分钟内。」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>6</td>
+<td>境内上市 HPV 疫苗共 7 种及各价型覆盖型别</td>
+<td>Ⅱ</td>
+<td>中国疾病预防控制中心《HPV 感染·疫苗免疫预防·常见问答》<a href="https://www.chinacdc.cn/jkyj/mygh02/ymkyfjb/hpvgr/202606/t20260622_1837246.html">https://www.chinacdc.cn/jkyj/mygh02/ymkyfjb/hpvgr/202606/t20260622_1837246.html</a></td>
+<td>「在中国境内上市的HPV疫苗共7种，包括3种针对HPV16/18的双价疫苗，2种针对HPV6/11/16/18的四价疫苗，2种针对HPV6/11/16/18/31/33/45/52/58的九价疫苗。」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>7</td>
+<td>HPV 疫苗女性常规 3 剂、9～14 岁可选 2 剂；进口四价和九价获批用于男性</td>
+<td>Ⅱ</td>
+<td>中国疾病预防控制中心（同上）<a href="https://www.chinacdc.cn/jkyj/mygh02/ymkyfjb/hpvgr/202606/t20260622_1837246.html">https://www.chinacdc.cn/jkyj/mygh02/ymkyfjb/hpvgr/202606/t20260622_1837246.html</a></td>
+<td>「目前在中国境内上市的7种疫苗均获批用于女性，常规推荐程序为3剂次，9～14岁可选择2剂次程序」「2种疫苗（进口四价和九价HPV疫苗）获批用于男性，常规推荐程序为3剂次，分别适用于9～26岁和16～26岁男性。」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>8</td>
+<td>13 岁女孩双价 HPV 疫苗纳入国家免疫规划免费接种 2 剂</td>
+<td>Ⅱ</td>
+<td>中国疾病预防控制中心（同上）<a href="https://www.chinacdc.cn/jkyj/mygh02/ymkyfjb/hpvgr/202606/t20260622_1837246.html">https://www.chinacdc.cn/jkyj/mygh02/ymkyfjb/hpvgr/202606/t20260622_1837246.html</a></td>
+<td>「自2025年11月10日起，人乳头瘤病毒（HPV）疫苗纳入国家免疫规划，在全国范围内对目标人群（2011年11月10日以后出生的满13周岁女孩）免费接种2剂次针对16和18基因型病毒的双价HPV疫苗（间隔6个月）。」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>9</td>
+<td>2022 年 8 月九价 HPV 疫苗适用人群扩展至 9-45 岁女性</td>
+<td>Ⅱ</td>
+<td>福建省卫生健康委《重磅！9～45岁女性都能打！九价HPV疫苗扩龄了！》<a href="https://wjw.fujian.gov.cn/jggk/csxx/xcc/mtbd/202209/t20220901_5985092.htm">https://wjw.fujian.gov.cn/jggk/csxx/xcc/mtbd/202209/t20220901_5985092.htm</a></td>
+<td>「8月30日，国家药监局网站显示，默沙东九价人乳头瘤病毒疫苗（酿酒酵母）适应症得以扩展，适用人群拓展至9-45岁适龄女性接种。」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>10</td>
+<td>流感疫苗建议 6 月龄及以上无禁忌者接种，成人每流行季 1 剂，流行季前完成</td>
+<td>Ⅱ</td>
+<td>中国疾控中心国家流感中心《中国流感疫苗预防接种技术指南（2026-2027）》<a href="https://ivdc.chinacdc.cn/cnic/zxhd/202609/t20260903_1839793.htm">https://ivdc.chinacdc.cn/cnic/zxhd/202609/t20260903_1839793.htm</a></td>
+<td>「本指南建议所有6月龄及以上且无接种禁忌的人接种流感疫苗。」「最好在当地流感流行季前完成接种」「对于9岁及以上儿童和成人，无论既往是否接种过流感疫苗，仅需接种1剂次。」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>11</td>
+<td>重组带状疱疹疫苗适用于 50 岁及以上 2 剂；减毒活疫苗适用于 40 岁及以上 1 剂；自愿选择</td>
+<td>Ⅱ</td>
+<td>中国疾病预防控制中心免疫中心带状疱疹疫苗科普 <a href="https://www.chinacdc.cn/jkkp/mygh/ymyf/202507/t20250714_308334.html">https://www.chinacdc.cn/jkkp/mygh/ymyf/202507/t20250714_308334.html</a></td>
+<td>「①重组带状疱疹疫苗适用于≥50岁人群，共需接种2剂次（间隔2-6个月）；」「②带状疱疹减毒活疫苗适用于≥40岁人群，需接种1剂次。」「两种疫苗均安全有效，满足接种年龄条件的人群可根据自身情况自愿选择接种。」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>12</td>
+<td>免疫功能缺陷或免疫抑制者不推荐减毒活带状疱疹疫苗</td>
+<td>Ⅱ</td>
+<td>中国疾病预防控制中心免疫中心（同上）<a href="https://www.chinacdc.cn/jkkp/mygh/ymyf/202507/t20250714_308334.html">https://www.chinacdc.cn/jkkp/mygh/ymyf/202507/t20250714_308334.html</a></td>
+<td>「对免疫功能缺陷或免疫抑制疾病患者，不推荐接种带状疱疹减毒活疫苗，可在知情同意、权衡利弊下选择重组带状疱疹疫苗接种。」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>13</td>
+<td>乙肝疫苗按 0、1、6 月程序共 3 剂；一般人群完成全程后无需常规检测抗体或加强</td>
+<td>Ⅱ</td>
+<td>中国疾病预防控制中心《乙型肝炎——常见问答》<a href="https://www.chinacdc.cn/jkyj/mygh02/ymkyfjb/yxgy/202606/t20260622_1837221.html">https://www.chinacdc.cn/jkyj/mygh02/ymkyfjb/yxgy/202606/t20260622_1837221.html</a></td>
+<td>「第1剂在新生儿出生后24小时内接种，第2剂在1月龄时接种，第3剂在6月龄时接种」「一般人群不需要进行抗-HBs监测或加强免疫。世界卫生组织也无针对一般人群开展乙肝疫苗加强接种的推荐建议」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>14</td>
+<td>肺炎球菌疫苗有 23 价多糖和 13 价结合两种；23 价适合 2 岁以上易感人群和 60 岁以上老人</td>
+<td>Ⅱ</td>
+<td>江苏省疾病预防控制中心《又一款国产13价肺炎疫苗开打，进口国产怎么选？》<a href="https://www.jscdc.cn/hdjl_1829/wzyjll/202310/t20231026_90878.html">https://www.jscdc.cn/hdjl_1829/wzyjll/202310/t20231026_90878.html</a></td>
+<td>「肺炎疫苗目前有23价多糖疫苗和13价结合疫苗两种，主要是针对预防肺炎链球菌性疾病。」「其中13价结合肺炎疫苗目前只获批适用于儿童，23价多糖疫苗适合2岁以上易感人群和60岁以上老人。」（注：文章发布于 2021 年 12 月，正文另按第 15 项补充）</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>15</td>
+<td>13 价结合疫苗的扩龄批准是扩至 5 岁（6 岁生日前），未见成人适应症批准公告</td>
+<td>Ⅲ</td>
+<td>辉瑞中国新闻稿《进口原研13价肺炎球菌结合疫苗扩年龄新适应症正式获批》<a href="https://www.pfizer.com.cn/zh-hans/news/press-release/697">https://www.pfizer.com.cn/zh-hans/news/press-release/697</a></td>
+<td>「沛儿13®的扩年龄新适应症获得中国国家药品监督管理局（NMPA）正式批准，接种年龄范围从6周龄-15月龄扩展至6周龄-5岁（6岁生日前）。」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>16</td>
+<td>破伤风针是被动免疫制剂，破伤风疫苗是主动免疫，保护可达 5～10 年</td>
+<td>Ⅱ</td>
+<td>福州市疾病预防控制中心《划破伤口都要打破伤风针？这里给您一一解答》<a href="https://cdc.fuzhou.gov.cn/zz/ddgz/jkjy/mygh/202510/t20251031_5225265.htm">https://cdc.fuzhou.gov.cn/zz/ddgz/jkjy/mygh/202510/t20251031_5225265.htm</a></td>
+<td>「我们平时受伤后到医院打的&#39;破伤风针&#39;，称为破伤风抗毒素或抗破伤风免疫球蛋白，提供被动免疫使机体获得保护。」「属于主动免疫，一旦完成，免疫保护持续时间可长达5～10年。」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>17</td>
+<td>HPV 预约走疾控公众号、官方平台，也可持身份证到社区卫生服务中心登记排队；部分城市可跨区预约</td>
+<td>Ⅲ</td>
+<td>人民网（新华网转载）《全国多地HPV疫苗预约平台保障九价有序接种》<a href="http://www.news.cn/health/20231031/5c3a6530d7af436982b63d47d4a42cec/c.html">http://www.news.cn/health/20231031/5c3a6530d7af436982b63d47d4a42cec/c.html</a></td>
+<td>「厦门疾控中心开通了九价HPV疫苗线上排队预约功能，市民可进入&#39;厦门疾控&#39;微信公众号进行线上排队预约。」「接种者也可以带上本人的身份证到所在社区卫生服务中心登记，排队预约。」（另载：「打破户籍所在地限制，可实现跨区县、跨地市预约」）</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>18</td>
+<td>北京电子预防接种证全面启用，经「京通」小程序实名认证申领</td>
+<td>Ⅱ</td>
+<td>北京市疾病预防控制中心《北京市电子预防接种证全面启用》<a href="https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202508/t20250818_4174833.html">https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202508/t20250818_4174833.html</a></td>
+<td>「即日起，北京市电子预防接种证全面启用。」「使用支付宝或微信搜索&#39;京通&#39;小程序，首次使用需完成手机号注册与实名认证」「进入【健康服务】→【疫苗接种】→【受种者管理】，按提示在&#39;受种者管理&#39;模块添加本人或子女信息。」</td>
+<td>2026-10-24</td>
+</tr>
+<tr>
+<td>19</td>
+<td>国产九价 HPV 定价 499 元/支，9～17 岁 2 剂全程 998 元、18～45 岁 3 剂约 1500 元；二价 HPV 纳入国家免疫规划</td>
+<td>Ⅲ</td>
+<td>新华网《国产HPV疫苗再传佳音：九价落地、二价入国家免疫规划》<a href="http://www.news.cn/food/20250911/3acb60bb69024be68c6e721526643d36/c.html">http://www.news.cn/food/20250911/3acb60bb69024be68c6e721526643d36/c.html</a></td>
+<td>「国产九价HPV疫苗每支定价499元，约为进口疫苗价格的40%。」「9至17岁女性采用两剂次程序，全程费用998元；18至45岁女性采用三剂次程序，全程约1500元。」「纳入国家免疫规划的HPV疫苗为二价HPV疫苗，主要针对小年龄段女性。」</td>
+<td>2026-10-24</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-1">未确定事项与处理</h2>
+<ol>
+<li>流感、乙肝、23 价肺炎、二价 HPV、带状疱疹等疫苗的具体单价：属地方公示与市场行为，变动快。未逐项取得官方价格公示原文，正文只写区间并注明「以当地公示为准」。</li>
+<li>进口九价 HPV 每剂约 1300 元、全程约 3500～4000 元：由新华网「约为进口疫苗价格的40%」一句推算，另检索到青海、浙江等地公示报道（约 1300 元/剂、三针约 4000 元），未抓到公示原文，正文标注「按公开报道测算」。</li>
+<li>进口四价与九价 HPV 疫苗的男性适用年龄（9～26 岁、16～26 岁）：按中疾控页面句子的前后顺序转述，未逐条核对说明书，正文标注「适用年龄、供应和价格以当地门诊公示为准」。</li>
+<li>各省电子预防接种证入口名称不同：仅核实北京「京通」一例，正文写「入口以当地为准」。</li>
+<li>13 价肺炎结合疫苗成人适应症的最新批准状态：检索未见官方公告，正文写「成人能否接种以说明书和门诊为准」。</li>
+<li>破伤风「全程免疫 5 年内各类伤口的处置细则」：依据《外伤后破伤风疫苗和被动免疫制剂使用指南》（2019），未抓到指南原文，正文只写免疫保护 5～10 年、是否打针由医生判断。</li>
+<li>成人乙肝疫苗的具体剂型剂量（如 20μg/60μg）：《成人乙型肝炎疫苗接种专家建议》等资料提示存在多种方案，未取得权威原文，正文写「以接种门诊评估为准」。</li>
+</ol>
+<h2 id="sec-2">争议与差异</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>说法</th>
+<th>冲突来源</th>
+<th>采用口径</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>13 价肺炎结合疫苗适用人群</td>
+<td>江苏疾控 2021 年称「只获批适用于儿童」；辉瑞 2023 年公告扩龄至 6 周龄～5 岁</td>
+<td>「13 价主要获批给儿童，成人以说明书和门诊为准」</td>
+<td>两个说法不矛盾（均为儿童范围），成人适应症未见批准公告，从保守口径</td>
+</tr>
+<tr>
+<td>2</td>
+<td>进口九价 HPV 单价</td>
+<td>各地公示约 1300 元/剂；国产上市后部分惠民活动更低</td>
+<td>全程写「约 3500～4000 元，按公开报道测算」</td>
+<td>价格随厂家、渠道、活动波动，不写死单价</td>
+</tr>
+<tr>
+<td>3</td>
+<td>流感疫苗接种时机</td>
+<td>旧版指南表述为「最好在 10 月底前完成」；2026-2027 版为「最好在当地流感流行季前完成」</td>
+<td>采用 2026-2027 版表述</td>
+<td>以最新版指南为准</td>
+</tr>
+</tbody></table></div>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

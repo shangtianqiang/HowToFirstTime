@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次坐地铁 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 出行与交通</nav>
+  <h1 class="post-title">第一次坐地铁</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>出行与交通</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>4 条</b></span><span class="chip ">耗时 <b>半小时内</b></span><span class="chip ">花费 <b>百元内</b></span><span class="chip risk-low">风险 <b>低</b></span><span class="chip ">时效 <b>稳定</b></span><span class="chip ">适用 <b>分市</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：进站先看线路和终点站方向，进出闸都要刷卡或扫码，坐过站别出站，到对面坐回去。
+<strong>适用</strong>：第一次独自乘坐城市地铁、轻轨、市域线的人。
+<strong>不适用</strong>：跨城高铁、城际铁路，看 A-02 和 A-03；机场专线另有计费规则。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>看懂方向</strong>：站台屏蔽门上写着终点站名，按终点站判断方向，不要只看线路颜色。</li>
+<li><strong>三种票</strong>：手机乘车码、交通卡、单程票。多数城市支持前两种。</li>
+<li><strong>安检</strong>：包放传送带，人过安检门；易燃易爆、管制刀具不能带。</li>
+<li><strong>候车</strong>：站在黄线内，先下后上，不要挡门。</li>
+<li><strong>出站</strong>：单程票投入回收口，扫码或刷卡出闸。</li>
+<li><strong>坐过站</strong>：不出站，站内换到对面站台坐回去，不额外扣费。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 出门前查什么</h3>
+<ul>
+<li>用地图 App 查线路：从哪站进、在哪换乘、从哪个口出。</li>
+<li>看首末班车时间。末班车过后只能改坐夜班公交或打车。</li>
+<li>看票价。多数城市按里程计价，进站到出站算一次。</li>
+<li>看是否有大小交路：同一线路有车只跑到中间站，车头显示屏和站台广播会提示。</li>
+<li>看车站是否封闭施工、哪个出入口关闭。运营方会提前公告。</li>
+</ul>
+<h3>1.2 票怎么准备</h3>
+<ul>
+<li>手机乘车码：在支付宝、微信或当地地铁 App 里开通，进站前先打开，确认有电、有网。</li>
+<li>交通卡：当地公交地铁一卡通，部分城市支持全国交通一卡通。</li>
+<li>单程票：在自动售票机买，支持现金或扫码，选目的地站或按金额购票。</li>
+<li>一日票、多日票：旅游城市常见，按次不限里程，问客服中心。</li>
+<li>儿童：多数城市对身高 1.3 米以下儿童免票，具体标准以当地运营方公示为准。</li>
+</ul>
+<h3>1.3 带什么、不带什么</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 手机（有电、有乘车码或交通卡）</li>
+<li><input disabled="" type="checkbox"> 少量现金，以防扫码失败</li>
+<li><input disabled="" type="checkbox"> 身份证（部分城市乘车实名或购票需要）</li>
+<li><input disabled="" type="checkbox"> 随身包，过安检时方便取放</li>
+<li>不带的：易燃易爆物品、管制刀具、超过规定尺寸的行李、活禽、异味重的食品。</li>
+<li>各城市禁限带物品目录不同，进站前看车站公告或运营方官网。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 找到出入口</h3>
+<ul>
+<li>在哪：街面上的地铁标志，字母编号的出入口。</li>
+<li>做什么：对照地图 App 上的出口编号，选离目的地最近的。</li>
+<li>看什么：出入口旁的线路图、首末班车时间、无障碍电梯标识。</li>
+<li>完成标志：下到站厅层，看到安检和闸机。</li>
+</ul>
+<h3>2.2 过安检</h3>
+<ul>
+<li>在哪：站厅入口。</li>
+<li>做什么：包放传送带，人走过安检门，随身液体按现场要求处理。</li>
+<li>看什么：安检员手势和提示。</li>
+<li>完成标志：取回包，进入付费区前的闸机区域。</li>
+<li>卡住了怎么办：带了禁限物品，主动交出或改走其他交通方式。</li>
+</ul>
+<h3>2.3 买票或扫码进闸</h3>
+<ul>
+<li>在哪：自动售票机或闸机。</li>
+<li>做什么：单程票在售票机选站购票；乘车码对准扫码区；交通卡贴感应区。</li>
+<li>看什么：闸机显示屏的余额和扣费提示，闸门打开再走。</li>
+<li>完成标志：通过闸机，进入站台层。</li>
+<li>卡住了怎么办：闸机不开，去客服中心处理，不要翻越或钻闸。</li>
+</ul>
+<h3>2.4 找对站台和方向</h3>
+<ul>
+<li>在哪：站台层。</li>
+<li>做什么：看屏蔽门上方的线路图，确认当前站到终点站的箭头方向。</li>
+<li>看什么：站台广播、车门上方的到站显示屏。</li>
+<li>说什么：不确定就问站台工作人员“这趟车到不到某某站”。</li>
+<li>完成标志：车门打开，上车。</li>
+</ul>
+<h3>2.5 乘车与换乘</h3>
+<ul>
+<li>在哪：车厢内。</li>
+<li>做什么：扶好站稳，听报站，提前一站往车门移动。</li>
+<li>看什么：车门上方的线路图，当前站指示灯。</li>
+<li>完成标志：到达换乘站或目的站。</li>
+<li>换乘：跟着“换乘”指示牌走，不要出闸；出闸再进要重新计费。</li>
+</ul>
+<h3>2.6 出站</h3>
+<ul>
+<li>在哪：目的站站厅。</li>
+<li>做什么：单程票投入闸机回收口，乘车码扫码，交通卡刷卡。</li>
+<li>看什么：出口编号指示牌，选对地面出口。</li>
+<li>完成标志：出闸，上到地面。</li>
+<li>卡住了怎么办：票卡失效、余额不足，去客服中心补票或处理。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 第一次坐地铁怎么知道坐哪个方向？</h3>
+<p>答：看站台屏蔽门上写的终点站名，和你地图 App 上的线路终点对照。不要只看颜色，同一条线可能有两个方向。</p>
+<h3>Q2 手机没电或扫码失败怎么办？</h3>
+<p>答：去客服中心，说明进站站和手机号，按工作人员指引补票。多数城市支持现金或人工处理。</p>
+<h3>Q3 坐过站了要重新买票吗？</h3>
+<p>答：不用。站内换到对面站台坐回去，不出闸就不重新计费。如果已经出闸，需要重新购票进站。</p>
+<h3>Q4 换乘要出站吗？</h3>
+<p>答：多数换乘站在付费区内直接换乘，跟着指示牌走，不用出闸。少数站点要出站换乘，按现场指示。</p>
+<h3>Q5 地铁上能吃东西吗？</h3>
+<p>答：多数城市规定车厢内禁止饮食，具体看当地乘客守则。安检一般不查普通食品，但异味重的可能被劝止。</p>
+<h3>Q6 大件行李能带吗？</h3>
+<p>答：有尺寸和重量限制，各城市不同。超限要改走其他交通方式，进站前看车站公告。</p>
+<h3>Q7 儿童要买票吗？</h3>
+<p>答：多数城市身高 1.3 米以下免票，1.3 米以上买全票，具体以当地运营方公示为准。带儿童过闸可走宽闸机或人工通道。</p>
+<h3>Q8 地铁最晚几点？</h3>
+<p>答：各城市、各线路不同，末班车时间在站厅和官网公示。赶末班车要留出换乘时间，末班车通常不保证换乘。</p>
+<h3>Q9 东西落在车上怎么办？</h3>
+<p>答：记住车厢编号、车门编号和大概时间，立刻找站台工作人员或客服中心登记，拨打运营方服务热线。</p>
+<h3>Q10 早晚高峰挤不上车怎么办？</h3>
+<p>答：等下一趟，不要硬挤、不要挡门。多数线路高峰 2–5 分钟一班。赶时间可以改走相邻线路。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>只看颜色不看终点站</strong>：同一线路有区间车，坐错方向很常见。认终点站名。</li>
+<li><strong>出闸再换乘</strong>：换乘站出闸后要重新计费。跟“换乘”标识走，不要跟“出站”标识走。</li>
+<li><strong>单程票弄丢</strong>：出站要投票，丢了按当地规定补全程票，去客服中心处理。</li>
+<li><strong>尾随过闸</strong>：逃票会被记录，部分城市纳入信用管理。一人一票，不要跟着别人挤。</li>
+<li><strong>站台边缘拍照</strong>：越黄线有安全风险，也可能被工作人员劝离。</li>
+<li><strong>末班车换乘</strong>：末班车到换乘站时，另一条线可能已经停运。提前查换乘站末班时间。</li>
+<li><strong>带气球、充电宝超标</strong>：部分城市禁带充气气球，充电宝有容量限制，进站前查当地目录。</li>
+<li><strong>手机乘车码没网</strong>：提前打开乘车码或准备交通卡，站内信号可能不好。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>坐反方向</strong>：下一站下车，站内换到对面站台坐回去，不要出闸。</li>
+<li><strong>票卡失效、闸机不开</strong>：找客服中心或按闸机旁的对讲按钮，不要翻闸。</li>
+<li><strong>手机没电</strong>：找客服中心说明情况，按指引补票；记住自己从哪站进。</li>
+<li><strong>身体不适</strong>：立即下车找站台工作人员，多数车站有急救箱，必要时拨 120。</li>
+<li><strong>大客流或临时封站</strong>：听广播和工作人员指挥，从指定出口疏散，改走公交或错峰。</li>
+<li><strong>物品遗失</strong>：找站台工作人员登记，或拨打运营方失物招领电话；贵重物品可报警。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单程票价</td>
+<td>2–10 元</td>
+<td>按里程计价，各城市不同，必选</td>
+</tr>
+<tr>
+<td>交通卡押金</td>
+<td>20–30 元</td>
+<td>可退，部分城市免押金，可选</td>
+</tr>
+<tr>
+<td>一日票</td>
+<td>10–30 元</td>
+<td>旅游城市常见，可选</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半小时内</td>
+<td>含安检、候车、换乘</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mot.gov.cn">交通运输部</a></li>
+<li><a href="https://www.bjsubway.com">北京地铁</a>、<a href="https://www.shmetro.com">上海地铁</a>、<a href="https://www.gzmtr.com">广州地铁</a>、<a href="https://www.szmc.net">深圳地铁</a></li>
+<li>当地 12345 政务服务热线</li>
+</ul>
+</li>
+<li>相关条目：<a href="A-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9D%90%E9%AB%98%E9%93%81.html">A-02 第一次坐高铁</a>、<a href="A-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%89%93%E7%BD%91%E7%BA%A6%E8%BD%A6%E4%B8%8E%E5%87%BA%E7%A7%9F%E8%BD%A6.html">A-06 第一次打网约车/出租车</a></li>
+<li>可打印清单：<a href="../../checklists/A-04-%E5%9C%B0%E9%93%81-%E5%87%BA%E8%A1%8C%E6%B8%85%E5%8D%95.html">A-04 地铁清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《城市轨道交通运营管理规定》；Ⅱ 级为各城市运营方乘客守则和票价公示；Ⅲ 级为通行做法。</li>
+<li>主要来源：<ol>
+<li>交通运输部《城市轨道交通运营管理规定》（交通运输部令 2018 年第 8 号），<a href="https://www.mot.gov.cn">https://www.mot.gov.cn</a></li>
+<li>北京地铁官网乘客服务与票价说明，<a href="https://www.bjsubway.com">https://www.bjsubway.com</a></li>
+<li>上海地铁官网乘客守则，<a href="https://www.shmetro.com">https://www.shmetro.com</a></li>
+<li>广州地铁官网票务规则，<a href="https://www.gzmtr.com">https://www.gzmtr.com</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地城市轨道交通。票价、儿童免票身高、禁限带物品目录由各城市制定，以当地运营方公示为准。</li>
+<li>易变项：票价、线路、出入口开放状态（S，但局部施工会临时变化）。</li>
+<li>核实记录：<a href="../../sources/A-04.%E6%A0%B8%E5%AE%9E.html">sources/A-04.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="A-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9D%90%E7%81%AB%E8%BD%A6.html"><span class="dir">← 上一篇</span><span class="name">A-03 第一次坐火车</span></a><a class="next" href="A-05-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9D%90%E9%95%BF%E9%80%94%E5%A4%A7%E5%B7%B4.html"><span class="dir">下一篇 →</span><span class="name">A-05 第一次坐长途大巴</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

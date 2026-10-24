@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次个税申报 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 钱与消费</nav>
+  <h1 class="post-title">第一次个税申报</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>钱与消费</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>8 条</b></span><span class="chip ">耗时 <b>半小时内</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先下载“个人所得税”App，填好专项附加扣除，次年 3 月到 6 月做年度汇算，退税补税都在 App 里办。
+<strong>适用</strong>：第一次拿工资、第一次需要办理个人所得税年度汇算的居民个人。
+<strong>不适用</strong>：企业代账、个体工商户经营所得、境外所得（另立条目）。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>起征点</strong>：综合所得按年减除费用 6 万元，也就是每月 5000 元。[1]</li>
+<li><strong>综合所得</strong>：工资薪金、劳务报酬、稿酬、特许权使用费 4 项，按年合并计算。[1]</li>
+<li><strong>7 项专项附加扣除</strong>：3 岁以下婴幼儿照护、子女教育、继续教育、大病医疗、住房贷款利息、住房租金、赡养老人。[2]</li>
+<li><strong>年度汇算</strong>：次年 3 月 1 日到 6 月 30 日。[3]</li>
+<li><strong>可以免办</strong>：需要补税但年收入不超过 12 万元，或补税金额不超过 400 元（2024–2027 年）。[4]</li>
+<li><strong>App</strong>：官方名称“个人所得税”，国家税务总局发布。[5]</li>
+<li><strong>不申报</strong>：可能被追缴税款、加收滞纳金，情节严重的还会罚款。[6]</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 综合所得与起征点</h3>
+<ul>
+<li>综合所得包括工资薪金、劳务报酬、稿酬、特许权使用费。[1]</li>
+<li>居民个人按纳税年度合并计算。</li>
+<li>每年减除费用 6 万元，也就是每月 5000 元。[1]</li>
+<li>还要减专项扣除（社保、公积金个人部分）、专项附加扣除、依法确定的其他扣除。</li>
+<li>应纳税所得额 = 收入额 − 6 万元 − 专项扣除 − 专项附加扣除 − 其他扣除。</li>
+</ul>
+<h3>1.2 7 项专项附加扣除</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>标准</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3 岁以下婴幼儿照护</td>
+<td>每个婴幼儿每月 2000 元</td>
+</tr>
+<tr>
+<td>子女教育</td>
+<td>每个子女每月 2000 元</td>
+</tr>
+<tr>
+<td>继续教育</td>
+<td>学历继续教育每月 400 元，最长 48 个月；职业资格证书当年 3600 元</td>
+</tr>
+<tr>
+<td>大病医疗</td>
+<td>医保目录内自付超过 1.5 万元的部分，年度限额 8 万元</td>
+</tr>
+<tr>
+<td>住房贷款利息</td>
+<td>首套房贷每月 1000 元，最长 240 个月</td>
+</tr>
+<tr>
+<td>住房租金</td>
+<td>按城市每月 1500 元、1100 元或 800 元</td>
+</tr>
+<tr>
+<td>赡养老人</td>
+<td>每月 3000 元；非独生子女分摊，每人不超过 1500 元</td>
+</tr>
+</tbody></table></div>
+<p>[2]</p>
+<ul>
+<li>住房贷款利息和住房租金只能选一项。</li>
+<li>大病医疗在年度汇算时扣除，其余可在单位按月扣除或汇算时扣除。[7]</li>
+<li>相关资料留存 5 年。[7]</li>
+</ul>
+<h3>1.3 年度汇算</h3>
+<ul>
+<li>时间：次年 3 月 1 日到 6 月 30 日。[3]</li>
+<li>需要办：已预缴大于应纳且申请退税；已预缴小于应纳且不属免办；因所得项目错误、扣缴义务人未扣缴等导致少报未报。[4]</li>
+<li>可以免办：需要补税但年收入不超过 12 万元；补税不超过 400 元（2024–2027 年）；预缴与应纳一致；符合退税条件但不申请。[4]</li>
+<li>用“个人所得税”App 或自然人电子税务局办理。</li>
+</ul>
+<h3>1.4 退税补税</h3>
+<ul>
+<li>应纳小于已预缴，可以申请退税。</li>
+<li>退税要提供本人境内符合条件的银行账户。[8]</li>
+<li>补税要在 6 月 30 日前通过网上银行、办税厅、银行柜台或非银行支付机构缴纳。[8]</li>
+<li>收入不超过 6 万元且已预缴的，可以用简易申报退税。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 下载注册</h3>
+<ul>
+<li>在哪：手机应用商店，认准“个人所得税”，国家税务总局发布。</li>
+<li>做什么：注册、实名认证、绑定银行卡。</li>
+<li>看什么：开发者信息、官方标识。</li>
+<li>说什么：有疑问拨 12366。</li>
+<li>完成标志：登录成功，能看到自己的任职受雇信息。</li>
+<li>卡住了怎么办：人脸识别不过，去办税厅处理。</li>
+</ul>
+<h3>2.2 填报专项附加扣除</h3>
+<ul>
+<li>在哪：App 首页“专项附加扣除填报”。</li>
+<li>做什么：按项目填，选择扣除年度和扣除方式。</li>
+<li>看什么：每个项目的条件和需要留存的材料。</li>
+<li>说什么：拿不准问 12366 或单位财务。</li>
+<li>完成标志：提交成功，单位能看到或汇算时能带出。</li>
+<li>卡住了怎么办：材料不齐，先补材料再填。</li>
+</ul>
+<h3>2.3 确认收入</h3>
+<ul>
+<li>在哪：App“收入纳税明细查询”。</li>
+<li>做什么：核对每一笔工资、劳务报酬、稿酬。</li>
+<li>看什么：扣缴单位、收入额、已缴税额。</li>
+<li>说什么：有不是自己的收入，点“申诉”。</li>
+<li>完成标志：收入记录和实际情况一致。</li>
+<li>卡住了怎么办：联系扣缴单位或税务机关。</li>
+</ul>
+<h3>2.4 年度汇算</h3>
+<ul>
+<li>在哪：App“综合所得年度汇算”。</li>
+<li>做什么：选择申报表预填服务，核对收入、扣除、税额。</li>
+<li>看什么：应补或应退税额。</li>
+<li>说什么：不确定的项目，先看说明再提交。</li>
+<li>完成标志：提交申报，看到应补/应退结果。</li>
+<li>卡住了怎么办：拨 12366 或去办税厅。</li>
+</ul>
+<h3>2.5 申请退税或补税</h3>
+<ul>
+<li>退税：绑定本人银行卡，提交申请，等审核退库。[8]</li>
+<li>补税：在 6 月 30 日前完成缴纳。[8]</li>
+<li>看什么：退税进度、补税状态。</li>
+<li>说什么：退税失败，检查银行卡状态。</li>
+<li>完成标志：退税到账或补税成功。</li>
+<li>卡住了怎么办：联系税务机关。</li>
+</ul>
+<h3>2.6 保存资料</h3>
+<ul>
+<li>专项附加扣除资料留存 5 年。[7]</li>
+<li>保存收入记录、扣除凭证、退税补税记录。</li>
+<li>每年汇算后截图保存申报结果。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 个税起征点是多少？</h3>
+<p>答：综合所得每年减除费用 6 万元，也就是每月 5000 元。[1]</p>
+<h3>Q2 哪些收入要合并算个税？</h3>
+<p>答：工资薪金、劳务报酬、稿酬、特许权使用费 4 项，按年合并计算。[1]</p>
+<h3>Q3 专项附加扣除有哪些？</h3>
+<p>答：7 项：3 岁以下婴幼儿照护、子女教育、继续教育、大病医疗、住房贷款利息、住房租金、赡养老人。[2]</p>
+<h3>Q4 住房贷款利息和住房租金能同时扣吗？</h3>
+<p>答：不能，只能选一项。[2]</p>
+<h3>Q5 年度汇算什么时候办？</h3>
+<p>答：次年 3 月 1 日到 6 月 30 日。[3]</p>
+<h3>Q6 哪些人不用办年度汇算？</h3>
+<p>答：需要补税但年收入不超过 12 万元，或补税不超过 400 元（2024–2027 年），或预缴与应纳一致，或符合退税条件但不申请。[4]</p>
+<h3>Q7 退税要什么银行卡？</h3>
+<p>答：本人境内符合条件的银行账户。[8]</p>
+<h3>Q8 补税不交会怎样？</h3>
+<p>答：可能被追缴税款、加收滞纳金，纳入信用记录，情节严重的还会被罚款。[6]</p>
+<h3>Q9 发现收入记录里有不是自己的工资怎么办？</h3>
+<p>答：在 App 里点“申诉”，联系扣缴单位或税务机关处理。</p>
+<h3>Q10 专项附加扣除资料要留多久？</h3>
+<p>答：留存 5 年。[7]</p>
+<h3>Q11 换工作了，专项附加扣除怎么办？</h3>
+<p>答：在新单位重新填报，或选择在年度汇算时扣除。</p>
+<h3>Q12 个税 App 是哪个？</h3>
+<p>答：官方名称“个人所得税”，国家税务总局发布，别下错山寨 App。[5]</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>山寨个税 App</strong>：认准国家税务总局发布的正版。</li>
+<li><strong>轻信“退税代办”</strong>：退税自己在 App 办，不要交手续费。</li>
+<li><strong>虚填专项附加扣除</strong>：资料要真实，留存 5 年。</li>
+<li><strong>房贷利息和房租同时填</strong>：只能选一项。</li>
+<li><strong>不核对收入明细</strong>：被别人冒用身份报税，及时申诉。</li>
+<li><strong>补税拖着不交</strong>：会产生滞纳金，还影响信用。</li>
+<li><strong>银行卡状态异常</strong>：退税会失败，提前确认卡能用。</li>
+<li><strong>把 App 账号借给别人</strong>：个人信息和税务风险都很大。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>退税失败</strong>：检查银行卡是否本人、是否一类卡、状态是否正常。</li>
+<li><strong>被冒用身份</strong>：在 App 申诉，联系税务机关。</li>
+<li><strong>不会操作</strong>：拨 12366，或去办税厅找工作人员。</li>
+<li><strong>补税金额有异议</strong>：先核对收入和扣除，再向税务机关申请复核。</li>
+<li><strong>境外所得</strong>：不适用本文，需另外申报。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>申报</td>
+<td>免费</td>
+<td>官方 App 和网站</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半小时到一小时</td>
+<td>填报和核对</td>
+</tr>
+<tr>
+<td>补税</td>
+<td>按应纳税额</td>
+<td>6 月 30 日前缴纳</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.chinatax.gov.cn">国家税务总局</a></li>
+<li>“个人所得税”App</li>
+<li>自然人电子税务局</li>
+<li>12366 纳税服务热线</li>
+</ul>
+</li>
+<li>相关条目：<a href="../03-%E5%B7%A5%E4%BD%9C%E4%B8%8E%E8%81%8C%E4%B8%9A/C-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8B%BF%E5%B7%A5%E8%B5%84%E4%B8%8E%E4%BA%94%E9%99%A9%E4%B8%80%E9%87%91.html">C-04 第一次拿工资与五险一金</a></li>
+<li>可打印清单：<a href="../../checklists/G-06-%E4%B8%AA%E7%A8%8E-%E6%B1%87%E7%AE%97%E6%B8%85%E5%8D%95.html">G-06 个税汇算清单</a></li>
+<li>术语：暂无</li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：以 Ⅰ/Ⅱ 级法律和税务总局文件为主。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国个人所得税法》第二条、第六条，<a href="http://www.npc.gov.cn/npc/xinwen/2018-09/05/content_2060671.htm">http://www.npc.gov.cn/npc/xinwen/2018-09/05/content_2060671.htm</a></li>
+<li>国发〔2018〕41号、国发〔2022〕8号、国发〔2023〕13号，<a href="https://www.gov.cn/zhengce/content/202308/content_6901206.htm">https://www.gov.cn/zhengce/content/202308/content_6901206.htm</a></li>
+<li>《个人所得税综合所得汇算清缴管理办法》（国家税务总局令第57号）第五条，<a href="https://www.gov.cn/zhengce/202502/content_7006605.htm">https://www.gov.cn/zhengce/202502/content_7006605.htm</a></li>
+<li>同上，第六、七条；财政部、税务总局公告2023年第32号，<a href="https://www.gov.cn/zhengce/zhengceku/202308/content_6900594.htm">https://www.gov.cn/zhengce/zhengceku/202308/content_6900594.htm</a></li>
+<li>国家税务总局公告2018年第60号第十九条；57号令第八条</li>
+<li>57号令第二十八、三十、三十三条；《税收征收管理法》第六十四条</li>
+<li>国家税务总局公告2018年第60号第四、十九、二十、二十三条，<a href="https://www.chinatax.gov.cn/chinatax/n810341/n810765/n3359382/201812/c4182760/content.html">https://www.chinatax.gov.cn/chinatax/n810341/n810765/n3359382/201812/c4182760/content.html</a></li>
+<li>57号令第二十二至二十七条</li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地居民个人综合所得。</li>
+<li>易变项：扣除标准、汇算公告、免办条件（M）。</li>
+<li>核实记录：<a href="../../sources/G-06.%E6%A0%B8%E5%AE%9E.html">sources/G-06.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="G-05-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%A8%E4%BF%A1%E7%94%A8%E5%8D%A1.html"><span class="dir">← 上一篇</span><span class="name">G-05 第一次用信用卡</span></a><a class="next" href="G-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%90%86%E8%B4%A2.html"><span class="dir">下一篇 →</span><span class="name">G-07 第一次理财</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

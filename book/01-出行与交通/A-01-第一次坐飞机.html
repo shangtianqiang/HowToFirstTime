@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次坐飞机 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 出行与交通</nav>
+  <h1 class="post-title">第一次坐飞机</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>出行与交通</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>11 条</b></span><span class="chip ">耗时 <b>半天</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>高频变动</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：国内航班通常提前 2 小时到机场，带购票时用的身份证，充电宝只能随身并看清标识，跟着指示牌走。
+<strong>适用</strong>：从中国内地出发、乘坐国内航班的成年旅客。
+<strong>不适用</strong>：国际航班（见 B-01《第一次出国》）、婴儿和轮椅等特殊旅客、公务机。</p>
+</blockquote>
+<blockquote>
+<p>以下规则截至 2026年10月。安检和行李规定会变，出发前再查一次机场和航空公司官网。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>提前多久</strong>：国内航班通常提前 2 小时到机场。这是通行建议，不是统一规定，具体看机场和航司公告。[1]</li>
+<li><strong>值机截止</strong>：常见起飞前 30–45 分钟，各航司不同。国航首都机场 T3 是起飞前 45 分钟，登机口起飞前 15 分钟关闭。[2][3]</li>
+<li><strong>必须带</strong>：购票时用的有效证件。身份证、临时身份证、护照、军官证等都可以，但要和购票证件一致。[4]</li>
+<li><strong>充电宝</strong>：不能托运，只能随身。标识要清楚，额定能量不超过 100Wh。100–160Wh 要航司批准，每人限 2 块。超过 160Wh 不能带。[5]</li>
+<li><strong>3C 标识</strong>：2025 年 6 月 28 日起，境内航班禁止携带没有 3C 标识、标识不清、被召回批次的充电宝。[6]</li>
+<li><strong>液体</strong>：国内航班液态物品不能随身，自用化妆品、牙膏、剃须膏除外。化妆品每种 1 件，容器不超过 100mL，要开瓶检查。[5]</li>
+<li><strong>卡住了找谁</strong>：先找航司客服或机场问询。投诉先找航司或机场，不满意再打 12326。[9]</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 买票与退改</h3>
+<ul>
+<li>在航司官网、官方 App 或正规票务平台买票。买之前看清退票、改签规则。</li>
+<li>填写的姓名、证件号要和证件一致。错了可能登不了机。</li>
+<li>低价票的退改限制通常更严。付款前把规则页看完。</li>
+<li>需要报销的，买票时填好发票信息。</li>
+</ul>
+<h3>1.2 行李与禁带</h3>
+<ul>
+<li><strong>免费托运行李额</strong>：全国没有统一标准，按航司运输总条件。以国航国内计重航线为例，头等舱 40 千克、公务舱 30 千克、经济舱 20 千克。[7] 你买哪家，就看哪家的规则。</li>
+<li><strong>随身行李</strong>：尺寸和重量也按航司规定。超了要在值机时托运。</li>
+<li><strong>充电宝</strong>：只能随身，不能托运。100Wh 以内、标识清楚才能带。100–160Wh 要提前问航司，每人限 2 块。超过 160Wh 不能带。[5]</li>
+<li><strong>3C 标识</strong>：2025 年 6 月 28 日起，境内航班禁带无 3C 标识、标识不清、被召回批次的充电宝。[6]</li>
+<li><strong>液体</strong>：国内航班液态物品不能随身。自用化妆品、牙膏、剃须膏除外。化妆品每种 1 件，容器不超过 100mL；牙膏、剃须膏不超过 100g 或 100mL。其他液体放托运行李。[5]</li>
+<li><strong>打火机、火柴、刀具</strong>：按《民航旅客限制随身携带或托运物品目录》处理，不能随身。[5]</li>
+<li><strong>喷雾</strong>：按液态物品规则执行，各机场检查尺度有差异，拿不准就托运。</li>
+</ul>
+<h3>1.3 值机与选座</h3>
+<ul>
+<li>网上值机一般在起飞前一天左右开放，具体看航司。</li>
+<li>网上值机后，有托运行李的还要去柜台或自助托运柜台。</li>
+<li>需要人工核验证件、带婴儿、申请特殊服务的，去人工柜台。</li>
+<li>选座可能免费，也可能收费，按航司页面。</li>
+<li>登机牌可以是纸质的，也可以是电子二维码。</li>
+</ul>
+<h3>1.4 去机场</h3>
+<ul>
+<li>先确认航站楼。走错航站楼要重新排队，时间会很紧。</li>
+<li>国内航班通常提前 2 小时到，节假日和早晚高峰再多留一些。[1]</li>
+<li>地铁、机场大巴、出租车、网约车、自驾都可以。自驾要先查停车楼位置和费用。</li>
+<li>机场安检排队时间不稳定，别把时间算得太死。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 进航站楼，找值机区</h3>
+<ul>
+<li>在哪：看机场出发大屏，确认航班对应的航站楼和值机区。</li>
+<li>做什么：找到航司柜台，或者自助值机、自助托运设备。</li>
+<li>看什么：头顶指示牌上的航班号、航司标志、值机区字母。</li>
+<li>说什么：把身份证递给工作人员，说“办值机，托运行李”。</li>
+<li>完成标志：拿到登机牌和行李票。</li>
+<li>卡住了怎么办：问穿制服的工作人员，或去航司服务柜台。</li>
+</ul>
+<h3>2.2 办理值机与托运行李</h3>
+<ul>
+<li>在哪：航司值机柜台、自助值机机、自助托运柜台。</li>
+<li>做什么：核对证件，交运行李，领取登机牌。</li>
+<li>看什么：屏幕上的航班号、目的地、起飞时间；行李票上的编号。</li>
+<li>说什么：有超重、超件、特殊物品，先问清楚再交运。</li>
+<li>完成标志：登机牌和行李票都在手上，行李已过传送带。</li>
+<li>卡住了怎么办：自助设备打不出登机牌，去人工柜台。</li>
+</ul>
+<h3>2.3 过安检</h3>
+<ul>
+<li>在哪：安检通道，跟着“安全检查”指示牌走。</li>
+<li>做什么：交验证件和登机牌，把随身行李放上安检机，人过安检门。</li>
+<li>看什么：通道屏幕上的提示；工作人员的手势。</li>
+<li>说什么：带了电脑、平板、充电宝，提前拿出来单独放。</li>
+<li>完成标志：人和随身行李都通过检查，拿回自己的东西。</li>
+<li>卡住了怎么办：报警了要复检；禁带物品可以托运、自弃或暂存，暂存一般不超过 30 天。[4]</li>
+</ul>
+<h3>2.4 找登机口与候机</h3>
+<ul>
+<li>在哪：登机牌上写着登机口，机场大屏也会显示。</li>
+<li>做什么：按指示牌走到登机口，找座位等广播。</li>
+<li>看什么：大屏上的航班状态：候机、登机、延误、取消。</li>
+<li>说什么：登机口变了，听广播或问服务台。</li>
+<li>完成标志：人在正确的登机口，随身行李在手边。</li>
+<li>卡住了怎么办：登机口太远，问工作人员有没有摆渡车或捷径。</li>
+</ul>
+<h3>2.5 登机与入座</h3>
+<ul>
+<li>在哪：登机口柜台。</li>
+<li>做什么：出示登机牌，按座位号入座。</li>
+<li>看什么：登机牌上的座位号；行李架上的座位号提示。</li>
+<li>说什么：大件随身行李放不下，请乘务员帮忙。</li>
+<li>完成标志：系好安全带，随身行李放好。</li>
+<li>卡住了怎么办：座位有问题，找乘务员。</li>
+</ul>
+<h3>2.6 落地与取行李</h3>
+<ul>
+<li>在哪：到达层行李转盘。</li>
+<li>做什么：看大屏找到航班对应的转盘，等行李。</li>
+<li>看什么：行李牌上的编号；转盘屏幕上的航班号。</li>
+<li>说什么：行李没到，去行李查询柜台登记。</li>
+<li>完成标志：拿到行李，核对编号。</li>
+<li>卡住了怎么办：行李损坏或丢失，当场找航司行李查询柜台。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 第一次坐飞机，提前多久到机场？</h3>
+<p>答：国内航班通常提前 2 小时。这是通行建议，不是统一规定，具体看机场和航司公告。[1]</p>
+<h3>Q2 身份证丢了或过期了，还能不能坐飞机？</h3>
+<p>答：可以用临时身份证、护照等有效证件，但要和购票证件一致。具体能不能办，问机场公安或航司。[4]</p>
+<h3>Q3 充电宝、锂电池能不能带？能带多少？</h3>
+<p>答：不能托运，只能随身。100Wh 以内、标识清楚可以带。100–160Wh 要航司批准，每人限 2 块。超过 160Wh 不能带。2025 年 6 月 28 日起，境内航班还禁带无 3C 标识、标识不清、被召回批次的充电宝。[5][6]</p>
+<h3>Q4 液体、化妆品、喷雾能不能过安检？</h3>
+<p>答：国内航班液态物品不能随身。自用化妆品、牙膏、剃须膏除外。化妆品每种 1 件，容器不超过 100mL，要开瓶检查。喷雾按液态物品规则，各机场尺度有差异，拿不准就托运。[5]</p>
+<h3>Q5 免费行李额是多少？超重怎么收费？</h3>
+<p>答：全国没有统一标准，按航司运输总条件。以国航国内计重航线为例，头等 40 千克、公务 30 千克、经济 20 千克。超重费按航司规则。[7]</p>
+<h3>Q6 网上值机了，还要去柜台吗？</h3>
+<p>答：没有托运行李，可以直接去安检。有托运行李，要去柜台或自助托运柜台。[2]</p>
+<h3>Q7 走错航站楼怎么办？</h3>
+<p>答：先看机场指示牌，找摆渡车、地铁或步行通道。时间不够就找工作人员求助。</p>
+<h3>Q8 误机了，能改签或退票吗？</h3>
+<p>答：承运人原因导致误机，可以免费变更或退票。非承运人原因，按客票使用条件办理。[2]</p>
+<h3>Q9 航班延误或取消，食宿谁负责？</h3>
+<p>答：承运人原因，在始发地提供餐食和住宿。天气等非承运人原因，航司协助安排，费用自理。经停地或备降，不论原因都要提供。[8]</p>
+<h3>Q10 行李丢了或坏了，找谁赔？</h3>
+<p>答：先找航司行李查询柜台登记。损坏或丢失，自收到行李之日起 7 日内提出异议；延误是 21 日内。赔偿限额以承运人运输总条件和民航局最新规定为准。[10]</p>
+<h3>Q11 第一次坐飞机耳朵疼怎么办？</h3>
+<p>答：吞咽、咀嚼、打哈欠可能有帮助。疼得厉害或持续不缓解，落地后看医生。</p>
+<h3>Q12 可以带食物上飞机吗？</h3>
+<p>答：固体食物通常可以随身。液体、酱汁按液态物品规则。气味大的食物先问航司。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>低价票退改限制严</strong>：付款前看清退票、改签规则，别只看票价。</li>
+<li><strong>行李额不是全国统一</strong>：买票时看航司运输总条件，别按旧攻略的 40/30/20 套。</li>
+<li><strong>第三方平台出票</strong>：退改时可能多一层转接，优先航司官方渠道。</li>
+<li><strong>机场代办和“热心人”</strong>：不要把钱和证件交给陌生人，找穿制服的工作人员。</li>
+<li><strong>充电宝标识</strong>：没有 3C 标识、标识不清、被召回的，境内航班不能带。[6]</li>
+<li><strong>登机口会变</strong>：候机时看大屏、听广播，别一直低头看手机。</li>
+<li><strong>中转时间太短</strong>：前一段延误，后一段可能赶不上。买票时留足时间。</li>
+<li><strong>机场停车费</strong>：自驾先查停车楼位置和收费标准。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>误机</strong>：先去航司柜台问能不能改签。承运人原因可以免费变更或退票；非承运人原因按客票条件。[2]</li>
+<li><strong>航班延误或取消</strong>：看大屏和航司通知。承运人原因可要求餐食住宿；非承运人原因航司协助，费用自理。[8]</li>
+<li><strong>行李丢失或损坏</strong>：当场去行李查询柜台登记，留好行李票和联系方式。7 日内提出损坏或丢失异议，21 日内提出延误异议。[10]</li>
+<li><strong>安检不通过</strong>：禁带物品可以托运、自弃或暂存，暂存一般不超过 30 天。[4]</li>
+<li><strong>身体不适</strong>：找机场医务室或乘务员；严重时拨 120。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>机票</td>
+<td>按航线和舱位</td>
+<td>提前买通常更便宜，低价票退改限制多</td>
+</tr>
+<tr>
+<td>机场交通</td>
+<td>几十到上百元</td>
+<td>地铁、大巴、出租车、网约车、自驾停车</td>
+</tr>
+<tr>
+<td>托运行李超重</td>
+<td>按航司规则</td>
+<td>超重、超件、超大都要另收费</td>
+</tr>
+<tr>
+<td>餐食</td>
+<td>几十元</td>
+<td>机场内或机上</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半天</td>
+<td>从出门到登机口通常要留 2–3 小时</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.caac.gov.cn">中国民用航空局</a></li>
+<li>12326 民航服务质量监督电话</li>
+<li>承运航空公司官网的“运输总条件”页面</li>
+<li>出发机场官网的“乘机指南”页面</li>
+</ul>
+</li>
+<li>相关条目：<a href="../02-%E8%AF%81%E4%BB%B6%E4%B8%8E%E8%B7%A8%E5%A2%83/B-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%87%BA%E5%9B%BD.html">B-01 第一次出国</a>、<a href="A-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9D%90%E9%AB%98%E9%93%81.html">A-02 第一次坐高铁</a></li>
+<li>可打印清单：<a href="../../checklists/A-01-%E5%9D%90%E9%A3%9E%E6%9C%BA-%E8%A1%8C%E5%89%8D%E6%B8%85%E5%8D%95.html">A-01 坐飞机行前清单</a></li>
+<li>术语：<a href="../../meta/%E6%9C%AF%E8%AF%AD%E8%A1%A8.html">值机</a>、<a href="../../meta/%E6%9C%AF%E8%AF%AD%E8%A1%A8.html">登机牌</a>、<a href="../../meta/%E6%9C%AF%E8%AF%AD%E8%A1%A8.html">行李额</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：以 Ⅰ/Ⅱ 级官方来源为主，个别为 Ⅲ 级通行做法。</li>
+<li>主要来源：<ol>
+<li>中国民用航空局《航空旅行常识·办理乘机手续时间》，<a href="https://www.caac.gov.cn/INDEX/HLFW/HKLXCS/202303/t20230316_217602.html">https://www.caac.gov.cn/INDEX/HLFW/HKLXCS/202303/t20230316_217602.html</a></li>
+<li>交通运输部《公共航空运输旅客服务管理规定》（交通运输部令2021年第3号），<a href="https://www.gov.cn/zhengce/2021-03/03/content_5711514.htm">https://www.gov.cn/zhengce/2021-03/03/content_5711514.htm</a></li>
+<li>国航首都机场航站楼公告，<a href="https://www.airchina.com.cn/zh-CN/content/c/2024-03-12/17408.shtml">https://www.airchina.com.cn/zh-CN/content/c/2024-03-12/17408.shtml</a></li>
+<li>交通运输部《民用航空安全检查规则》，<a href="http://xxgk.mot.gov.cn/gz/202112/t20211227_3633450.html">http://xxgk.mot.gov.cn/gz/202112/t20211227_3633450.html</a></li>
+<li>民航局《民航旅客限制随身携带或托运物品目录》，<a href="http://www.caac.gov.cn/PHONE/XXGK_17/XXGK/TZTG/201612/P020161213519957158902.pdf">http://www.caac.gov.cn/PHONE/XXGK_17/XXGK/TZTG/201612/P020161213519957158902.pdf</a></li>
+<li>民航局《禁止旅客携带无3C标识及被召回的充电宝乘坐境内航班》（2025-06-26），<a href="http://www.caac.gov.cn/XWZX/MHYW/202506/t20250626_227805.html">http://www.caac.gov.cn/XWZX/MHYW/202506/t20250626_227805.html</a></li>
+<li>国航行李运输页面，<a href="https://www.airchina.com.cn/zh-CN/content/travel_info/preparing/conditions/contact_us/baggage_transport/">https://www.airchina.com.cn/zh-CN/content/travel_info/preparing/conditions/contact_us/baggage_transport/</a></li>
+<li>交通运输部《航班正常管理规定》（交通运输部令2016年第56号），<a href="https://www.gov.cn/zhengce/2016-05/20/content_5726194.htm">https://www.gov.cn/zhengce/2016-05/20/content_5726194.htm</a></li>
+<li>民航局 12326 开通新闻，<a href="http://www.caac.gov.cn/PHONE/XWZX/MHYW/201903/t20190315_195176.html">http://www.caac.gov.cn/PHONE/XWZX/MHYW/201903/t20190315_195176.html</a></li>
+<li>《中华人民共和国民用航空法》（2025年修订，2026年7月1日施行），<a href="http://www.npc.gov.cn/npc/c2/c30834/202512/t20251227_450737.html">http://www.npc.gov.cn/npc/c2/c30834/202512/t20251227_450737.html</a></li>
+<li>民航局 2026-05-08 解读，<a href="http://www.caac.gov.cn/XXGK/XXGK/ZCFBJD/202605/t20260508_230782.html">http://www.caac.gov.cn/XXGK/XXGK/ZCFBJD/202605/t20260508_230782.html</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地出发的国内航班。</li>
+<li>易变项：安检禁限带、行李额、值机截止时间（H）。</li>
+<li>核实记录：<a href="../../sources/A-01.%E6%A0%B8%E5%AE%9E.html">sources/A-01.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><span></span><a class="next" href="A-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9D%90%E9%AB%98%E9%93%81.html"><span class="dir">下一篇 →</span><span class="name">A-02 第一次坐高铁</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

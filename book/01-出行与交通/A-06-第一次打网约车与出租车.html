@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次打网约车/出租车 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 出行与交通</nav>
+  <h1 class="post-title">第一次打网约车/出租车</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>出行与交通</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>4 条</b></span><span class="chip ">耗时 <b>半小时内</b></span><span class="chip ">花费 <b>百元内</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：上车前核对车牌、车型和司机，行程分享给家人，不坐无资质车辆，下车带好随身物品并要发票。
+<strong>适用</strong>：第一次独自用手机叫车或在路边拦出租车的人。
+<strong>不适用</strong>：顺风车、拼车、包车、机场接送专线，规则由平台和承运人另行约定。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>叫车</strong>：只用来路正规的平台，上车前核对车牌、车型、司机姓名。</li>
+<li><strong>车牌不符</strong>：不上车，取消订单并举报。</li>
+<li><strong>坐哪</strong>：后排右侧，系安全带。</li>
+<li><strong>行程</strong>：用平台行程分享发给家人，深夜尤其要做。</li>
+<li><strong>路线</strong>：司机明显绕路，当场提出，保留行程记录。</li>
+<li><strong>下车</strong>：要发票，检查手机、钥匙、包。</li>
+<li><strong>出问题</strong>：平台客服 + 12328，人身危险先拨 110。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 叫车前</h3>
+<ul>
+<li>选正规平台：应用商店下载官方 App，不用陌生链接或二维码安装的“打车软件”。</li>
+<li>完善账号：实名认证、绑定支付方式、设置紧急联系人。</li>
+<li>记下上车点：选有明显标志的位置，避免司机找不到、自己上错车。</li>
+<li>看预估价格和路线，心里有数。</li>
+<li>深夜出行：提前把车牌和预计到达时间发给家人。</li>
+</ul>
+<h3>1.2 上车前核对</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 车牌号与 App 显示一致</li>
+<li><input disabled="" type="checkbox"> 车型、颜色一致</li>
+<li><input disabled="" type="checkbox"> 司机姓名、头像一致</li>
+<li><input disabled="" type="checkbox"> 平台显示“已接单”，不是私下揽客</li>
+<li>任何一项不符，不上车，取消订单并在平台举报。</li>
+</ul>
+<h3>1.3 出租车怎么拦</h3>
+<ul>
+<li>在出租车候客点或允许停车的路段拦车，不在机动车道、路口、斑马线上拦。</li>
+<li>上车前看车身标识、顶灯、车牌，确认是正规巡游出租车。</li>
+<li>上车后说目的地，要求打表。</li>
+<li>不打表、议价的，可以下车换一辆。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 下单与等车</h3>
+<ul>
+<li>在哪：App 内选上车点、目的地。</li>
+<li>做什么：确认车型、价格区间、预计等待时间，下单。</li>
+<li>看什么：司机接单后的车牌、位置、预计到达时间。</li>
+<li>完成标志：车辆到达上车点，核对信息无误。</li>
+</ul>
+<h3>2.2 上车</h3>
+<ul>
+<li>在哪：上车点路边，确保安全再开门。</li>
+<li>做什么：后排右侧上车，系安全带，再次确认目的地。</li>
+<li>看什么：车内是否有平台标识、司机服务监督卡。</li>
+<li>说什么：“去某某地，按导航走可以吗？”</li>
+<li>完成标志：车辆起步，行程开始。</li>
+</ul>
+<h3>2.3 途中</h3>
+<ul>
+<li>在哪：车内。</li>
+<li>做什么：打开行程分享，留意路线。</li>
+<li>看什么：导航路线是否明显偏离，司机是否频繁接打电话。</li>
+<li>完成标志：到达目的地。</li>
+<li>卡住了怎么办：发现路线异常，先问“为什么走这条路”；无法沟通，要求靠边停车，下车后投诉。</li>
+</ul>
+<h3>2.4 下车与支付</h3>
+<ul>
+<li>在哪：目的地允许停车的位置。</li>
+<li>做什么：确认金额，线上支付或现金支付，索要发票。</li>
+<li>看什么：账单明细，是否有不明附加费。</li>
+<li>完成标志：支付成功，拿好发票和随身物品。</li>
+<li>卡住了怎么办：对费用有异议，先支付再在平台申诉，不要现场争执。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 网约车需要什么资质？</h3>
+<p>答：平台、车辆、驾驶员都要取得相应许可。乘客可以在 App 内查看车辆和驾驶员信息，发现无证运营可向平台或交通运输部门举报。[1]</p>
+<h3>Q2 车牌和 App 显示不一致怎么办？</h3>
+<p>答：不上车。取消订单，在平台举报“人车不符”，必要时拨 12328。</p>
+<h3>Q3 深夜一个人打车要注意什么？</h3>
+<p>答：坐后排，分享行程给家人，不透露独居、独行信息，发现异常要求停车或拨 110。</p>
+<h3>Q4 司机绕路怎么办？</h3>
+<p>答：当场指出，要求按导航走；下车后在平台投诉，保留行程记录和账单。</p>
+<h3>Q5 高速费、停车费谁出？</h3>
+<p>答：行程中实际发生的过路费、停车费通常由乘客承担，按平台规则结算。上车前可以问清。</p>
+<h3>Q6 可以把宠物带上车吗？</h3>
+<p>答：按平台规则，多数网约车需要提前和司机协商，导盲犬除外。出租车以当地规定为准。</p>
+<h3>Q7 喝醉了能打车吗？</h3>
+<p>答：可以，但要有同伴陪同。司机有权拒载无人陪同的醉酒乘客。</p>
+<h3>Q8 东西落在车上怎么办？</h3>
+<p>答：在 App 内找“失物招领”联系司机，或打平台客服；出租车凭发票上的车牌号联系公司。</p>
+<h3>Q9 对费用有异议怎么投诉？</h3>
+<p>答：先在平台内申诉，保留账单和行程截图；协商不成拨 12328 或 12345。</p>
+<h3>Q10 出租车拒载怎么办？</h3>
+<p>答：记下车牌、时间和地点，拨 12328 或当地交通运输服务热线投诉。交接班、预约叫车等情形应按规定放置提示牌。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>人车不符</strong>：车牌、车型、司机任一不符都不上车，这是最常见的安全风险。</li>
+<li><strong>私下交易</strong>：司机要求取消订单、线下付款，拒绝。线下交易没有平台保障。</li>
+<li><strong>站外揽客</strong>：车站、机场出口的“包车”“拼车”多为黑车，不坐。</li>
+<li><strong>副驾驶深夜独行</strong>：后排更安全，也方便开门离开。</li>
+<li><strong>不系安全带</strong>：后排同样要系，发生事故时差别很大。</li>
+<li><strong>只顾看手机</strong>：留意路线和周边环境，发现异常及时提出。</li>
+<li><strong>不拿发票</strong>：丢东西、投诉、报销都需要凭证。</li>
+<li><strong>扫码领券</strong>：陌生二维码可能是钓鱼或安装恶意程序。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>司机骚扰或言语威胁</strong>：要求靠边停车，下车到人多的地方，拨 110，同时在平台投诉。</li>
+<li><strong>车辆事故</strong>：先确认人身安全，拨 122 和 120，拍照留证，联系平台。</li>
+<li><strong>被要求线下支付</strong>：拒绝，保留聊天记录和录音，向平台举报。</li>
+<li><strong>司机拒绝按导航行驶</strong>：明确要求，仍不改的，要求下车并投诉。</li>
+<li><strong>手机没电无法支付</strong>：提前准备现金或充电宝；无法支付时与司机协商到安全地点充电。</li>
+<li><strong>遭遇抢劫等刑事风险</strong>：以人身安全为先，记住车牌和路线，脱险后立即拨 110。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>起步价</td>
+<td>8–20 元</td>
+<td>各城市不同，必选</td>
+</tr>
+<tr>
+<td>里程费</td>
+<td>1.5–4 元/公里</td>
+<td>按城市和车型，必选</td>
+</tr>
+<tr>
+<td>夜间加价</td>
+<td>上浮 20%–50%</td>
+<td>多数城市有，必选</td>
+</tr>
+<tr>
+<td>过路费、停车费</td>
+<td>按实际</td>
+<td>乘客承担，可选</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半小时内</td>
+<td>含等待</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mot.gov.cn">交通运输部</a></li>
+<li>12328 交通运输服务监督电话</li>
+<li>各网约车平台 App 内“安全中心”</li>
+</ul>
+</li>
+<li>相关条目：<a href="A-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9D%90%E5%9C%B0%E9%93%81.html">A-04 第一次坐地铁</a>、<a href="A-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%8B%AC%E8%87%AA%E6%97%85%E8%A1%8C.html">A-09 第一次独自旅行</a></li>
+<li>可打印清单：<a href="../../checklists/A-06-%E6%89%93%E8%BD%A6-%E5%AE%89%E5%85%A8%E6%B8%85%E5%8D%95.html">A-06 打车清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《网络预约出租汽车经营服务管理暂行办法》；Ⅱ 级为平台安全规则和交通运输部门提示；Ⅲ 级为通行做法。</li>
+<li>主要来源：<ol>
+<li>交通运输部等七部门《网络预约出租汽车经营服务管理暂行办法》，<a href="https://www.mot.gov.cn">https://www.mot.gov.cn</a></li>
+<li>交通运输部 12328 服务监督电话说明，<a href="https://www.mot.gov.cn">https://www.mot.gov.cn</a></li>
+<li>滴滴出行安全中心行程分享说明，<a href="https://www.didiglobal.com">https://www.didiglobal.com</a></li>
+<li>公安部“一盔一带”安全守护行动说明，<a href="https://www.mps.gov.cn">https://www.mps.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地网约车和巡游出租车。起步价、夜间加价由各城市制定。</li>
+<li>易变项：平台规则、价格、资质要求（M）。</li>
+<li>核实记录：<a href="../../sources/A-06.%E6%A0%B8%E5%AE%9E.html">sources/A-06.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="A-05-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9D%90%E9%95%BF%E9%80%94%E5%A4%A7%E5%B7%B4.html"><span class="dir">← 上一篇</span><span class="name">A-05 第一次坐长途大巴</span></a><a class="next" href="A-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%A7%9F%E8%BD%A6%E8%87%AA%E9%A9%BE.html"><span class="dir">下一篇 →</span><span class="name">A-07 第一次租车自驾</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

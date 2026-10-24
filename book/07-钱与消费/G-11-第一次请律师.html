@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次请律师 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 钱与消费</nav>
+  <h1 class="post-title">第一次请律师</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>钱与消费</b></span><span class="chip ">最近核实 <b>2026-10-24</b></span><span class="chip ">来源 <b>9 条</b></span><span class="chip ">耗时 <b>1-3天</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先查执业证再谈委托，费用、权限、期限写进律所合同，钱付给律所要发票。
+<strong>适用</strong>：第一次因打官司、仲裁、发函谈判或代写文书，需要委托律师的普通人。
+<strong>不适用</strong>：只想免费问几个问题，先拨 12348；经济困难打不起官司，直接申请法律援助。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>先判断要不要请</strong>：小事先拨 12348 免费咨询；符合条件的可以申请免费的法律援助。</li>
+<li><strong>找律师</strong>：律所官网、当地律协名录、12348 三个渠道，别信来路不明的推荐。</li>
+<li><strong>核验执业证</strong>：上全国律师执业诚信信息公示平台查律师和律所，查不到就换人。</li>
+<li><strong>面谈带材料</strong>：身份证、合同、转账记录、聊天记录，再带一份写好的案情时间线。</li>
+<li><strong>费用写进合同</strong>：收费项目、标准、方式、数额、付款结算、争议解决，逐项核对。</li>
+<li><strong>付款给律所</strong>：对公转账、索取正规发票，不付给律师个人。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 先判断要不要请（提前 1–3 天）</h3>
+<ul>
+<li>事实清楚、金额不大、程序简单的纠纷，先拨 12348 热线免费咨询，或上「中国法律服务网」在线提问。</li>
+<li>追索劳动报酬、工伤赔偿、赡养费、抚养费、扶养费、社会保险待遇等事项，经济困难可以申请法律援助。法律援助是无偿的法律服务，援助案件不向受援人收费。</li>
+<li>对方有律师、证据多、金额大、程序长的事项，通常建议委托律师。要走劳动仲裁的，先看 <a href="G-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%B3%E5%8A%A8%E4%BB%B2%E8%A3%81%E6%89%93%E5%AE%98%E5%8F%B8.html">G-10 第一次劳动仲裁/打官司</a>。</li>
+<li>也可以只买单项服务：代写起诉状、代拟合同、单次咨询，按件或按次收费，比全程委托便宜。</li>
+<li>决定委托后，再进入找人和核验。</li>
+</ul>
+<h3>1.2 整理案情材料（面谈前）</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 身份证</li>
+<li><input disabled="" type="checkbox"> 合同、协议、借条等原件</li>
+<li><input disabled="" type="checkbox"> 转账记录、发票、收据</li>
+<li><input disabled="" type="checkbox"> 聊天记录、邮件、录音，保留原始载体</li>
+<li><input disabled="" type="checkbox"> 按日期写一段案情时间线</li>
+<li><input disabled="" type="checkbox"> 列出想问的问题，按重要程度排序</li>
+<li><input disabled="" type="checkbox"> 想清楚预算上限和目标：要钱、要货还是要和解</li>
+</ul>
+<h3>1.3 找律师并核验身份</h3>
+<ul>
+<li>渠道一：目标律师事务所的官网和官方账号，看律所全称和执业信息。</li>
+<li>渠道二：当地律师协会网站的律所、律师名录。</li>
+<li>渠道三：拨 12348 或去当地公共法律服务中心，说明案情请求指路。</li>
+<li>核验：在「全国律师执业诚信信息公示平台」输入律师姓名或执业证号，核对执业证号和所在律所。同一平台也能查律师事务所。平台信息由司法行政机关认定产生。</li>
+<li>按现行规定，律师事务所制定的律师服务费标准每年向律师协会备案，并在执业场所显著位置公示。报价前可以要求看公示的收费标准。</li>
+<li>没有取得律师执业证书的人员，不得以律师名义从事法律服务业务。法律咨询公司不是律师事务所，其人员不能以律师名义代理诉讼。</li>
+<li>约面谈时问清三件事：是否收费、带什么材料、大概谈多久。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 第一次面谈</h3>
+<ul>
+<li>在哪：律所办公场所。约在非办公场所谈案，要多留一个心眼。</li>
+<li>做什么：按时间线讲案情，出示材料原件，讲清你的目标和预算。</li>
+<li>看什么：律师有没有核对事实、提示风险、讲几种方案的差别，而不是只报结果。</li>
+<li>说什么：问清案件路径、大致时长、你方需要配合的事项。</li>
+<li>完成标志：你听懂了初步方案、可选路径和大致费用区间。</li>
+</ul>
+<h3>2.2 问清费用</h3>
+<ul>
+<li>基础收费方式三种：计件收费、按标的额比例收费、计时收费，另有风险代理收费。</li>
+<li>计件一般适用于不涉及财产关系的事务；按标的比例适用于涉及财产关系的事务；计时可适用于全部事务。</li>
+<li>每种方式问三点：怎么算、包含到哪个阶段、超出后怎么办。</li>
+<li>风险代理先确认案件能不能做。刑事诉讼、行政诉讼、国家赔偿、群体性诉讼、婚姻继承案件，以及请求社会保险待遇、最低生活保障待遇、赡养费、抚养费、扶养费、抚恤金、救济金、工伤赔偿、劳动报酬的案件，不得实行风险代理。</li>
+<li>能做的，核对分档上限：标的额不足 100 万元的部分不超过 18%，100 万元以上不足 500 万元的部分不超过 15%，500 万元以上不足 1000 万元的部分不超过 12%，1000 万元以上不足 5000 万元的部分不超过 9%，5000 万元以上的部分不超过 6%。2006 年办法曾定 30% 的上限，以更严的现行标准执行。</li>
+<li>问清另收费项目：诉讼费、仲裁费、鉴定费、公证费、查档费、保全费、翻译费等不属于律师服务费，由你另行支付。</li>
+<li>完成标志：拿到一份写明全部费用、支付节点和另收费项目的报价。</li>
+</ul>
+<h3>2.3 签订委托合同</h3>
+<ul>
+<li>看主体：合同抬头和盖章都是律师事务所。律师承办业务由律所统一接受委托，律师不得私自收费。</li>
+<li>逐项核对收费条款：收费项目、收费标准、收费方式、收费数额、付款和结算方式、争议解决方式。</li>
+<li>写明委托事项：代理到哪个阶段，一审、二审还是含执行。</li>
+<li>写明委托权限：一般授权还是特别授权。代收款项、和解、撤诉等特别授权要逐项列出。</li>
+<li>风险代理要单独签专门的风险代理收费合同，写明双方风险责任、收费方式、数额或比例，并以醒目方式告知。</li>
+<li>合同签订后，律所不得单方变更收费项目或提高收费数额，确需变更要事先取得你的书面同意。</li>
+<li>完成标志：拿到盖章的合同原件，条款和你谈的一致。</li>
+</ul>
+<h3>2.4 付款与留痕</h3>
+<ul>
+<li>律师服务费、代付费用、异地办案差旅费由律所统一收取，对公转账，索取正规发票。</li>
+<li>转账备注写案件名称和费用性质，例如「某某案一审律师费」。</li>
+<li>预收异地差旅费的，要求先出费用概算，双方签字确认。</li>
+<li>结算时要求提供代付费用的清单和有效凭证，拿不出凭证的部分可以拒付。</li>
+<li>原件交给律师前列清单，双方签字，自己留复印件或扫描件。</li>
+</ul>
+<h3>2.5 委托后的沟通</h3>
+<ul>
+<li>开工前和律所约好沟通频率和方式，写成文字。</li>
+<li>每次沟通后用微信或邮件确认要点，留下记录。</li>
+<li>涉及和解、撤诉、收款等重大事项，先自己确认再回复。</li>
+<li>案件进入仲裁或诉讼后，配合出庭和补材料，注意时效，参考 <a href="G-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%B3%E5%8A%A8%E4%BB%B2%E8%A3%81%E6%89%93%E5%AE%98%E5%8F%B8.html">G-10 第一次劳动仲裁/打官司</a>。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 什么事可以不请律师？</h3>
+<p>答：事实清楚、金额不大、程序简单的纠纷，先拨 12348 免费咨询，再决定自己办还是委托。消费类小纠纷先看 <a href="G-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B6%88%E8%B4%B9%E7%BB%B4%E6%9D%83.html">G-08 第一次消费维权</a>。</p>
+<h3>Q2 怎么确认对方是执业律师？</h3>
+<p>答：看律师执业证书，再上全国律师执业诚信信息公示平台核对姓名、执业证号和律所。查不到的不委托。</p>
+<h3>Q3 法律咨询公司的「法务」能请吗？</h3>
+<p>答：他们不是律师。没有取得律师执业证书的人员不得以律师名义从事法律服务业务。涉诉事务请签给律师事务所。</p>
+<h3>Q4 律师费大概多少钱？</h3>
+<p>答：各地差异大。通常咨询每次百元到千元，简单案件数千元起，涉及财产的案件按标的比例或按小时计，复杂案件上万元。以当地行情和律所公示标准为准。</p>
+<h3>Q5 计件、按比例、计时怎么选？</h3>
+<p>答：不涉及财产的事务通常按件；涉及财产的按标的比例；耗时难估的按计时。问清包含哪些阶段再定。</p>
+<h3>Q6 风险代理是「不赢不收费」吗？</h3>
+<p>答：多数情况是部分费用与结果挂钩，有的是基础费用加胜诉后按比例收费。风险代理有案件范围限制和分档收费上限，签约前逐条核对合同。</p>
+<h3>Q7 哪些案件不能风险代理？</h3>
+<p>答：刑事诉讼、行政诉讼、国家赔偿、群体性诉讼、婚姻继承案件，以及请求社会保险待遇、最低生活保障待遇、赡养费、抚养费、扶养费、抚恤金、救济金、工伤赔偿、劳动报酬的案件。</p>
+<h3>Q8 诉讼费是交给律师吗？</h3>
+<p>答：不是。诉讼费交法院，鉴定费、公证费、查档费交相应机构。这些不属于律师服务费，由你另行支付。律师代交的，向律所要凭证。</p>
+<h3>Q9 申请财产保全要花多少钱？</h3>
+<p>答：保全费按实际保全的财产数额分档交纳，最低每件 30 元，最高不超过 5000 元，具体按《诉讼费用交纳办法》执行。</p>
+<h3>Q10 打官司交不起钱怎么办？</h3>
+<p>答：交纳诉讼费用确有困难的，可以向法院申请缓交、减交、免交的司法救助。符合条件的事项可以申请法律援助，援助案件不收费。</p>
+<h3>Q11 法律援助怎么认定经济困难？</h3>
+<p>答：经济困难标准由各省级政府确定，各地不同，以当地为准。进城务工人员请求支付劳动报酬或工伤事故人身损害赔偿的，免予核查经济困难状况。</p>
+<h3>Q12 中途想换律师怎么办？</h3>
+<p>答：委托人可以拒绝已委托的律师继续代理，同时另行委托律师。已产生费用的结算按合同约定处理，先书面提出，再办交接。</p>
+<h3>Q13 对律师服务不满找谁投诉？</h3>
+<p>答：先书面联系律所。收费争议可以提请律所所在地的律师协会调解。对律师违法违规行为，向当地司法行政机关或律师协会投诉。</p>
+<h3>Q14 律师说「包赢」能信吗？</h3>
+<p>答：案件结果由法院或仲裁机构决定。听到这类承诺，把谈话记录下来，多比两家再定。对仲裁结果不服的处理，参考 <a href="G-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%B3%E5%8A%A8%E4%BB%B2%E8%A3%81%E6%89%93%E5%AE%98%E5%8F%B8.html">G-10 第一次劳动仲裁/打官司</a>。</p>
+<h3>Q15 只让律师代写起诉状可以吗？</h3>
+<p>答：可以。按件收费，很多律所接受单项委托。拿到文书后可以自己立案，出庭再另议。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>不核证就委托</strong>：先在公示平台查执业证号，查不到的直接换人。</li>
+<li><strong>把钱付给律师个人</strong>：律师费由律所统一收取，律师不得私自收费。坚持对公转账并要发票。</li>
+<li><strong>只谈口头价</strong>：收费项目、标准、方式、数额、付款结算、争议解决都要落进合同条款。</li>
+<li><strong>签空白合同</strong>：金额和范围空着的合同不签，补齐后再签，每页都核对。</li>
+<li><strong>权限给太大</strong>：特别授权（代收和解款、撤诉）要逐项写明，默认只要一般授权。</li>
+<li><strong>把原件全交走</strong>：原件移交要列清单签字，自己留复印件或扫描件。</li>
+<li><strong>信「关系」和「包赢」</strong>：这类说法没有依据，办案结果由法院或仲裁机构决定，别为此加价。</li>
+<li><strong>漏算另收费项目</strong>：诉讼费、保全费、鉴定费、公证费、查档费不含在律师费里，预算单独列。</li>
+<li><strong>风险代理超上限</strong>：约定比例超过分档上限的，签约前要求改掉再签。</li>
+<li><strong>重要沟通只打电话</strong>：事后用文字确认一遍要点，聊天记录和邮件都要留着。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>被「律师」催着转账</strong>：先停下，核对执业证和律所对公账户。发现假冒，向当地律协和司法局反映，涉嫌诈骗报警，参考 <a href="G-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8A%A5%E8%AD%A6%E6%8A%A5%E6%A1%88.html">G-09 第一次报警/报案</a>。</li>
+<li><strong>经济困难付不起律师费</strong>：拨 12348，向当地法律援助中心申请。进城务工人员追索劳动报酬、工伤赔偿的，免予核查经济困难状况。</li>
+<li><strong>事情很急（快过时效、对方在转移财产）</strong>：面谈时直说时限，请律师评估要不要保全。先立案再补材料是常见做法，别拖。</li>
+<li><strong>律师失联、不通报进展</strong>：先发书面催告并留证。再按合同和投诉渠道处理，必要时解除委托换人。</li>
+<li><strong>收费谈崩了</strong>：不带情绪离场，多约两家比价，对照律所公示的备案标准。</li>
+<li><strong>开庭前发现授权不够</strong>：立刻联系律所补签授权，别拖到庭上。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12348 咨询</td>
+<td>免费</td>
+<td>判断要不要请律师，必选</td>
+</tr>
+<tr>
+<td>律师首次面谈</td>
+<td>0–1000 元</td>
+<td>多数律所免费或按次收费，可选</td>
+</tr>
+<tr>
+<td>单项服务（代写文书等）</td>
+<td>数百至数千元</td>
+<td>按件收费，可选</td>
+</tr>
+<tr>
+<td>全程委托（普通民事案件）</td>
+<td>数千至数万元</td>
+<td>计件或按标的比例，以当地为准，可选</td>
+</tr>
+<tr>
+<td>风险代理</td>
+<td>按约定比例</td>
+<td>各档有上限，100 万元以下部分不超过 18%，可选</td>
+</tr>
+<tr>
+<td>诉讼费</td>
+<td>数十元至数万元</td>
+<td>按案由和标的额交法院，起诉时必选</td>
+</tr>
+<tr>
+<td>财产保全费</td>
+<td>30–5000 元</td>
+<td>按保全财产数额分档，可选</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>1–3 天</td>
+<td>找人、核验、面谈、签约</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.12348.gov.cn">中国法律服务网（12348 中国法网）</a></li>
+<li><a href="https://credit.acla.org.cn">全国律师执业诚信信息公示平台</a></li>
+<li><a href="https://www.acla.org.cn">中华全国律师协会</a></li>
+<li><a href="https://www.moj.gov.cn">司法部</a></li>
+</ul>
+</li>
+<li>相关条目：<a href="G-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%B3%E5%8A%A8%E4%BB%B2%E8%A3%81%E6%89%93%E5%AE%98%E5%8F%B8.html">G-10 第一次劳动仲裁/打官司</a>、<a href="G-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B6%88%E8%B4%B9%E7%BB%B4%E6%9D%83.html">G-08 第一次消费维权</a>、<a href="G-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8A%A5%E8%AD%A6%E6%8A%A5%E6%A1%88.html">G-09 第一次报警/报案</a></li>
+<li>可打印清单：<a href="../../checklists/G-11-%E8%AF%B7%E5%BE%8B%E5%B8%88-%E5%A7%94%E6%89%98%E6%B8%85%E5%8D%95.html">G-11 请律师委托清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《律师法》《律师服务收费管理办法》《诉讼费用交纳办法》和司发通〔2021〕87 号意见；Ⅱ 级为司法部解读、公共法律服务平台和律师执业诚信公示平台；Ⅲ 级为收费区间等通行做法。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国律师法》（2017 年修正），最高人民法院公报网，<a href="http://gongbao.court.gov.cn/Details/9d97a441edfcd9f72406ce9b758751.html">http://gongbao.court.gov.cn/Details/9d97a441edfcd9f72406ce9b758751.html</a></li>
+<li>《中华人民共和国律师法》（2017 修正）全文，常州市武进区人民政府网站转载，<a href="https://www.wjq.gov.cn/xzzfgszl/sfj/jbxx/zfyj/art/2025/art_8d24f1d678d748659226117b6afc03d0.html">https://www.wjq.gov.cn/xzzfgszl/sfj/jbxx/zfyj/art/2025/art_8d24f1d678d748659226117b6afc03d0.html</a></li>
+<li>《律师服务收费管理办法》（发改价格〔2006〕611 号），国家发展改革委政府信息公开，<a href="https://zfxxgk.ndrc.gov.cn/web/iteminfo.jsp?id=1690">https://zfxxgk.ndrc.gov.cn/web/iteminfo.jsp?id=1690</a></li>
+<li>司法部、国家发展改革委、市场监管总局《关于进一步规范律师服务收费的意见》（司发通〔2021〕87 号），<a href="https://www.moj.gov.cn/pub/sfbgw/zwxxgk/fdzdgknr/fdzdgknrtzwj/202203/t20220324_451428.html">https://www.moj.gov.cn/pub/sfbgw/zwxxgk/fdzdgknr/fdzdgknrtzwj/202203/t20220324_451428.html</a></li>
+<li>司法部《以案说法——法律援助法解读》，<a href="https://www.moj.gov.cn/pub/sfbgw/jgsz/jgszzsdw/zsdwflyzzx/flyzzxzcxx/zcxxfyzl/202306/t20230621_481166.html">https://www.moj.gov.cn/pub/sfbgw/jgsz/jgszzsdw/zsdwflyzzx/flyzzxzcxx/zcxxfyzl/202306/t20230621_481166.html</a></li>
+<li>全国律师执业诚信信息公示平台，<a href="https://credit.acla.org.cn">https://credit.acla.org.cn</a></li>
+<li>中国法律服务网（12348 中国法网），<a href="https://www.12348.gov.cn">https://www.12348.gov.cn</a></li>
+<li>《诉讼费用交纳办法》（国务院令第 481 号）全文，法治日报，<a href="http://www.legaldaily.com.cn/leagal_aid/content/2025-08/19/content_9228009.html">http://www.legaldaily.com.cn/leagal_aid/content/2025-08/19/content_9228009.html</a></li>
+<li>财政部条法司《〈诉讼费用交纳办法〉简介》，<a href="http://tfs.mof.gov.cn/zhengcejiedu/200806/t20080616_45590.htm">http://tfs.mof.gov.cn/zhengcejiedu/200806/t20080616_45590.htm</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-24</li>
+<li>适用范围与地区差异：中国内地。律师服务费的政府指导价基准和浮动幅度由各省制定；法律援助的经济困难标准由省级政府确定；律所收费标准向当地律协备案，均以当地为准。</li>
+<li>易变项：风险代理收费上限的适用口径、各省收费备案标准（M，复核周期 12 个月）。</li>
+<li>核实记录：<a href="../../sources/G-11.%E6%A0%B8%E5%AE%9E.html">sources/G-11.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="G-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%B3%E5%8A%A8%E4%BB%B2%E8%A3%81%E6%89%93%E5%AE%98%E5%8F%B8.html"><span class="dir">← 上一篇</span><span class="name">G-10 第一次劳动仲裁/打官司</span></a><a class="next" href="G-12-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%A8%E7%BD%91%E8%B4%B7%E4%B8%8E%E5%88%86%E6%9C%9F.html"><span class="dir">下一篇 →</span><span class="name">G-12 第一次用网贷/分期</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

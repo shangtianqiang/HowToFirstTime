@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次防诈骗 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 数字与网络</nav>
+  <h1 class="post-title">第一次防诈骗</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>数字与网络</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>9 条</b></span><span class="chip ">耗时 <b>半小时内</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-high">风险 <b>高</b></span><span class="chip ">时效 <b>高频变动</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：未知链接不点，陌生来电不信，个人信息不透露，转账前多核实；被骗先拨 110 止付，96110 来电要接。
+<strong>适用</strong>：第一次独立使用手机银行、网购、社交软件的成年人和老年人。
+<strong>不适用</strong>：已经进入司法程序的案件（请直接联系办案机关或律师）。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>高发类型</strong>：刷单返利、虚假投资理财、虚假购物服务、冒充电商物流客服、贷款征信、冒充领导熟人、冒充公检法、婚恋交友、网络游戏虚假交易、机票退改签。这 10 类占全部电诈案件的 85%。[1]</li>
+<li><strong>三不一多</strong>：未知链接不点，陌生来电不信，个人信息不透露，转账多核实。[7]</li>
+<li><strong>被骗第一步</strong>：立即拨 110，请警方紧急止付；保存聊天记录、转账凭证、对方账号。[3]</li>
+<li><strong>96110</strong>：全国反诈预警劝阻专线。接到这个号码的来电，说明你或家人可能正在被骗，要接听。[4]</li>
+<li><strong>公检法没有“安全账户”</strong>：凡是要你转账到“安全账户”的，都是诈骗。[8]</li>
+<li><strong>不做帮凶</strong>：不得出租、出借、出售电话卡、银行卡、支付账户、互联网账号。[7]</li>
+<li><strong>二次诈骗</strong>：网上自称“网警”“律师”“追款专员”能帮你追款的，都是骗子。[6]</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 高发类型</h3>
+<ul>
+<li><strong>刷单返利</strong>：点赞、刷单、做任务返佣。先给小利，后面让你垫大额。</li>
+<li><strong>虚假投资理财</strong>：导师带单、内部平台、稳赚不赔。小额能提现，大额提不出。</li>
+<li><strong>虚假购物服务</strong>：低价商品、私下交易、先付款不发货。</li>
+<li><strong>冒充电商物流客服</strong>：主动退款理赔，要验证码、让你屏幕共享。</li>
+<li><strong>贷款征信</strong>：无抵押、免征信、先收手续费或解冻金。</li>
+<li><strong>冒充领导熟人</strong>：换号、不便通话、紧急转账。</li>
+<li><strong>冒充公检法</strong>：涉嫌洗钱、出示“逮捕证”、让你去宾馆或转“安全账户”。</li>
+<li><strong>婚恋交友</strong>：网恋后借钱、投资、买礼物。</li>
+<li><strong>网络游戏虚假交易</strong>：低价充值、账号买卖、私下交易。</li>
+<li><strong>机票退改签</strong>：航班取消、改签理赔，要银行卡和验证码。</li>
+</ul>
+<h3>1.2 识别信号</h3>
+<ul>
+<li>要求你保密，不让告诉家人。</li>
+<li>要求你下载陌生 App、开屏幕共享。</li>
+<li>要求你提供验证码、银行卡密码。</li>
+<li>要求你先交钱：手续费、保证金、解冻金、税费。</li>
+<li>要求你转账到个人账户或“安全账户”。</li>
+<li>催你马上决定，不给你思考时间。</li>
+<li>号码是陌生号、境外号、虚拟号，或者冒充官方客服。</li>
+</ul>
+<h3>1.3 个人信息保护</h3>
+<ul>
+<li>身份证号、银行卡号、验证码，不随便给。</li>
+<li>不点陌生链接，不扫来历不明的二维码。</li>
+<li>不装陌生 App，不开屏幕共享。</li>
+<li>不把电话卡、银行卡、支付账户、社交账号出租、出借、出售。[7]</li>
+<li>快递单、外卖单上的个人信息涂掉再扔。</li>
+<li>老人和孩子的手机，提前设置支付限额和亲情提醒。</li>
+</ul>
+<h3>1.4 官方工具</h3>
+<ul>
+<li>国家反诈中心 App：预警提示、一键举报、涉诈 App 自检、AI 内容鉴定。[5]</li>
+<li>96110：预警劝阻、防骗咨询、涉诈举报。[4]</li>
+<li>12381：工信部涉诈预警短信。</li>
+<li>公安部刑侦局微信公众号：可获取防诈手册。[8]</li>
+<li>银行和支付平台的官方客服电话。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 接到可疑电话</h3>
+<ul>
+<li>在哪：手机来电、短信、社交软件。</li>
+<li>做什么：先挂断，自己拨官方客服或 110 核实。</li>
+<li>看什么：来电号码、对方自称的单位、要求你做什么。</li>
+<li>说什么：不透露验证码、密码、银行卡号。</li>
+<li>完成标志：确认是诈骗，拉黑、举报。</li>
+<li>卡住了怎么办：拿不准，拨 96110 咨询。</li>
+</ul>
+<h3>2.2 已经被骗</h3>
+<ul>
+<li>在哪：最近派出所、电话 110。</li>
+<li>做什么：立即拨 110，说明被骗时间、金额、对方账号、转账方式。</li>
+<li>看什么：转账记录、聊天记录、对方账号信息。</li>
+<li>说什么：如实说清经过，不隐瞒。</li>
+<li>完成标志：警方受理，启动紧急止付。</li>
+<li>卡住了怎么办：先拨 110，不要先在网上找“追款”。</li>
+</ul>
+<h3>2.3 报警材料</h3>
+<ul>
+<li>身份证。</li>
+<li>银行卡、转账凭证、ATM 凭条、手机截图。</li>
+<li>对方聊天账号、账户姓名、聊天记录。</li>
+<li>通话记录、短信、涉诈 App 或网址。</li>
+<li>到派出所做笔录，拿受案回执。[3]</li>
+</ul>
+<h3>2.4 账户冻结</h3>
+<ul>
+<li>报警后，公安机关会依法紧急止付、快速冻结，银行和支付机构配合。[3]</li>
+<li>同时联系银行客服、支付平台客服，挂失、冻结、延迟到账。</li>
+<li>修改相关密码，检查是否有其他账户被盗。</li>
+<li>保留所有凭证，配合警方。</li>
+</ul>
+<h3>2.5 配合调查</h3>
+<ul>
+<li>只联系办案民警和官方客服。</li>
+<li>不向任何人提供验证码、密码。</li>
+<li>不按陌生“警官”的要求转账。</li>
+<li>案件进展以办案机关通知为准。</li>
+</ul>
+<h3>2.6 防二次诈骗</h3>
+<ul>
+<li>公安民警不会在网上留 QQ、微信办案。[6]</li>
+<li>不会要求你交“保证金”“解冻金”。</li>
+<li>不会让你把追回的钱先转到某个账户。</li>
+<li>网上“追款专员”“黑客”“律师”都要警惕。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 96110 是诈骗电话吗？</h3>
+<p>答：不是。96110 是全国反诈预警劝阻专线，接到说明你或家人可能正在被骗，要接听。[4]</p>
+<h3>Q2 被骗后第一步做什么？</h3>
+<p>答：立即拨 110，请警方紧急止付，保存聊天记录和转账凭证，尽快到派出所报案。[3]</p>
+<h3>Q3 转账 24 小时内都能撤回吗？</h3>
+<p>答：不是。只有 ATM 非本人同行转账等特定情形可以在 24 小时内撤销，手机银行、柜台转账不一定能撤回。发现被骗要立即报警。[8]</p>
+<h3>Q4 国家反诈中心 App 会监控我、泄露隐私吗？</h3>
+<p>答：没有依据。它是公安部推出的官方反诈工具，用于预警、举报和涉诈 App 自检。[5]</p>
+<h3>Q5 公检法有“安全账户”吗？</h3>
+<p>答：没有。凡是要你把钱转到“安全账户”的，都是诈骗。[8]</p>
+<h3>Q6 网上找“网警”“律师”能追回钱吗？</h3>
+<p>答：不能。这类多半是二次诈骗。只通过 110 和办案机关处理。[6]</p>
+<h3>Q7 被骗金额小，能报警吗？</h3>
+<p>答：可以。拨 110 或到派出所报案，是否立案按法律规定，不要因为金额小就不报。</p>
+<h3>Q8 我的银行卡、电话卡借给别人用，有风险吗？</h3>
+<p>答：有。出租、出借、出售电话卡、银行卡、支付账户、互联网账号可能违法，还可能被用于诈骗。[7]</p>
+<h3>Q9 收到“航班取消”短信，怎么核实？</h3>
+<p>答：不要点短信链接。用航司官方 App、官网或官方客服电话核实。</p>
+<h3>Q10 网购客服说要退款，让我提供验证码，怎么办？</h3>
+<p>答：拒绝。正规退款不需要验证码，也不需要屏幕共享。挂断后从官方 App 联系客服。</p>
+<h3>Q11 家里老人容易被骗，怎么防？</h3>
+<p>答：帮老人装国家反诈中心 App，设置支付限额，约定大额转账先打电话给家人。</p>
+<h3>Q12 举报诈骗有哪些渠道？</h3>
+<p>答：拨 110、96110，或用国家反诈中心 App 举报，也可以到派出所报案。[4][5]</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>“零风险高收益”</strong>：投资理财没有稳赚不赔。</li>
+<li><strong>“刷单返利”</strong>：先给小利，后面让你垫大额。</li>
+<li><strong>“客服主动退款”</strong>：正规退款不需要验证码和屏幕共享。</li>
+<li><strong>“公检法办案”</strong>：不会电话办案，也没有安全账户。</li>
+<li><strong>“领导熟人换号借钱”</strong>：先打电话核实。</li>
+<li><strong>“无抵押免征信贷款”</strong>：先收费的都是坑。</li>
+<li><strong>“网恋对象带你投资”</strong>：杀猪盘的典型套路。</li>
+<li><strong>“网上追款”</strong>：二次诈骗，别再交钱。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>已经转账</strong>：立即拨 110，联系银行或支付平台客服，保存凭证。[3]</li>
+<li><strong>对方要求屏幕共享</strong>：立即拒绝并挂断。</li>
+<li><strong>手机被远程控制</strong>：断网、关机，改密码，去银行冻结账户，报警。</li>
+<li><strong>银行卡被冻结</strong>：联系银行客服，问清冻结机关，配合调查。</li>
+<li><strong>老人被骗</strong>：先报警，再安抚，保留证据，不要责怪。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>国家反诈中心 App</td>
+<td>免费</td>
+<td>官方应用</td>
+</tr>
+<tr>
+<td>报警</td>
+<td>免费</td>
+<td>拨 110 或到派出所</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半小时到半天</td>
+<td>报案、做笔录</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li>国家反诈中心 App</li>
+<li>96110 反诈专线</li>
+<li><a href="https://www.mps.gov.cn">公安部</a></li>
+<li>12381 涉诈预警短信</li>
+<li>银行和支付平台官方客服</li>
+</ul>
+</li>
+<li>相关条目：G-01 第一次办银行卡（规划中）</li>
+<li>可打印清单：<a href="../../checklists/I-01-%E9%98%B2%E8%AF%88%E9%AA%97-%E9%80%9F%E6%9F%A5%E5%8D%A1.html">I-01 防诈骗速查卡</a></li>
+<li>术语：暂无</li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：以 Ⅰ/Ⅱ 级法律和公安部官方指引为主。</li>
+<li>主要来源：<ol>
+<li>公安部 2026-06-12 发布会及 2026 版防诈手册，<a href="https://www.mps.gov.cn/n2254098/n4904352/c10113457/content.html">https://www.mps.gov.cn/n2254098/n4904352/c10113457/content.html</a></li>
+<li>《中华人民共和国反电信网络诈骗法》第二十、二十九、三十一条，<a href="http://www.npc.gov.cn/npc/c30834/202209/faadac81d2e94aa0bd7574efc9862cd0.shtml">http://www.npc.gov.cn/npc/c30834/202209/faadac81d2e94aa0bd7574efc9862cd0.shtml</a></li>
+<li>公安部《如何有效防范电信网络诈骗》，<a href="https://www.mps.gov.cn/n2253534/n2253543/c10163870/content.html">https://www.mps.gov.cn/n2253534/n2253543/c10163870/content.html</a></li>
+<li>公安部《反诈利器全家桶》（96110、国家反诈中心 App），<a href="https://www.mps.gov.cn/n2255079/n4876594/n5104076/n5104077/c10495303/content.html">https://www.mps.gov.cn/n2255079/n4876594/n5104076/n5104077/c10495303/content.html</a></li>
+<li>同上，国家反诈中心 App 功能</li>
+<li>中国长安网《警惕冒充“网警”诈骗》，<a href="http://www.chinapeace.gov.cn/chinapeace/c100046/2022-09/27/content_12674526.shtml">http://www.chinapeace.gov.cn/chinapeace/c100046/2022-09/27/content_12674526.shtml</a></li>
+<li>反诈法第二十九、三十一条；“三不一多”宣传口径</li>
+<li>公安部 2026 版防诈手册发布页，<a href="https://www.mps.gov.cn/n2255079/n4876594/n5104076/n5104077/c10491162/content.html">https://www.mps.gov.cn/n2255079/n4876594/n5104076/n5104077/c10491162/content.html</a></li>
+<li>银发〔2016〕261号 ATM 转账撤销规定，<a href="https://www.beijing.gov.cn/zhengce/zhengcefagui/201905/t20190522_59595.html">https://www.beijing.gov.cn/zhengce/zhengcefagui/201905/t20190522_59595.html</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地电信网络诈骗防范。</li>
+<li>易变项：高发类型和统计口径（H）。</li>
+<li>核实记录：<a href="../../sources/I-01.%E6%A0%B8%E5%AE%9E.html">sources/I-01.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="../08-%E5%B1%85%E4%BD%8F%E4%B8%8E%E7%94%9F%E6%B4%BB/H-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%89%BE%E5%AE%B6%E6%94%BF%E4%BF%9D%E5%A7%86.html"><span class="dir">← 上一篇</span><span class="name">H-08 第一次找家政/保姆</span></a><a class="next" href="I-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B4%A6%E5%8F%B7%E8%A2%AB%E7%9B%97%E6%89%BE%E5%9B%9E.html"><span class="dir">下一篇 →</span><span class="name">I-02 第一次账号被盗/找回</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

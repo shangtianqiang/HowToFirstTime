@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次医保报销 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 健康与医疗</nav>
+  <h1 class="post-title">第一次医保报销</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>健康与医疗</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>9 条</b></span><span class="chip ">耗时 <b>半天</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>高频变动</b></span><span class="chip ">适用 <b>分市</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先看药品和项目在不在医保目录，再看起付线、报销比例和封顶线；异地就医先备案，没直接结算就回参保地手工报销。
+<strong>适用</strong>：第一次用职工医保或城乡居民医保报销门诊、住院费用的参保人。
+<strong>不适用</strong>：商业保险理赔、工伤认定、医疗救助（另立条目）。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>三大目录</strong>：药品目录、诊疗项目目录、医用耗材目录。目录内才按医保规则报销，目录外自费。[1]</li>
+<li><strong>三条线</strong>：起付线以下自付；起付线以上、封顶线以下按比例报销；超过封顶线由大病保险或大额补助衔接。[2]</li>
+<li><strong>职工和居民</strong>：职工医保由单位和个人共同缴，有个人账户；居民医保由个人缴费加财政补助，没有个人账户。[3]</li>
+<li><strong>门诊统筹</strong>：职工普通门诊纳入统筹，支付比例从 50% 起步；个人账户可用于本人和配偶、父母、子女的自付费用。[4]</li>
+<li><strong>异地就医</strong>：先备案，备案后直接结算，按“就医地目录、参保地政策”。急诊抢救视同已备案。[5]</li>
+<li><strong>手工报销</strong>：没直接结算的，回参保地经办机构申请，材料齐全后一般不超过 30 个工作日。[6]</li>
+<li><strong>大病保险</strong>：居民参保人自动享受，不用另外缴费；支付比例不低于 60%。[7]</li>
+<li><strong>不报范围</strong>：工伤、第三方负担、公共卫生、境外就医；体育健身、养生保健、体检；美容、健美、非功能性整容等。[8]</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 三大目录</h3>
+<ul>
+<li><strong>药品目录</strong>：分甲类和乙类。甲类全额纳入报销范围后按比例报销；乙类先自付一定比例再报销；目录外全自费。[1][9]</li>
+<li><strong>诊疗项目目录</strong>：检查、治疗、手术等项目是否在目录内。</li>
+<li><strong>医用耗材目录</strong>：耗材是否在目录内，有没有限价。</li>
+<li>目录由国家医保局发布，2025 年版目录 2026 年 1 月 1 日执行。[9]</li>
+<li>具体某个药能不能报，查国家医保服务平台或问医院医保办。</li>
+</ul>
+<h3>1.2 起付线、报销比例、封顶线</h3>
+<ul>
+<li>起付线：一年内先自己花够这个数，医保才开始报。</li>
+<li>报销比例：起付线以上、封顶线以下，按比例报。</li>
+<li>封顶线：一年内医保最多报多少。</li>
+<li>国家只定原则，具体数值由各统筹区定。[2]</li>
+<li>职工医保起付标准原则上不高于统筹地区年职工平均工资的 10%，基本医保总体支付比例 75% 左右。[2]</li>
+<li>居民医保的起付线、比例、封顶线也按当地规定。</li>
+<li>必须查参保地医保局的最新政策。</li>
+</ul>
+<h3>1.3 职工医保和居民医保</h3>
+<ul>
+<li><strong>职工医保</strong>：覆盖单位职工和灵活就业人员。单位缴约 6%，个人缴约 2%，有个人账户。[3]</li>
+<li><strong>居民医保</strong>：覆盖城乡居民、学生、儿童等。个人缴费加财政补助，没有个人账户。[3]</li>
+<li>职工医保缴费高，报销比例和封顶线通常更高。</li>
+<li>居民医保一年一缴，断缴可能影响待遇。</li>
+</ul>
+<h3>1.4 异地就医</h3>
+<ul>
+<li>长期异地居住、临时外出就医，都要先备案。[5]</li>
+<li>备案渠道：参保地经办窗口、国家医保服务平台 App、国家异地就医备案小程序、国务院客户端。[5]</li>
+<li>线上备案原则上 2 个工作日办结。</li>
+<li>急诊抢救视同已备案。</li>
+<li>备案后直接结算，按“就医地目录、参保地政策”。[5]</li>
+<li>没备案或没直接结算，回参保地手工报销。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 门诊结算</h3>
+<ul>
+<li>在哪：医院收费窗口、自助机、诊间结算。</li>
+<li>做什么：出示医保码或社保卡，结算门诊费用。</li>
+<li>看什么：费用清单上的医保支付和个人自付。</li>
+<li>说什么：有疑问问收费员或医保办。</li>
+<li>完成标志：拿到结算单和发票。</li>
+<li>卡住了怎么办：系统故障，先自费，保留票据回参保地手工报销。</li>
+</ul>
+<h3>2.2 住院结算</h3>
+<ul>
+<li>在哪：住院收费处。</li>
+<li>做什么：入院登记医保，出院时结算。</li>
+<li>看什么：住院费用总清单、医保支付、个人自付。</li>
+<li>说什么：用自费药或目录外项目，医生应提前告知。</li>
+<li>完成标志：出院结算完成，拿到发票和清单。</li>
+<li>卡住了怎么办：不能直接结算，保留材料回参保地报销。</li>
+</ul>
+<h3>2.3 手工报销</h3>
+<ul>
+<li>在哪：参保地医保经办机构或线上平台。</li>
+<li>做什么：提交材料，申请报销。</li>
+<li>看什么：材料清单、受理回执、到账时间。</li>
+<li>说什么：材料不齐，问清能不能后补。</li>
+<li>完成标志：受理成功，等待审核打款。</li>
+<li>卡住了怎么办：拨 12393 或当地医保局咨询。</li>
+</ul>
+<p><strong>门诊手工报销材料</strong>：医保电子凭证或身份证或社保卡、医院收费票据、门急诊费用清单、处方底方。[6]</p>
+<p><strong>时限</strong>：材料齐全后一般不超过 30 个工作日。[6]</p>
+<h3>2.4 大病保险</h3>
+<ul>
+<li>居民参保人自动享受，不用另外缴费。[7]</li>
+<li>起付线原则上不高于上年度居民人均可支配收入的 50%。</li>
+<li>支付比例不低于 60%。</li>
+<li>医疗费用越高，支付比例越高。</li>
+<li>具体起付线和比例按当地规定。</li>
+</ul>
+<h3>2.5 查询</h3>
+<ul>
+<li>国家医保服务平台 App 或网站：参保信息、缴费记录、消费记录、异地备案、直接结算费用。[9]</li>
+<li>参保地医保局官网或公众号。</li>
+<li>12393 医保服务热线，12345 政务服务热线。</li>
+</ul>
+<h3>2.6 争议与不报</h3>
+<ul>
+<li>认为报销金额不对，先查费用清单和目录，再向医保经办机构申请复核。</li>
+<li>目录外药品、自费项目，医生应提前告知。</li>
+<li>工伤、第三方责任、公共卫生、境外就医，医保不报。[8]</li>
+<li>美容、健美、非功能性整容、减肥增高、体检、养生保健，不报。[8]</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 医保能报哪些费用？</h3>
+<p>答：只报医保药品目录、诊疗项目目录、医用耗材目录内的费用，目录外自费。[1]</p>
+<h3>Q2 起付线是什么意思？</h3>
+<p>答：一年内先自己花够这个数，医保才开始报。[2]</p>
+<h3>Q3 报销比例是多少？</h3>
+<p>答：国家只定原则，具体比例由各统筹区定。职工医保总体支付比例 75% 左右。[2]</p>
+<h3>Q4 职工医保和居民医保有什么区别？</h3>
+<p>答：职工医保由单位和个人共同缴，有个人账户；居民医保个人缴费加财政补助，没有个人账户。[3]</p>
+<h3>Q5 门诊能报吗？</h3>
+<p>答：职工普通门诊已纳入统筹，支付比例从 50% 起步；居民医保门诊待遇按当地规定。[4]</p>
+<h3>Q6 异地看病怎么报？</h3>
+<p>答：先备案，备案后直接结算，按“就医地目录、参保地政策”。急诊视同已备案。[5]</p>
+<h3>Q7 没直接结算怎么办？</h3>
+<p>答：保留发票、费用清单、处方底方等材料，回参保地医保经办机构手工报销，一般不超过 30 个工作日。[6]</p>
+<h3>Q8 大病保险要另外交钱吗？</h3>
+<p>答：居民参保人自动享受，不用另外缴费；支付比例不低于 60%。[7]</p>
+<h3>Q9 甲类药和乙类药有什么区别？</h3>
+<p>答：甲类全额纳入报销范围后按比例报；乙类先自付一定比例再报；目录外全自费。[9]</p>
+<h3>Q10 哪些费用医保不报？</h3>
+<p>答：工伤、第三方负担、公共卫生、境外就医；体育健身、养生保健、体检；美容、健美、非功能性整容等。[8]</p>
+<h3>Q11 医保码怎么用？</h3>
+<p>答：在国家医保服务平台 App、支付宝或微信激活，就医购药时出示，全国通用。[9]</p>
+<h3>Q12 怎么查报销进度？</h3>
+<p>答：国家医保服务平台可查消费和结算记录；报销进度多用参保地平台，拨打 12393 咨询。[9]</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>以为所有药都能报</strong>：目录外全自费。[1]</li>
+<li><strong>不问自费项目</strong>：用目录外药或耗材，医生应提前告知。</li>
+<li><strong>异地不备案</strong>：可能降低报销比例或不能直接结算。[5]</li>
+<li><strong>票据丢失</strong>：手工报销要原件，保留好。[6]</li>
+<li><strong>医保断缴</strong>：居民医保断缴可能影响待遇；职工医保断缴及时续上。</li>
+<li><strong>把医保卡借给别人</strong>：属于违规，可能影响待遇。</li>
+<li><strong>轻信“医保套现”</strong>：违法，别参与。</li>
+<li><strong>不核对费用清单</strong>：出院前看清每一笔。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>急诊没备案</strong>：视同已备案，但报销比例按参保地政策。[5]</li>
+<li><strong>系统故障不能结算</strong>：先自费，保留票据回参保地手工报销。</li>
+<li><strong>异地长期居住</strong>：先办长期备案，再就医。</li>
+<li><strong>大病费用高</strong>：基本医保报完后，自动进入大病保险。</li>
+<li><strong>报销被拒</strong>：问清原因，查目录和政策，申请复核。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>医保缴费</td>
+<td>职工按月、居民按年</td>
+<td>按当地标准</td>
+</tr>
+<tr>
+<td>起付线</td>
+<td>按当地</td>
+<td>先自付</td>
+</tr>
+<tr>
+<td>报销</td>
+<td>按比例</td>
+<td>目录内费用</td>
+</tr>
+<tr>
+<td>手工报销时间</td>
+<td>不超过 30 个工作日</td>
+<td>材料齐全后 [6]</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="http://www.nhsa.gov.cn">国家医疗保障局</a></li>
+<li>国家医保服务平台 App</li>
+<li>国家异地就医备案小程序</li>
+<li>12393 医保服务热线</li>
+<li>参保地医保局官网或公众号</li>
+</ul>
+</li>
+<li>相关条目：<a href="F-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%87%AA%E5%B7%B1%E6%8C%82%E5%8F%B7%E7%9C%8B%E7%97%85.html">F-01 第一次自己挂号看病</a></li>
+<li>可打印清单：<a href="../../checklists/F-09-%E5%8C%BB%E4%BF%9D%E6%8A%A5%E9%94%80-%E6%9D%90%E6%96%99%E6%B8%85%E5%8D%95.html">F-09 医保报销清单</a></li>
+<li>术语：<a href="../../meta/%E6%9C%AF%E8%AF%AD%E8%A1%A8.html">医保目录</a>（待补）、<a href="../../meta/%E6%9C%AF%E8%AF%AD%E8%A1%A8.html">起付线</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：以 Ⅰ/Ⅱ 级法规和医保局文件为主，具体数值分统筹区。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国社会保险法》第二十八条；医保发〔2021〕5号；《基本医疗保险用药管理暂行办法》第三条，<a href="https://www.gov.cn/guoqing/2021-10/29/content_5647616.htm">https://www.gov.cn/guoqing/2021-10/29/content_5647616.htm</a></li>
+<li>医保发〔2021〕5号，<a href="https://www.gov.cn/zhengce/zhengceku/2021-08/11/content_5630791.htm">https://www.gov.cn/zhengce/zhengceku/2021-08/11/content_5630791.htm</a></li>
+<li>同上，职工医保和居民医保覆盖范围</li>
+<li>国办发〔2021〕14号，<a href="https://www.gov.cn/gongbao/content/2021/content_5605104.htm">https://www.gov.cn/gongbao/content/2021/content_5605104.htm</a></li>
+<li>医保发〔2022〕22号，<a href="https://www.gov.cn/zhengce/zhengceku/2022-07/26/content_5702881.htm">https://www.gov.cn/zhengce/zhengceku/2022-07/26/content_5702881.htm</a></li>
+<li>国家医保局《全国医疗保障经办政务服务事项清单》第17项，<a href="https://www.nhsa.gov.cn/art/2020/5/12/art_105_6564.html">https://www.nhsa.gov.cn/art/2020/5/12/art_105_6564.html</a></li>
+<li>国办发〔2015〕57号；医保发〔2021〕5号，<a href="https://www.gov.cn/zhengce/content/2015-08/02/content_10041.htm">https://www.gov.cn/zhengce/content/2015-08/02/content_10041.htm</a></li>
+<li>《社会保险法》第三十条；医保发〔2021〕5号；劳社部发〔1999〕22号</li>
+<li>国家医保局《医保码使用全攻略》，<a href="https://www.nhsa.gov.cn/art/2025/1/17/art_14_15488.html">https://www.nhsa.gov.cn/art/2025/1/17/art_14_15488.html</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地基本医疗保险；具体政策分统筹区。</li>
+<li>易变项：目录版本、起付线、比例、封顶线、备案规则（H，分市）。</li>
+<li>核实记录：<a href="../../sources/F-09.%E6%A0%B8%E5%AE%9E.html">sources/F-09.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="F-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B9%B0%E5%95%86%E4%B8%9A%E4%BF%9D%E9%99%A9.html"><span class="dir">← 上一篇</span><span class="name">F-08 第一次买商业保险</span></a><a class="next" href="F-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%8C%AE%E8%A1%80.html"><span class="dir">下一篇 →</span><span class="name">F-10 第一次献血</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

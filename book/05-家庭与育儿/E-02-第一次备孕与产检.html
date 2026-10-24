@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次备孕与产检 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 家庭与育儿</nav>
+  <h1 class="post-title">第一次备孕与产检</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>家庭与育儿</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>4 条</b></span><span class="chip ">耗时 <b>长期</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>分市</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：孕前 3 个月补叶酸、做孕前检查，怀孕后尽早建档，按医生安排产检，异常出血腹痛立即就医。
+<strong>适用</strong>：第一次计划怀孕、已经怀孕的夫妻。
+<strong>不适用</strong>：不孕不育治疗、高危妊娠管理，需专科医生制定方案。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>孕前检查</strong>：计划怀孕前 3–6 个月做，社区可申请免费孕前优生检查。</li>
+<li><strong>叶酸</strong>：孕前 3 个月开始，每天 0.4 毫克，遵医嘱。</li>
+<li><strong>建档</strong>：确认宫内孕后尽快，通常孕 6–12 周，带身份证、结婚证。</li>
+<li><strong>产检</strong>：按医生安排，重要节点有 NT、唐筛、大排畸、糖耐。</li>
+<li><strong>危险信号</strong>：出血、剧烈腹痛、严重呕吐、头痛眼花，立即就医。</li>
+<li><strong>用药</strong>：怀孕期间任何药都先问医生。</li>
+<li><strong>产检假</strong>：产检时间计入劳动时间，不得扣工资。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 孕前 3–6 个月</h3>
+<ul>
+<li>夫妻双方做孕前检查：血常规、传染病、甲状腺、妇科、精液分析。</li>
+<li>社区或妇幼保健院可申请免费孕前优生健康检查。</li>
+<li>女方补叶酸，每天 0.4 毫克，至少到孕早期 3 个月。</li>
+<li>戒烟戒酒，规律作息，控制体重。</li>
+<li>慢性病患者先调整用药，咨询医生。</li>
+<li>查口腔，处理智齿和牙周问题。</li>
+</ul>
+<h3>1.2 确认怀孕</h3>
+<ul>
+<li>月经推迟后用早孕试纸，再到医院查血 HCG 和 B 超。</li>
+<li>确认宫内孕，排除宫外孕。</li>
+<li>问清预产期和建档时间。</li>
+<li>有腹痛、出血，立即就医。</li>
+</ul>
+<h3>1.3 建档材料</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 身份证</li>
+<li><input disabled="" type="checkbox"> 结婚证</li>
+<li><input disabled="" type="checkbox"> 医保卡</li>
+<li><input disabled="" type="checkbox"> 居住证（非户籍）</li>
+<li><input disabled="" type="checkbox"> 既往检查报告</li>
+<li><input disabled="" type="checkbox"> 母子健康手册（按当地）</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 建档</h3>
+<ul>
+<li>在哪：社区医院、妇幼保健院或指定医院。</li>
+<li>做什么：登记信息，做基础检查，领母子健康手册。</li>
+<li>看什么：建档名额、所需材料、后续产检时间表。</li>
+<li>完成标志：建档成功，拿到产检计划。</li>
+</ul>
+<h3>2.2 常规产检</h3>
+<ul>
+<li>孕早期：确认宫内孕、NT 检查（约 11–13 周+6）。</li>
+<li>孕中期：唐筛或无创 DNA（约 15–20 周）、大排畸（约 20–24 周）、糖耐（约 24–28 周）。</li>
+<li>孕晚期：每 2–4 周一次，36 周后每周一次，胎心监护。</li>
+<li>每次带母子手册，记录体重、血压、宫高、腹围。</li>
+</ul>
+<h3>2.3 异常处理</h3>
+<ul>
+<li>出血、腹痛、破水、胎动明显减少，立即去医院。</li>
+<li>严重呕吐、不能进食，查尿酮体。</li>
+<li>头痛、眼花、水肿加重，警惕妊娠期高血压。</li>
+<li>发热、咳嗽，及时就诊，不自行用药。</li>
+</ul>
+<h3>2.4 临产准备</h3>
+<ul>
+<li>孕 36 周前准备好待产包和证件。</li>
+<li>了解医院入院流程和急诊电话。</li>
+<li>和医生确认分娩方式和麻醉选择。</li>
+<li>完成 E-03 的入院准备。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 什么时候开始吃叶酸？</h3>
+<p>答：计划怀孕前 3 个月开始，每天 0.4 毫克，至少吃到孕早期 3 个月。有特殊病史遵医嘱。[1]</p>
+<h3>Q2 孕前检查要做哪些？</h3>
+<p>答：血常规、尿常规、肝肾功能、传染病筛查、甲状腺功能、妇科检查、精液分析等，社区有免费项目。</p>
+<h3>Q3 什么时候建档？</h3>
+<p>答：确认宫内孕后尽快，多数医院孕 6–12 周建档，名额紧张的要提前预约。</p>
+<h3>Q4 产检一共几次？</h3>
+<p>答：按医院安排，通常 7–11 次，高危妊娠更多。不要因为麻烦跳过。</p>
+<h3>Q5 NT、唐筛、无创 DNA 怎么选？</h3>
+<p>答：NT 是超声筛查，唐筛是血清学筛查，无创 DNA 准确性更高但费用高。医生会根据年龄和风险建议。</p>
+<h3>Q6 35 岁以上要注意什么？</h3>
+<p>答：属高龄孕妇，染色体异常风险升高，医生可能建议无创 DNA 或羊水穿刺，按医嘱。</p>
+<h3>Q7 怀孕能吃感冒药吗？</h3>
+<p>答：不要自行用药。发热、咳嗽先就医，告知怀孕周数，由医生选安全药物。</p>
+<h3>Q8 孕期能运动吗？</h3>
+<p>答：多数孕妇可以散步、孕妇瑜伽，避免剧烈运动和高风险活动。有流产史、前置胎盘等遵医嘱。</p>
+<h3>Q9 产检请假扣工资吗？</h3>
+<p>答：产检时间计入劳动时间，不得按病假、事假扣工资。[2]</p>
+<h3>Q10 医保能报产检吗？</h3>
+<p>答：职工医保、生育保险和居民医保政策不同，产检和分娩费用按当地医保规定报销，提前问清。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>不建卡就产检</strong>：部分医院不接诊，急诊也麻烦。</li>
+<li><strong>跳过 NT 和大排畸</strong>：错过最佳检查时间。</li>
+<li><strong>自行用药</strong>：包括中成药、保健品，先问医生。</li>
+<li><strong>信偏方保胎</strong>：可能延误治疗。</li>
+<li><strong>不控制体重</strong>：妊娠糖尿病、巨大儿风险增加。</li>
+<li><strong>不查口腔</strong>：孕期牙痛处理受限，提前处理。</li>
+<li><strong>轻信“包生男孩”</strong>：违法且不靠谱。</li>
+<li><strong>产检记录乱丢</strong>：分娩时医生需要完整记录。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>出血、腹痛</strong>：立即就医，拨 120 或家人送医。</li>
+<li><strong>破水</strong>：平躺，垫高臀部，立即去医院，不要洗澡。</li>
+<li><strong>胎动减少</strong>：左侧卧，数胎动，异常立即就医。</li>
+<li><strong>严重呕吐</strong>：查尿酮体，必要时补液。</li>
+<li><strong>高热</strong>：物理降温，及时就诊，不自行吃退烧药。</li>
+<li><strong>摔倒、车祸</strong>：即使无不适也要去医院检查。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>孕前检查</td>
+<td>0–1000 元</td>
+<td>社区免费项目可省</td>
+</tr>
+<tr>
+<td>建档</td>
+<td>几百元</td>
+<td>含基础检查</td>
+</tr>
+<tr>
+<td>产检</td>
+<td>2000–6000 元</td>
+<td>按项目和医院</td>
+</tr>
+<tr>
+<td>无创 DNA</td>
+<td>1000–3000 元</td>
+<td>可选</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>10 个月</td>
+<td>从备孕到分娩</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.nhc.gov.cn">国家卫生健康委员会</a></li>
+<li><a href="https://www.nhsa.gov.cn">国家医保局</a></li>
+<li>当地妇幼保健院</li>
+<li>12345 政务热线</li>
+</ul>
+</li>
+<li>相关条目：<a href="E-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%BD%93%E7%88%B8%E7%88%B8.html">E-01 第一次当爸爸</a>、<a href="E-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%99%AA%E4%BA%A7.html">E-03 第一次陪产</a></li>
+<li>可打印清单：<a href="../../checklists/E-02-%E5%A4%87%E5%AD%95%E4%BA%A7%E6%A3%80-%E6%97%B6%E9%97%B4%E6%B8%85%E5%8D%95.html">E-02 备孕产检清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《母婴保健法》《女职工劳动保护特别规定》；Ⅱ 级为国家卫健委孕产期保健规范；Ⅲ 级为医院通行做法。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国母婴保健法》，<a href="https://www.nhc.gov.cn">https://www.nhc.gov.cn</a></li>
+<li>国家卫健委《孕产期保健工作规范》，<a href="https://www.nhc.gov.cn">https://www.nhc.gov.cn</a></li>
+<li>国家免费孕前优生健康检查项目说明，<a href="https://www.nhc.gov.cn">https://www.nhc.gov.cn</a></li>
+<li>《女职工劳动保护特别规定》，<a href="https://www.gov.cn">https://www.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地孕产妇保健。建档时间和免费项目分城市。</li>
+<li>易变项：建档政策、医保报销、筛查建议（M）。</li>
+<li>核实记录：<a href="../../sources/E-02.%E6%A0%B8%E5%AE%9E.html">sources/E-02.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="E-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%BD%93%E7%88%B8%E7%88%B8.html"><span class="dir">← 上一篇</span><span class="name">E-01 第一次当爸爸</span></a><a class="next" href="E-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%99%AA%E4%BA%A7.html"><span class="dir">下一篇 →</span><span class="name">E-03 第一次陪产</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

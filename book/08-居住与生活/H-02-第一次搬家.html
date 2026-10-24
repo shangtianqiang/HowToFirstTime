@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次搬家 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 居住与生活</nav>
+  <h1 class="post-title">第一次搬家</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>居住与生活</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>3 条</b></span><span class="chip ">耗时 <b>1-3天</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>稳定</b></span><span class="chip ">适用 <b>分市</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：提前打包编号，选正规搬家公司签合同，贵重物品随身，搬完当场清点，再改地址和水电过户。
+<strong>适用</strong>：第一次租住搬迁、买房入住或跨城搬家的成年人和家庭。
+<strong>不适用</strong>：公司搬迁、国际搬家，流程和报关不同。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>提前 1–2 周</strong>：断舍离、打包、预约搬家。</li>
+<li><strong>打包</strong>：按房间装箱，编号，标注易碎。</li>
+<li><strong>合同</strong>：车辆、人数、楼层、费用、损坏赔偿。</li>
+<li><strong>贵重物品</strong>：证件、首饰、电脑随身，不放货车。</li>
+<li><strong>当场清点</strong>：卸货逐件核对，损坏拍照。</li>
+<li><strong>地址变更</strong>：快递、银行、社保、车牌、学校。</li>
+<li><strong>水电燃气</strong>：销户或过户，结清费用。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 搬家前 2 周</h3>
+<ul>
+<li>断舍离：不用的捐、卖、扔。</li>
+<li>量电梯和门宽，确认大件家具能进。</li>
+<li>问物业：搬家时间、电梯保护、放行条。</li>
+<li>预约搬家公司，比价 3 家。</li>
+<li>准备纸箱、气泡膜、胶带、记号笔。</li>
+</ul>
+<h3>1.2 打包</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 按房间装箱</li>
+<li><input disabled="" type="checkbox"> 箱外写编号和内容</li>
+<li><input disabled="" type="checkbox"> 易碎品单独装，标“易碎”</li>
+<li><input disabled="" type="checkbox"> 液体拧紧，套袋</li>
+<li><input disabled="" type="checkbox"> 证件、首饰、电脑随身</li>
+<li><input disabled="" type="checkbox"> 拆装家具拍照记螺丝</li>
+</ul>
+<h3>1.3 合同</h3>
+<ul>
+<li>确认车型、人数、楼层、距离、费用。</li>
+<li>写清拆装、打包、空调移机是否另收费。</li>
+<li>写清损坏、丢失赔偿。</li>
+<li>不签空白合同，不付全款。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 搬家当天</h3>
+<ul>
+<li>与司机核对物品清单。</li>
+<li>贵重物品自己拿。</li>
+<li>拍照记录装车前状态。</li>
+<li>完成标志：装车完毕。</li>
+</ul>
+<h3>2.2 运输</h3>
+<ul>
+<li>跟车或约定到达时间。</li>
+<li>记下车牌和司机电话。</li>
+<li>完成标志：到达新居。</li>
+</ul>
+<h3>2.3 卸货清点</h3>
+<ul>
+<li>按编号逐件核对。</li>
+<li>检查家具、电器、易碎品。</li>
+<li>损坏当场拍照，写进验收单。</li>
+<li>完成标志：清点完毕，签字。</li>
+</ul>
+<h3>2.4 结算</h3>
+<ul>
+<li>按合同结算，索要发票或收据。</li>
+<li>有损坏扣款或协商赔偿。</li>
+<li>完成标志：付款完成。</li>
+</ul>
+<h3>2.5 入住整理</h3>
+<ul>
+<li>先装床、灶、网络。</li>
+<li>清洁后再摆物品。</li>
+<li>完成标志：基本能生活。</li>
+</ul>
+<h3>2.6 地址变更</h3>
+<ul>
+<li>快递、外卖、银行、社保、公积金。</li>
+<li>车牌、驾驶证、居住证。</li>
+<li>孩子学校、医保定点。</li>
+<li>完成标志：主要地址更新。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 搬家要提前多久预约？</h3>
+<p>答：提前 1–2 周，月底和周末紧张，尽早约。</p>
+<h3>Q2 搬家公司怎么选？</h3>
+<p>答：看营业执照、口碑、报价明细，签合同，不找楼道小广告。</p>
+<h3>Q3 楼层费怎么算？</h3>
+<p>答：无电梯按层收费，有电梯也可能收电梯使用费，提前问清。</p>
+<h3>Q4 大件家具能搬吗？</h3>
+<p>答：能，但要拆装和加人，费用另计。先量电梯和门宽。</p>
+<h3>Q5 东西损坏怎么办？</h3>
+<p>答：当场拍照，写进验收单，按合同索赔。</p>
+<h3>Q6 搬家当天要准备什么？</h3>
+<p>答：纸箱、胶带、记号笔、饮用水、清洁工具、现金。</p>
+<h3>Q7 跨城搬家怎么算？</h3>
+<p>答：按车型和距离报价，可能按立方计费，问清是否含装卸。</p>
+<h3>Q8 空调怎么移机？</h3>
+<p>答：找专业师傅，回收制冷剂，重新安装，费用另计。</p>
+<h3>Q9 水电燃气怎么处理？</h3>
+<p>答：原房结清费用、销户或过户；新房开户。燃气过户要预约。</p>
+<h3>Q10 搬家后快递怎么办？</h3>
+<p>答：改默认地址，通知常用平台，驿站变更。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>找楼道小广告</strong>：无合同，损坏不赔。</li>
+<li><strong>不签合同</strong>：口头报价，现场加价。</li>
+<li><strong>不写赔偿条款</strong>：东西摔坏只能自认。</li>
+<li><strong>贵重物品放货车</strong>：丢失难追。</li>
+<li><strong>不核对清单</strong>：少件不知道。</li>
+<li><strong>不保护电梯</strong>：物业罚款。</li>
+<li><strong>不拍照</strong>：损坏责任说不清。</li>
+<li><strong>忘记改地址</strong>：账单、快递寄到旧居。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>搬家公司迟到</strong>：电话确认，保留沟通记录。</li>
+<li><strong>现场加价</strong>：按合同拒绝，必要时报警或投诉。</li>
+<li><strong>物品损坏</strong>：拍照、验收单、合同索赔，向市场监管投诉。</li>
+<li><strong>电梯故障</strong>：改走楼梯或改期，费用协商。</li>
+<li><strong>搬家途中事故</strong>：报警，联系公司，保留证据。</li>
+<li><strong>新居不能入住</strong>：先住酒店，保留凭证向房东或中介追责。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>搬家费</td>
+<td>300–2000 元</td>
+<td>按车型和距离</td>
+</tr>
+<tr>
+<td>拆装家具</td>
+<td>100–500 元</td>
+<td>按件</td>
+</tr>
+<tr>
+<td>空调移机</td>
+<td>200–500 元</td>
+<td>按台</td>
+</tr>
+<tr>
+<td>纸箱材料</td>
+<td>50–200 元</td>
+<td>自理</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>1–3 天</td>
+<td>打包到整理</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.samr.gov.cn">国家市场监督管理总局</a></li>
+<li>当地 12315</li>
+<li>物业和社区</li>
+</ul>
+</li>
+<li>相关条目：<a href="G-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%A7%9F%E6%88%BF.html">G-02 第一次租房</a>、<a href="H-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%8B%AC%E5%B1%85.html">H-01 第一次独居</a></li>
+<li>可打印清单：<a href="../../checklists/H-02-%E6%90%AC%E5%AE%B6-%E6%89%93%E5%8C%85%E4%B8%8E%E4%BA%A4%E6%8E%A5%E6%B8%85%E5%8D%95.html">H-02 搬家清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《民法典》运输合同和侵权责任；Ⅱ 级为市场监管部门消费提示；Ⅲ 级为搬家通行做法。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国民法典》合同编运输合同，<a href="https://www.court.gov.cn">https://www.court.gov.cn</a></li>
+<li>市场监管总局搬家服务消费提示，<a href="https://www.samr.gov.cn">https://www.samr.gov.cn</a></li>
+<li>当地 12315 投诉指南，<a href="https://www.12315.cn">https://www.12315.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地居民搬家。收费分城市和公司。</li>
+<li>易变项：搬家价格、物业规定（S）。</li>
+<li>核实记录：<a href="../../sources/H-02.%E6%A0%B8%E5%AE%9E.html">sources/H-02.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="H-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%8B%AC%E5%B1%85.html"><span class="dir">← 上一篇</span><span class="name">H-01 第一次独居</span></a><a class="next" href="H-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%A3%85%E4%BF%AE.html"><span class="dir">下一篇 →</span><span class="name">H-03 第一次装修</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

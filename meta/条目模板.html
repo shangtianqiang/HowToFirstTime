@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>条目模板 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">条目模板</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">填写要求</a><a href="#sec-1">未核实内容怎么写</a></nav>
+  <main class="content">
+
+<p>复制下面的骨架，另存为 <code>book/&lt;栏目目录&gt;/&lt;ID&gt;-&lt;标题&gt;.md</code>。板块名称和顺序不要改。</p>
+<pre><code class="language-markdown">---
+id: A-00
+title: 第一次某件事
+domain: 出行与交通
+stage: [初入职场]
+prerequisites: [身份证]
+duration: 半天
+cost: 百元内
+risk: 中
+volatility: M
+region: 全国
+last_verified: 2026-10-23
+status: 初稿
+source_count: 0
+related: []
+---
+
+# 第一次某件事
+
+&gt; **一句话**：一句话说清最关键的动作和底线。
+&gt; **适用**：谁、在什么条件下适用。
+&gt; **不适用**：哪些人、哪些情况要看别的条目。
+
+## 0. 30 秒速查
+- 提前多久：
+- 必须带：
+- 不能带：
+- 卡住了找谁：
+
+## 1. 准备事项
+### 1.1 提前 7 天
+### 1.2 提前 24 小时
+### 1.3 出门前
+
+## 2. 现场流程
+### 2.1 到达与找位置
+### 2.2 第一个窗口
+### 2.3 第二个窗口
+### 2.4 完成标志
+
+## 3. 常见问题
+### Q1 问题
+答：
+
+## 4. 避坑提醒
+- 坑是什么：怎么躲。
+
+## 5. 特殊情况与应急
+- 情况：第一步找谁、做什么。
+
+## 6. 费用与时间预算
+| 项目 | 大概金额 | 说明 |
+| --- | --- | --- |
+
+## 7. 延伸资源
+- 官方入口：
+- 相关条目：
+- 可打印清单：
+
+## 8. 依据与核实
+- 依据等级构成：
+- 主要来源：
+- 核实日期：
+- 适用范围与地区差异：
+- 易变项：
+
+[← 回总目录](../../README.md)
+</code></pre>
+<h2 id="sec-0">填写要求</h2>
+<h3>front-matter</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>id</code></td>
+<td>栏目字母 + 两位序号，永不复用</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>与文件名、一级标题一致</td>
+</tr>
+<tr>
+<td><code>domain</code></td>
+<td>十个栏目名称之一，和所在目录一致</td>
+</tr>
+<tr>
+<td><code>stage</code></td>
+<td><code>学生</code> <code>初入职场</code> <code>新婚</code> <code>新手父母</code> <code>中年</code> <code>退休</code>，可多选</td>
+</tr>
+<tr>
+<td><code>prerequisites</code></td>
+<td>缺了就办不成的东西，没有就写 <code>[]</code></td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td><code>半小时内</code> <code>半天</code> <code>1-3天</code> <code>长期</code></td>
+</tr>
+<tr>
+<td><code>cost</code></td>
+<td><code>免费</code> <code>百元内</code> <code>千元级</code> <code>万元级</code></td>
+</tr>
+<tr>
+<td><code>risk</code></td>
+<td><code>低</code> <code>中</code> <code>高</code>；高风险条目必须写「做错的后果」和「找谁」</td>
+</tr>
+<tr>
+<td><code>volatility</code></td>
+<td><code>S</code> 稳定、<code>M</code> 易变、<code>H</code> 高频变动</td>
+</tr>
+<tr>
+<td><code>region</code></td>
+<td><code>全国</code> <code>分省</code> <code>分市</code> <code>分机构</code></td>
+</tr>
+<tr>
+<td><code>last_verified</code></td>
+<td>最近一次核实日期，格式 <code>YYYY-MM-DD</code></td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>初稿</code> <code>已核实</code> <code>待更新</code> <code>有争议</code></td>
+</tr>
+<tr>
+<td><code>source_count</code></td>
+<td>文末来源列表的条数</td>
+</tr>
+<tr>
+<td><code>related</code></td>
+<td>相关条目 ID 数组，例如 <code>[B-01, A-02]</code></td>
+</tr>
+</tbody></table></div>
+<h3>各板块</h3>
+<ul>
+<li><strong>一句话</strong>：不超过 50 字，只写最关键的动作和底线。</li>
+<li><strong>适用 / 不适用</strong>：读者能据此判断这篇是不是写给他看的。</li>
+<li><strong>0. 30 秒速查</strong>：4–6 条，每条一行，不解释。</li>
+<li><strong>1. 准备事项</strong>：按时间倒排，材料清单用 <code>- [ ]</code> 复选框。</li>
+<li><strong>2. 现场流程</strong>：每步写清「在哪、做什么、看什么、说什么、完成标志」。</li>
+<li><strong>3. 常见问题</strong>：至少 10 条，问题来自搜索、问答、访谈，不自己编。</li>
+<li><strong>4. 避坑提醒</strong>：至少 8 条，每条写「坑是什么 + 怎么躲」。</li>
+<li><strong>5. 特殊情况与应急</strong>：至少 5 种，每种写第一步找谁。</li>
+<li><strong>6. 费用与时间预算</strong>：给区间，标必选/可选。</li>
+<li><strong>7. 延伸资源</strong>：官方入口、相关条目、清单，不放广告。</li>
+<li><strong>8. 依据与核实</strong>：写等级构成、来源数、核实日期、地区差异、易变项。</li>
+</ul>
+<h2 id="sec-1">未核实内容怎么写</h2>
+<p>查不到可靠来源时，不要猜。统一写成：</p>
+<pre><code class="language-markdown">- 提前多久到：待核实（要查：机场官网/航司运输总条件）
+</code></pre>
+<p>并在 <code>sources/ID.核实.md</code> 的「待核实」表里登记。核实后再替换成正文。</p>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

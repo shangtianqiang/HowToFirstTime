@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次照顾生病的孩子 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 家庭与育儿</nav>
+  <h1 class="post-title">第一次照顾生病的孩子</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>家庭与育儿</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>4 条</b></span><span class="chip ">耗时 <b>1-3天</b></span><span class="chip ">花费 <b>百元内</b></span><span class="chip risk-high">风险 <b>高</b></span><span class="chip ">时效 <b>稳定</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先量体温看精神状态，退烧药按体重给，补液别断，出现抽搐、呼吸困难、精神差立即就医。
+<strong>适用</strong>：第一次照顾 0–12 岁发热、咳嗽、呕吐、腹泻孩子的家长。
+<strong>不适用</strong>：早产儿、有基础病的孩子，按医生个体化方案处理。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>先看状态</strong>：精神好、能玩能吃，可先观察；精神差立即就医。</li>
+<li><strong>体温</strong>：腋温 ≥37.3℃ 为发热，3 个月内 ≥38℃ 立即就医。</li>
+<li><strong>退烧药</strong>：对乙酰氨基酚或布洛芬，按体重算剂量，不叠加。</li>
+<li><strong>补液</strong>：少量多次喝水或口服补液盐，观察尿量。</li>
+<li><strong>不用</strong>：成人药、阿司匹林、酒精擦浴、抗生素自行服用。</li>
+<li><strong>危险信号</strong>：抽搐、呼吸急促、皮疹按压不褪色、频繁呕吐、尿少。</li>
+<li><strong>复课</strong>：按学校要求开复课证明。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 家庭药箱</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 电子体温计</li>
+<li><input disabled="" type="checkbox"> 对乙酰氨基酚（3 个月以上）</li>
+<li><input disabled="" type="checkbox"> 布洛芬（6 个月以上）</li>
+<li><input disabled="" type="checkbox"> 口服补液盐</li>
+<li><input disabled="" type="checkbox"> 生理盐水滴鼻</li>
+<li><input disabled="" type="checkbox"> 创可贴、碘伏</li>
+<li><input disabled="" type="checkbox"> 喂药器</li>
+</ul>
+<h3>1.2 记录</h3>
+<ul>
+<li>体温、时间、用药剂量。</li>
+<li>吃奶或吃饭量、尿量、大便次数和性状。</li>
+<li>症状变化：咳嗽、流涕、呕吐、皮疹。</li>
+<li>就诊时带给医生看。</li>
+</ul>
+<h3>1.3 就医准备</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 医保卡</li>
+<li><input disabled="" type="checkbox"> 病历本</li>
+<li><input disabled="" type="checkbox"> 既往检查报告</li>
+<li><input disabled="" type="checkbox"> 正在吃的药</li>
+<li><input disabled="" type="checkbox"> 口罩、水、退烧药</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 判断轻重</h3>
+<ul>
+<li>量体温，看精神、呼吸、肤色、尿量。</li>
+<li>精神好、能喝水、尿量正常，可居家观察。</li>
+<li>精神差、嗜睡、拒食、呼吸快，立即就医。</li>
+</ul>
+<h3>2.2 退热</h3>
+<ul>
+<li>对乙酰氨基酚：每次 10–15 毫克/千克，间隔 4–6 小时。</li>
+<li>布洛芬：每次 5–10 毫克/千克，间隔 6–8 小时。</li>
+<li>24 小时内不超过 4 次，不两种药叠加。</li>
+<li>按体重算，不按年龄估。</li>
+</ul>
+<h3>2.3 补液与饮食</h3>
+<ul>
+<li>少量多次喂水或口服补液盐。</li>
+<li>吃清淡易消化的食物，不强迫进食。</li>
+<li>母乳喂养继续喂。</li>
+<li>观察尿量和颜色。</li>
+</ul>
+<h3>2.4 观察与复诊</h3>
+<ul>
+<li>每 4 小时测一次体温。</li>
+<li>症状加重或持续 3 天以上复诊。</li>
+<li>按医嘱完成疗程，不自行停药。</li>
+</ul>
+<h3>2.5 复课</h3>
+<ul>
+<li>按学校或幼儿园要求，开复课证明。</li>
+<li>传染病要隔离期满，凭疾控或医院证明复课。</li>
+<li>完成标志：孩子恢复，返校。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 孩子发烧多少度要吃退烧药？</h3>
+<p>答：通常腋温 ≥38.5℃ 或孩子明显不适时用退烧药，重点看精神状态，不只看数字。</p>
+<h3>Q2 退烧药怎么算剂量？</h3>
+<p>答：按体重。对乙酰氨基酚每次 10–15 毫克/千克，布洛芬每次 5–10 毫克/千克，按说明书和医嘱。</p>
+<h3>Q3 两种退烧药能交替用吗？</h3>
+<p>答：不建议常规交替，容易过量。选一种，按间隔用。</p>
+<h3>Q4 3 个月以下宝宝发热怎么办？</h3>
+<p>答：立即就医，不自行退烧。小婴儿发热可能是严重感染。</p>
+<h3>Q5 高热惊厥怎么办？</h3>
+<p>答：侧卧，移开硬物，不塞东西到嘴里，记录时间，超过 5 分钟拨 120。</p>
+<h3>Q6 能用酒精擦浴吗？</h3>
+<p>答：不能。酒精擦浴可能导致中毒和寒战，用温水擦拭或减少衣物。</p>
+<h3>Q7 咳嗽要吃止咳药吗？</h3>
+<p>答：儿童止咳药要谨慎，尤其 6 岁以下。先就医，按医嘱用药。</p>
+<h3>Q8 腹泻要禁食吗？</h3>
+<p>答：不禁食。继续喂养，补口服补液盐，观察尿量。</p>
+<h3>Q9 什么时候要去医院？</h3>
+<p>答：精神差、嗜睡、呼吸急促、抽搐、皮疹按压不褪色、频繁呕吐、尿少、3 个月以下发热。</p>
+<h3>Q10 生病能去幼儿园吗？</h3>
+<p>答：发热、传染病期间不能去。按园方要求隔离和复课证明。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>只看体温不看精神</strong>：精神差比高烧更危险。</li>
+<li><strong>退烧药过量</strong>：两种药叠加、间隔太短，伤肝伤肾。</li>
+<li><strong>用成人药</strong>：剂量按成人，儿童可能中毒。</li>
+<li><strong>酒精擦浴</strong>：中毒风险。</li>
+<li><strong>自行用抗生素</strong>：滥用无效，还可能导致耐药。</li>
+<li><strong>捂汗</strong>：体温散不出去，可能高热惊厥。</li>
+<li><strong>不补液</strong>：脱水比发热更危险。</li>
+<li><strong>症状稍好就停药</strong>：细菌感染疗程不足易复发。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>高热惊厥</strong>：侧卧，记录时间，超过 5 分钟拨 120。</li>
+<li><strong>呼吸困难</strong>：观察鼻翼扇动、胸凹，立即拨 120。</li>
+<li><strong>皮疹按压不褪色</strong>：立即就医，警惕严重感染。</li>
+<li><strong>误服药物</strong>：带药瓶立即就医，拨 120。</li>
+<li><strong>脱水</strong>：尿少、口干、哭无泪，口服补液盐，严重时就医。</li>
+<li><strong>传染病</strong>：居家隔离，报告学校，按疾控要求。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>挂号</td>
+<td>10–50 元</td>
+<td>普通门诊</td>
+</tr>
+<tr>
+<td>药费</td>
+<td>几十到几百元</td>
+<td>按病情</td>
+</tr>
+<tr>
+<td>退烧药</td>
+<td>10–30 元</td>
+<td>常备</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>1–3 天</td>
+<td>普通感染</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.nhc.gov.cn">国家卫生健康委员会</a></li>
+<li><a href="https://www.chinacdc.cn">中国疾病预防控制中心</a></li>
+<li>当地儿童医院</li>
+<li>120 急救</li>
+</ul>
+</li>
+<li>相关条目：<a href="F-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%87%AA%E5%B7%B1%E6%8C%82%E5%8F%B7%E7%9C%8B%E7%97%85.html">F-01 第一次自己挂号看病</a>、<a href="E-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%85%A7%E9%A1%BE%E6%96%B0%E7%94%9F%E5%84%BF.html">E-04 第一次照顾新生儿</a></li>
+<li>可打印清单：<a href="../../checklists/E-08-%E5%AD%A9%E5%AD%90%E7%94%9F%E7%97%85-%E8%A7%82%E5%AF%9F%E6%B8%85%E5%8D%95.html">E-08 孩子生病清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅱ 级为国家卫健委和疾控中心儿童发热、腹泻诊疗提示；Ⅲ 级为家庭护理通行做法。</li>
+<li>主要来源：<ol>
+<li>国家卫健委儿童发热家庭护理提示，<a href="https://www.nhc.gov.cn">https://www.nhc.gov.cn</a></li>
+<li>中国疾控中心手足口病和流感防控指南，<a href="https://www.chinacdc.cn">https://www.chinacdc.cn</a></li>
+<li>世界卫生组织儿童腹泻补液建议，<a href="https://www.who.int">https://www.who.int</a></li>
+<li>国家药监局儿童用药安全提示，<a href="https://www.nmpa.gov.cn">https://www.nmpa.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地家庭儿童常见病护理。具体用药遵医嘱。</li>
+<li>易变项：传染病流行季、用药建议（S）。</li>
+<li>核实记录：<a href="../../sources/E-08.%E6%A0%B8%E5%AE%9E.html">sources/E-08.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="E-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%80%81%E5%AD%A9%E5%AD%90%E4%B8%8A%E5%B0%8F%E5%AD%A6.html"><span class="dir">← 上一篇</span><span class="name">E-07 第一次送孩子上小学</span></a><a class="next" href="E-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%85%A7%E9%A1%BE%E5%B9%B4%E8%BF%88%E7%88%B6%E6%AF%8D.html"><span class="dir">下一篇 →</span><span class="name">E-09 第一次照顾年迈父母</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

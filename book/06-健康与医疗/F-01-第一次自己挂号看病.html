@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次自己挂号看病 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 健康与医疗</nav>
+  <h1 class="post-title">第一次自己挂号看病</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>健康与医疗</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>9 条</b></span><span class="chip ">耗时 <b>半天</b></span><span class="chip ">花费 <b>百元内</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>分市</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先确认医保凭证和证件，按症状选科，线上或现场挂号，按预约时段就诊，票据和报告都留好。
+<strong>适用</strong>：第一次自己去医院看门诊、不熟悉挂号流程的成年人。
+<strong>不适用</strong>：急危重症（直接拨 120 或去急诊）、住院手术（另立条目）。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>挂号渠道</strong>：医院公众号或 App、电话、现场自助机、人工窗口都可以。二级以上医院要提供分时段预约，精确到 30 分钟，并保留现场号源和人工窗口。[1]</li>
+<li><strong>实名</strong>：非急诊要带本人有效身份证件实名挂号。身份证、户口本、社保卡、驾驶证、护照都可以。[2]</li>
+<li><strong>医保</strong>：带社保卡或医保码，挂号、就诊、购药时主动出示。[3]</li>
+<li><strong>选科</strong>：发热或腹泻先去发热门诊、肠道门诊；其他按症状所属系统选科，不确定就问导诊台。[4]</li>
+<li><strong>急诊</strong>：24 小时开放，危重患者先救治后补费。急危重症、外伤、突发剧痛走急诊。[5]</li>
+<li><strong>病历</strong>：门急诊病历医院保存不少于 15 年，住院病历不少于 30 年；票据、费用清单、报告自己也要留。[6]</li>
+<li><strong>异地</strong>：跨省就医先备案，备案后直接结算，按“就医地目录、参保地政策”。[7]</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 挂号渠道</h3>
+<ul>
+<li>医院官方公众号或 App：能选科室、医生和时段。</li>
+<li>电话预约：部分城市或医院有 114 等电话渠道，分市，先查当地。</li>
+<li>现场自助机：适合当天挂号或不会用手机的人。</li>
+<li>人工窗口：二级以上医院要保留一定比例现场号源和人工窗口。[1]</li>
+<li>社区或基层医疗机构：常见病、慢病开药更方便。</li>
+</ul>
+<h3>1.2 实名与医保</h3>
+<ul>
+<li>非急诊要实名挂号，带本人有效身份证件。[2]</li>
+<li>有效证件包括身份证、户口本、社保卡、驾驶证、护照等。[2]</li>
+<li>医保凭证：实体社保卡或医保码。[3]</li>
+<li>医保码全国通用，可挂号、缴费、结算、备案、查询。</li>
+<li>帮老人小孩看病，可以用医保亲情账户，但要人码相符，不能冒名就医。[3]</li>
+</ul>
+<h3>1.3 选科</h3>
+<ul>
+<li>发热：发热门诊。</li>
+<li>腹泻：肠道门诊。[4]</li>
+<li>皮肤问题：皮肤科。</li>
+<li>眼睛：眼科。耳朵、鼻子、喉咙：耳鼻喉科。</li>
+<li>牙疼：口腔科。女性生殖系统：妇科。</li>
+<li>儿童：儿科。不确定：全科医学科或导诊台。</li>
+<li>这些是通行做法，不是诊断依据。</li>
+</ul>
+<h3>1.4 就诊准备</h3>
+<ul>
+<li>带既往病历、检查报告、影像片子。</li>
+<li>带正在吃的药，或拍照、列清单。</li>
+<li>说清过敏史、孕哺情况、既往病史。</li>
+<li>空腹检查提前问清要不要空腹。</li>
+<li>有人陪同更好，尤其是老人和行动不便的人。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 挂号</h3>
+<ul>
+<li>在哪：医院公众号、App、自助机、窗口。</li>
+<li>做什么：选医院、科室、医生、时段，实名登记。</li>
+<li>看什么：科室名称、医生职称、剩余号源。</li>
+<li>说什么：不确定挂哪个科，问导诊台。</li>
+<li>完成标志：挂号成功，拿到就诊序号。</li>
+<li>卡住了怎么办：号满了，问有没有现场号或加号。</li>
+</ul>
+<h3>2.2 候诊</h3>
+<ul>
+<li>在哪：对应科室候诊区。</li>
+<li>做什么：签到或刷卡，等叫号。</li>
+<li>看什么：屏幕上的序号和姓名。</li>
+<li>说什么：过号了，问护士能不能补叫。</li>
+<li>完成标志：进入诊室。</li>
+<li>卡住了怎么办：找不到诊室，问护士台。</li>
+</ul>
+<h3>2.3 就诊</h3>
+<ul>
+<li>在哪：诊室。</li>
+<li>做什么：向医生说明症状、持续时间、用过什么药。</li>
+<li>看什么：医生开的检查单、处方。</li>
+<li>说什么：如实说，别夸大也别隐瞒；有疑问当场问。</li>
+<li>完成标志：拿到检查单或处方。</li>
+<li>卡住了怎么办：听不懂医嘱，请医生再说一遍或写下来。</li>
+</ul>
+<h3>2.4 检查与取药</h3>
+<ul>
+<li>在哪：检验科、影像科、药房。</li>
+<li>做什么：缴费、排队检查、取报告、取药。</li>
+<li>看什么：检查须知、取报告时间、用药说明。</li>
+<li>说什么：检查前问清空腹、憋尿等要求。</li>
+<li>完成标志：报告和药都拿到。</li>
+<li>卡住了怎么办：报告异常，按医生安排复诊。</li>
+</ul>
+<h3>2.5 复诊与慢病开药</h3>
+<ul>
+<li>在哪：同一科室或互联网医院。</li>
+<li>做什么：带报告复诊，按医嘱调整用药。</li>
+<li>看什么：复诊时间、长期处方有效期。</li>
+<li>说什么：药快吃完了，提前问能不能开长期处方。</li>
+<li>完成标志：复诊完成，处方拿到。</li>
+<li>卡住了怎么办：长期处方一般 4 周内，病情稳定最长 12 周。[8]</li>
+</ul>
+<h3>2.6 保存资料</h3>
+<ul>
+<li>病历、检查报告、影像片子。</li>
+<li>发票、费用清单、处方底方。</li>
+<li>医保结算单。</li>
+<li>按时间整理，复诊和报销都要用。[6]</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 第一次看病，怎么挂号？</h3>
+<p>答：医院公众号、App、电话、自助机、窗口都可以。二级以上医院有分时段预约，也保留现场号源和人工窗口。[1]</p>
+<h3>Q2 没带身份证能看病吗？</h3>
+<p>答：非急诊要实名挂号，带有效身份证件。急诊先救治。[2][5]</p>
+<h3>Q3 医保卡没带怎么办？</h3>
+<p>答：可以用医保码。在医保服务平台或支付宝、微信激活。[3]</p>
+<h3>Q4 不知道挂哪个科怎么办？</h3>
+<p>答：问导诊台或挂全科医学科。发热去发热门诊，腹泻去肠道门诊。[4]</p>
+<h3>Q5 什么时候该挂急诊？</h3>
+<p>答：急危重症、严重外伤、突发剧痛、呼吸困难、意识不清等，直接去急诊或拨 120。[5]</p>
+<h3>Q6 预约了去不了，要取消吗？</h3>
+<p>答：要。在出诊单元结束前取消，可以退号；不取消又不到，可能计爽约。[9]</p>
+<h3>Q7 门诊流程是什么？</h3>
+<p>答：挂号→候诊→就诊→开单缴费→检查/取药。各医院细节不同。</p>
+<h3>Q8 检查报告多久能拿？</h3>
+<p>答：看检查项目，抽血、影像、病理时间不同。问检验科或看回执。</p>
+<h3>Q9 复诊还要挂号吗？</h3>
+<p>答：一般要。看医院规定，有的医院复诊免挂号或收复诊费。</p>
+<h3>Q10 慢病开药一次能开多久？</h3>
+<p>答：长期处方一般 4 周内，病情稳定最长 12 周。[8]</p>
+<h3>Q11 异地看病怎么报销？</h3>
+<p>答：先备案，备案后直接结算，按“就医地目录、参保地政策”。[7]</p>
+<h3>Q12 发票和报告要留多久？</h3>
+<p>答：病历医院保存 15 年以上，但报销和复诊要自己留票据和报告。建议至少留到报销完成。[6]</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>挂错科</strong>：先问导诊台，别来回换号。</li>
+<li><strong>不取消预约</strong>：可能计爽约，影响后续预约。[9]</li>
+<li><strong>忘带既往资料</strong>：重复检查，多花钱。</li>
+<li><strong>不说过敏史</strong>：用药有风险。</li>
+<li><strong>听不懂医嘱</strong>：当场问，或请医生写下来。</li>
+<li><strong>票据随手扔</strong>：手工报销要原件。</li>
+<li><strong>轻信“专家号”黄牛</strong>：正规渠道挂号，别买号。</li>
+<li><strong>检查前不看清要求</strong>：空腹、憋尿没做好，白跑一趟。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>急危重症</strong>：拨 120 或直接去急诊，危重患者先救治后补费。[5]</li>
+<li><strong>过号</strong>：问护士台能不能补叫。</li>
+<li><strong>报告异常</strong>：按医生安排复诊，不要自己上网查。</li>
+<li><strong>药物过敏</strong>：立即停药，去急诊，带上药盒。</li>
+<li><strong>异地急诊</strong>：视同已备案，但报销比例按参保地政策。[7]</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>挂号费</td>
+<td>几元到几十元</td>
+<td>按医院和医生职称</td>
+</tr>
+<tr>
+<td>检查费</td>
+<td>几十到几百元</td>
+<td>按项目</td>
+</tr>
+<tr>
+<td>药费</td>
+<td>几十到几百元</td>
+<td>按处方</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半天</td>
+<td>含候诊和检查</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="http://www.nhc.gov.cn">国家卫生健康委员会</a></li>
+<li><a href="http://www.nhsa.gov.cn">国家医疗保障局</a></li>
+<li>医院官方公众号或 App</li>
+<li>国家医保服务平台 App</li>
+<li>12393 医保服务热线</li>
+</ul>
+</li>
+<li>相关条目：<a href="F-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8C%BB%E4%BF%9D%E6%8A%A5%E9%94%80.html">F-09 第一次医保报销</a></li>
+<li>可打印清单：<a href="../../checklists/F-01-%E7%9C%8B%E7%97%85-%E5%B0%B1%E8%AF%8A%E6%B8%85%E5%8D%95.html">F-01 看病就诊清单</a></li>
+<li>术语：<a href="../../meta/%E6%9C%AF%E8%AF%AD%E8%A1%A8.html">医保目录</a>（待补）</li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：以 Ⅰ/Ⅱ 级官方指引为主，选科和流程细节为 Ⅲ 级通行做法。</li>
+<li>主要来源：<ol>
+<li>国家卫健委《关于进一步完善预约诊疗制度加强智慧医院建设的通知》（国卫办医函〔2020〕405号），<a href="https://www.nhc.gov.cn/yzygj/c100068/202005/43b2d23ff48448ffae96700bc6eaccd7.shtml">https://www.nhc.gov.cn/yzygj/c100068/202005/43b2d23ff48448ffae96700bc6eaccd7.shtml</a></li>
+<li>国家卫健委《科学就医健康教育核心信息及释义》，<a href="https://www.nhc.gov.cn/xcs/c100122/201411/32c1bd8c5b13436ba9ec83ef1834856e.shtml">https://www.nhc.gov.cn/xcs/c100122/201411/32c1bd8c5b13436ba9ec83ef1834856e.shtml</a></li>
+<li>《医疗保障基金使用监督管理条例》（国务院令第735号）第十七条；国家医保局《医保码使用全攻略》，<a href="https://www.nhsa.gov.cn/art/2025/1/17/art_14_15488.html">https://www.nhsa.gov.cn/art/2025/1/17/art_14_15488.html</a></li>
+<li>科学就医核心信息（发热、腹泻门诊）</li>
+<li>卫生部《急诊科建设与管理指南（试行）》第三、二十三条，<a href="https://www.nhc.gov.cn/bgt/s9509/200906/6bf4da191c204c038bb048555ecca037.shtml">https://www.nhc.gov.cn/bgt/s9509/200906/6bf4da191c204c038bb048555ecca037.shtml</a></li>
+<li>《医疗机构病历管理规定（2013年版）》（国卫医发〔2013〕31号）第二十九条，<a href="https://www.nhc.gov.cn/zwgk/wtwj/201312/a84f3666d1be49f7a959d7912a978db7.shtml">https://www.nhc.gov.cn/zwgk/wtwj/201312/a84f3666d1be49f7a959d7912a978db7.shtml</a></li>
+<li>医保发〔2022〕22号，<a href="https://www.gov.cn/zhengce/zhengceku/2022-07/26/content_5702881.htm">https://www.gov.cn/zhengce/zhengceku/2022-07/26/content_5702881.htm</a></li>
+<li>《长期处方管理规范（试行）》（国卫办医发〔2021〕17号）第十一条，<a href="https://www.nhc.gov.cn/yzygj/c100068/202108/b62a8860ac2f4ce1b8699df2cfba89a0.shtml">https://www.nhc.gov.cn/yzygj/c100068/202108/b62a8860ac2f4ce1b8699df2cfba89a0.shtml</a></li>
+<li>国家卫健委《科学就医健康教育核心信息及释义》；重庆《医疗机构门诊预约诊疗服务管理规范》（渝卫规〔2026〕3号）第八条</li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地二级以上医院门诊；基层机构流程更简单。</li>
+<li>易变项：预约规则、爽约规则、医保政策（M，分市）。</li>
+<li>核实记录：<a href="../../sources/F-01.%E6%A0%B8%E5%AE%9E.html">sources/F-01.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="../05-%E5%AE%B6%E5%BA%AD%E4%B8%8E%E8%82%B2%E5%84%BF/E-11-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99%E5%AD%A9%E5%AD%90%E6%8A%A5%E5%85%B4%E8%B6%A3%E7%8F%AD.html"><span class="dir">← 上一篇</span><span class="name">E-11 第一次给孩子报兴趣班</span></a><a class="next" href="F-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%93%E6%A3%80.html"><span class="dir">下一篇 →</span><span class="name">F-02 第一次体检</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

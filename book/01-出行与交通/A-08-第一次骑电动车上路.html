@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次骑电动车上路 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 出行与交通</nav>
+  <h1 class="post-title">第一次骑电动车上路</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>出行与交通</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>5 条</b></span><span class="chip ">耗时 <b>半天</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-high">风险 <b>高</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>分市</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先分清电动自行车和电动摩托车，该上牌的上牌、该考证的考证，头盔戴好，电池不进楼不飞线。
+<strong>适用</strong>：第一次购买、上牌并骑电动自行车或电动摩托车上路的人。
+<strong>不适用</strong>：共享电单车（按平台规则和当地投放政策）、老年代步车、电动三轮车。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>先分类</strong>：有脚踏、时速≤25 km/h、功率≤400 W 的是电动自行车，属非机动车；超出的可能是电动摩托车，属机动车。</li>
+<li><strong>上牌</strong>：电动自行车要登记上牌，带身份证、发票、合格证。</li>
+<li><strong>驾驶证</strong>：电动轻便摩托车要 F 证，电动摩托车要 E 证，还要交强险。</li>
+<li><strong>头盔</strong>：骑乘都要戴，选有 3C 认证的。</li>
+<li><strong>载人</strong>：各地规定不同，先查当地条例，多数只允许载一名 12 岁以下儿童。</li>
+<li><strong>充电</strong>：不进楼、不入户、不飞线，用集中充电设施。</li>
+<li><strong>事故</strong>：先救人、拨 122，拍照留证，不逃逸。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 买车前分清车型</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>最高设计车速</th>
+<th>电机功率</th>
+<th>属性</th>
+<th>要什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>电动自行车</td>
+<td>≤25 km/h</td>
+<td>≤400 W</td>
+<td>非机动车</td>
+<td>上牌，多数地区不需驾驶证</td>
+</tr>
+<tr>
+<td>电动轻便摩托车</td>
+<td>&gt;25 且 ≤50 km/h</td>
+<td>≤4 kW</td>
+<td>机动车</td>
+<td>F 证、牌照、交强险</td>
+</tr>
+<tr>
+<td>电动摩托车</td>
+<td>&gt;50 km/h</td>
+<td>&gt;4 kW</td>
+<td>机动车</td>
+<td>E 证、牌照、交强险</td>
+</tr>
+</tbody></table></div>
+<ul>
+<li>看车辆合格证上的“车辆类型”，不要听商家口头说。</li>
+<li>电动自行车要有脚踏骑行功能，这是判断国标车的重要标志。</li>
+<li>改装限速、加装雨棚、加大电池，都可能让车辆不符合上路条件。</li>
+</ul>
+<h3>1.2 上牌材料</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 身份证</li>
+<li><input disabled="" type="checkbox"> 购车发票</li>
+<li><input disabled="" type="checkbox"> 车辆合格证</li>
+<li><input disabled="" type="checkbox"> 交强险凭证（机动车类）</li>
+<li><input disabled="" type="checkbox"> 车辆本身，骑到登记点验车</li>
+<li>各地登记点、是否收费、是否要求预约不同，查当地交警或政务平台。</li>
+</ul>
+<h3>1.3 装备</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 3C 认证头盔，大小合适</li>
+<li><input disabled="" type="checkbox"> 手套、反光背心（夜间）</li>
+<li><input disabled="" type="checkbox"> 车锁</li>
+<li><input disabled="" type="checkbox"> 手机支架（可选，骑行中不看手机）</li>
+<li><input disabled="" type="checkbox"> 雨衣，不用单手打伞</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 登记上牌</h3>
+<ul>
+<li>在哪：当地交警车管所、登记服务站或授权门店。</li>
+<li>做什么：交材料、验车、选号、领牌。</li>
+<li>看什么：号牌是否与车辆信息一致，行驶证信息是否准确。</li>
+<li>完成标志：号牌安装牢固，拿到行驶证或登记凭证。</li>
+<li>卡住了怎么办：材料不全，按清单补；网购车没有发票，联系商家补开。</li>
+</ul>
+<h3>2.2 上路前检查</h3>
+<ul>
+<li>在哪：出发前，车旁。</li>
+<li>做什么：捏刹车、看胎压、开灯、按喇叭、看电量。</li>
+<li>看什么：刹车是否灵敏，轮胎是否鼓包，灯光是否正常。</li>
+<li>完成标志：各项正常，戴好头盔。</li>
+</ul>
+<h3>2.3 道路行驶</h3>
+<ul>
+<li>在哪：非机动车道。没有非机动车道的，靠车行道右侧行驶。</li>
+<li>做什么：按信号灯通行，不逆行，不闯红灯，不占用机动车道。</li>
+<li>看什么：路口右转机动车、开门车辆、外卖骑手。</li>
+<li>完成标志：安全到达目的地。</li>
+<li>卡住了怎么办：非机动车道被占用，减速慢行，确认安全后借道通过。</li>
+</ul>
+<h3>2.4 停放与充电</h3>
+<ul>
+<li>在哪：划定的非机动车停放区、集中充电棚。</li>
+<li>做什么：锁车，电池在集中充电设施充电。</li>
+<li>看什么：充电桩是否有故障提示，插座是否破损。</li>
+<li>完成标志：车辆停放整齐，充电开始。</li>
+<li>卡住了怎么办：没有集中充电点，改用可取电池带回家充电的合规车型，但电池不得在室内充电。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 电动自行车要驾驶证吗？</h3>
+<p>答：符合国标的电动自行车属非机动车，多数地区不需要驾驶证，但要登记上牌。电动轻便摩托车、电动摩托车属机动车，需要 F 证或 E 证。[1]</p>
+<h3>Q2 怎么判断买的是不是国标车？</h3>
+<p>答：看合格证上的车辆类型和参数：最高设计车速不超过 25 km/h、电机功率不超过 400 W、蓄电池标称电压不超过 48 V，并有脚踏骑行功能。[2]</p>
+<h3>Q3 不戴头盔会被罚吗？</h3>
+<p>答：多地已通过地方条例强制佩戴，具体罚则以当地规定为准。头盔要选符合 GB 811 标准、有 3C 认证的。[3]</p>
+<h3>Q4 电动车能载人吗？</h3>
+<p>答：各地规定不同，多数地区允许载一名 12 周岁以下儿童，部分城市禁止载人。以当地道路交通安全条例为准。</p>
+<h3>Q5 能在楼道里充电吗？</h3>
+<p>答：不能。禁止在高层民用建筑公共门厅、疏散走道、楼梯间、安全出口停放电动自行车或充电。[4]</p>
+<h3>Q6 电池能带回家充吗？</h3>
+<p>答：不建议。电池起火多在室内充电时发生，应使用室外集中充电设施。不得飞线充电。</p>
+<h3>Q7 改装限速、加雨棚可以吗？</h3>
+<p>答：不可以。改装后车辆可能不符合国标，发生事故保险可能拒赔，也会被交警处罚。</p>
+<h3>Q8 电动车要买保险吗？</h3>
+<p>答：电动自行车不强制，但建议买第三者责任险。电动摩托车属机动车，必须买交强险。</p>
+<h3>Q9 发生事故怎么办？</h3>
+<p>答：先救人，拨 122 和 120，保护现场，拍照录像，不逃逸。轻微事故可走快处快赔。</p>
+<h3>Q10 共享电单车能骑吗？</h3>
+<p>答：可以，但要按当地投放政策和平台规则，戴头盔、不载人、停在指定区域。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>商家把电摩当电动车卖</strong>：看合格证，不看口头承诺。需要驾驶证的车型，无证上路会被罚。</li>
+<li><strong>改装限速</strong>：解除限速后刹车距离变长，事故责任和保险理赔都吃亏。</li>
+<li><strong>加装雨棚、挡风被</strong>：影响视线和操控，多地明确禁止。</li>
+<li><strong>头盔只戴不系</strong>：事故时头盔飞出，等于没戴。</li>
+<li><strong>飞线充电</strong>：电线老化、过载起火，责任自负。</li>
+<li><strong>电池入户</strong>：一旦起火，逃生时间只有几十秒。</li>
+<li><strong>逆行、闯红灯</strong>：电动车事故高发原因，监控可追溯。</li>
+<li><strong>停车占盲道、消防通道</strong>：会被拖移或处罚。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>电池冒烟起火</strong>：立即断电，撤离并拨 119，不用水直接扑救锂电池。</li>
+<li><strong>交通事故</strong>：先救人，拨 122、120，拍照，等待交警，不私了重大事故。</li>
+<li><strong>车辆被偷</strong>：拨 110 报警，提供车牌号、车架号、停放位置。</li>
+<li><strong>刹车失灵</strong>：松油门，用脚摩擦地面减速，找安全区域停车。</li>
+<li><strong>被交警查扣</strong>：配合出示牌照和证件，无证驾驶机动车类车辆会被处罚。</li>
+<li><strong>充电桩故障</strong>：停止充电，联系运营方，不自行拆修。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>国标电动自行车</td>
+<td>1500–4000 元</td>
+<td>必选</td>
+</tr>
+<tr>
+<td>上牌</td>
+<td>多数免费或几十元</td>
+<td>各地不同，必选</td>
+</tr>
+<tr>
+<td>头盔</td>
+<td>100–500 元</td>
+<td>选 3C 认证，必选</td>
+</tr>
+<tr>
+<td>保险</td>
+<td>几十到几百元</td>
+<td>机动车类必须交强险</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半天</td>
+<td>买车、上牌、熟悉车辆</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.miit.gov.cn">工业和信息化部</a></li>
+<li><a href="https://www.mps.gov.cn">公安部交通管理局</a></li>
+<li><a href="https://www.mem.gov.cn">应急管理部</a></li>
+<li>当地交警支队或交管 12123 App</li>
+</ul>
+</li>
+<li>相关条目：<a href="A-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%A7%9F%E8%BD%A6%E8%87%AA%E9%A9%BE.html">A-07 第一次租车自驾</a>、<a href="D-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AD%A6%E8%BD%A6.html">D-02 第一次学车</a></li>
+<li>可打印清单：<a href="../../checklists/A-08-%E7%94%B5%E5%8A%A8%E8%BD%A6-%E4%B8%8A%E7%89%8C%E4%B8%8E%E9%AA%91%E8%A1%8C%E6%B8%85%E5%8D%95.html">A-08 电动车清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《电动自行车安全技术规范》和《高层民用建筑消防安全管理规定》；Ⅱ 级为地方登记和佩戴头盔规定；Ⅲ 级为通行做法。</li>
+<li>主要来源：<ol>
+<li>工业和信息化部《电动自行车安全技术规范》（GB 17761），<a href="https://www.miit.gov.cn">https://www.miit.gov.cn</a></li>
+<li>公安部交通管理局关于电动自行车登记挂牌的说明，<a href="https://www.mps.gov.cn">https://www.mps.gov.cn</a></li>
+<li>《摩托车、电动自行车乘员头盔》（GB 811-2022），<a href="https://www.samr.gov.cn">https://www.samr.gov.cn</a></li>
+<li>应急管理部《高层民用建筑消防安全管理规定》，<a href="https://www.mem.gov.cn">https://www.mem.gov.cn</a></li>
+<li>《中华人民共和国道路交通安全法》，<a href="https://www.mps.gov.cn">https://www.mps.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地电动自行车和电动摩托车。登记流程、载人规定、罚则由各城市制定。</li>
+<li>易变项：地方登记政策、载人规定、充电管理（M）。</li>
+<li>核实记录：<a href="../../sources/A-08.%E6%A0%B8%E5%AE%9E.html">sources/A-08.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="A-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%A7%9F%E8%BD%A6%E8%87%AA%E9%A9%BE.html"><span class="dir">← 上一篇</span><span class="name">A-07 第一次租车自驾</span></a><a class="next" href="A-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%8B%AC%E8%87%AA%E6%97%85%E8%A1%8C.html"><span class="dir">下一篇 →</span><span class="name">A-09 第一次独自旅行</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,2569 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>《人生第一次》项目策划方案 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">《人生第一次》项目策划方案</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">一、项目定位</a><a href="#sec-1">二、参考项目拆解（作为结构依据）</a><a href="#sec-2">三、整体结构</a><a href="#sec-3">四、栏目划分</a><a href="#sec-4">五、内容组织方式</a><a href="#sec-5">六、核心信息维度（必须覆盖）</a><a href="#sec-6">七、写作规范</a><a href="#sec-7">八、调研与核实流程</a><a href="#sec-8">九、主题清单</a><a href="#sec-9">十、质量与维护机制</a><a href="#sec-10">十一、实施计划</a><a href="#sec-11">十二、风险与对策</a><a href="#sec-12">十三、验收标准（整体）</a><a href="#sec-13">附：本方案的执行方式</a></nav>
+  <main class="content">
+
+<blockquote>
+<p>版本：v1.0（策划稿）
+日期：2026-10-23
+参考项目：<a href="https://github.com/eternity4719/HowToLiveBetter">eternity4719/HowToLiveBetter《高性价比人生指南》</a>
+本文件是项目启动前的完整设计说明。批准后按第十一节实施。</p>
+</blockquote>
+<h3>当前状态与已定决策</h3>
+<ul>
+<li>工作目录当前为空，没有既有代码、内容或格式需要兼容。</li>
+<li>参考项目已完成结构拆解：README 门户、<code>book/</code> 章节、<code>docs/核实记录/</code>、纯静态检索页、CI 巡检、<code>CLAUDE.md</code> 项目规则。</li>
+<li>内容口径：中国大陆现行法规与办事流程，简体中文，面向内地读者。</li>
+<li>项目形态：GitHub 开源 Markdown 仓库 + 纯静态检索页，无后端、无数据库、无构建依赖。</li>
+<li>内容规模：10 个栏目、94 个条目；首批只做指定 8 篇，其余 86 篇按 P0/P1/P2 排队。</li>
+<li>许可与立场：文字 CC BY 4.0，代码 MIT；不接广告、不带货、不卖课。</li>
+<li>本次交付：只交付策划方案，不搭建仓库骨架、不写正文。</li>
+</ul>
+<hr>
+<h2 id="sec-0">一、项目定位</h2>
+<h3>1.1 一句话定位</h3>
+<p><strong>给第一次做某件事、身边又没人可问的普通成年人，一份按时间顺序写清楚「先做什么、在哪做、说什么、哪里容易错」的操作手册。</strong></p>
+<h3>1.2 要解决的问题</h3>
+<p>第一次坐飞机的人，真正怕的不是「飞机危不危险」，而是：</p>
+<ul>
+<li>提前多久到？走错航站楼怎么办？</li>
+<li>充电宝能不能带？液体能不能过安检？</li>
+<li>值机、托运、安检、登机，先做哪个？</li>
+<li>误机了、行李丢了，找谁？</li>
+</ul>
+<p>现有内容的问题：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>现状</th>
+<th>问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>搜索引擎结果</td>
+<td>广告、旧攻略、互相抄，不知道哪句还有效</td>
+</tr>
+<tr>
+<td>短视频攻略</td>
+<td>只讲一两个亮点，缺完整流程，看完仍不敢出门</td>
+</tr>
+<tr>
+<td>官方页面</td>
+<td>准确但分散在十几个页面，全是术语，第一次看的人不知道从哪读起</td>
+</tr>
+<tr>
+<td>熟人经验</td>
+<td>依赖运气，且往往漏掉对方已经习以为常的关键步骤</td>
+</tr>
+</tbody></table></div>
+<p>本项目要做的，是<strong>把分散的官方规则、机构流程和真实经验，压缩成一篇能从头读到尾、也能在现场直接翻的手册</strong>。</p>
+<h3>1.3 读者画像</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年龄</td>
+<td>18–35 岁为主，覆盖 35 岁以上转阶段人群（当爸爸、照顾父母）</td>
+</tr>
+<tr>
+<td>身份</td>
+<td>学生、初入职场者、新市民、新手父母</td>
+</tr>
+<tr>
+<td>经验</td>
+<td>对目标事项<strong>零经验或只有旁观经验</strong></td>
+</tr>
+<tr>
+<td>阅读设备</td>
+<td>手机为主，少量电脑</td>
+</tr>
+<tr>
+<td>阅读时间</td>
+<td>事前 10–30 分钟；现场碎片时间；事后补课</td>
+</tr>
+<tr>
+<td>核心诉求</td>
+<td>不出错、不被坑、不花冤枉钱、出事知道找谁</td>
+</tr>
+</tbody></table></div>
+<h3>1.4 三种使用场景（决定内容形态）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>读者状态</th>
+<th>需要的内容</th>
+<th>对应板块</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>事前突击</td>
+<td>还有几天/几小时，来得及准备</td>
+<td>结论、清单、要带什么</td>
+<td>0. 速查卡 + 1. 准备事项</td>
+</tr>
+<tr>
+<td>现场救急</td>
+<td>人已经在机场/车站/医院</td>
+<td>下一步做什么、找谁</td>
+<td>2. 操作步骤 + 5. 特殊情况</td>
+</tr>
+<tr>
+<td>事后补课</td>
+<td>已经做完，想弄明白</td>
+<td>为什么、下次怎么更好</td>
+<td>3. FAQ + 4. 避坑 + 7. 延伸</td>
+</tr>
+</tbody></table></div>
+<p><strong>因此每篇必须把「30 秒速查卡」放在最前面</strong>，详细解释放在后面。读者不按顺序读也能用。</p>
+<h3>1.5 内容边界</h3>
+<p><strong>写：</strong></p>
+<ul>
+<li>办事流程、规则、材料、时间节点、费用区间</li>
+<li>高频错误、骗局、合同陷阱、违规后果</li>
+<li>官方入口、投诉渠道、求助电话</li>
+<li>真实经验中「官方文件不会写、但第一次做的人一定会遇到」的细节</li>
+</ul>
+<p><strong>不写：</strong></p>
+<ul>
+<li>景点推荐、产品比价、带货、课程推销</li>
+<li>医疗诊断、法律结论、投资建议</li>
+<li>需要专业资质的操作细节（手术、飞行操纵、危险作业）</li>
+<li>未经证实的偏方、捷径、「内部渠道」</li>
+<li>替读者做人生选择（要不要出国、要不要生孩子），只给事实、流程和后果</li>
+</ul>
+<h3>1.6 与参考项目的异同</h3>
+<p>参考项目的实际做法（据其 README 与 CLAUDE.md）：34 节、767 条建议；每条含「成本 / 说人话 / 收益 / 证据等级 / 来源 / 备注」；证据分 A/B/C；只引原始文献；纯静态检索页；每周链接巡检；可导出 PDF/EPUB/离线 HTML/Anki。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>参考项目</th>
+<th>本项目</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>组织单位</td>
+<td>一条建议 = 一个可执行动作</td>
+<td>一篇 = 一个完整「第一次」</td>
+<td>保留「栏目 → 条目 → 编号」骨架，条目变长</td>
+</tr>
+<tr>
+<td>核心问题</td>
+<td>值不值得做（成本/收益）</td>
+<td>怎么做、别做错（流程/风险）</td>
+<td>用「时间轴 + 检查点」替代「成本/收益」</td>
+</tr>
+<tr>
+<td>证据体系</td>
+<td>期刊论文/官方文件，A/B/C</td>
+<td>法规/官方指引/通行做法/个人经验，Ⅰ–Ⅳ</td>
+<td><strong>重新设计</strong>，不能照搬医学证据分级</td>
+</tr>
+<tr>
+<td>表达核心</td>
+<td>「说人话」一行</td>
+<td>「30 秒速查卡」+ 分步说明</td>
+<td>保留「说人话」精神，前移到篇首</td>
+</tr>
+<tr>
+<td>检索维度</td>
+<td>关键词/章节/证据/成本/人群</td>
+<td>关键词/主题域/人生阶段/耗时/花费/风险/时效</td>
+<td>扩展维度</td>
+</tr>
+<tr>
+<td>维护机制</td>
+<td>每周链接检查、统计同步</td>
+<td>增加「时效复审」检查</td>
+<td>新增 check-stale</td>
+</tr>
+<tr>
+<td>输出形态</td>
+<td>PDF/EPUB/离线/Anki</td>
+<td>首期只做离线单文件 HTML + 可打印清单</td>
+<td>降低初期维护成本</td>
+</tr>
+</tbody></table></div>
+<p><strong>结论：复用「栏目 + 编号 + 来源可核 + 静态检索 + 定期巡检」的组织形式；不复用「性价比算账」和「A/B/C 证据分级」这两套不适配的机制。</strong></p>
+<hr>
+<h2 id="sec-1">二、参考项目拆解（作为结构依据）</h2>
+<h3>2.1 仓库结构</h3>
+<pre><code>HowToLiveBetter/
+├── README.md          # 门户：定位、问题导航表、阅读说明、条目格式示例、下载入口
+├── book/              # 正文：34 个章节文件，NN-标题.md
+├── docs/              # 长文 + 核实记录/
+├── index.html         # 纯静态检索页，直接读 book/ 与 README
+├── selfcheck.html     # 自查问答页
+├── skills/            # AI 助手 skill，回答时注明节号条号
+├── tools/             # 统计同步、引用检查、链接检查、EPUB/PDF/离线/Anki 构建
+├── .github/workflows/ # 构建 + 每周链接巡检
+├── updates.json       # 更新记录
+└── LICENSE            # CC BY 4.0
+</code></pre>
+<h3>2.2 内容组织</h3>
+<ul>
+<li>章：<code>book/21-出国旅行与境外安全.md</code>，开头 <code>[← 回总目录](../README.md)</code>，<code># 21. 标题</code>，接 2–3 句栏目导语。</li>
+<li>条：<code>### 1. 动词开头的建议标题</code>，下接固定字段：</li>
+</ul>
+<pre><code>&lt;!-- 成本标签: 钱=0 时间=少 毅力=否 收益=大 口径=死亡率 --&gt;
+- 成本：
+- 说人话：
+- 收益：
+- 证据等级：A / B / C
+- 来源：
+- 备注：
+</code></pre>
+<ul>
+<li>编号稳定：新条目一律追加到节末，不重排。</li>
+<li>交叉引用必须带锚点词，禁止裸条号和「见下一条」。</li>
+</ul>
+<h3>2.3 质量机制</h3>
+<ul>
+<li>只引原始文献；禁止知乎、公众号、搜狐、网易、百家号等二手转述。</li>
+<li>数字必须能在原文找到；找不到写「待核实」，不编 DOI。</li>
+<li>「说人话」只翻方向和量级，不新增数字和事实。</li>
+<li>句子控制在 30 字上下，最长 50 字；一句一件事。</li>
+<li>CI 每周检查失效链接；引用对照表随每次改动生成并人工看 diff。</li>
+<li>统计数字由脚本同步，避免多处写死。</li>
+</ul>
+<h3>2.4 可直接复用 / 需改造 / 不可照搬</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>直接复用</td>
+<td>栏目 + 稳定编号、篇首导语、来源可核、静态检索、离线单文件、CI 巡检、Issue 纠错模板</td>
+</tr>
+<tr>
+<td>需改造</td>
+<td>条目字段（成本/收益 → 准备/步骤/FAQ/避坑）、证据分级（A/B/C → Ⅰ–Ⅳ）、筛选维度</td>
+</tr>
+<tr>
+<td>不可照搬</td>
+<td>「性价比」排序与筛选、医学证据等级、Anki 牌组（首期不需要）</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="sec-2">三、整体结构</h2>
+<h3>3.1 仓库目录树</h3>
+<pre><code>人生第一次/
+├── README.md                      # 门户：定位、场景入口、全量目录、阅读路径、贡献指南、免责声明
+├── index.html                     # 纯静态检索页，读 index.json
+├── index.json                     # 构建产物：由 tools/build-index.mjs 从正文生成
+├── book/
+│   ├── 00-导读.md                 # 怎么用这份手册、三种阅读路径
+│   ├── 01-出行与交通/
+│   │   ├── 00-栏目导读.md
+│   │   ├── A-01-第一次坐飞机.md
+│   │   ├── A-02-第一次坐高铁.md
+│   │   └── A-03-第一次坐火车.md
+│   ├── 02-证件与跨境/
+│   │   ├── 00-栏目导读.md
+│   │   └── B-01-第一次出国.md
+│   ├── 03-工作与职业/
+│   │   └── C-01-第一次入职.md
+│   ├── 04-学习与技能/
+│   │   ├── D-01-第一次学外语入门.md
+│   │   └── D-02-第一次学车.md
+│   ├── 05-家庭与育儿/
+│   │   └── E-01-第一次当爸爸.md
+│   ├── 06-健康与医疗/
+│   ├── 07-钱与消费/
+│   ├── 08-居住与生活/
+│   ├── 09-数字与网络/
+│   └── 10-人生节点/
+├── sources/                       # 每篇的核实记录，与条目 ID 一一对应
+│   ├── A-01.核实.md
+│   └── ...
+├── checklists/                    # 可打印的一页清单，与条目 ID 一一对应
+│   ├── A-01-坐飞机-行前清单.md
+│   └── ...
+├── meta/
+│   ├── 条目模板.md
+│   ├── 写作规范.md
+│   ├── 依据分级与引用规则.md
+│   ├── 调研与核实流程.md
+│   ├── 主题地图.md
+│   └── 术语表.md
+├── tools/
+│   ├── build-index.mjs            # 生成 index.json
+│   ├── check-frontmatter.mjs      # 校验元数据字段与取值
+│   ├── check-links.mjs            # 链接可访问性
+│   ├── check-stale.mjs            # 超期未复审检查
+│   └── check-refs.mjs             # 交叉引用锚点检查
+├── .github/
+│   ├── workflows/check.yml
+│   └── ISSUE_TEMPLATE/
+│       ├── 1-纠错.yml
+│       ├── 2-新条目.yml
+│       └── 3-内容过时.yml
+├── updates/                       # 按月更新日志
+│   └── 2026-10.md
+├── DISCLAIMER.md                  # 医疗、法律、金融边界说明
+└── LICENSE                        # 文字 CC BY 4.0；代码 MIT
+</code></pre>
+<h3>3.2 各目录职责</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>路径</th>
+<th>职责</th>
+<th>不放在这里的内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>README.md</code></td>
+<td>门户与索引，只放摘要和链接</td>
+<td>具体流程细节</td>
+</tr>
+<tr>
+<td><code>book/</code></td>
+<td>可独立阅读的正文</td>
+<td>来源原文大段摘录</td>
+</tr>
+<tr>
+<td><code>sources/</code></td>
+<td>逐条核实记录与原文摘录</td>
+<td>面向读者的解释</td>
+</tr>
+<tr>
+<td><code>checklists/</code></td>
+<td>一页纸清单，可打印</td>
+<td>长解释</td>
+</tr>
+<tr>
+<td><code>meta/</code></td>
+<td>模板与规范，给作者看</td>
+<td>正文内容</td>
+</tr>
+<tr>
+<td><code>tools/</code></td>
+<td>自动检查与构建</td>
+<td>业务内容</td>
+</tr>
+<tr>
+<td><code>updates/</code></td>
+<td>变更记录</td>
+<td>正文修订</td>
+</tr>
+</tbody></table></div>
+<h3>3.3 命名与编号规则</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>对象</th>
+<th>规则</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>主题域</td>
+<td>两位数字 + 中文名</td>
+<td><code>01-出行与交通/</code></td>
+</tr>
+<tr>
+<td>条目 ID</td>
+<td>域字母 + 两位序号，<strong>永不复用</strong></td>
+<td><code>A-01</code></td>
+</tr>
+<tr>
+<td>条目文件</td>
+<td><code>ID-标题.md</code></td>
+<td><code>A-01-第一次坐飞机.md</code></td>
+</tr>
+<tr>
+<td>板块</td>
+<td><code>## 数字. 名称</code></td>
+<td><code>## 2. 现场流程</code></td>
+</tr>
+<tr>
+<td>步骤</td>
+<td><code>### 数字.数字 动词短语</code></td>
+<td><code>### 2.3 过安检</code></td>
+</tr>
+<tr>
+<td>核实记录</td>
+<td><code>ID.核实.md</code></td>
+<td><code>A-01.核实.md</code></td>
+</tr>
+<tr>
+<td>清单</td>
+<td><code>ID-简称-场景清单.md</code></td>
+<td><code>A-01-坐飞机-行前清单.md</code></td>
+</tr>
+</tbody></table></div>
+<p><strong>编号稳定性：</strong></p>
+<ul>
+<li>新增条目追加到栏目末尾，取下一个未使用序号。</li>
+<li>删除条目保留 ID 占位，写「已合并至 X-XX」，不让后续编号前移。</li>
+<li>条目内部步骤增删后，若步骤号变化，必须同步全库交叉引用。</li>
+</ul>
+<hr>
+<h2 id="sec-3">四、栏目划分</h2>
+<h3>4.1 十个主题域</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>代号</th>
+<th>栏目</th>
+<th>覆盖范围</th>
+<th>首批条目</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>出行与交通</td>
+<td>飞机、高铁、普速火车、地铁、大巴、网约车、租车、骑行</td>
+<td>A-01 坐飞机、A-02 坐高铁、A-03 坐火车</td>
+</tr>
+<tr>
+<td>B</td>
+<td>证件与跨境</td>
+<td>护照、通行证、签证、边检、海关、境外支付通讯、留学、务工、回国</td>
+<td>B-01 出国</td>
+</tr>
+<tr>
+<td>C</td>
+<td>工作与职业</td>
+<td>面试、入职、劳动合同、工资社保、试用期、汇报、跳槽、裁员、出差、开公司</td>
+<td>C-01 入职</td>
+</tr>
+<tr>
+<td>D</td>
+<td>学习与技能</td>
+<td>外语、驾照、职业资格、编程、演讲、论文、考研考公、游泳、做饭、AI 工具</td>
+<td>D-01 学外语入门、D-02 学车</td>
+</tr>
+<tr>
+<td>E</td>
+<td>家庭与育儿</td>
+<td>备孕、产检、陪产、新生儿、户口医保、幼儿园、小学、照顾父母、丧事</td>
+<td>E-01 当爸爸</td>
+</tr>
+<tr>
+<td>F</td>
+<td>健康与医疗</td>
+<td>挂号、体检、住院手术、看牙、配镜、心理、急救、保险、医保报销、献血</td>
+<td>—</td>
+</tr>
+<tr>
+<td>G</td>
+<td>钱与消费</td>
+<td>银行卡、租房、买房、买车、信用卡、个税、理财、维权、报警、仲裁</td>
+<td>—</td>
+</tr>
+<tr>
+<td>H</td>
+<td>居住与生活</td>
+<td>独居、搬家、装修、水电燃气、养宠物、邻里、居住证、家政</td>
+<td>—</td>
+</tr>
+<tr>
+<td>I</td>
+<td>数字与网络</td>
+<td>防诈骗、账号找回、网购退货、数据备份、版权、隐私、网上办事、二手交易</td>
+<td>—</td>
+</tr>
+<tr>
+<td>J</td>
+<td>人生节点</td>
+<td>结婚登记、婚礼、独自过年、跨城定居、失业、退休、遗嘱、身后事</td>
+<td>—</td>
+</tr>
+</tbody></table></div>
+<p><strong>划分原则：</strong></p>
+<ol>
+<li>按「读者要办的事」分，不按学科分。</li>
+<li>一个条目只归一个栏目；跨域内容用「相关条目」链接，不复制正文。</li>
+<li>栏目内按「第一次发生的先后 + 上手难度」排列，不按热度排序。</li>
+<li>每个栏目一个 <code>00-栏目导读.md</code>，3–5 句说清这个域最容易踩的坑和推荐阅读顺序。</li>
+</ol>
+<h3>4.2 首批 8 篇的归属</h3>
+<pre><code>01-出行与交通/   A-01 坐飞机 · A-02 坐高铁 · A-03 坐火车
+02-证件与跨境/   B-01 出国
+03-工作与职业/   C-01 入职
+04-学习与技能/   D-01 学外语入门 · D-02 学车
+05-家庭与育儿/   E-01 当爸爸
+</code></pre>
+<h3>4.3 栏目内部分组</h3>
+<p>条目超过 8 篇的栏目，在 <code>00-栏目导读.md</code> 里给分组导航，例如「出行与交通」分为：</p>
+<ul>
+<li>城际出行：飞机、高铁、普速火车、长途大巴</li>
+<li>市内出行：地铁、公交、网约车、电动车</li>
+<li>自驾相关：租车、自驾长途</li>
+<li>特殊场景：春运、独自旅行、带老人小孩出行</li>
+</ul>
+<hr>
+<h2 id="sec-4">五、内容组织方式</h2>
+<h3>5.1 三层结构</h3>
+<pre><code>栏目（主题域）
+  └── 条目（一个完整的「第一次」）
+        └── 板块（固定 9 块，顺序不变）
+              └── 步骤（编号，按现场先后）
+</code></pre>
+<p><strong>一篇 = 一个场景 = 一次能读完并照着做完的闭环。</strong> 不把「坐飞机」拆成「买票」「安检」「登机」三篇，否则读者要在多个页面之间跳。</p>
+<h3>5.2 条目标准骨架</h3>
+<p>每篇严格按以下顺序，板块名称不改：</p>
+<pre><code class="language-markdown">---
+id: A-01
+title: 第一次坐飞机
+domain: 出行与交通
+stage: [学生, 初入职场]
+prerequisites: [有效身份证件]
+duration: 半天
+cost: 千元级
+risk: 中
+volatility: M
+region: 中国大陆
+last_verified: 2026-10-23
+status: 已核实
+source_count: 12
+related: [B-01, A-02]
+---
+
+# 第一次坐飞机
+
+&gt; **一句话**：第一次坐飞机，先确认航站楼和起飞时间，带齐证件，按机场指示走。
+&gt; **适用**：从中国内地出发的国内航班，第一次坐飞机的成年旅客。
+&gt; **不适用**：国际航班、婴儿/轮椅旅客、公务机（见对应条目）。
+
+## 0. 30 秒速查
+- 提前多久到：
+- 必须带：
+- 不能带：
+- 卡住了找谁：
+
+## 1. 出发前准备
+### 1.1 买票
+### 1.2 选座与行李额
+### 1.3 值机
+### 1.4 去机场
+
+## 2. 现场流程
+### 2.1 进航站楼
+### 2.2 托运行李
+### 2.3 过安检
+### 2.4 找登机口
+### 2.5 登机
+### 2.6 落地出站
+
+## 3. 常见问题
+### Q1 …
+### Q2 …
+
+## 4. 避坑提醒
+- …
+
+## 5. 特殊情况与应急
+- 误机
+- 航班延误或取消
+- 行李丢失或损坏
+- 突发疾病
+
+## 6. 费用与时间预算
+| 项目 | 大概金额 | 说明 |
+
+## 7. 延伸资源
+- 官方入口
+- 相关条目
+- 可打印清单
+
+## 8. 依据与核实
+- 依据等级构成：
+- 主要来源：
+- 核实日期：
+- 适用范围与地区差异：
+- 易变项：
+</code></pre>
+<h3>5.3 元数据字段（front-matter）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>字段</th>
+<th>取值</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>id</code></td>
+<td><code>A-01</code></td>
+<td>唯一标识、交叉引用、核实记录对应</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td><code>第一次坐飞机</code></td>
+<td>检索与目录</td>
+</tr>
+<tr>
+<td><code>domain</code></td>
+<td>十个栏目之一</td>
+<td>栏目筛选</td>
+</tr>
+<tr>
+<td><code>stage</code></td>
+<td>人生阶段数组，如 <code>[学生, 初入职场, 新手父母]</code></td>
+<td>阶段筛选</td>
+</tr>
+<tr>
+<td><code>prerequisites</code></td>
+<td>前置条件数组，如 <code>[身份证, 银行卡]</code></td>
+<td>提示读者先看什么</td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td><code>半小时内</code> / <code>半天</code> / <code>1-3天</code> / <code>长期</code></td>
+<td>耗时筛选</td>
+</tr>
+<tr>
+<td><code>cost</code></td>
+<td><code>免费</code> / <code>百元内</code> / <code>千元级</code> / <code>万元级</code></td>
+<td>花费筛选</td>
+</tr>
+<tr>
+<td><code>risk</code></td>
+<td><code>低</code> / <code>中</code> / <code>高</code></td>
+<td>风险筛选（高 = 做错会有法律、健康或较大财产后果）</td>
+</tr>
+<tr>
+<td><code>volatility</code></td>
+<td><code>S</code> / <code>M</code> / <code>H</code></td>
+<td>时效复审周期</td>
+</tr>
+<tr>
+<td><code>region</code></td>
+<td><code>全国</code> / <code>分省</code> / <code>分市</code> / <code>分机构</code></td>
+<td>地域差异提示</td>
+</tr>
+<tr>
+<td><code>last_verified</code></td>
+<td><code>YYYY-MM-DD</code></td>
+<td>最近核实日期</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td><code>初稿</code> / <code>已核实</code> / <code>待更新</code> / <code>有争议</code></td>
+<td>可信度提示</td>
+</tr>
+<tr>
+<td><code>source_count</code></td>
+<td>数字</td>
+<td>来源数量，低于阈值在检索页标黄</td>
+</tr>
+<tr>
+<td><code>related</code></td>
+<td>ID 数组</td>
+<td>相关条目</td>
+</tr>
+</tbody></table></div>
+<p><strong>取值约束：</strong></p>
+<ul>
+<li><code>volatility = S</code>：多年稳定（如身份证办理基本流程），24 个月复审一次。</li>
+<li><code>volatility = M</code>：每年可能调整（如票价规则、社保基数），12 个月复审一次。</li>
+<li><code>volatility = H</code>：政策或规则随时变（签证、入境、安检），6 个月复审一次，且文首加「出行前再查一次官网」提示。</li>
+<li><code>risk = 高</code> 的条目，正文必须有「做错的后果」和「出问题找谁」两段。</li>
+</ul>
+<h3>5.4 各板块写作要求</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>板块</th>
+<th>回答什么问题</th>
+<th>必写</th>
+<th>不写</th>
+<th>篇幅</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0. 30 秒速查</td>
+<td>我现在最需要知道什么</td>
+<td>4–6 条结论，每条一行</td>
+<td>解释、背景</td>
+<td>≤150 字</td>
+</tr>
+<tr>
+<td>1. 准备事项</td>
+<td>提前要做什么、带什么</td>
+<td>按「提前 7 天 / 24 小时 / 出门前」分组；材料清单可勾选</td>
+<td>现场步骤</td>
+<td>600–1200 字</td>
+</tr>
+<tr>
+<td>2. 操作步骤</td>
+<td>到了现场按什么顺序做</td>
+<td>每步写「在哪、看什么、说什么、完成标志」</td>
+<td>原理、历史</td>
+<td>1500–3000 字</td>
+</tr>
+<tr>
+<td>3. 常见问题</td>
+<td>大家最常问什么</td>
+<td>≥10 条真实问题，一问一答</td>
+<td>与正文重复的内容</td>
+<td>每条 ≤120 字</td>
+</tr>
+<tr>
+<td>4. 避坑提醒</td>
+<td>哪些地方会多花钱、被骗、违规</td>
+<td>≥8 条，每条写「坑是什么 + 怎么躲」</td>
+<td>泛泛而谈的「注意安全」</td>
+<td>每条 ≤150 字</td>
+</tr>
+<tr>
+<td>5. 特殊情况</td>
+<td>出错了怎么办</td>
+<td>误机/丢失/生病/被拒/取消等 ≥5 种</td>
+<td>正常流程</td>
+<td>600–1200 字</td>
+</tr>
+<tr>
+<td>6. 费用与时间</td>
+<td>要花多少钱、多少时间</td>
+<td>表格；给区间和可选/必选</td>
+<td>具体商家比价</td>
+<td>1 张表</td>
+</tr>
+<tr>
+<td>7. 延伸资源</td>
+<td>还想深入看什么</td>
+<td>官方入口、相关条目、可打印清单</td>
+<td>广告、课程推销</td>
+<td>5–10 条</td>
+</tr>
+<tr>
+<td>8. 依据与核实</td>
+<td>这些话凭什么</td>
+<td>依据等级、来源数、核实日期、适用范围、易变项</td>
+<td>大段原文</td>
+<td>≤200 字</td>
+</tr>
+</tbody></table></div>
+<p><strong>步骤写法硬要求：</strong></p>
+<ol>
+<li>一步只做一件事，标题用动词开头（「托运行李」「过安检」）。</li>
+<li>每步开头写位置：「在航站楼出发层，找航空公司值机柜台」。</li>
+<li>写清楚看什么：「看头顶指示牌，跟着『安全检查』箭头走」。</li>
+<li>写清楚说什么：「把身份证递给工作人员，说『值机』」。</li>
+<li>写完成标志：「拿到登机牌和行李票，就算办完」。</li>
+<li>写卡住时怎么办：「自助机打不出登机牌，去人工柜台」。</li>
+</ol>
+<h3>5.5 交叉引用规则</h3>
+<p>格式统一为：</p>
+<pre><code>见 A-02《第一次坐高铁》2.3「过安检」
+</code></pre>
+<p>规则：</p>
+<ul>
+<li>必须带<strong>条目标题 + 步骤号 + 步骤名</strong>，三者缺一不可。</li>
+<li>禁止裸编号（「见 A-02」）和相对指路（「见下一篇」「见上文」）。</li>
+<li>相关条目在 front-matter 和文末「延伸资源」各出现一次，两处保持一致。</li>
+<li>步骤号变动时，<code>check-refs.mjs</code> 负责找出失效引用。</li>
+</ul>
+<h3>5.6 检索与导航设计</h3>
+<p><strong>README 门户：</strong></p>
+<ol>
+<li>一句话定位 + 三个场景入口：「我要出门」「我要办事」「我要开始学」。</li>
+<li>「问题 → 条目」导航表，例如「第一次坐飞机要注意什么 → A-01」。</li>
+<li>全量目录（按栏目分组，显示条目状态和最近核实日期）。</li>
+<li>四条阅读路径：按人生阶段、按场景、按耗时、按风险。</li>
+<li>贡献指南与免责声明入口。</li>
+</ol>
+<p><strong>静态检索页 <code>index.html</code>：</strong></p>
+<ul>
+<li>数据来自 <code>index.json</code>，由 <code>build-index.mjs</code> 从 front-matter 和标题生成。</li>
+<li>筛选维度：</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>选项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>关键词</td>
+<td>全文标题、速查卡、FAQ</td>
+</tr>
+<tr>
+<td>主题域</td>
+<td>A–J</td>
+</tr>
+<tr>
+<td>人生阶段</td>
+<td>学生 / 初入职场 / 新婚 / 新手父母 / 中年 / 退休</td>
+</tr>
+<tr>
+<td>预计耗时</td>
+<td>半小时内 / 半天 / 1–3 天 / 长期</td>
+</tr>
+<tr>
+<td>花费</td>
+<td>免费 / 百元内 / 千元级 / 万元级</td>
+</tr>
+<tr>
+<td>风险</td>
+<td>低 / 中 / 高</td>
+</tr>
+<tr>
+<td>时效</td>
+<td>S / M / H（H 级标红）</td>
+</tr>
+<tr>
+<td>状态</td>
+<td>已核实 / 待更新 / 初稿</td>
+</tr>
+</tbody></table></div>
+<ul>
+<li>提供「现场模式」：只显示速查卡，隐藏长文，适合手机竖屏。</li>
+<li>提供「只看已核实」开关，默认开启。</li>
+<li>每张卡片显示：标题、一句话、耗时、花费、风险、最近核实日期、状态。</li>
+</ul>
+<p><strong>可打印清单 <code>checklists/</code>：</strong></p>
+<ul>
+<li>每篇一张 A4 一页，只保留「要带什么、要做什么、出问题找谁」。</li>
+<li>用 Markdown 复选框，打印后可手写勾选。</li>
+</ul>
+<hr>
+<h2 id="sec-5">六、核心信息维度（必须覆盖）</h2>
+<p>每个「第一次」条目，必须回答下表 12 个维度的问题。缺少任一维度，视为未完成。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>维度</th>
+<th>必须回答</th>
+<th>判断标准</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>适用边界</td>
+<td>谁适用、谁不适用、和哪个相邻条目容易混</td>
+<td>读者能判断「这篇是不是写给我看的」</td>
+</tr>
+<tr>
+<td>2</td>
+<td>前置条件</td>
+<td>需要什么证件、资格、账号、预约</td>
+<td>缺一样就办不成的事全部列出</td>
+</tr>
+<tr>
+<td>3</td>
+<td>时间轴</td>
+<td>提前多久准备、每个环节耗时、截止时间</td>
+<td>读者能倒推出「今天该做什么」</td>
+</tr>
+<tr>
+<td>4</td>
+<td>准备事项</td>
+<td>材料、物品、钱、App、预约</td>
+<td>可勾选，能打印</td>
+</tr>
+<tr>
+<td>5</td>
+<td>操作步骤</td>
+<td>在哪、做什么、看什么、说什么、完成标志</td>
+<td>没做过的人能照着走</td>
+</tr>
+<tr>
+<td>6</td>
+<td>费用构成</td>
+<td>必选/可选、区间、退改规则</td>
+<td>读者知道大概要花多少、哪些能省</td>
+</tr>
+<tr>
+<td>7</td>
+<td>常见问题</td>
+<td>≥10 条真实高频问题</td>
+<td>问题来自搜索、问答、访谈，不是作者想象</td>
+</tr>
+<tr>
+<td>8</td>
+<td>避坑提醒</td>
+<td>≥8 条骗局、加价、合同陷阱、违规</td>
+<td>每条都有具体场景和躲法</td>
+</tr>
+<tr>
+<td>9</td>
+<td>特殊情况</td>
+<td>误机、丢失、生病、被拒、取消、纠纷</td>
+<td>出问题知道第一步找谁</td>
+</tr>
+<tr>
+<td>10</td>
+<td>地区与机构差异</td>
+<td>全国统一还是分省分市、哪些以现场为准</td>
+<td>不会把一地经验当成全国规则</td>
+</tr>
+<tr>
+<td>11</td>
+<td>时效提示</td>
+<td>哪些规则易变、截至什么时候、去哪查最新</td>
+<td>读者知道这条可能过期</td>
+</tr>
+<tr>
+<td>12</td>
+<td>依据与出处</td>
+<td>每条关键事实的来源、等级、原文位置</td>
+<td>可逐条核对，不靠作者权威</td>
+</tr>
+</tbody></table></div>
+<p><strong>「真实经验」的使用边界：</strong></p>
+<ul>
+<li>只写进「避坑提醒」「常见问题」「现场细节」，不写进强制流程。</li>
+<li>必须署昵称、时间、地点、适用条件。</li>
+<li>标注「个人经验，不保证普遍适用」。</li>
+<li>不得作为某条规则的唯一依据；与官方说法冲突时，以官方为准，并在备注说明差异。</li>
+</ul>
+<hr>
+<h2 id="sec-6">七、写作规范</h2>
+<h3>7.1 语言规范</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>人称</td>
+<td>统一用「你」；涉及机构写清主体（航空公司、车站工作人员、医院）</td>
+</tr>
+<tr>
+<td>句长</td>
+<td>一句一件事；平均 ≤30 字，最长 ≤50 字</td>
+</tr>
+<tr>
+<td>段落</td>
+<td>每段 ≤5 句；一段只讲一个环节</td>
+</tr>
+<tr>
+<td>语体</td>
+<td>口语化书面语；不写公文腔，不写网络梗，不写营销腔</td>
+</tr>
+<tr>
+<td>术语</td>
+<td>首次出现用一句日常话解释，保留原词；同一板块不重复解释</td>
+</tr>
+<tr>
+<td>标题</td>
+<td>条目标题用「第一次X」或「第一次X：一句最关键提醒」；步骤标题用动词短语；FAQ 才用问句</td>
+</tr>
+<tr>
+<td>数字</td>
+<td>阿拉伯数字；金额写「元」；时间写「分钟/小时/天」；日期写「2026年10月23日」</td>
+</tr>
+<tr>
+<td>单位</td>
+<td>公里、米、公斤、升，不用「斤」「里」等口语单位（引用原文除外）</td>
+</tr>
+<tr>
+<td>括号</td>
+<td>括号内补充 ≤10 字；超过 10 字拆成独立句；不套括号</td>
+</tr>
+<tr>
+<td>标点</td>
+<td>少用破折号；不用分号并列长句；列举超过 3 项用列表</td>
+</tr>
+</tbody></table></div>
+<p><strong>禁止的写法：</strong></p>
+<ul>
+<li>元叙述：「本条讲的是」「这篇不劝你」「这一节算的是」。</li>
+<li>段尾升华：「从这一刻起，你就真正长大了」。</li>
+<li>空转加强词：「值得注意的是」「本质上」「不得不说」。</li>
+<li>需要读者二次翻译的比喻：「另一头」「那张皮」「挡箭牌」。</li>
+<li>电报体：把一句话拆成五六个两三字的短句。</li>
+<li>绝对化：「一定」「绝对」「百分之百」「包过」「永远不会」。</li>
+<li>恐吓式表达：「不这么做就完了」「后果不堪设想」。</li>
+</ul>
+<h3>7.2 事实与依据分级（Ⅰ–Ⅳ）</h3>
+<p>参考项目的 A/B/C 是医学证据分级，不适用于流程类内容。本项目改用<strong>依据来源分级</strong>：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>等级</th>
+<th>名称</th>
+<th>定义</th>
+<th>正文写法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ⅰ</td>
+<td>法规与强制标准</td>
+<td>法律、行政法规、部门规章、国家标准，有文号，有官方原文</td>
+<td>「按规定必须……」，可直接写强制</td>
+</tr>
+<tr>
+<td>Ⅱ</td>
+<td>官方办事指引</td>
+<td>政府部门、公共服务机构、企业官方规则（12306、航司运输总条件、医院、银行、学校官网）</td>
+<td>「按官方指引……」，可写流程和时限</td>
+</tr>
+<tr>
+<td>Ⅲ</td>
+<td>多方一致的通行做法</td>
+<td>≥2 个独立可信来源相互印证，或行业公认惯例</td>
+<td>「通常」「多数情况下」，不得写成强制</td>
+</tr>
+<tr>
+<td>Ⅳ</td>
+<td>亲历者经验</td>
+<td>署名、时间、地点、条件明确的个人经历</td>
+<td>「有人遇到过……」「个人经验，不保证普遍适用」</td>
+</tr>
+</tbody></table></div>
+<p><strong>使用规则：</strong></p>
+<ol>
+<li>「必须」「不得」「否则会被罚款/拒绝」这类强制表述，只能由 Ⅰ 或 Ⅱ 支撑。</li>
+<li>Ⅲ 级内容只能写成「通常做法」，并注明「以现场为准」。</li>
+<li>Ⅳ 级内容不能单独支撑任何流程步骤，只能作为提醒。</li>
+<li>同一段里混用不同等级时，逐句标注或在本段末统一说明。</li>
+<li>查不到依据的内容，写「待核实」并登记，不得用推测补齐。</li>
+</ol>
+<h3>7.3 来源规范</h3>
+<p><strong>只收：</strong></p>
+<ul>
+<li>法律法规数据库、国务院及各部委官网（gov.cn）</li>
+<li>机构官网：国家移民管理局、外交部领事服务网、12306、民航局、交管12123、各地政务服务平台、医院/银行/学校官网</li>
+<li>企业官方规则：航空公司运输总条件、铁路旅客运输规程、平台服务协议</li>
+<li>国际组织：WHO、UNICEF、CEFR 等官方文件</li>
+<li>一手媒体：署名记者的原创调查或现场报道（仅用于证明「发生过」，不作为规则依据，需附网页存档）</li>
+</ul>
+<p><strong>不收：</strong></p>
+<ul>
+<li>知乎、微信公众号、小红书、抖音、百度百科、百家号、搜狐号、网易号</li>
+<li>聚合站、攻略站、内容农场、AI 生成内容</li>
+<li>中介广告、驾校销售话术、留学中介宣传页</li>
+<li>无法追溯作者的「网友说」</li>
+</ul>
+<p><strong>引用格式：</strong></p>
+<pre><code>[1] 中国民用航空局. 公共航空运输旅客服务管理规定（交通运输部令2021年第3号）. https://www.caac.gov.cn/... 访问日期：2026-10-23.
+</code></pre>
+<p>正文用 <code>[1]</code> 上标标注关键事实；文末「依据与核实」列全部来源；<code>sources/ID.核实.md</code> 存原文关键句摘录。</p>
+<p><strong>链接失效处理顺序：</strong></p>
+<ol>
+<li>换同一机构官网的新地址。</li>
+<li>换能逐字核对同一事实的另一份官方原文。</li>
+<li>使用 web.archive.org 存档，注明「原页面已下线，此为某年某月某日存档」。</li>
+</ol>
+<h3>7.4 时效与地域规范</h3>
+<ul>
+<li>每篇必须写 <code>last_verified</code>，正文「依据与核实」同步显示。</li>
+<li><code>volatility = H</code> 的条目，在标题下加一行：「以下规则截至 2026年10月，出发前请再查一次官网。」</li>
+<li>涉及地方政策的（生育津贴、医保报销、居住证、公积金），必须写「以当地为准」，并给出查询入口，不写死某一城市的标准。</li>
+<li>政策已变更但未复核的条目，状态改为「待更新」，检索页标黄。</li>
+<li>法规修订、重大事故、平台规则变更后，相关条目立即复审，不等周期。</li>
+</ul>
+<h3>7.5 医疗、法律、金融边界</h3>
+<ul>
+<li>不做诊断、不判断病情、不推荐具体药物剂量。</li>
+<li>不预测诉讼结果、不替代律师意见。</li>
+<li>不推荐具体理财产品、不承诺收益。</li>
+<li>统一写法：「这一步该问谁」「要带什么材料」「大概流程是什么」，而不是「你应该怎么做决定」。</li>
+<li><code>DISCLAIMER.md</code> 写明：本手册只提供流程与公开信息，不构成医疗、法律、投资建议；紧急情况先联系专业人员。</li>
+</ul>
+<h3>7.6 格式规范</h3>
+<ul>
+<li>一篇正文控制在 4000–8000 字；超过 10000 字拆成「主篇 + 专题长文」。</li>
+<li>步骤编号连续，不跳号；新增步骤插在末尾或整段重排并同步引用。</li>
+<li>表格不超过 6 列；手机上能横向滚动。</li>
+<li>图片只用于「指示牌、票据、界面截图」这类必须看的画面；每张图配一句说明；不使用装饰图。</li>
+<li>外链统一放在「延伸资源」和「依据与核实」，正文中间不放推广链接。</li>
+</ul>
+<hr>
+<h2 id="sec-7">八、调研与核实流程</h2>
+<h3>8.1 单篇生产流水线（七步）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>动作</th>
+<th>产出</th>
+<th>完成标志</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>列问题清单</td>
+<td>30–50 个问题</td>
+<td>覆盖「人、事、时、地、钱、险」六维</td>
+</tr>
+<tr>
+<td>2</td>
+<td>查官方来源</td>
+<td>来源清单 + 原文摘录</td>
+<td>每个强制表述都有 Ⅰ/Ⅱ 级来源</td>
+</tr>
+<tr>
+<td>3</td>
+<td>写速查卡</td>
+<td>4–6 条结论</td>
+<td>不看正文也能独立使用</td>
+</tr>
+<tr>
+<td>4</td>
+<td>写正文</td>
+<td>九个板块初稿</td>
+<td>模板无缺项</td>
+</tr>
+<tr>
+<td>5</td>
+<td>自检</td>
+<td>对照复核清单</td>
+<td>10 项全过</td>
+</tr>
+<tr>
+<td>6</td>
+<td>交叉复核</td>
+<td>第二人逐条核对</td>
+<td>关键事实 100% 可定位</td>
+</tr>
+<tr>
+<td>7</td>
+<td>发布与登记</td>
+<td>正文 + 核实记录 + 清单 + 更新日志</td>
+<td><code>status</code> 改为「已核实」</td>
+</tr>
+</tbody></table></div>
+<h3>8.2 问题清单法（六维）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>要问的问题</th>
+<th>示例（坐飞机）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>人</td>
+<td>谁要做？年龄、证件、资格限制？</td>
+<td>未成年人能单独坐吗？</td>
+</tr>
+<tr>
+<td>事</td>
+<td>先后顺序？每步完成标志？</td>
+<td>先值机还是先托运？</td>
+</tr>
+<tr>
+<td>时</td>
+<td>提前多久？各环节耗时？截止时间？</td>
+<td>起飞前多久停止值机？</td>
+</tr>
+<tr>
+<td>地</td>
+<td>去哪？哪个窗口、网站、App？</td>
+<td>T2 还是 T3？</td>
+</tr>
+<tr>
+<td>钱</td>
+<td>花多少？哪些必选？怎么退？</td>
+<td>行李超重怎么收费？</td>
+</tr>
+<tr>
+<td>险</td>
+<td>最容易错在哪？被骗/被罚/被拒？找谁？</td>
+<td>误机了还能改签吗？</td>
+</tr>
+</tbody></table></div>
+<p>问题来源优先级：官方 FAQ &gt; 搜索引擎「大家还在问」&gt; 问答社区高赞问题 &gt; 对 3–5 位零经验者的访谈。<strong>不凭作者想象编问题。</strong></p>
+<h3>8.3 各主题域的权威来源</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>主题域</th>
+<th>第一优先</th>
+<th>第二优先</th>
+<th>明确不用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出行与交通</td>
+<td>交通运输部、民航局、国铁集团、12306、航司运输总条件</td>
+<td>机场/车站官网、12326</td>
+<td>旅游攻略站、票务代理广告</td>
+</tr>
+<tr>
+<td>证件与跨境</td>
+<td>国家移民管理局、外交部领事服务网、海关总署、目的地驻华使领馆</td>
+<td>签证中心、航司官网</td>
+<td>中介广告、移民论坛</td>
+</tr>
+<tr>
+<td>工作与职业</td>
+<td>人社部、《劳动合同法》、地方人社局、公积金中心</td>
+<td>企业 HR 官方文档、税务局</td>
+<td>职场博主、匿名论坛</td>
+</tr>
+<tr>
+<td>学习与技能</td>
+<td>教育部、考试机构官方大纲、CEFR、交管12123</td>
+<td>高校公开课、学术综述</td>
+<td>卖课广告、速成宣传</td>
+</tr>
+<tr>
+<td>家庭与育儿</td>
+<td>国家卫健委、公安部、人社部、WHO、UNICEF</td>
+<td>医院孕妇学校、疾控中心</td>
+<td>育儿博主、母婴品牌</td>
+</tr>
+<tr>
+<td>健康与医疗</td>
+<td>国家卫健委、国家医保局、医院官网</td>
+<td>学会指南、疾控中心</td>
+<td>健康自媒体、保健品广告</td>
+</tr>
+<tr>
+<td>钱与消费</td>
+<td>中国人民银行、金融监管总局、税务总局、12315</td>
+<td>银行/平台官方费率页</td>
+<td>理财博主、返利网站</td>
+</tr>
+<tr>
+<td>居住与生活</td>
+<td>住建部、各地政务服务平台、水电气官方客服</td>
+<td>物业/中介官方合同范本</td>
+<td>装修论坛、房东口述</td>
+</tr>
+<tr>
+<td>数字与网络</td>
+<td>公安部网安局、国家网信办、平台官方规则</td>
+<td>反诈中心、消协</td>
+<td>数码博主、破解教程</td>
+</tr>
+<tr>
+<td>人生节点</td>
+<td>民政部、公安部、人社部、司法部</td>
+<td>公证处、殡葬管理机构</td>
+<td>婚庆/殡葬商家宣传</td>
+</tr>
+</tbody></table></div>
+<h3>8.4 核实记录模板</h3>
+<p><code>sources/A-01.核实.md</code>：</p>
+<pre><code class="language-markdown"># A-01 第一次坐飞机 · 核实记录
+
+- 核实人：
+- 核实日期：2026-10-23
+- 对应版本：v1.0
+- 适用范围：中国内地出发的国内航班
+
+| # | 正文位置 | 文中说法 | 依据等级 | 来源（机构 + 标题 + 文号） | 原文摘录 | URL | 访问日期 | 状态 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 0. 速查卡 | 提前 2 小时到机场 | Ⅱ | 某机场官网《乘机指南》 | 「建议国内航班提前 2 小时到达」 | https://… | 2026-10-23 | 已核实 |
+| 2 | 2.3 过安检 | 充电宝必须随身携带 | Ⅰ | 民航局《关于民航旅客携带「充电宝」乘机规定的公告》 | 「…」 | https://… | 2026-10-23 | 已核实 |
+
+## 待核实
+
+| # | 内容 | 卡在哪 | 下一步 |
+| --- | --- | --- | --- |
+
+## 争议与差异
+
+| # | 说法 | 冲突来源 | 采用口径 | 理由 |
+| --- | --- | --- | --- | --- |
+</code></pre>
+<p>状态取值：<code>已核实</code> / <code>部分核实</code> / <code>待核实</code> / <code>有争议</code>。</p>
+<h3>8.5 复核清单（发布前必过）</h3>
+<ol>
+<li>速查卡能否脱离正文独立使用。</li>
+<li>每个步骤是否写清「在哪、做什么、看什么、完成标志」。</li>
+<li>所有强制表述是否有 Ⅰ/Ⅱ 级来源。</li>
+<li>金额、时限、年龄、证件要求是否与原文一致。</li>
+<li>地方差异是否写明「以当地为准」并给出查询入口。</li>
+<li>是否覆盖至少 8 个高频错误。</li>
+<li>FAQ 是否来自真实问题，而不是作者自问自答。</li>
+<li>所有外链是否可访问，失效的是否有存档。</li>
+<li>交叉引用是否带条目标题和步骤名。</li>
+<li>是否存在医疗诊断、法律结论、投资建议或绝对化承诺。</li>
+</ol>
+<h3>8.6 复审周期</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>时效等级</th>
+<th>复审周期</th>
+<th>触发条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S</td>
+<td>24 个月</td>
+<td>法规修订时立即复审</td>
+</tr>
+<tr>
+<td>M</td>
+<td>12 个月</td>
+<td>官方规则调整时立即复审</td>
+</tr>
+<tr>
+<td>H</td>
+<td>6 个月</td>
+<td>政策变化、重大事件时立即复审</td>
+</tr>
+</tbody></table></div>
+<p><code>check-stale.mjs</code> 在 CI 中计算「今天 − last_verified」，超过周期则失败并列出条目。</p>
+<hr>
+<h2 id="sec-8">九、主题清单</h2>
+<h3>9.1 首批 8 篇：范围与来源</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>范围界定</th>
+<th>必答核心问题</th>
+<th>主要来源</th>
+<th>易变项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A-01</td>
+<td>第一次坐飞机</td>
+<td>中国内地出发的国内航班；成年普通旅客</td>
+<td>提前多久到；买票与退改；行李额；禁带物品；值机选座；安检；登机口；误机；行李丢失</td>
+<td>民航局旅客服务规定、航司运输总条件、机场官网、12326</td>
+<td>票价规则、行李额、安检规定（H）</td>
+</tr>
+<tr>
+<td>A-02</td>
+<td>第一次坐高铁</td>
+<td>中国内地 G/D/C 字头列车；12306 购票</td>
+<td>注册实名；选车次席别；候补；进站验票；安检；检票口与站台；改签退票；坐过站；遗失物品</td>
+<td>国铁集团《铁路旅客运输规程》、12306 官网、禁限带目录</td>
+<td>票价浮动、候补规则（M）</td>
+</tr>
+<tr>
+<td>A-03</td>
+<td>第一次坐火车</td>
+<td>K/T/Z 字头普速列车；购票、乘坐与长途夜车注意事项，重点写与高铁的差异</td>
+<td>购票渠道与席别选择；车次字母含义；硬座/硬卧/软卧差异；夜车准备；中途停站；坐过站与补票；餐车与开水；春运抢票</td>
+<td>同上，另加《铁路旅客运输规程》卧铺与越站条款</td>
+<td>列车运行图（M）</td>
+</tr>
+<tr>
+<td>B-01</td>
+<td>第一次出国</td>
+<td>持中国普通护照、因私短期出行（旅游/探亲/商务）；含签证办理、机场安检与边检流程；不含留学务工</td>
+<td>护照办理与有效期；签证类型与材料；机票酒店保险；机场安检；出境边检；入境他国；海关申报；境外支付通讯；领事保护；回国入境</td>
+<td>国家移民管理局、外交部领事服务网、目的地使领馆、海关总署</td>
+<td>签证政策、免签名单、入境要求（H）</td>
+</tr>
+<tr>
+<td>C-01</td>
+<td>第一次入职</td>
+<td>大学毕业第一次正式入职；中国内地企业</td>
+<td>入职材料；三方协议与劳动合同区别；合同必看条款；试用期规定；五险一金；第一份工资条与个税；档案户口；职场基本规则；试用期被辞</td>
+<td>《劳动合同法》及实施条例、《社会保险法》、人社部、税务总局</td>
+<td>社保基数、地方落户政策（M）</td>
+</tr>
+<tr>
+<td>D-01</td>
+<td>第一次学外语入门</td>
+<td>零基础成年人自学一门主流外语的前 90 天；不承诺速成</td>
+<td>目标与 CEFR 等级；选语言；发音起步；教材选择；词汇规划；听说读写配比；每日练习；免费资源；常见误区；自测</td>
+<td>CEFR 官方框架、各语种官方文化机构、二语习得研究综述</td>
+<td>考试大纲、题型（M）</td>
+</tr>
+<tr>
+<td>D-02</td>
+<td>第一次学车</td>
+<td>中国大陆初次申领 C1/C2 驾驶证</td>
+<td>C1 与 C2 选择；报名条件与体检；选驾校与费用；科目一至四；学时；预约与补考；实习期；换证与记分</td>
+<td>公安部《机动车驾驶证申领和使用规定》、交管12123、各地车管所</td>
+<td>考试项目、学时要求（M）</td>
+</tr>
+<tr>
+<td>E-01</td>
+<td>第一次当爸爸</td>
+<td>从伴侣确认怀孕到孩子满 1 岁，父亲要做的事</td>
+<td>产检节奏与陪诊；生育登记；生育保险与津贴；陪产假；待产包与入院；出生医学证明；上户口与医保；月子期分工；产后抑郁识别；安全睡眠与安全座椅；疫苗</td>
+<td>《母婴保健法》、国家卫健委、公安部户口登记规定、人社部生育保险规定、WHO/UNICEF</td>
+<td><strong>地方差异极大</strong>（H），必须给查询入口</td>
+</tr>
+</tbody></table></div>
+<p><strong>首批统一要求：</strong></p>
+<ul>
+<li>每篇 ≥10 个来源，其中 ≥60% 为 Ⅰ/Ⅱ 级官方来源。</li>
+<li>每篇 ≥10 条 FAQ、≥8 条避坑。</li>
+<li>每篇配 1 张可打印清单、1 份核实记录。</li>
+<li>每篇文首必须有「适用 / 不适用」。</li>
+</ul>
+<h3>9.2 扩展主题地图（94 篇）</h3>
+<p>优先级定义：</p>
+<ul>
+<li><strong>P0</strong>：高频 + 做错代价大 + 规则容易变，应在第二批完成。</li>
+<li><strong>P1</strong>：常见但容错率高，或可以靠官方页面自助完成。</li>
+<li><strong>P2</strong>：低频、细分，或需要专业资质才能写准。</li>
+</ul>
+<h4>A 出行与交通（10）</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A-01</td>
+<td>第一次坐飞机</td>
+<td>P0 ★首批</td>
+<td>国内航班全流程</td>
+</tr>
+<tr>
+<td>A-02</td>
+<td>第一次坐高铁</td>
+<td>P0 ★首批</td>
+<td>12306 购票到出站</td>
+</tr>
+<tr>
+<td>A-03</td>
+<td>第一次坐火车</td>
+<td>P0 ★首批</td>
+<td>普速列车与长途夜车</td>
+</tr>
+<tr>
+<td>A-04</td>
+<td>第一次坐地铁</td>
+<td>P1</td>
+<td>购票、扫码、换乘、早晚高峰</td>
+</tr>
+<tr>
+<td>A-05</td>
+<td>第一次坐长途大巴</td>
+<td>P2</td>
+<td>客运站购票、安检、途中</td>
+</tr>
+<tr>
+<td>A-06</td>
+<td>第一次打网约车/出租车</td>
+<td>P0</td>
+<td>叫车、上车核对、路线、夜间安全、投诉</td>
+</tr>
+<tr>
+<td>A-07</td>
+<td>第一次租车自驾</td>
+<td>P1</td>
+<td>租车材料、保险、验车、还车、异地还车</td>
+</tr>
+<tr>
+<td>A-08</td>
+<td>第一次骑电动车上路</td>
+<td>P1</td>
+<td>上牌、头盔、载人规定、充电、事故处理</td>
+</tr>
+<tr>
+<td>A-09</td>
+<td>第一次独自旅行</td>
+<td>P1</td>
+<td>行程、住宿、安全、突发</td>
+</tr>
+<tr>
+<td>A-10</td>
+<td>第一次春运回家</td>
+<td>P1</td>
+<td>抢票、候补、车站客流、行李</td>
+</tr>
+</tbody></table></div>
+<h4>B 证件与跨境（8）</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>B-01</td>
+<td>第一次出国</td>
+<td>P0 ★首批</td>
+<td>护照、签证、边检、入境、回国</td>
+</tr>
+<tr>
+<td>B-02</td>
+<td>第一次办护照/通行证</td>
+<td>P0</td>
+<td>预约、材料、照片、领取</td>
+</tr>
+<tr>
+<td>B-03</td>
+<td>第一次办签证</td>
+<td>P1</td>
+<td>签证类型、材料、送签、面签</td>
+</tr>
+<tr>
+<td>B-04</td>
+<td>第一次过海关</td>
+<td>P1</td>
+<td>申报、免税额度、禁限物品</td>
+</tr>
+<tr>
+<td>B-05</td>
+<td>第一次境外支付与通讯</td>
+<td>P1</td>
+<td>信用卡、现金、漫游、eSIM、当地卡</td>
+</tr>
+<tr>
+<td>B-06</td>
+<td>第一次出国留学</td>
+<td>P1</td>
+<td>申请、签证、住宿、开户、保险、认证</td>
+</tr>
+<tr>
+<td>B-07</td>
+<td>第一次境外务工</td>
+<td>P2</td>
+<td>合法渠道、合同、签证、风险</td>
+</tr>
+<tr>
+<td>B-08</td>
+<td>第一次回国入境</td>
+<td>P1</td>
+<td>入境申报、免税、隔离与检疫（如适用）</td>
+</tr>
+</tbody></table></div>
+<h4>C 工作与职业（12）</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C-01</td>
+<td>第一次入职</td>
+<td>P0 ★首批</td>
+<td>材料、合同、社保、工资</td>
+</tr>
+<tr>
+<td>C-02</td>
+<td>第一次面试</td>
+<td>P0</td>
+<td>简历、着装、自我介绍、提问、offer</td>
+</tr>
+<tr>
+<td>C-03</td>
+<td>第一次签劳动合同</td>
+<td>P0</td>
+<td>必看条款、试用期、违约金、竞业</td>
+</tr>
+<tr>
+<td>C-04</td>
+<td>第一次拿工资与五险一金</td>
+<td>P0</td>
+<td>工资条、个税、社保公积金查询</td>
+</tr>
+<tr>
+<td>C-05</td>
+<td>第一次过试用期</td>
+<td>P1</td>
+<td>考核、转正、被辞退</td>
+</tr>
+<tr>
+<td>C-06</td>
+<td>第一次汇报/述职</td>
+<td>P1</td>
+<td>结构、时长、PPT、问答</td>
+</tr>
+<tr>
+<td>C-07</td>
+<td>第一次谈涨薪</td>
+<td>P2</td>
+<td>时机、依据、话术、被拒</td>
+</tr>
+<tr>
+<td>C-08</td>
+<td>第一次跳槽</td>
+<td>P1</td>
+<td>离职流程、竞业、社保断缴、入职衔接</td>
+</tr>
+<tr>
+<td>C-09</td>
+<td>第一次被裁员</td>
+<td>P1</td>
+<td>补偿、失业金、社保、再就业</td>
+</tr>
+<tr>
+<td>C-10</td>
+<td>第一次出差</td>
+<td>P2</td>
+<td>预订、报销、行程、安全</td>
+</tr>
+<tr>
+<td>C-11</td>
+<td>第一次开公司/个体户</td>
+<td>P2</td>
+<td>注册、税务、社保、记账</td>
+</tr>
+<tr>
+<td>C-12</td>
+<td>第一次请年假/病假/婚假</td>
+<td>P1</td>
+<td>法定天数、材料、工资</td>
+</tr>
+</tbody></table></div>
+<h4>D 学习与技能（10）</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>D-01</td>
+<td>第一次学外语入门</td>
+<td>P0 ★首批</td>
+<td>零基础前 90 天</td>
+</tr>
+<tr>
+<td>D-02</td>
+<td>第一次学车</td>
+<td>P0 ★首批</td>
+<td>C1/C2 全流程</td>
+</tr>
+<tr>
+<td>D-03</td>
+<td>第一次考职业资格证</td>
+<td>P1</td>
+<td>选证、报名、备考、领证</td>
+</tr>
+<tr>
+<td>D-04</td>
+<td>第一次自学编程</td>
+<td>P1</td>
+<td>方向、路线、项目、避坑</td>
+</tr>
+<tr>
+<td>D-05</td>
+<td>第一次公开演讲</td>
+<td>P1</td>
+<td>结构、排练、紧张、问答</td>
+</tr>
+<tr>
+<td>D-06</td>
+<td>第一次写论文</td>
+<td>P2</td>
+<td>选题、文献、格式、查重、答辩</td>
+</tr>
+<tr>
+<td>D-07</td>
+<td>第一次考研/考公</td>
+<td>P1</td>
+<td>报名、备考、调剂、面试</td>
+</tr>
+<tr>
+<td>D-08</td>
+<td>第一次学游泳</td>
+<td>P1</td>
+<td>选班、装备、安全、进度</td>
+</tr>
+<tr>
+<td>D-09</td>
+<td>第一次自己做饭</td>
+<td>P0</td>
+<td>厨具、食材、基础菜、安全</td>
+</tr>
+<tr>
+<td>D-10</td>
+<td>第一次用 AI 工具办事</td>
+<td>P1</td>
+<td>选工具、提问、核验、隐私</td>
+</tr>
+</tbody></table></div>
+<h4>E 家庭与育儿（10）</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>E-01</td>
+<td>第一次当爸爸</td>
+<td>P0 ★首批</td>
+<td>怀孕到孩子 1 岁</td>
+</tr>
+<tr>
+<td>E-02</td>
+<td>第一次备孕与产检</td>
+<td>P1</td>
+<td>检查、建档、节奏</td>
+</tr>
+<tr>
+<td>E-03</td>
+<td>第一次陪产</td>
+<td>P1</td>
+<td>待产包、入院、陪产、签字</td>
+</tr>
+<tr>
+<td>E-04</td>
+<td>第一次照顾新生儿</td>
+<td>P1</td>
+<td>喂养、睡眠、黄疸、哭闹</td>
+</tr>
+<tr>
+<td>E-05</td>
+<td>第一次给孩子上户口/办医保</td>
+<td>P0</td>
+<td>出生证明、户口、参保</td>
+</tr>
+<tr>
+<td>E-06</td>
+<td>第一次选幼儿园</td>
+<td>P2</td>
+<td>资质、距离、费用、报名</td>
+</tr>
+<tr>
+<td>E-07</td>
+<td>第一次送孩子上小学</td>
+<td>P2</td>
+<td>报名、材料、学区、入学准备</td>
+</tr>
+<tr>
+<td>E-08</td>
+<td>第一次照顾生病的孩子</td>
+<td>P1</td>
+<td>挂号、用药、观察、复诊</td>
+</tr>
+<tr>
+<td>E-09</td>
+<td>第一次照顾年迈父母</td>
+<td>P1</td>
+<td>体检、慢病、陪诊、照护资源</td>
+</tr>
+<tr>
+<td>E-10</td>
+<td>第一次面对亲人离世</td>
+<td>P1</td>
+<td>死亡证明、殡葬、遗产、社保注销</td>
+</tr>
+</tbody></table></div>
+<h4>F 健康与医疗（10）</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F-01</td>
+<td>第一次自己挂号看病</td>
+<td>P0</td>
+<td>选科、挂号、就诊、检查、取药</td>
+</tr>
+<tr>
+<td>F-02</td>
+<td>第一次体检</td>
+<td>P1</td>
+<td>选套餐、空腹、读报告</td>
+</tr>
+<tr>
+<td>F-03</td>
+<td>第一次住院/手术</td>
+<td>P1</td>
+<td>入院、押金、陪护、签字、出院</td>
+</tr>
+<tr>
+<td>F-04</td>
+<td>第一次看牙</td>
+<td>P1</td>
+<td>检查、洗牙、补牙、费用</td>
+</tr>
+<tr>
+<td>F-05</td>
+<td>第一次配眼镜</td>
+<td>P2</td>
+<td>验光、镜片、选框、避坑</td>
+</tr>
+<tr>
+<td>F-06</td>
+<td>第一次看心理医生</td>
+<td>P1</td>
+<td>科室、挂号、咨询、隐私</td>
+</tr>
+<tr>
+<td>F-07</td>
+<td>第一次拨 120/急救</td>
+<td>P0</td>
+<td>判断、呼救、心肺复苏、AED</td>
+</tr>
+<tr>
+<td>F-08</td>
+<td>第一次买商业保险</td>
+<td>P1</td>
+<td>险种、健康告知、等待期、理赔</td>
+</tr>
+<tr>
+<td>F-09</td>
+<td>第一次医保报销</td>
+<td>P0</td>
+<td>目录、起付线、比例、异地</td>
+</tr>
+<tr>
+<td>F-10</td>
+<td>第一次献血</td>
+<td>P2</td>
+<td>条件、流程、间隔、恢复</td>
+</tr>
+</tbody></table></div>
+<h4>G 钱与消费（10）</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>G-01</td>
+<td>第一次办银行卡</td>
+<td>P0</td>
+<td>材料、一类二类、激活、费用</td>
+</tr>
+<tr>
+<td>G-02</td>
+<td>第一次租房</td>
+<td>P0</td>
+<td>找房、看合同、押金、交接、退租</td>
+</tr>
+<tr>
+<td>G-03</td>
+<td>第一次买房/办房贷</td>
+<td>P1</td>
+<td>资格、首付、贷款、网签、交房</td>
+</tr>
+<tr>
+<td>G-04</td>
+<td>第一次买车</td>
+<td>P1</td>
+<td>预算、配置、合同、上牌、保险</td>
+</tr>
+<tr>
+<td>G-05</td>
+<td>第一次用信用卡</td>
+<td>P1</td>
+<td>申请、账单日、免息期、分期、征信</td>
+</tr>
+<tr>
+<td>G-06</td>
+<td>第一次个税申报</td>
+<td>P0</td>
+<td>专项附加扣除、年度汇算</td>
+</tr>
+<tr>
+<td>G-07</td>
+<td>第一次理财</td>
+<td>P1</td>
+<td>风险等级、流动性、费用、避坑</td>
+</tr>
+<tr>
+<td>G-08</td>
+<td>第一次消费维权</td>
+<td>P0</td>
+<td>证据、12315、平台投诉、退货</td>
+</tr>
+<tr>
+<td>G-09</td>
+<td>第一次报警/报案</td>
+<td>P0</td>
+<td>什么情况报、怎么报、回执、跟进</td>
+</tr>
+<tr>
+<td>G-10</td>
+<td>第一次劳动仲裁/打官司</td>
+<td>P1</td>
+<td>证据、时效、流程、费用</td>
+</tr>
+</tbody></table></div>
+<h4>H 居住与生活（8）</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>H-01</td>
+<td>第一次独居</td>
+<td>P0</td>
+<td>租房、水电、做饭、安全、应急</td>
+</tr>
+<tr>
+<td>H-02</td>
+<td>第一次搬家</td>
+<td>P1</td>
+<td>打包、搬家公司、交接、地址变更</td>
+</tr>
+<tr>
+<td>H-03</td>
+<td>第一次装修</td>
+<td>P1</td>
+<td>找公司、合同、预算、验收、甲醛</td>
+</tr>
+<tr>
+<td>H-04</td>
+<td>第一次开通水电燃气宽带</td>
+<td>P1</td>
+<td>开户、过户、缴费、报修</td>
+</tr>
+<tr>
+<td>H-05</td>
+<td>第一次养宠物</td>
+<td>P2</td>
+<td>选择、疫苗、证件、费用、责任</td>
+</tr>
+<tr>
+<td>H-06</td>
+<td>第一次处理邻里纠纷</td>
+<td>P2</td>
+<td>沟通、物业、报警、诉讼</td>
+</tr>
+<tr>
+<td>H-07</td>
+<td>第一次办居住证</td>
+<td>P1</td>
+<td>条件、材料、积分、续签</td>
+</tr>
+<tr>
+<td>H-08</td>
+<td>第一次找家政/保姆</td>
+<td>P2</td>
+<td>渠道、合同、背景、保险</td>
+</tr>
+</tbody></table></div>
+<h4>I 数字与网络（8）</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>I-01</td>
+<td>第一次防诈骗</td>
+<td>P0</td>
+<td>高发骗局、识别、止付、报警</td>
+</tr>
+<tr>
+<td>I-02</td>
+<td>第一次账号被盗/找回</td>
+<td>P1</td>
+<td>冻结、申诉、证据、防二次</td>
+</tr>
+<tr>
+<td>I-03</td>
+<td>第一次网购与退货</td>
+<td>P1</td>
+<td>规则、七天无理由、运费险、投诉</td>
+</tr>
+<tr>
+<td>I-04</td>
+<td>第一次数据备份</td>
+<td>P1</td>
+<td>备份策略、云盘、恢复演练</td>
+</tr>
+<tr>
+<td>I-05</td>
+<td>第一次发布作品与版权</td>
+<td>P2</td>
+<td>署名、授权、侵权、维权</td>
+</tr>
+<tr>
+<td>I-06</td>
+<td>第一次实名认证与隐私</td>
+<td>P1</td>
+<td>必要性、授权、注销、泄露</td>
+</tr>
+<tr>
+<td>I-07</td>
+<td>第一次网上办事</td>
+<td>P1</td>
+<td>政务平台、实名、材料、进度</td>
+</tr>
+<tr>
+<td>I-08</td>
+<td>第一次二手交易</td>
+<td>P2</td>
+<td>验货、面交、平台担保、纠纷</td>
+</tr>
+</tbody></table></div>
+<h4>J 人生节点（8）</h4>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>J-01</td>
+<td>第一次结婚登记</td>
+<td>P1</td>
+<td>条件、材料、预约、婚检</td>
+</tr>
+<tr>
+<td>J-02</td>
+<td>第一次办婚礼</td>
+<td>P2</td>
+<td>预算、合同、流程、避坑</td>
+</tr>
+<tr>
+<td>J-03</td>
+<td>第一次独自过年/离家</td>
+<td>P2</td>
+<td>交通、住宿、安全、情绪</td>
+</tr>
+<tr>
+<td>J-04</td>
+<td>第一次跨城定居</td>
+<td>P1</td>
+<td>户口、社保、租房、生活接入</td>
+</tr>
+<tr>
+<td>J-05</td>
+<td>第一次失业</td>
+<td>P1</td>
+<td>失业金、医保、社保、求职</td>
+</tr>
+<tr>
+<td>J-06</td>
+<td>第一次退休</td>
+<td>P2</td>
+<td>条件、手续、养老金、医保</td>
+</tr>
+<tr>
+<td>J-07</td>
+<td>第一次立遗嘱/意定监护</td>
+<td>P2</td>
+<td>形式、公证、效力、变更</td>
+</tr>
+<tr>
+<td>J-08</td>
+<td>第一次面对身后事安排</td>
+<td>P2</td>
+<td>捐献、殡葬、遗产、注销</td>
+</tr>
+</tbody></table></div>
+<p><strong>统计：</strong> 10 个栏目，94 个条目，其中 P0 25 篇（含首批 8 篇）、P1 49 篇、P2 20 篇。</p>
+<h3>9.3 优先级判定</h3>
+<p>同时满足两条以上进 P0：</p>
+<ol>
+<li><strong>高频</strong>：多数城市成年人在 5 年内会遇到。</li>
+<li><strong>高损失</strong>：做错会导致被拒、被罚、被骗、健康受损或损失上千元。</li>
+<li><strong>高时效</strong>：规则每年变，旧攻略容易误导。</li>
+<li><strong>高搜索量</strong>：搜索引擎和问答平台长期有人问。</li>
+</ol>
+<p>只满足一条的进 P1；需要专业资质或受众很窄的进 P2。</p>
+<hr>
+<h2 id="sec-9">十、质量与维护机制</h2>
+<h3>10.1 自动检查（CI）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th>脚本</th>
+<th>失败条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>元数据</td>
+<td><code>check-frontmatter.mjs</code></td>
+<td>缺字段、取值不在枚举内、ID 重复</td>
+</tr>
+<tr>
+<td>链接</td>
+<td><code>check-links.mjs</code></td>
+<td>返回 404/410；每周一跑</td>
+</tr>
+<tr>
+<td>时效</td>
+<td><code>check-stale.mjs</code></td>
+<td>超过 S/M/H 对应复审周期</td>
+</tr>
+<tr>
+<td>交叉引用</td>
+<td><code>check-refs.mjs</code></td>
+<td>引用不带标题锚点、指向不存在的步骤</td>
+</tr>
+<tr>
+<td>结构</td>
+<td><code>check-structure.mjs</code></td>
+<td>缺板块、板块顺序错误、步骤编号跳号</td>
+</tr>
+<tr>
+<td>待核实</td>
+<td><code>check-todo.mjs</code></td>
+<td>「待核实」超过 30 天未处理</td>
+</tr>
+</tbody></table></div>
+<p>CI 只报警不自动改；<code>status = 待更新</code> 的条目在检索页标黄，不阻断发布。</p>
+<h3>10.2 Issue 与 PR</h3>
+<ul>
+<li><strong>纠错</strong>：必须填「条目 ID + 正文原句 + 正确说法 + 来源链接 + 访问日期」。</li>
+<li><strong>新条目</strong>：必须填「为什么是第一次 + 目标读者 + 3 个核心问题 + 2 个官方来源」。</li>
+<li><strong>内容过时</strong>：必须填「哪条规则变了 + 官方新链接 + 生效日期」。</li>
+<li>PR 模板带发布前复核清单，10 项逐项勾选。</li>
+</ul>
+<h3>10.3 更新与版本</h3>
+<ul>
+<li><code>updates/YYYY-MM.md</code> 按月记录：新增、修订、失效链接修复、复审通过。</li>
+<li>每篇正文顶部不写版本号，版本信息放在核实记录里，避免正文频繁变动。</li>
+<li>README 显示「收录 N 篇 · 已核实 N 篇 · 最近更新 YYYY-MM-DD」，由脚本生成，不手写。</li>
+</ul>
+<h3>10.4 免责声明</h3>
+<p><code>DISCLAIMER.md</code> 与 README 底部各放一份，写明：</p>
+<ul>
+<li>内容为公开信息整理，不构成医疗、法律、投资建议。</li>
+<li>政策与机构规则会变，办事前以官方最新公告为准。</li>
+<li>个人经验部分不保证普遍适用。</li>
+<li>紧急情况先联系专业人员或拨打急救电话。</li>
+<li>欢迎纠错，但不接受删改来源的「经验之谈」。</li>
+</ul>
+<hr>
+<h2 id="sec-10">十一、实施计划</h2>
+<h3>阶段 0：定标准（先立规矩）</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>产出</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>meta/条目模板.md</code></td>
+<td>第九板块骨架 + front-matter</td>
+</tr>
+<tr>
+<td><code>meta/写作规范.md</code></td>
+<td>第七节全文</td>
+</tr>
+<tr>
+<td><code>meta/依据分级与引用规则.md</code></td>
+<td>Ⅰ–Ⅳ 级定义、来源白名单、引用格式</td>
+</tr>
+<tr>
+<td><code>meta/调研与核实流程.md</code></td>
+<td>第八节全文 + 核实记录模板</td>
+</tr>
+<tr>
+<td><code>meta/主题地图.md</code></td>
+<td>第九节全量清单</td>
+</tr>
+<tr>
+<td><code>README.md</code> 骨架</td>
+<td>定位、场景入口、目录占位</td>
+</tr>
+<tr>
+<td>目录与空文件</td>
+<td>十个栏目文件夹 + <code>00-栏目导读.md</code></td>
+</tr>
+</tbody></table></div>
+<p><strong>验收：</strong> 模板能被第二个人直接照着写出一篇合格初稿。</p>
+<h3>阶段 1：首批 8 篇</h3>
+<p>按 A-01 → A-02 → A-03 → B-01 → C-01 → D-01 → D-02 → E-01 顺序生产。每篇走完七步流水线，产出：</p>
+<ul>
+<li>正文</li>
+<li>核实记录</li>
+<li>可打印清单</li>
+<li>更新日志条目</li>
+</ul>
+<p><strong>验收：</strong> 8 篇全部 <code>status = 已核实</code>；每篇复核清单 10 项全过。</p>
+<h3>阶段 2：检索与导航</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>产出</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>tools/build-index.mjs</code></td>
+<td>从 front-matter 生成 <code>index.json</code></td>
+</tr>
+<tr>
+<td><code>index.html</code></td>
+<td>筛选、现场模式、状态标记</td>
+</tr>
+<tr>
+<td>README 导航表</td>
+<td>问题 → 条目</td>
+</tr>
+<tr>
+<td><code>meta/术语表.md</code></td>
+<td>高频术语一句话解释</td>
+</tr>
+</tbody></table></div>
+<p><strong>验收：</strong> 用手机能在 3 次点击内找到「第一次坐飞机」的速查卡。</p>
+<h3>阶段 3：扩展 P0</h3>
+<p>补齐剩余 17 篇 P0：A-06、B-02、C-02、C-03、C-04、D-09、E-05、F-01、F-07、F-09、G-01、G-02、G-06、G-08、G-09、H-01、I-01。</p>
+<p><strong>验收：</strong> P0 共 25 篇全部已核实；检索页可按 8 个维度筛选。</p>
+<h3>阶段 4：维护机制</h3>
+<ul>
+<li>CI 五项检查上线。</li>
+<li>三类 Issue 模板上线。</li>
+<li>季度复审：按 <code>check-stale</code> 报告逐篇处理。</li>
+<li>按需增加 PDF/EPUB 导出（首期不做）。</li>
+</ul>
+<hr>
+<h2 id="sec-11">十二、风险与对策</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>风险</th>
+<th>表现</th>
+<th>对策</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>政策过时</td>
+<td>签证、医保、社保规则变了，正文还是旧的</td>
+<td>时效分级 + 复审周期 + 文首日期 + CI 超期报警</td>
+</tr>
+<tr>
+<td>地区差异</td>
+<td>把某市经验写成全国规则</td>
+<td><code>region</code> 字段 + 「以当地为准」+ 官方查询入口</td>
+</tr>
+<tr>
+<td>机构规则变动</td>
+<td>航司、平台、医院流程调整</td>
+<td>以官方页面为准 + 来源标注访问日期</td>
+</tr>
+<tr>
+<td>个人经验偏差</td>
+<td>一个人的顺利经历被当成通用流程</td>
+<td>Ⅳ 级只进提醒，不进强制步骤；署名 + 条件</td>
+</tr>
+<tr>
+<td>专业边界</td>
+<td>医疗、法律、投资内容越界</td>
+<td>只写流程和「问谁」，不写结论；免责声明</td>
+</tr>
+<tr>
+<td>维护成本</td>
+<td>篇数越多，过期越快</td>
+<td>先做 8 篇跑通模板；脚本自动化；P0 优先</td>
+</tr>
+<tr>
+<td>内容被误读</td>
+<td>读者把旧版本当最新</td>
+<td>每篇显示核实日期；检索页标状态；更新日志</td>
+</tr>
+<tr>
+<td>商业化压力</td>
+<td>广告、带货、卖课混入</td>
+<td>项目规则明确禁止；来源白名单约束</td>
+</tr>
+</tbody></table></div>
+<hr>
+<h2 id="sec-12">十三、验收标准（整体）</h2>
+<ol>
+<li><strong>结构完整</strong>：10 个栏目、94 个条目 ID、首批 8 篇落位，无重复 ID。</li>
+<li><strong>模板统一</strong>：8 篇均含 9 个板块，板块顺序一致，front-matter 字段齐全。</li>
+<li><strong>事实可核</strong>：每篇 ≥10 个来源，≥60% 为 Ⅰ/Ⅱ 级；核实记录能逐条定位原文。</li>
+<li><strong>强制表述有据</strong>：所有「必须/不得/否则」都能追到 Ⅰ/Ⅱ 级来源。</li>
+<li><strong>读者可用</strong>：找 3 名零经验者，只给速查卡，能独立完成一次流程或明确知道该问谁。</li>
+<li><strong>检索可用</strong>：按关键词、栏目、阶段、耗时、花费、风险、时效、状态八个维度能筛出目标条目。</li>
+<li><strong>维护可跑</strong>：CI 五项检查通过；<code>check-stale</code> 能正确列出超期条目。</li>
+<li><strong>边界清晰</strong>：无医疗诊断、法律结论、投资建议、绝对化承诺；免责声明到位。</li>
+</ol>
+<hr>
+<h2 id="sec-13">附：本方案的执行方式</h2>
+<p>本次交付物为<strong>策划方案本身</strong>。批准后：</p>
+<ol>
+<li>将本文件复制到 <code>c:\Users\FOH\Desktop\第一次\人生第一次-项目策划方案.md</code>。</li>
+<li>按第十三节做一次文档自检（结构、模板、主题数量、规范可执行性）。</li>
+<li>不创建仓库骨架、不写正文，等待下一阶段指令。</li>
+</ol>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

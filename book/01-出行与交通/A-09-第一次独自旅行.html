@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次独自旅行 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 出行与交通</nav>
+  <h1 class="post-title">第一次独自旅行</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>出行与交通</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>4 条</b></span><span class="chip ">耗时 <b>1-3天</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：行程留一份给家人，住宿只选正规店，证件和钱分开放，夜里不去偏僻地方，遇事先找警察。
+<strong>适用</strong>：第一次一个人出门旅行、没有同伴的成年人和成年学生。
+<strong>不适用</strong>：境外独自旅行（另见 B 栏目）、徒步探险和无人区穿越等高危活动。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>报备</strong>：把行程、酒店地址、同行联系方式发给至少一位家人。</li>
+<li><strong>住宿</strong>：只订正规酒店、民宿，入住要实名登记。</li>
+<li><strong>证件</strong>：身份证随身，复印件和电子版分开存。</li>
+<li><strong>钱</strong>：一张卡、一点现金分开放，不把全部钱放一个包。</li>
+<li><strong>夜间</strong>：不独自去偏僻景区、酒吧街、无照明路段。</li>
+<li><strong>求助</strong>：110 报警、120 急救、12345 政务热线。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 行前 7 天</h3>
+<ul>
+<li>定行程：每天住哪、去哪、怎么走，留出机动时间。</li>
+<li>订住宿：看评价、位置、消防通道，优先连锁或评分高的正规店。</li>
+<li>买保险：旅游意外险，看清免责条款和救援电话。</li>
+<li>查目的地：天气、景区预约、限流、交通管制。</li>
+<li>存电话：当地 110、120、景区派出所、酒店前台。</li>
+<li>把行程发给家人，约定每天报平安的时间。</li>
+</ul>
+<h3>1.2 行前 24 小时</h3>
+<ul>
+<li>证件：身份证、学生证、驾驶证等，复印件和手机照片分开存。</li>
+<li>支付：手机支付能用，另带一张银行卡和几百元现金。</li>
+<li>药品：常用药、创可贴、止泻药、防蚊液。</li>
+<li>充电：充电宝、充电线、转换头。</li>
+<li>行李：轻装，贵重物品随身，不托运。</li>
+</ul>
+<h3>1.3 出门前</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 身份证</li>
+<li><input disabled="" type="checkbox"> 手机、充电宝、充电线</li>
+<li><input disabled="" type="checkbox"> 银行卡、少量现金</li>
+<li><input disabled="" type="checkbox"> 常用药</li>
+<li><input disabled="" type="checkbox"> 酒店订单和地址截图</li>
+<li><input disabled="" type="checkbox"> 保险单和救援电话</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 到达目的地</h3>
+<ul>
+<li>在哪：机场、车站。</li>
+<li>做什么：走正规出租车上客点或网约车上车点，不跟揽客的人走。</li>
+<li>看什么：机场、车站的正规指示牌。</li>
+<li>完成标志：上车，把酒店地址给司机看。</li>
+</ul>
+<h3>2.2 入住</h3>
+<ul>
+<li>在哪：预订的酒店或民宿。</li>
+<li>做什么：出示身份证实名登记，确认房号、价格、退房时间。</li>
+<li>看什么：前台是否有营业执照，消防通道位置，门锁是否完好。</li>
+<li>完成标志：拿到房卡，进房检查门锁和猫眼。</li>
+</ul>
+<h3>2.3 白天游玩</h3>
+<ul>
+<li>在哪：景区、街区。</li>
+<li>做什么：按预约时间入园，保管好证件和包。</li>
+<li>看什么：景区安全提示、天气变化、人流方向。</li>
+<li>完成标志：按计划返回住宿地。</li>
+<li>卡住了怎么办：迷路用地图 App 定位，问景区工作人员，不跟陌生人走。</li>
+</ul>
+<h3>2.4 夜间返回</h3>
+<ul>
+<li>在哪：从景区或餐馆回酒店。</li>
+<li>做什么：走照明好、人多的主路，打车坐后排，分享行程。</li>
+<li>看什么：周围环境、是否有人尾随。</li>
+<li>完成标志：回到酒店，反锁房门。</li>
+<li>卡住了怎么办：感觉被跟踪，进便利店、酒店大堂等公共场所，拨 110。</li>
+</ul>
+<h3>2.5 退房与返程</h3>
+<ul>
+<li>在哪：酒店前台。</li>
+<li>做什么：退房、检查房间、拿好发票。</li>
+<li>看什么：有没有落下充电器、证件、衣物。</li>
+<li>完成标志：离开酒店，前往车站或机场。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 一个人住酒店安全吗？</h3>
+<p>答：选正规酒店，入住实名登记，进房先看门锁、猫眼和消防通道。不住无证小旅馆、日租房。[1]</p>
+<h3>Q2 住宿一定要身份证吗？</h3>
+<p>答：要。旅馆住宿实行实名登记，未带身份证可到附近派出所开具临时身份证明，具体以当地规定为准。</p>
+<h3>Q3 行程要不要告诉家人？</h3>
+<p>答：要。把酒店地址、每天大致行程、同行人联系方式发给家人，约定报平安时间。</p>
+<h3>Q4 一个人吃饭怎么点菜？</h3>
+<p>答：选小份、单人餐，避免浪费；夜市选人多的摊位，注意食材新鲜。</p>
+<h3>Q5 景区要预约吗？</h3>
+<p>答：热门景区多数实行实名预约和限流，提前在官方小程序或公众号预约，不买黄牛票。</p>
+<h3>Q6 独自旅行要买什么保险？</h3>
+<p>答：旅游意外险，含意外医疗、紧急救援。看清免责条款，特别是高风险项目。</p>
+<h3>Q7 夜间打车安全吗？</h3>
+<p>答：坐后排，核对车牌，分享行程，不坐黑车。深夜尽量用正规平台。</p>
+<h3>Q8 遇到搭讪、尾随怎么办？</h3>
+<p>答：不透露独自出行信息，走向人多的地方或店铺，拨 110，必要时进酒店大堂求助。</p>
+<h3>Q9 证件丢了怎么办？</h3>
+<p>答：先报警挂失，再到当地派出所或政务大厅办临时身份证明；机票、火车票可用临时证明办理。</p>
+<h3>Q10 一个人旅行怎么拍照？</h3>
+<p>答：请景区工作人员、带孩子的家庭或情侣帮忙，不把手机交给形迹可疑的人。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>低价一日游</strong>：路上加价、强制购物，选正规旅行社并签合同。</li>
+<li><strong>车站揽客</strong>： “最后一间房”“便宜包车”多是陷阱，通过正规平台订。</li>
+<li><strong>无证民宿</strong>：没有消防和治安许可，出事难维权。</li>
+<li><strong>把行程发到公开社交平台</strong>：实时定位等于告诉陌生人你不在家。</li>
+<li><strong>所有钱放一个包</strong>：分开放，丢了还有备用。</li>
+<li><strong>深夜走小路</strong>：省几分钟，风险成倍增加。</li>
+<li><strong>轻信“老乡”</strong>：火车站、景区的热情搭讪，先保持距离。</li>
+<li><strong>不买保险</strong>：几百元保费换紧急救援，值得。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>被跟踪</strong>：进便利店、酒店大堂、派出所，拨 110，不直接回住处。</li>
+<li><strong>证件丢失</strong>：报警挂失，到派出所办临时身份证明，联系原籍补办。</li>
+<li><strong>生病或受伤</strong>：拨 120，联系酒店前台协助，保留病历和发票用于保险理赔。</li>
+<li><strong>遭遇偷窃、抢劫</strong>：人身安全优先，脱险后拨 110，挂失银行卡。</li>
+<li><strong>航班、列车取消</strong>：联系承运方改签，保留凭证，必要时申请住宿安排。</li>
+<li><strong>自然灾害、极端天气</strong>：听从当地应急部门指挥，停止户外活动，联系家人报平安。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>交通</td>
+<td>几百到几千元</td>
+<td>按距离，必选</td>
+</tr>
+<tr>
+<td>住宿</td>
+<td>150–500 元/晚</td>
+<td>青旅更便宜，必选</td>
+</tr>
+<tr>
+<td>餐饮</td>
+<td>50–150 元/天</td>
+<td>按城市，必选</td>
+</tr>
+<tr>
+<td>门票</td>
+<td>几十到几百元</td>
+<td>按景区，可选</td>
+</tr>
+<tr>
+<td>保险</td>
+<td>10–50 元/天</td>
+<td>建议购买</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mps.gov.cn">公安部</a></li>
+<li><a href="https://www.mct.gov.cn">文化和旅游部</a></li>
+<li>110、120、12345</li>
+</ul>
+</li>
+<li>相关条目：<a href="A-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9D%90%E9%A3%9E%E6%9C%BA.html">A-01 第一次坐飞机</a>、<a href="A-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%89%93%E7%BD%91%E7%BA%A6%E8%BD%A6%E4%B8%8E%E5%87%BA%E7%A7%9F%E8%BD%A6.html">A-06 第一次打网约车/出租车</a></li>
+<li>可打印清单：<a href="../../checklists/A-09-%E7%8B%AC%E8%87%AA%E6%97%85%E8%A1%8C-%E5%AE%89%E5%85%A8%E6%B8%85%E5%8D%95.html">A-09 独自旅行清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《旅馆业治安管理办法》；Ⅱ 级为公安和文旅部门安全提示；Ⅲ 级为通行做法。</li>
+<li>主要来源：<ol>
+<li>《旅馆业治安管理办法》，<a href="https://www.mps.gov.cn">https://www.mps.gov.cn</a></li>
+<li>公安部关于旅馆接待未成年人入住“五必须”的说明，<a href="https://www.mps.gov.cn">https://www.mps.gov.cn</a></li>
+<li>文化和旅游部旅游安全提示，<a href="https://www.mct.gov.cn">https://www.mct.gov.cn</a></li>
+<li>外交部中国领事服务网境外求助指南，<a href="https://cs.mfa.gov.cn">https://cs.mfa.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地独自旅行。住宿登记和景区预约规则各地不同。</li>
+<li>易变项：景区预约、限流、交通管制（M）。</li>
+<li>核实记录：<a href="../../sources/A-09.%E6%A0%B8%E5%AE%9E.html">sources/A-09.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="A-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%AA%91%E7%94%B5%E5%8A%A8%E8%BD%A6%E4%B8%8A%E8%B7%AF.html"><span class="dir">← 上一篇</span><span class="name">A-08 第一次骑电动车上路</span></a><a class="next" href="A-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%98%A5%E8%BF%90%E5%9B%9E%E5%AE%B6.html"><span class="dir">下一篇 →</span><span class="name">A-10 第一次春运回家</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

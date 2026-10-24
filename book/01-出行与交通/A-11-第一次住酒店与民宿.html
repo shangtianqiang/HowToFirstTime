@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次住酒店/民宿 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 出行与交通</nav>
+  <h1 class="post-title">第一次住酒店/民宿</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>出行与交通</b></span><span class="chip ">最近核实 <b>2026-10-24</b></span><span class="chip ">来源 <b>8 条</b></span><span class="chip ">耗时 <b>半天</b></span><span class="chip ">花费 <b>百元内</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：订房看清退改规则，入住凭身份证实名登记，进房先查门锁、猫眼和逃生通道，有纠纷留证据找平台。
+<strong>适用</strong>：第一次独自或与亲友预订并入住酒店、宾馆、民宿的人。
+<strong>不适用</strong>：出国住宿选酒店，看 <a href="../02-%E8%AF%81%E4%BB%B6%E4%B8%8E%E8%B7%A8%E5%A2%83/B-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%87%BA%E5%9B%BD.html">B-01 第一次出国</a>；长租和租房交接，看 <a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%A7%9F%E6%88%BF.html">G-02 第一次租房</a>。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>必须带</strong>：本人身份证，一人一证，前台登记用[1]。</li>
+<li><strong>订房前</strong>：看清退改规则、押金说明和近期差评，订单截图保存。</li>
+<li><strong>进房先做</strong>：反锁门、挂防盗扣，看门后疏散图，找到安全出口方向。</li>
+<li><strong>贵重物品</strong>：放房内保险箱或交前台保管[1]，不带进浴室。</li>
+<li><strong>出问题</strong>：先找酒店前台和预订平台，谈不拢打 12315 或 12345[6]。</li>
+<li><strong>退房前</strong>：查床底、插座和保险箱，押金问清退还时限。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 预订时</h3>
+<ul>
+<li>选渠道：订房平台、酒店官网或官方小程序都行。价格差异大时两边对比。</li>
+<li>看三项：价格和退改规则、押金额度、近三个月的差评。</li>
+<li>差评重点看：卫生、隔音、安全和前台处理问题的态度。</li>
+<li>选位置：用地图看周边有没有地铁站、便利店和吃饭的地方。第一次去陌生城市，选交通便利、评价数量多的区域。</li>
+<li>民宿额外确认：地址是否准确、怎么取钥匙、有没有 24 小时联系人说得通。</li>
+<li>保存证据：订单截图，包含房型、价格、取消政策和订单号。</li>
+<li>有人以「加微信更便宜」劝你脱离平台转账，不接。脱离平台下单，退款和投诉都没有抓手。</li>
+</ul>
+<h3>1.2 提前 24 小时</h3>
+<ul>
+<li>确认订单没被取消，核对入住日期、房型和到店时间。</li>
+<li>查地址和路线，估算从车站或机场过去的时间。</li>
+<li>检查身份证在有效期内。境外旅客用护照登记[1]。</li>
+<li>带未成年人的，备好监护人联系方式。按规定酒店会询问相关情况[3]。</li>
+<li>看订单里是否含早餐，几点开始、在哪里用。</li>
+<li>深夜才到的，提前打电话报姓名和到店时间，请对方留房。</li>
+</ul>
+<h3>1.3 出门前</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 身份证、手机、订单截图</li>
+<li><input disabled="" type="checkbox"> 少量现金，防刷卡或扫码故障</li>
+<li><input disabled="" type="checkbox"> 充电线、充电宝</li>
+<li><input disabled="" type="checkbox"> 洗漱用品和拖鞋，部分城市酒店不主动提供一次性用品</li>
+<li><input disabled="" type="checkbox"> 常用药品</li>
+<li>贵重物品尽量少带，带了就想好放哪。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 到店核对</h3>
+<ul>
+<li>在哪：酒店前台，或民宿和房东约定的碰面点。</li>
+<li>做什么：报预订姓名和手机号，请对方调出订单。</li>
+<li>看什么：房型、价格、入住天数和订单是否一致。前台通常公示营业执照、卫生许可证和房价表。</li>
+<li>民宿碰面约在小区门口、大堂这类公共位置。第一次见房东，把订单信息当面核对一遍。</li>
+<li>说什么：问清三件事，押金多少、何时退、退房时间几点。</li>
+<li>完成标志：确认入住，拿到房卡或门锁密码。</li>
+</ul>
+<h3>2.2 实名登记</h3>
+<ul>
+<li>做什么：出示本人身份证，登记入住信息。</li>
+<li>底线：法规要求旅馆接待住宿必须登记，并查验旅客身份证件[1]。所有入住人都要登记，一人一证。</li>
+<li>注意：用自己的身份证帮朋友开房、拿别人的证件登记，都行不通。忘带证件的，请前台协助联系当地公安机关核实，能否办理以当地为准。</li>
+<li>民宿：正规民宿同样要实名登记，线上下单不等于免登记。</li>
+<li>完成标志：登记完成，拿到房卡，订单变为已入住。</li>
+</ul>
+<h3>2.3 押金与房型确认</h3>
+<ul>
+<li>做什么：交押金或信用卡预授权，看清金额。</li>
+<li>看什么：押金收据或预授权单据，拍照留存。</li>
+<li>现金交押金的，当面点清，收据收进证件包。预授权不是扣款，只是冻结额度，离店后解冻。</li>
+<li>说什么：问清押金什么时候退、几天到账、预授权何时解冻。</li>
+<li>房型：当面确认房间类型、楼层、吸烟房或无烟房。和订单不符，当场要求换，不要拖到夜里。</li>
+</ul>
+<h3>2.4 进房安全自检</h3>
+<ul>
+<li>先锁门：进门试门锁和反锁扣，防盗链挂上。猫眼看看有没有被堵、装反。</li>
+<li>看逃生图：房门背后贴着疏散示意图，记住最近的两个安全出口方向[2]。</li>
+<li>查通道：走一遍楼道，看疏散通道有没有被杂物堵住[2]，堵了就要求换房或报告前台。</li>
+<li>查设施：天花板上的烟感器和喷淋头在不在，灭火器和报警按钮在哪。</li>
+<li>查床品：床单、枕套、被套有没有毛发和污渍。按卫生规定，可反复使用的用品用具应当一客一换[7]，不干净当场要求更换。</li>
+<li>试水电：放热水看水温，试灯和空调。窗户能否关严锁好。</li>
+<li>挑房偏好：办入住时可以主动提，不住电梯口正对面，不住底层和顶层。</li>
+<li>行李归置：行李箱轮子蹭过地面，上床或上桌前用毛巾擦一擦。箱子合上放床边，别敞口。</li>
+<li>不放心床品的，把要求提在前台下班前，当场解决比事后投诉容易。</li>
+</ul>
+<h3>2.5 排查针孔摄像头</h3>
+<ul>
+<li>通行做法：拉上窗帘关灯，打开手机相机在房间慢慢扫一圈，看屏幕里有没有异常红点或亮点。部分手机会滤掉红外光，前后摄像头各试一遍。</li>
+<li>重点位置：正对床和卫生间的物件，烟雾报警器、插座孔、路由器、装饰画、纸巾盒、绿植、镜子边缘、电视机旁。</li>
+<li>看细节：可疑物件断电，拍照录像留证。房间没有保险箱的，电脑和证件锁进行李箱，箱子挪到床边。</li>
+<li>真发现了：不要自行拆除，保持原状，拨 110 报警，同时通知酒店和平台。</li>
+<li>说明：这是防偷拍的经验做法，不是法定流程。正规经营场所不会安装，做一遍是为了安心。</li>
+</ul>
+<h3>2.6 退房与押金退还</h3>
+<ul>
+<li>做什么：退房时间前收拾行李，按床底、枕头下、插座旁、保险箱、浴室的顺序查一遍。</li>
+<li>看什么：房内迷你吧和付费用品，没动过的别拆封。</li>
+<li>查抽屉：衣柜、抽屉、床头柜各开一眼。充电器和换下的衣服最容易落下。</li>
+<li>说什么：退房时报房号，请前台查房、办退押金。</li>
+<li>看什么：现金押金通常当场退，预授权解冻一般要几天，以银行和酒店公示为准。</li>
+<li>完成标志：押金到账或拿到退款凭证，订单变为已退房。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 没带身份证能入住吗？</h3>
+<p>答：请前台协助联系当地公安机关核实身份，部分地区支持电子身份证件。能否办理以当地公安机关要求为准，多数正规酒店不会无证收客。</p>
+<h3>Q2 同住的每个人都要登记吗？</h3>
+<p>答：要。所有入住旅客都要查验身份证件并登记[1]，一人一证，家人和朋友同住也不例外。</p>
+<h3>Q3 押金一般收多少？</h3>
+<p>答：多数收房费的一部分或固定金额，常见 100–500 元，连锁酒店常见 100–300 元。也有酒店不收押金。以酒店公示为准。</p>
+<h3>Q4 押金多久退回？</h3>
+<p>答：现金押金退房时当场退。信用卡预授权要等解冻，一般 1–7 个工作日，视银行而定。超时未退，先找酒店，再找平台。</p>
+<h3>Q5 民宿和酒店有什么区别？</h3>
+<p>答：民宿多是个人房源，可能没有 24 小时前台、电梯和消防报警系统。民宿有国家标准，划分甲、乙、丙三个等级[4]。第一次住，选有等级标志或平台实名认证的更稳。</p>
+<h3>Q6 到店说没房了怎么办？</h3>
+<p>答：先要求酒店协调换房。给不了房的，让平台按保障政策安排同级或更好的酒店并补差价。平台商家违约会被降级、限流处理[8]。全程保留订单和沟通记录。</p>
+<h3>Q7 可以带朋友进来过夜吗？</h3>
+<p>答：留宿他人通常要补登记身份信息。多数酒店要求访客登记，不接受未登记留宿。想带人先问前台，别私自留客。</p>
+<h3>Q8 深夜才到店怎么办？</h3>
+<p>答：提前打电话确认前台 24 小时有人。民宿确认自助入住的方式，密码、钥匙盒还是房东开门。登记流程和白天一样。</p>
+<h3>Q9 东西落在酒店怎么办？</h3>
+<p>答：联系酒店前台或平台客服登记失物，说清房号、物品特征和大致位置。贵重物品丢失可以报警。订离开前查一遍，比事后找省事得多。</p>
+<h3>Q10 怎么判断镜子有没有问题？</h3>
+<p>答：经验做法是指尖贴住镜面，看指尖和倒影之间有没有缝隙。这个方法不绝对。更直接的是看镜子是否明显凸出墙面、边缘有没有多余的孔洞。可疑就通知前台或报警。</p>
+<h3>Q11 床品有毛发污渍怎么办？</h3>
+<p>答：拍照留证，当场要求换床品或换房。卧具按规定应一客一换[7]。换不了就要求退房退款，别自己忍一夜。</p>
+<h3>Q12 未成年人能自己开房吗？</h3>
+<p>答：能，但酒店要按规定询问监护人联系方式、入住人员身份关系等情况，发现违法犯罪嫌疑会立即报告公安机关[3]。带好本人身份证和监护人电话。</p>
+<h3>Q13 用自己的身份证帮朋友开房行吗？</h3>
+<p>答：不行。入住人必须和登记人一致[1]，代登记拿不到房。朋友自己没证件，就先解决证件问题。</p>
+<h3>Q14 想换楼层或延住一天怎么办？</h3>
+<p>答：当天问前台，有空房通常能安排，可能补差价。旺季和特价房延住不保证，先问再定。</p>
+<h3>Q15 每天都有人来打扫吗？</h3>
+<p>答：连续入住的，想换床品和毛巾就告诉前台。不想被打扰，在门把手上挂「请勿打扰」。打扫时你可以要求在场。</p>
+<h3>Q16 退房要等查房吗？</h3>
+<p>答：多数连锁酒店免查房，押金自动走退款流程。民宿和部分酒店要查房，留出 10 分钟等查完再走，别掐着时间。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>超低价引流私聊转账</strong>：有人用低价把你引到微信或群转账，钱付了房不一定有。只在平台内下单和沟通。</li>
+<li><strong>没看清退改规则</strong>：标着「不可取消」的订单，改期可能损失全部房费。下单前把取消政策截图。</li>
+<li><strong>到店被要求补差价</strong>：订单价格以平台为准。对方涨价或毁约，保留订单截图，要求平台介入，也可向 12315 投诉[6][8]。</li>
+<li><strong>押金只要口头承诺</strong>：索要押金凭证，问清退还时限。预授权单据拍照，退款超时好追讨。</li>
+<li><strong>进门不反锁</strong>：进门第一件事锁门挂扣。离开房间关窗锁门，回来看一眼锁有没有被动过。</li>
+<li><strong>贵重物品随手放</strong>：现金、证件、电脑放保险箱或交前台[1]。酒店按规定设有财物保管设施，用起来不麻烦。</li>
+<li><strong>只看评分不看差评</strong>：评分可以刷，差评里的卫生、隔音、安全细节更真。翻最近三个月的。</li>
+<li><strong>默认有一次性用品</strong>：不少城市要求酒店不主动提供「六小件」。自带洗漱包和拖鞋。</li>
+<li><strong>民宿不确认地址就导航</strong>：民宿常在小区和村里，导航到不了。先和房东确认门牌、门禁和取钥匙方式。</li>
+<li><strong>退房不看就签单</strong>：迷你吧消费清单先核对，没用的别拆封。确认无误再办离店。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>发现针孔摄像头</strong>：不拆除设备，拍照录像留证。第一步拨 110 报警，同时通知酒店和平台，要求换房或退款。</li>
+<li><strong>财物丢失或被盗</strong>：先报前台，确认后拨 110 报警。监控保存期有限，尽快向酒店申请调取。向平台和酒店主张赔偿时，拿出报警回执和购买凭证。</li>
+<li><strong>到店无房或房型不符</strong>：当场要求换房。酒店给不了的，要求平台安排同级酒店并补差价[8]，沟通记录全部留存。</li>
+<li><strong>火警响起</strong>：看门后疏散图，低姿走疏散通道，不坐电梯。开门前先摸门把手，烫手别开门。</li>
+<li><strong>突发疾病</strong>：拨 120，说清酒店名称和楼层。前台通常能协助开门和引导救护车。</li>
+<li><strong>卫生严重不达标</strong>：拍照录像，要求换房、退款或减免。平台处理不了的，向当地卫生健康部门或 12345 反映[7]。</li>
+<li><strong>有人闯入或被骚扰</strong>：立刻反锁门，打前台电话说明房号，同时拨 110。事后向酒店和平台投诉，要求换房。</li>
+<li><strong>房卡失灵或被反锁门外</strong>：用房内电话或手机打前台，报身份信息等待处理。深夜被困别翻窗。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>经济型连锁酒店</td>
+<td>150–400 元/晚</td>
+<td>城市和季节差异大，必选</td>
+</tr>
+<tr>
+<td>中档酒店</td>
+<td>300–800 元/晚</td>
+<td>节假日和会展期上浮，可选</td>
+</tr>
+<tr>
+<td>民宿整间</td>
+<td>100–600 元/晚</td>
+<td>旅游旺季可能翻倍，可选</td>
+</tr>
+<tr>
+<td>押金</td>
+<td>100–500 元</td>
+<td>退房时退还或预授权解冻，可退</td>
+</tr>
+<tr>
+<td>逾期退房费</td>
+<td>半日至一日房费</td>
+<td>超过退房时间产生，可避</td>
+</tr>
+<tr>
+<td>入住办理</td>
+<td>5–15 分钟</td>
+<td>登记、押金、拿房卡，必选</td>
+</tr>
+<tr>
+<td>进房自检</td>
+<td>5–10 分钟</td>
+<td>门锁、通道、床品、摄像头，建议</td>
+</tr>
+<tr>
+<td>全程耗时</td>
+<td>半天内</td>
+<td>从到店办理到进房安顿，不含住宿本身</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mct.gov.cn">文化和旅游部</a>、<a href="https://jbts.mct.gov.cn">全国文化和旅游市场网上举报投诉处理系统</a></li>
+<li><a href="https://www.12315.cn">全国12315平台</a>、12315 热线</li>
+<li>12345 政务服务便民热线，原 12301 旅游投诉已并入[5]</li>
+<li>110 报警、120 急救</li>
+</ul>
+</li>
+<li>相关条目：<a href="A-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%8B%AC%E8%87%AA%E6%97%85%E8%A1%8C.html">A-09 第一次独自旅行</a>、<a href="A-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9D%90%E9%A3%9E%E6%9C%BA.html">A-01 第一次坐飞机</a>、<a href="A-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%89%93%E7%BD%91%E7%BA%A6%E8%BD%A6%E4%B8%8E%E5%87%BA%E7%A7%9F%E8%BD%A6.html">A-06 第一次打网约车/出租车</a>、<a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B6%88%E8%B4%B9%E7%BB%B4%E6%9D%83.html">G-08 第一次消费维权</a></li>
+<li>可打印清单：<a href="../../checklists/A-11-%E4%BD%8F%E9%85%92%E5%BA%97-%E5%85%A5%E4%BD%8F%E5%AE%89%E5%85%A8%E6%B8%85%E5%8D%95.html">A-11 住酒店清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《旅馆业治安管理办法》《中华人民共和国消防法》《中华人民共和国未成年人保护法》；Ⅱ 级为文化和旅游部通知、国家标准 GB/T 41648-2022、全国12315平台、《公共场所卫生管理条例实施细则》；Ⅲ 级为押金退还、摄像头排查等通行做法与媒体报道。</li>
+<li>主要来源：<ol>
+<li>《旅馆业治安管理办法》（国家行政法规库），<a href="https://xzfg.moj.gov.cn/front/law/detail?LawID=1292">https://xzfg.moj.gov.cn/front/law/detail?LawID=1292</a></li>
+<li>《中华人民共和国消防法》（2021年修正版，北京市规划自然资源委官网转载），<a href="https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/zcfg/fl/202607/t20260722_4777392.html">https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/zcfg/fl/202607/t20260722_4777392.html</a></li>
+<li>《中华人民共和国未成年人保护法》第五十七条（上海市杨浦区人民政府普法页引述），<a href="https://www.shyp.gov.cn/shypq/ypyp-fzxc/20231208/443622.html">https://www.shyp.gov.cn/shypq/ypyp-fzxc/20231208/443622.html</a></li>
+<li>GB/T 41648-2022《旅游民宿基本要求与等级划分》（国家标准全文公开系统），<a href="https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=2E96A4B6C7B13B97FC67FD71736EAF01">https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=2E96A4B6C7B13B97FC67FD71736EAF01</a></li>
+<li>文化和旅游部办公厅：12301 等热线并入 12345 的通知，<a href="https://www.mct.gov.cn/whzx/whyw/202111/t20211118_929104.htm">https://www.mct.gov.cn/whzx/whyw/202111/t20211118_929104.htm</a></li>
+<li>全国12315平台，<a href="https://www.12315.cn">https://www.12315.cn</a></li>
+<li>《公共场所卫生管理条例实施细则》（国家卫生健康委官网全文页），<a href="https://www.nhc.gov.cn/wjw/c100221/202201/5f363fcea6f24665a79fce9fd6a0991e.shtml">https://www.nhc.gov.cn/wjw/c100221/202201/5f363fcea6f24665a79fce9fd6a0991e.shtml</a></li>
+<li>新华网《酒店、民宿临时毁约涨价，怎么管？》，<a href="http://www.news.cn/fortune/20250430/43d6e29bd9924d8599159e09a295ea9b/c.html">http://www.news.cn/fortune/20250430/43d6e29bd9924d8599159e09a295ea9b/c.html</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-24</li>
+<li>适用范围与地区差异：中国内地。一次性用品提供、电子身份证件使用、登记信息上传时限由各地规定，以当地为准。</li>
+<li>易变项：平台退改和保障政策、房价与押金额度、民宿等级名单。</li>
+<li>核实记录：<a href="../../sources/A-11.%E6%A0%B8%E5%AE%9E.html">sources/A-11.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="A-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%98%A5%E8%BF%90%E5%9B%9E%E5%AE%B6.html"><span class="dir">← 上一篇</span><span class="name">A-10 第一次春运回家</span></a><a class="next" href="A-12-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%95%BF%E9%80%94%E8%87%AA%E9%A9%BE%E6%B8%B8.html"><span class="dir">下一篇 →</span><span class="name">A-12 第一次长途自驾游</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>B-01 第一次出国 · 核实记录 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">B-01 第一次出国 · 核实记录</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">一、逐条核实表</a><a href="#sec-1">二、未确定事项</a><a href="#sec-2">三、争议与差异</a><a href="#sec-3">四、调研问题清单</a></nav>
+  <main class="content">
+
+<ul>
+<li>核实人：项目组</li>
+<li>核实日期：2026-10-23</li>
+<li>对应版本：v1.0</li>
+<li>适用范围：持中国普通护照、因私短期出国</li>
+<li>当前状态：已核实</li>
+</ul>
+<h2 id="sec-0">一、逐条核实表</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>正文位置</th>
+<th>文中说法</th>
+<th>依据等级</th>
+<th>来源（机构 + 标题 + 文号）</th>
+<th>原文摘录</th>
+<th>URL</th>
+<th>访问日期</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1.1</td>
+<td>护照材料、预约、7/20/5 个工作日、120 元</td>
+<td>Ⅱ</td>
+<td>国家移民管理局《普通护照签发服务指南》（2024-03-18）</td>
+<td>“自受理申请材料之日起7个工作日内审批签发”；“跨省异地申请……20日”</td>
+<td><a href="https://www.nia.gov.cn/News/news/content.jsp?id=1639878">https://www.nia.gov.cn/News/news/content.jsp?id=1639878</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0、1.1</td>
+<td>护照有效期 16 岁以上 10 年、未满 16 岁 5 年；换发条件</td>
+<td>Ⅰ</td>
+<td>《中华人民共和国护照法》第七条</td>
+<td>“未满十六周岁的五年，十六周岁以上的十年”</td>
+<td><a href="https://www.nia.gov.cn/n794014/n1050181/n1050479/c1014017/content.html">https://www.nia.gov.cn/n794014/n1050181/n1050479/c1014017/content.html</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0、1.1</td>
+<td>目的地常要求护照有效期≥6 个月、2 页空白</td>
+<td>Ⅲ</td>
+<td>目的地使领馆签证要求</td>
+<td>各馆要求不同</td>
+<td>目的地使领馆官网</td>
+<td>2026-10-23</td>
+<td>已核实（通行做法）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1.2</td>
+<td>签证无统一分类，按目的地国规定；一般流程</td>
+<td>Ⅲ</td>
+<td>中国领事服务网《中国领事证件服务指南》</td>
+<td>“中国公民出国前通常需向前往国家驻华使领馆申请并办妥相应签证”</td>
+<td><a href="https://cs.mfa.gov.cn/zlbg/bgzl/lsbh/201112/P020211029794857021408.pdf">https://cs.mfa.gov.cn/zlbg/bgzl/lsbh/201112/P020211029794857021408.pdf</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0、Q5</td>
+<td>互免签证查《中外互免签证协定一览表》；单方面免签和过境免签查目的地官网</td>
+<td>Ⅱ</td>
+<td>中国领事服务网</td>
+<td>“中国公民持所适用的护照前往下列国家短期旅行通常无需事先申请签证”</td>
+<td><a href="https://cs.mfa.gov.cn/zggmcgx/cgqzapecswlxk/ylb/202607/t20260716_11984014.html">https://cs.mfa.gov.cn/zggmcgx/cgqzapecswlxk/ylb/202607/t20260716_11984014.html</a></td>
+<td>2026-10-23</td>
+<td>已核实（不写名单）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>2.2、Q6</td>
+<td>出境交验护照签证，经查验准许才能出境；中国公民通常免填出境登记卡</td>
+<td>Ⅰ+Ⅱ</td>
+<td>《出境入境管理法》第十一条；公安部通关便利措施</td>
+<td>“交验本人的护照或者其他旅行证件……经查验准许，方可出境入境”</td>
+<td><a href="http://www.npc.gov.cn/npc/c2/c12435/201905/t20190522_86959.html">http://www.npc.gov.cn/npc/c2/c12435/201905/t20190522_86959.html</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0、Q8</td>
+<td>人民币现钞＞2 万元或外币折合＞5000 美元要申报；出境外币＞5000 美元需许可证</td>
+<td>Ⅰ</td>
+<td>海关总署公告2025年第43号；人民银行公告〔2004〕第18号</td>
+<td>“携带人民币现钞超过20000元，或外币现钞折合超过5000美元的，必须如实申报”</td>
+<td><a href="https://www.gov.cn/zhengce/zhengceku/202504/content_7017195.htm">https://www.gov.cn/zhengce/zhengceku/202504/content_7017195.htm</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0、Q11</td>
+<td>居民旅客境外自用物品≤5000 元免税；非居民≤2000 元</td>
+<td>Ⅰ</td>
+<td>国务院关税税则委员会公告2024年第11号（2024-12-01 施行）</td>
+<td>“总值五千元人民币以内的行李物品……海关予以免税放行”</td>
+<td><a href="https://gdfs.customs.gov.cn/manzhouli_customs/2026-06/17/article_2026063015253368998.html">https://gdfs.customs.gov.cn/manzhouli_customs/2026-06/17/article_2026063015253368998.html</a></td>
+<td>2026-10-23</td>
+<td>已核实（烟酒限量未核）</td>
+</tr>
+<tr>
+<td>9</td>
+<td>0、Q10、5</td>
+<td>领事保护范围；12308 全天候；不干预司法、不垫付费用</td>
+<td>Ⅰ</td>
+<td>《领事保护与协助条例》（国务院令第763号）第三、十三至十七条</td>
+<td>“在国外的中国公民……正当权益被侵犯或者需要帮助时”</td>
+<td><a href="https://cs.mfa.gov.cn/zggmcgx/lsbhyxz/lsbhyxztl/202607/t20260716_11983539.html">https://cs.mfa.gov.cn/zggmcgx/lsbhyxz/lsbhyxztl/202607/t20260716_11983539.html</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Q12、5</td>
+<td>护照丢失先报警，再用中国领事 App 补发护照或旅行证；已报失护照作废</td>
+<td>Ⅱ</td>
+<td>中国领事服务网《申办护照/旅行证》</td>
+<td>“即向当地警察部门报案……同时向就近的中国使领馆申请补发旅行证件”</td>
+<td><a href="https://cs.mfa.gov.cn/zggmcgx/hzlxz_149470/">https://cs.mfa.gov.cn/zggmcgx/hzlxz_149470/</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>11</td>
+<td>1.3</td>
+<td>旅行保险无官方统一条款，按保单</td>
+<td>Ⅲ</td>
+<td>保险公司条款</td>
+<td>无官方统一原文</td>
+<td>具体保单</td>
+<td>2026-10-23</td>
+<td>已核实（非官方标准）</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-1">二、未确定事项</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>内容</th>
+<th>卡在哪</th>
+<th>正文处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>入境卡</td>
+<td>分国别，中国无统一规定</td>
+<td>写“分国别，按目的地要求”</td>
+</tr>
+<tr>
+<td>2</td>
+<td>护照 6 个月、2 页空白</td>
+<td>目的地要求，不是中国法律</td>
+<td>写“很多目的地要求”，不给统一结论</td>
+</tr>
+<tr>
+<td>3</td>
+<td>旅行保险</td>
+<td>无官方统一条款</td>
+<td>只写常见保障，注明以保单为准</td>
+</tr>
+<tr>
+<td>4</td>
+<td>海关烟酒限量</td>
+<td>本次未核到具体限量表</td>
+<td>不写具体数值，只写“另有限量”</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-2">三、争议与差异</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>说法</th>
+<th>冲突来源</th>
+<th>采用口径</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>免签名单</td>
+<td>各国政策变化快</td>
+<td>不写名单，只给查询入口</td>
+<td>避免过期误导</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-3">四、调研问题清单</h2>
+<ol>
+<li>第一次出国的人最容易在哪个环节被卡？</li>
+<li>哪些材料必须提前几周准备？</li>
+<li>签证、免签、过境签分别适合什么行程？</li>
+<li>出境和入境分别有哪些申报义务？</li>
+<li>使领馆能做什么、不能做什么？</li>
+</ol>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

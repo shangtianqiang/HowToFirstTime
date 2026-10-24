@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次面试 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 工作与职业</nav>
+  <h1 class="post-title">第一次面试</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>工作与职业</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>10 条</b></span><span class="chip ">耗时 <b>半天</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：面试前查清公司和岗位，面试时用事实讲经历，拿到 offer 要书面确认岗位、工资、试用期和社保。
+<strong>适用</strong>：第一次参加校招或社招面试、准备入职的毕业生和求职者。
+<strong>不适用</strong>：公务员、事业单位、教师招聘等有专门考试流程的岗位（另立条目）。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>先查公司</strong>：看登记信息、信用记录、岗位职责、地点、工时和报酬。这些是单位应当如实告知的内容。[1]</li>
+<li><strong>到场</strong>：提前 10–15 分钟。迟到先打电话。这是通行做法。</li>
+<li><strong>着装</strong>：商务休闲、干净整洁。不同行业不同，先问 HR。</li>
+<li><strong>不能交</strong>：身份证原件、押金、保证金、服装费。单位不得扣押证件或收取财物。[5]</li>
+<li><strong>可以拒答</strong>：婚育情况、是否怀孕、乙肝检测。这些属于就业歧视或违规体检。[3][4]</li>
+<li><strong>offer</strong>：要书面，写清岗位、地点、工资构成、试用期、社保、发薪日、报到时间。[2]</li>
+<li><strong>遇到收费</strong>：先交钱、办贷款、买培训的“面试”，直接走人并举报。[7]</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 面试前了解什么</h3>
+<ul>
+<li>岗位职责、工作地点、工时制度、劳动报酬。单位有义务如实告知。[1]</li>
+<li>职业危害和安全生产状况。工厂、化工、建筑等岗位要特别问。[1]</li>
+<li>公司登记信息、股东、经营范围、行政处罚。用国家企业信用信息公示系统查。</li>
+<li>公司近期新闻、产品或项目。面试时能对上话。</li>
+<li>岗位硬条件：学历、证书、经验、技能。缺哪项，提前想好怎么答。</li>
+<li>面试轮次、形式、时长。问 HR 或看面试通知。</li>
+</ul>
+<h3>1.2 自我介绍与常见问题</h3>
+<ul>
+<li>自我介绍 30–60 秒：身份学历，1–2 段相关经历，和岗位的匹配点，求职意愿。</li>
+<li>经历用事实和数字说：做了什么、怎么做、结果是什么。</li>
+<li>问缺点：选真实、可改、不碰岗位核心要求的。</li>
+<li>问离职原因：讲发展，不贬前雇主。</li>
+<li>问薪资：先问工资构成，再报区间。</li>
+<li>问规划：分 1 年和 3 年，贴着岗位说。</li>
+<li>这些是通行做法，不是标准答案。</li>
+</ul>
+<h3>1.3 offer 要确认什么</h3>
+<ul>
+<li>岗位名称、工作内容、工作地点。</li>
+<li>工资构成：基本工资、绩效、补贴、奖金，发薪日。</li>
+<li>试用期长度、试用期工资、转正条件。</li>
+<li>社保和公积金什么时候开始缴。</li>
+<li>工时制度、加班安排、年假。</li>
+<li>报到时间和要带的材料。</li>
+<li>尽量要书面 offer，写明答复期限。口头 offer 以后很难举证。[2]</li>
+</ul>
+<h3>1.4 求职诈骗信号</h3>
+<ul>
+<li>“零门槛”“面试即入职”“高薪轻松”。[7]</li>
+<li>先交报名费、培训费、服装费、押金。</li>
+<li>让你办贷款交培训费，即“培训贷”。</li>
+<li>招聘主体和培训主体不是一家，即“招转培”。</li>
+<li>让你办卡、刷单、拉人头。</li>
+<li>面试地点在酒店房间、居民楼，没有公司标识。</li>
+<li>要求交身份证原件、银行卡密码。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 到场</h3>
+<ul>
+<li>在哪：面试通知上的地址，提前确认楼层和前台。</li>
+<li>做什么：提前 10–15 分钟到，登记，等 HR 或面试官。</li>
+<li>看什么：公司标识、办公环境、员工状态。</li>
+<li>说什么：向前台说明来意和预约的面试官。</li>
+<li>完成标志：被带到面试间或会议室。</li>
+<li>卡住了怎么办：迟到先打电话；找不到地址，问 HR 要定位。</li>
+</ul>
+<h3>2.2 面试中</h3>
+<ul>
+<li>在哪：会议室、工位或线上视频。</li>
+<li>做什么：自我介绍，回答提问，讲经历和岗位匹配。</li>
+<li>看什么：面试官的问题重点和反应。</li>
+<li>说什么：不会的问题说“这块我还没做过，我的理解是……”，不要硬编。</li>
+<li>完成标志：面试官问“你有什么问题”。</li>
+<li>卡住了怎么办：问题太宽，先确认“您想了解哪一段经历”。</li>
+</ul>
+<h3>2.3 提问环节</h3>
+<ul>
+<li>问岗位每天做什么、团队几个人、汇报给谁。</li>
+<li>问试用期考核标准、转正条件。</li>
+<li>问工资构成、发薪日、社保公积金。</li>
+<li>问加班和出差频率。</li>
+<li>问面试结果什么时候通知。</li>
+<li>第一轮不要先问年假和涨薪，除非面试官主动提。</li>
+</ul>
+<h3>2.4 面试后跟进</h3>
+<ul>
+<li>24 小时内发一封简短感谢邮件，提一个面试中的具体点。</li>
+<li>约定时间到了没回复，可以礼貌问一次进度。</li>
+<li>保留面试通知、聊天记录、邮件。</li>
+<li>这是通行做法，不是规定。</li>
+</ul>
+<h3>2.5 收到 offer</h3>
+<ul>
+<li>核对岗位、地点、工资、试用期、社保、报到时间。</li>
+<li>问清 offer 的答复期限。</li>
+<li>需要拒掉的，尽早礼貌回复，别拖着。</li>
+<li>三方协议只适用毕业生，是民事协议，不能替代劳动合同。[8][9]</li>
+</ul>
+<h3>2.6 入职前衔接</h3>
+<ul>
+<li>按 offer 要求准备身份证、学历证、体检报告、银行卡。</li>
+<li>问清档案、户口、党组织关系怎么转。</li>
+<li>入职后 1 个月内要签书面劳动合同。[2]</li>
+<li>入职前先看 C-03《第一次签劳动合同》。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 面试前要了解公司什么？</h3>
+<p>答：岗位职责、地点、工时、报酬、职业危害和安全状况，单位应当如实告知。[1] 另外查公司登记和信用记录。</p>
+<h3>Q2 面试穿什么？</h3>
+<p>答：商务休闲、干净整洁。金融、法律偏正式，互联网、创意行业可以略休闲。先问 HR。这是通行做法。</p>
+<h3>Q3 提前多久到？</h3>
+<p>答：提前 10–15 分钟。到太早会给前台添麻烦，迟到要提前打电话。这是通行做法。</p>
+<h3>Q4 自我介绍怎么讲？</h3>
+<p>答：30–60 秒，讲身份学历、1–2 段相关经历、岗位匹配点、求职意愿。经历用事实和数字。这是通行做法。</p>
+<h3>Q5 被问缺点怎么答？</h3>
+<p>答：选真实、可改、不碰岗位核心要求的缺点，再说你怎么改。不要答“没有缺点”。这是通行做法。</p>
+<h3>Q6 被问薪资期望怎么答？</h3>
+<p>答：先问工资构成和发薪日，再报区间。不要只报一个数，也不要把上一份工资当唯一依据。这是通行做法。</p>
+<h3>Q7 面试官问婚育、有没有男朋友，可以拒答吗？</h3>
+<p>答：可以。招聘中不得询问妇女婚育情况，不得把妊娠测试作为入职体检项目。[3]</p>
+<h3>Q8 公司要求做乙肝检测，合法吗？</h3>
+<p>答：入学和就业体检不得要求开展乙肝项目检测。[4]</p>
+<h3>Q9 公司要收押金、扣身份证，怎么办？</h3>
+<p>答：单位不得扣押身份证等证件，也不得要求担保或收取财物。[5] 拒绝并保留证据，向人社部门投诉。</p>
+<h3>Q10 面试后多久有结果？</h3>
+<p>答：没有统一规定。面试时可以问；约定时间到了没回复，可以礼貌问一次。</p>
+<h3>Q11 口头 offer 算数吗？</h3>
+<p>答：口头 offer 举证难。尽量要书面 offer，写明岗位、工资、试用期和答复期限。入职后以劳动合同为准。[2]</p>
+<h3>Q12 怎么识别求职诈骗？</h3>
+<p>答：“零门槛、高薪、面试即入职”、先收费、培训贷、招转培、办卡刷单，都是信号。[7] 遇到直接走人，向人社部门或 12333 举报。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>付费内推、保 offer</strong>：正规招聘不保证录用，收费的多半是骗局。</li>
+<li><strong>培训贷</strong>：让你贷款交培训费，风险很高。[7]</li>
+<li><strong>招转培</strong>：招的是员工，去了变成学员，要交钱。</li>
+<li><strong>扣押证件</strong>：身份证原件不能交给单位保管。[5]</li>
+<li><strong>口头承诺薪资</strong>：没写进 offer 或合同，后面很难主张。</li>
+<li><strong>试用期超长</strong>：合同 3 个月到 1 年，试用期最多 1 个月；1 到 3 年最多 2 个月；3 年以上最多 6 个月。[2]</li>
+<li><strong>“自愿放弃社保”</strong>：这类条款通常无效，单位仍要缴。</li>
+<li><strong>面试地点异常</strong>：酒店房间、居民楼、没有公司标识，先核实再进去。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>被问隐私</strong>：婚育、怀孕、乙肝等与岗位无关的问题，可以拒答；感到被歧视，保留证据向人社部门投诉。[3][4]</li>
+<li><strong>被要求交钱</strong>：拒绝，保留收据和聊天记录，拨 12333 或向当地人社部门举报。</li>
+<li><strong>收到多个 offer</strong>：比较岗位、工资、地点、发展，注意答复期限，别同时答应两家。</li>
+<li><strong>offer 被撤回</strong>：看书面 offer 有没有约定违约责任；没有约定，维权难度大。</li>
+<li><strong>入职后发现岗位不符</strong>：看劳动合同怎么写，及时和 HR 沟通，保留证据。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>交通</td>
+<td>几十元</td>
+<td>现场面试</td>
+</tr>
+<tr>
+<td>着装</td>
+<td>按需</td>
+<td>不必为一次面试买贵衣服</td>
+</tr>
+<tr>
+<td>体检</td>
+<td>几十到几百元</td>
+<td>有的公司报销</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半天</td>
+<td>含往返和等待</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mohrss.gov.cn">人力资源和社会保障部</a></li>
+<li><a href="https://chinajob.mohrss.gov.cn">中国公共招聘网</a></li>
+<li>国家企业信用信息公示系统</li>
+<li>12333 人力资源社会保障服务热线</li>
+</ul>
+</li>
+<li>相关条目：<a href="C-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%85%A5%E8%81%8C.html">C-01 第一次入职</a>、<a href="C-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%AD%BE%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C.html">C-03 第一次签劳动合同</a></li>
+<li>可打印清单：<a href="../../checklists/C-02-%E9%9D%A2%E8%AF%95-%E5%87%86%E5%A4%87%E6%B8%85%E5%8D%95.html">C-02 面试清单</a></li>
+<li>术语：<a href="../../meta/%E6%9C%AF%E8%AF%AD%E8%A1%A8.html">三方协议</a>、<a href="../../meta/%E6%9C%AF%E8%AF%AD%E8%A1%A8.html">试用期</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：以 Ⅰ/Ⅱ 级官方来源为主，面试技巧部分为 Ⅲ 级通行做法。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国劳动合同法》第八条，<a href="https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fl/202011/t20201102_394622.html">https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fl/202011/t20201102_394622.html</a></li>
+<li>同上，第十七、十九、二十条；《社会保险法》第五十八条；《工资支付暂行规定》第七条</li>
+<li>人社部等九部门《关于进一步规范招聘行为促进妇女就业的通知》，<a href="https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/gfxwj/jy/202011/t20201111_396131.html">https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/gfxwj/jy/202011/t20201111_396131.html</a></li>
+<li>人社部等《关于进一步规范入学和就业体检项目维护乙肝表面抗原携带者入学和就业权利的通知》（人社部发〔2010〕12号），<a href="https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/gfxwj/jy/201407/t20140717_136568.html">https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/gfxwj/jy/201407/t20140717_136568.html</a></li>
+<li>《劳动合同法》第九条</li>
+<li>人社部《求职者 维护就业权益请看这里》（2024-11-15），<a href="https://chinajob.mohrss.gov.cn/c/2024-11-15/418573.shtml">https://chinajob.mohrss.gov.cn/c/2024-11-15/418573.shtml</a></li>
+<li>五部门《警惕“招转培”“培训贷”等风险提示》（2026-05-18），<a href="https://chinajob.mohrss.gov.cn/h5/c/2026-05-18/543038.shtml">https://chinajob.mohrss.gov.cn/h5/c/2026-05-18/543038.shtml</a></li>
+<li>教育部《普通高等学校毕业生就业工作暂行规定》，<a href="http://www.moe.gov.cn/srcsite/A02/s5911/moe_621/199703/t19970324_81877.html">http://www.moe.gov.cn/srcsite/A02/s5911/moe_621/199703/t19970324_81877.html</a></li>
+<li>山东省人社厅《就业协议书与劳动合同的区别？》，<a href="https://hrss.shandong.gov.cn/articles/ch00610/201504/52097.shtml">https://hrss.shandong.gov.cn/articles/ch00610/201504/52097.shtml</a></li>
+<li>人社部《电子劳动合同订立指引》（人社厅发〔2021〕54号），<a href="https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/gfxwj/ldgx/202107/t20210709_418119.html">https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/gfxwj/ldgx/202107/t20210709_418119.html</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地校招和社招面试。</li>
+<li>易变项：招聘平台规则、行业面试习惯（M）。</li>
+<li>核实记录：<a href="../../sources/C-02.%E6%A0%B8%E5%AE%9E.html">sources/C-02.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="C-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%85%A5%E8%81%8C.html"><span class="dir">← 上一篇</span><span class="name">C-01 第一次入职</span></a><a class="next" href="C-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%AD%BE%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C.html"><span class="dir">下一篇 →</span><span class="name">C-03 第一次签劳动合同</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

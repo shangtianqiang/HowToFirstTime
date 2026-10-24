@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>C-01 第一次入职 · 核实记录 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">C-01 第一次入职 · 核实记录</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">一、逐条核实表</a><a href="#sec-1">二、未确定事项</a><a href="#sec-2">三、争议与差异</a><a href="#sec-3">四、调研问题清单</a></nav>
+  <main class="content">
+
+<ul>
+<li>核实人：项目组</li>
+<li>核实日期：2026-10-23</li>
+<li>对应版本：v1.0</li>
+<li>适用范围：中国内地企业，大学毕业后第一次正式入职</li>
+<li>当前状态：已核实</li>
+</ul>
+<h2 id="sec-0">一、逐条核实表</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>正文位置</th>
+<th>文中说法</th>
+<th>依据等级</th>
+<th>来源（机构 + 标题 + 文号）</th>
+<th>原文摘录</th>
+<th>URL</th>
+<th>访问日期</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>0、1.2</td>
+<td>用工之日起 1 个月内订立书面劳动合同</td>
+<td>Ⅰ</td>
+<td>《劳动合同法》第十条</td>
+<td>“已建立劳动关系，未同时订立书面劳动合同的，应当自用工之日起一个月内订立书面劳动合同。”</td>
+<td><a href="https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fl/202011/t20201102_394622.html">https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fl/202011/t20201102_394622.html</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0、Q4</td>
+<td>试用期上限：3 个月–1 年≤1 个月；1–3 年≤2 个月；3 年以上或无固定期限≤6 个月；同一单位只能约定一次</td>
+<td>Ⅰ</td>
+<td>《劳动合同法》第十九条</td>
+<td>“三年以上固定期限和无固定期限的劳动合同，试用期不得超过六个月。”</td>
+<td>同上</td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0、Q4</td>
+<td>试用期工资不低于同岗位最低档工资或合同工资 80%，且不低于当地最低工资</td>
+<td>Ⅰ</td>
+<td>《劳动合同法》第二十条</td>
+<td>“不得低于本单位相同岗位最低档工资或者劳动合同约定工资的百分之八十……”</td>
+<td>同上</td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0、5</td>
+<td>未签书面合同二倍工资，最多 11 个月；满 1 年视为无固定期限</td>
+<td>Ⅰ</td>
+<td>《劳动合同法》第八十二条；《实施条例》第六、七条</td>
+<td>“超过一个月不满一年未与劳动者订立书面劳动合同的，应当向劳动者每月支付二倍的工资。”</td>
+<td><a href="https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fg/202011/t20201103_394939.html">https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fg/202011/t20201103_394939.html</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0、Q10</td>
+<td>竞业限制人员、期限不超过 2 年、按月补偿</td>
+<td>Ⅰ</td>
+<td>《劳动合同法》第二十三、二十四条</td>
+<td>“竞业限制的人员限于用人单位的高级管理人员、高级技术人员和其他负有保密义务的人员。”</td>
+<td>同上</td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Q5</td>
+<td>试用期解除仅限第三十九条、第四十条第一、二项；以不符合录用条件解除须说明理由</td>
+<td>Ⅰ</td>
+<td>《劳动合同法》第二十一条、第三十九条</td>
+<td>“在试用期中，除劳动者有本法第三十九条和第四十条第一项、第二项规定的情形外，用人单位不得解除劳动合同。”</td>
+<td>同上</td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>7</td>
+<td>5</td>
+<td>经济补偿：每满 1 年 1 个月工资；6 个月以上不满 1 年按 1 年；不满 6 个月半个月；3 倍封顶、最高 12 年</td>
+<td>Ⅰ</td>
+<td>《劳动合同法》第四十七条</td>
+<td>“经济补偿按劳动者在本单位工作的年限，每满一年支付一个月工资的标准向劳动者支付。”</td>
+<td>同上</td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1.4、Q6</td>
+<td>五险一金险种和缴费主体；用工 30 日内办社保登记</td>
+<td>Ⅰ</td>
+<td>《社会保险法》第十、二十三、三十三、四十四、五十三、五十八条；《住房公积金管理条例》</td>
+<td>“职工应当参加工伤保险，由用人单位缴纳工伤保险费，职工不缴纳工伤保险费。”</td>
+<td><a href="https://www.gov.cn/guoqing/2021-10/29/content_5647616.htm">https://www.gov.cn/guoqing/2021-10/29/content_5647616.htm</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>9</td>
+<td>1.4、Q7</td>
+<td>个税专项附加扣除 7 项</td>
+<td>Ⅰ</td>
+<td>《个人所得税专项附加扣除暂行办法》（国发〔2018〕41号）</td>
+<td>“子女教育、继续教育、大病医疗、住房贷款利息或者住房租金、赡养老人等6项专项附加扣除。”</td>
+<td><a href="https://fgk.chinatax.gov.cn/zcfgk/c102440/c5209858/content.html">https://fgk.chinatax.gov.cn/zcfgk/c102440/c5209858/content.html</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>10</td>
+<td>0、Q6</td>
+<td>12333 和劳动保障监察投诉；社保欠缴滞纳金和罚款</td>
+<td>Ⅰ/Ⅱ</td>
+<td>人社部 12333 服务；《劳动保障监察条例》第九条；《社会保险法》第八十六条</td>
+<td>“为社会公众提供人力资源社会保障领域的政策咨询、信息查询、办事指南、在线受理和投诉举报等服务。”</td>
+<td><a href="https://www.mohrss.gov.cn/SYrlzyhshbzb/zhuanti/jinbaogongcheng/jbgcdianhuazixunfuwu/">https://www.mohrss.gov.cn/SYrlzyhshbzb/zhuanti/jinbaogongcheng/jbgcdianhuazixunfuwu/</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>11</td>
+<td>1.2、4</td>
+<td>三方协议与劳动合同的区别</td>
+<td>Ⅱ</td>
+<td>山东省人社厅《就业协议书与劳动合同的区别？》</td>
+<td>“就业协议书是教育部统一印制的……劳动合同是劳动者与用人单位之间签订的……”</td>
+<td><a href="https://hrss.shandong.gov.cn/articles/ch00610/201504/52097.shtml">https://hrss.shandong.gov.cn/articles/ch00610/201504/52097.shtml</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-1">二、未确定事项</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>内容</th>
+<th>卡在哪</th>
+<th>正文处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>同岗位最低档工资具体数额</td>
+<td>由用人单位薪酬制度确定</td>
+<td>只写法定下限，不写具体金额</td>
+</tr>
+<tr>
+<td>2</td>
+<td>经济补偿 3 倍封顶金额</td>
+<td>按当地上年度职工月平均工资，每年更新</td>
+<td>只写规则，不写具体数</td>
+</tr>
+<tr>
+<td>3</td>
+<td>竞业限制补偿标准</td>
+<td>法律未规定统一数额</td>
+<td>写“按月补偿”，不写金额</td>
+</tr>
+<tr>
+<td>4</td>
+<td>社保和公积金比例</td>
+<td>分省分市</td>
+<td>只写险种和缴费主体，不写比例</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-2">三、争议与差异</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>说法</th>
+<th>冲突来源</th>
+<th>采用口径</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>试用期工资按 80% 还是同岗位最低档</td>
+<td>法条用“或者”，实务理解不一</td>
+<td>写两条下限都要满足，按较高者执行</td>
+<td>避免少算</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-3">四、调研问题清单</h2>
+<ol>
+<li>毕业生第一次入职最容易忽略哪份材料？</li>
+<li>劳动合同里哪几条最容易埋坑？</li>
+<li>试用期、社保、工资条分别怎么核对？</li>
+<li>公司不签合同、不缴社保、拖欠工资，第一步找谁？</li>
+<li>哪些说法是“公司说可以”但法律不允许的？</li>
+</ol>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

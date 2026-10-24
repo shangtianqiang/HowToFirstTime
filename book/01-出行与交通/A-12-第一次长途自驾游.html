@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次长途自驾游 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 出行与交通</nav>
+  <h1 class="post-title">第一次长途自驾游</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>出行与交通</b></span><span class="chip ">最近核实 <b>2026-10-24</b></span><span class="chip ">来源 <b>7 条</b></span><span class="chip ">耗时 <b>1-3天</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-high">风险 <b>高</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：出发前查车况，连续开车不超 4 小时，高速出事先靠边撤离再打 12122，免费通行以下高速时间为准。
+<strong>适用</strong>：第一次开自家车跑 300 公里以上长途、包含高速路段的人。
+<strong>不适用</strong>：租车出行看 <a href="A-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%A7%9F%E8%BD%A6%E8%87%AA%E9%A9%BE.html">A-07 第一次租车自驾</a>；市内短途、新手陪练不在这篇范围。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>行前车况</strong>：胎压、机油、玻璃水、备胎和随车工具，出发前 24 小时查一遍。</li>
+<li><strong>法定休息</strong>：连续驾驶超过 4 小时未休息，或休息少于 20 分钟，属于违法行为。</li>
+<li><strong>高速车速</strong>：最高 120 公里/小时，最低 60 公里/小时，各车道另有最低车速。</li>
+<li><strong>故障停车</strong>：车靠边、人撤离、即报警；高速三角牌放来车方向 150 米以外。</li>
+<li><strong>卡住了找谁</strong>：高速拨 12122，普通道路拨 122，有人受伤先拨 120，同时报保险。</li>
+<li><strong>免费通行</strong>：春节、清明、劳动节、国庆，7 座及以下免费，以驶离出口时间为准。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 提前 7 天</h3>
+<ul>
+<li>定路线：用地图 App 查总里程、服务区分布、纯驾驶时长。</li>
+<li>排行程：单人每天驾驶 6 小时以内比较稳妥，500 公里以上通常分两天走。</li>
+<li>查保养：快到保养里程的，出发前做一次常规保养。</li>
+<li>查证件：驾驶证、行驶证在有效期内，交强险在保险期内。车上人员责任险不够的，可以补一份短期意外险。</li>
+<li>查限行：沿途城市对外地牌的限行、景区预约要求，以当地公告为准。</li>
+<li>看实习期：驾照领证不满 12 个月，上高速要由持相应或包含你的准驾车型、驾龄 3 年以上的驾驶人陪同。没人陪同就规划国道或改期。</li>
+</ul>
+<h3>1.2 提前 24 小时</h3>
+<p>车况自检一次，对照车辆用户手册或车门 B 柱标签的标准值：</p>
+<ul>
+<li><input disabled="" type="checkbox"> 胎压：冷胎状态下测，含备胎，低于标准值先充气</li>
+<li><input disabled="" type="checkbox"> 轮胎：看花纹深度、鼓包、裂缝、扎钉，磨到磨损标记就先换胎</li>
+<li><input disabled="" type="checkbox"> 机油：冷车时看液位在上下刻度之间，不足先补</li>
+<li><input disabled="" type="checkbox"> 玻璃水：加满，冬天用防冻型，别用清水代替</li>
+<li><input disabled="" type="checkbox"> 冷却液、刹车油：液位在刻度范围内，明显减少进店检查</li>
+<li><input disabled="" type="checkbox"> 灯光：大灯、刹车灯、转向灯、双闪逐个试</li>
+<li><input disabled="" type="checkbox"> 备胎和工具：千斤顶、轮胎扳手、三角警示牌、反光背心都在车上</li>
+<li><input disabled="" type="checkbox"> 油量或电量：加满油、充满电再出发</li>
+</ul>
+<p>再查一遍沿途天气，有雨、雪、雾就调整出发时间。装了 ETC 的确认余额或绑定状态，另备少量现金。</p>
+<h3>1.3 出门前</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 睡够觉再出发，熬夜和酒后不开车</li>
+<li><input disabled="" type="checkbox"> 行李装进行李箱，不挡后视镜视野，重物放低处</li>
+<li><input disabled="" type="checkbox"> 儿童用安全座椅，坐后排</li>
+<li><input disabled="" type="checkbox"> 手机充满电，带充电线和充电宝，下载离线地图</li>
+<li><input disabled="" type="checkbox"> 把路线、预计到达时间发给家人</li>
+<li><input disabled="" type="checkbox"> 带饮用水、零食和常用药品</li>
+<li><input disabled="" type="checkbox"> 绕车一圈，看轮胎外观和车底有无渗漏</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 出发前最后检查</h3>
+<ul>
+<li>在哪：家门口或出发地停车场。</li>
+<li>做什么：启动车辆，看仪表盘，确认警示灯正常熄灭。</li>
+<li>看什么：胎压读数、油量或电量、导航路线是否正常。</li>
+<li>完成标志：警示灯无异常，导航开始播报路线。</li>
+</ul>
+<h3>2.2 驶入高速</h3>
+<ul>
+<li>在哪：收费站和匝道。</li>
+<li>做什么：匝道按标志限速；进加速车道后开左转向灯，提速到接近主线车流速度再汇入。</li>
+<li>看什么：左后视镜里后车的距离和速度，选空当汇入。</li>
+<li>完成标志：平稳进入行车道，转向灯复位。</li>
+<li>卡住了怎么办：没找到汇入时机，就在加速车道内减速等待，不要停在导流线上；匝道和加速车道内不超车。</li>
+</ul>
+<h3>2.3 主线行驶</h3>
+<ul>
+<li>在哪：高速主线。</li>
+<li>做什么：按车道行驶。同方向 2 车道的，左侧车道最低 100 公里/小时；3 车道以上的，最左侧最低 110、中间 90 公里/小时。</li>
+<li>看什么：现场限速标志分路段变化，跟车距离。车速超过 100 公里/小时，与前车保持 100 米以上；低于 100 公里/小时，不少于 50 米。</li>
+<li>不做什么：非紧急情况不在应急车道行驶或停车；不倒车、逆行、掉头；不骑轧车道分界线长时间行驶。</li>
+<li>超车：提前开左转向灯，快速完成，不与旁车长时间并行。</li>
+<li>完成标志：按导航行驶，速度和车距都在控制范围内。</li>
+</ul>
+<h3>2.4 途中休息</h3>
+<ul>
+<li>在哪：沿线服务区。</li>
+<li>做什么：按每 2 小时或约 200 公里进一次服务区，下车走动、补水。</li>
+<li>看什么：法定底线是连续驾驶不超过 4 小时，停车休息不少于 20 分钟。出现打哈欠、眼皮沉、漏看路牌，就近进服务区。</li>
+<li>说什么：多人同行就轮换驾驶，接手的人提前休息好。</li>
+<li>完成标志：休息结束后精神恢复，再继续上路。</li>
+</ul>
+<h3>2.5 驶出高速</h3>
+<ul>
+<li>在哪：出口预告路段和匝道。</li>
+<li>做什么：提前 1–2 公里靠右，开右转向灯，进减速车道把速度降下来，再进入匝道。</li>
+<li>看什么：匝道限速标志通常明显低于主线，弯道多，按标志走。</li>
+<li>说什么：过收费站时，ETC 车走 ETC 车道；没装 ETC 的走人工或自助车道，现金或扫码缴费。</li>
+<li>完成标志：抬杆放行，驶出收费站。</li>
+</ul>
+<h3>2.6 到达后</h3>
+<ul>
+<li>在哪：目的地停车场。</li>
+<li>做什么：车停正规停车场，贵重物品带走或收进后备箱。</li>
+<li>看什么：停车费标准、营业时间，山区夜宿确认有无封路信息。</li>
+<li>完成标志：锁车确认，给家人报平安。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 连续开多久必须休息？</h3>
+<p>答：法规底线是连续驾驶不超过 4 小时，停车休息不少于 20 分钟。多数安全提示建议每 2 小时进一次服务区。排行程时把休息时间算进去，不要按导航的纯驾驶时间安排。</p>
+<h3>Q2 驾照在实习期能独自上高速吗？</h3>
+<p>答：上高速需要有陪同。实习期内上高速，应当由持相应或包含你的准驾车型、驾龄 3 年以上的驾驶人陪同。约不到人就改走国道，或等过了实习期再跑长途。</p>
+<h3>Q3 开多快合适？</h3>
+<p>答：高速最高 120 公里/小时，最低 60 公里/小时，低于最低时速也属违法。各车道另有最低车速：2 车道左侧 100，3 车道以上最左 110、中间 90。新手通常走中间车道，跟上车流速度，不长时间占用最左侧车道。</p>
+<h3>Q4 节假日高速免费怎么算？</h3>
+<p>答：春节、清明、劳动节、国庆 4 个国家法定节假日，7 座及以下小客车免费，时段从第一天 0 点到最后一天 24 点。高速公路以驶离出口收费车道的时间为准：免费开始前上高速，只要下高速时在免费时段内，全程免费。快到时段截止时，通常提前从就近出口下高速再重新上，能省下已跑路段的费用。具体每年的免费日期以交通运输部公告为准。</p>
+<h3>Q5 ETC 车免费期间要注意什么？</h3>
+<p>答：免费时段内多数情况正常走 ETC 车道即可，不需要拔卡。从人工车道上的高速，出口一般也走人工车道，避免扣费异常。对扣费有疑问，用「票根」App 查通行记录、开电子发票，或联系 ETC 发行方客服。</p>
+<h3>Q6 应急车道什么时候能用？</h3>
+<p>答：车辆故障、发生事故等紧急情况才能占用，占用时要开双闪、放三角牌。非紧急情况在应急车道行驶或停车属于违法。想休息、上厕所都算不上紧急情况，坚持到服务区。</p>
+<h3>Q7 错过出口怎么办？</h3>
+<p>答：继续行驶到下一个出口驶出，再绕回来。法规明确禁止在高速上倒车、逆行、穿越中央分隔带掉头。多跑十几公里是唯一正确的补救方式。</p>
+<h3>Q8 跟车距离多远合适？</h3>
+<p>答：车速超过 100 公里/小时，与前车保持 100 米以上；低于 100 公里/小时，不少于 50 米。雨、雾天和夜间再加大距离。路边的车距确认标志牌可以帮你核对。</p>
+<h3>Q9 夜间跑高速要注意什么？</h3>
+<p>答：夜间要开前照灯、示廓灯和后位灯。夜间视线差、容易犯困，长途尽量安排在白天。需要夜开就降低车速、加大跟车距离，进服务区休息得更勤。</p>
+<h3>Q10 遇到大雾怎么办？</h3>
+<p>答：开雾灯和危险报警闪光灯，按能见度降速：低于 200 米时不超过 60 公里/小时，跟车 100 米以上；低于 100 米时不超过 40 公里/小时；低于 50 米时不超过 20 公里/小时，并从最近出口尽快驶离高速。团雾多发路段看情报板提示，不随意停在主线或应急车道。</p>
+<h3>Q11 山区长下坡怎么开？</h3>
+<p>答：多数驾驶培训和交警提示建议挂低挡位，用发动机制动，避免长时间连续踩刹车导致刹车过热。下坡前看清坡长和避险车道位置。刹车脚感变软时，立即降挡减速，按第 5 节的故障流程处置。</p>
+<h3>Q12 带孩子自驾要注意什么？</h3>
+<p>答：儿童坐后排，使用与年龄、体重相符的儿童安全座椅。服务区休息时让孩子不离开视线。各地对儿童乘车还有具体规定，以当地为准。</p>
+<h3>Q13 快到 4 小时但服务区还远怎么办？</h3>
+<p>答：看导航找最近的服务区或出口，就近驶离休息。规划路线时提前记服务区间隔，山区路段有些间隔超过 50 公里。睡意上来时反应先变慢，别硬撑最后一段。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>免费时段最后一刻硬冲</strong>：免费以下高速时间为准。提前 1 小时下高速，别掐点赶路。</li>
+<li><strong>只在免费前排队下高速</strong>：截止前收费站常排长队。提前从就近出口下去再上来，更省时间。</li>
+<li><strong>胎压只靠目测</strong>：肉眼看不出缺两成气。用胎压表冷胎测，含备胎。</li>
+<li><strong>错过出口倒车</strong>：高速倒车、逆行是法规明令禁止的行为。到下一个出口绕回。</li>
+<li><strong>应急车道停车睡觉</strong>：非紧急情况占用应急车道违法，停车睡觉风险更大。去服务区。</li>
+<li><strong>油箱见底才加油</strong>：山区和西部路段加油站间隔大。油量低于一半就加。</li>
+<li><strong>夜间赶路</strong>：夜里视线差、易犯困，事故率高于白天。长途尽量白天走。</li>
+<li><strong>只带一台手机导航</strong>：隧道和山区可能没信号。提前下离线地图，带充电线。</li>
+<li><strong>三角牌放车后两三米</strong>：起不到警示作用。高速放来车方向 150 米以外，普通道路 50–100 米。</li>
+<li><strong>冬天用普通玻璃水</strong>：低温会冻住喷不出来。入冬前换成防冻型。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>高速上车辆故障</strong>：第一步开双闪，把车挪进应急车道或就近驶离。人撤到护栏外，三角牌放在来车方向 150 米以外，拨 12122 等救援。</li>
+<li><strong>高速上发生事故</strong>：先按「车靠边、人撤离、即报警」处置。有人受伤先拨 120，再拨 122 或 12122，然后报保险公司。车辆能动、无人伤的，拍照后靠边再报警，不长时间占用行车道。</li>
+<li><strong>爆胎</strong>：握稳方向盘，松油门，轻点刹车缓慢降速，靠边停车。不猛打方向、不急刹。停稳后按故障流程处置。</li>
+<li><strong>大雾或团雾</strong>：按 Q10 的速度和灯光要求行驶，能见度低于 50 米时从最近出口驶离。被困车流时留在车内、系好安全带，人不下车行走。</li>
+<li><strong>疲劳征兆出现</strong>：就近服务区停车休息 20 分钟以上。硬撑到目的地是长途事故的常见原因。</li>
+<li><strong>山区长下坡刹车变软</strong>：立即降挡，用发动机制动减速，观察避险车道位置。车辆停稳后按故障流程处置，拨 12122。</li>
+<li><strong>没油或没电</strong>：把车停进应急车道，按故障流程放牌、撤人，拨 12122 求助，或联系保险公司的道路救援。</li>
+<li><strong>长时间堵车</strong>：保持油量电量，听导航和广播的路况信息。乘客不下车在车流中穿行，需要医疗救助拨 12122 或 120。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>油费或电费</td>
+<td>0.4–0.8 元/公里</td>
+<td>按车型和路况浮动，必选</td>
+</tr>
+<tr>
+<td>高速通行费</td>
+<td>0.4–0.6 元/公里</td>
+<td>各省费率不同，4 个法定节假日 7 座及以下免费，必选</td>
+</tr>
+<tr>
+<td>停车费</td>
+<td>10–100 元/天</td>
+<td>酒店、景区停车，以当地为准，必选</td>
+</tr>
+<tr>
+<td>行前保养检查</td>
+<td>0–800 元</td>
+<td>自检免费，换机油、玻璃水按项目计，可选</td>
+</tr>
+<tr>
+<td>途中餐饮住宿</td>
+<td>每人每天 100–500 元</td>
+<td>视标准而定，可选</td>
+</tr>
+<tr>
+<td>道路救援</td>
+<td>视情况</td>
+<td>保险含免费救援的先找保险，高速救援按 12122 告知为准，可选</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>1–3 天</td>
+<td>单人每天驾驶 6 小时内，500 公里以上分两天走</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mot.gov.cn">交通运输部</a>（节假日免费通行公告）</li>
+<li><a href="https://www.mps.gov.cn">公安部交通管理局</a>（交通安全提示）</li>
+<li><a href="https://www.nmc.cn">中央气象台</a>（沿途天气）</li>
+<li>报警求助：高速 12122、交通事故 122、急救 120</li>
+<li>ETC 电子票据：「票根」App（通行费电子发票平台）</li>
+</ul>
+</li>
+<li>相关条目：<a href="A-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%A7%9F%E8%BD%A6%E8%87%AA%E9%A9%BE.html">A-07 第一次租车自驾</a>、<a href="A-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9D%90%E9%A3%9E%E6%9C%BA.html">A-01 第一次坐飞机</a>、<a href="../../book/07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B9%B0%E8%BD%A6.html">G-04 第一次买车</a>、<a href="../../book/06-%E5%81%A5%E5%BA%B7%E4%B8%8E%E5%8C%BB%E7%96%97/F-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8B%A8120%E6%80%A5%E6%95%91.html">F-07 第一次拨120急救</a></li>
+<li>可打印清单：<a href="../../checklists/A-12-%E8%87%AA%E9%A9%BE%E6%B8%B8-%E8%A1%8C%E5%89%8D%E4%B8%8E%E9%80%94%E4%B8%AD%E6%B8%85%E5%8D%95.html">A-12 自驾游行前与途中清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《道路交通安全法》及其实施条例、《道路交通安全违法行为记分管理办法》；Ⅱ 级为交通运输部免费通行政策解读、公安部交管局安全提示、《机动车驾驶证申领和使用规定》、全国高速公路报警服务电话；Ⅲ 级为通行做法（车况自检、每 2 小时休息、山区低挡下坡、单人每日驾驶时长）。</li>
+<li>风险与找谁：长途自驾做错的后果是人伤、车损和被困路上。第一步找交警：高速拨 12122，普通道路拨 122，有人受伤先拨 120，随后报保险公司处置。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国道路交通安全法实施条例》（第 58、60、62、78–82 条），国家行政法规库，<a href="https://xzfg.moj.gov.cn/front/law/detail?LawID=75">https://xzfg.moj.gov.cn/front/law/detail?LawID=75</a></li>
+<li>《中华人民共和国道路交通安全法》（第 68 条），国家信访局刊载全文，<a href="https://www.gjxfj.gov.cn/gjxfj/xxgk/fgwj/flfg/webinfo/2016/03/1460585589842682.htm">https://www.gjxfj.gov.cn/gjxfj/xxgk/fgwj/flfg/webinfo/2016/03/1460585589842682.htm</a></li>
+<li>《道路交通安全违法行为记分管理办法》（公安部令第 163 号），公安部，<a href="https://www.mps.gov.cn/n6557558/c8281723/content.html">https://www.mps.gov.cn/n6557558/c8281723/content.html</a></li>
+<li>交通运输部《解读重大节假日免收小型客车通行费政策》，<a href="https://xxgk.mot.gov.cn/jigou/glj/202006/t20200623_3312194.html">https://xxgk.mot.gov.cn/jigou/glj/202006/t20200623_3312194.html</a></li>
+<li>《机动车驾驶证申领和使用规定》（实习期上高速陪同条款），司法部法规库，<a href="https://www.moj.gov.cn/pub/sfbgw/flfggz/flfggzbmgz/201301/t20130118_145253.html">https://www.moj.gov.cn/pub/sfbgw/flfggz/flfggzbmgz/201301/t20130118_145253.html</a></li>
+<li>公安部公布的全国高速公路报警服务电话，共产党员网转载，<a href="http://www.12371.cn/2012/10/01/ARTI1349038045327187.shtml">http://www.12371.cn/2012/10/01/ARTI1349038045327187.shtml</a></li>
+<li>公安部交管局「车靠边、人撤离、即报警」九字诀，<a href="https://www.mps.gov.cn/n2254098/n4904352/c7827661/content.html">https://www.mps.gov.cn/n2254098/n4904352/c7827661/content.html</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-24</li>
+<li>适用范围与地区差异：中国内地收费公路和一般道路。部分省份高速公路报警电话不同（如四川 96122），拖车救援收费标准各地不同，均以当地为准。</li>
+<li>易变项：节假日免费起止日期每年公布，油价、ETC 政策（M）。</li>
+<li>核实记录：<a href="../../sources/A-12.%E6%A0%B8%E5%AE%9E.html">sources/A-12.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="A-11-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%8F%E9%85%92%E5%BA%97%E4%B8%8E%E6%B0%91%E5%AE%BF.html"><span class="dir">← 上一篇</span><span class="name">A-11 第一次住酒店/民宿</span></a><a class="next" href="../02-%E8%AF%81%E4%BB%B6%E4%B8%8E%E8%B7%A8%E5%A2%83/B-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%87%BA%E5%9B%BD.html"><span class="dir">下一篇 →</span><span class="name">B-01 第一次出国</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

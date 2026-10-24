@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次租房 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 钱与消费</nav>
+  <h1 class="post-title">第一次租房</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>钱与消费</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>10 条</b></span><span class="chip ">耗时 <b>1-3天</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>分市</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：找已备案的中介或租赁企业，看房核验证件，合同写清押金和维修责任，交接时拍照留底。
+<strong>适用</strong>：第一次在中国内地城市租房、自己签租赁合同的成年人。
+<strong>不适用</strong>：公租房、保障性租赁住房、单位宿舍、买房（另立条目）。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>找谁</strong>：优先选已备案的房地产经纪机构、已报送开业信息的住房租赁企业。门店要公示备案信息和实名工作牌。[1]</li>
+<li><strong>看房核验</strong>：看出租人身份证、不动产权证或其他合法出租证明，姓名要一致。转租要看原出租人书面同意。[2]</li>
+<li><strong>合同</strong>：写清双方身份、房屋地址面积、租金押金及支付、用途、期限、维修、水电物业费、违约和争议解决。[3]</li>
+<li><strong>押金</strong>：押金数额、返还时间、扣减情形要写进合同。没有合同约定的情形，出租人无正当理由不得扣。[4]</li>
+<li><strong>维修</strong>：房屋维修一般由出租人负责，合同另有约定的除外。不修，你可以催告或自行维修，费用由出租人承担。[5]</li>
+<li><strong>不能赶人</strong>：出租人不得用暴力、威胁或其他非法方式迫使你腾退。[6]</li>
+<li><strong>群租</strong>：厨房、卫生间、阳台、过道、地下储藏室、车库不得单独住人，不得打隔断改变结构分割出租。[7]</li>
+<li><strong>备案</strong>：出租人应在 30 日内办理租赁合同备案，备案不收费。出租人不办，承租人也可以办。[8]</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 找房渠道与中介资质</h3>
+<ul>
+<li>优先选品牌公寓、已备案的经纪机构、官方租赁平台。</li>
+<li>看门店有没有公示营业执照、备案证明、收费标准、实名工作牌。[1]</li>
+<li>网络平台找房，先核验发布者身份和房源真实性。</li>
+<li>个人房东直租，也要核验身份证和产权证明。</li>
+<li>不要先交“看房费”“意向金”再看房。</li>
+</ul>
+<h3>1.2 看房核验</h3>
+<ul>
+<li>出租人身份证。</li>
+<li>不动产权证，或其他能证明合法出租的材料。</li>
+<li>房东本人不到场，要有授权委托书。</li>
+<li>转租的，要有原出租人书面同意。[2]</li>
+<li>核对合同签约人和产权人是否一致。</li>
+<li>拍照留存证件和房屋现状。</li>
+</ul>
+<h3>1.3 合同条款</h3>
+<ul>
+<li>双方姓名、身份证号、住所、联系方式。</li>
+<li>房屋坐落、面积、户型、设施清单。</li>
+<li>租金金额、支付方式、支付周期、发薪日对应。</li>
+<li>押金金额、返还时间、扣减情形。</li>
+<li>租赁用途、租住人数。</li>
+<li>租赁期限、起止日期、续租条件。</li>
+<li>维修责任、水电燃气物业费谁承担。</li>
+<li>违约责任、解除条件、争议解决方式。</li>
+<li>征收、拆迁、房屋出售时的处理。</li>
+</ul>
+<h3>1.4 押金与租金</h3>
+<ul>
+<li>全国没有统一押金上限，也没有“押一付三”的法律规定。按合同约定。[4]</li>
+<li>北京等地对租赁企业有押金和租金监管要求，例如押金一般不超过 1 个月、单次租金不超过 3 个月。以当地规定为准。[4]</li>
+<li>押金要写清什么时候退、什么情况扣。</li>
+<li>租金支付尽量走银行转账，备注“房租”，保留凭证。</li>
+<li>不要把钱转给个人中介或网络平台代收，除非合同写清。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 看房</h3>
+<ul>
+<li>在哪：房源地址，白天去看，最好有人陪同。</li>
+<li>做什么：看采光、通风、漏水、霉斑、隔音、门锁、水电燃气。</li>
+<li>看什么：房产证地址和房源地址是否一致；合租人数和公共区域。</li>
+<li>说什么：问清物业费、水电燃气费、网费、取暖费谁出。</li>
+<li>完成标志：确认房源真实、设施清单拍照。</li>
+<li>卡住了怎么办：房东不肯出示产权证明，直接放弃。</li>
+</ul>
+<h3>2.2 谈价</h3>
+<ul>
+<li>问清租金包含什么，是否含物业、取暖、网费。</li>
+<li>问清押金数额、支付周期、退押金时间。</li>
+<li>问清提前退租怎么处理。</li>
+<li>问清能不能做饭、养宠物、转租、带人住。</li>
+<li>所有口头承诺写进合同。</li>
+</ul>
+<h3>2.3 签合同</h3>
+<ul>
+<li>在哪：中介门店、房东家或线上签约。</li>
+<li>做什么：逐条读合同，填好空白处。</li>
+<li>看什么：押金、维修、违约、退租、费用承担。</li>
+<li>说什么：不同意的条款当场改，不要先签再说。</li>
+<li>完成标志：双方签字，你拿到一份合同原件。</li>
+<li>卡住了怎么办：合同不给原件，拍照留存并谨慎签约。</li>
+</ul>
+<h3>2.4 交接</h3>
+<ul>
+<li>抄水电燃气表读数，拍照。</li>
+<li>清点家具家电，列清单，注明新旧和损坏情况。</li>
+<li>拍房屋现状视频，重点拍墙面、地板、门窗、厨卫。</li>
+<li>拿钥匙、门禁卡、燃气卡、电卡。</li>
+<li>确认物业、宽带、供暖怎么过户或新开。</li>
+</ul>
+<h3>2.5 备案</h3>
+<ul>
+<li>出租人应在 30 日内办理住房租赁合同备案。[8]</li>
+<li>备案不收费。</li>
+<li>出租人不办，承租人可以自己办。</li>
+<li>通过经纪机构成交的，由经纪机构办理。</li>
+<li>备案入口在各地住建部门或政务服务平台的租赁平台。</li>
+</ul>
+<h3>2.6 入住后</h3>
+<ul>
+<li>保存合同、押金收据、转账记录、交接清单。</li>
+<li>发现漏水、电路、家电故障，及时书面通知房东维修。</li>
+<li>房东不修，按合同催告，保留聊天记录和维修发票。[5]</li>
+<li>续租或退租提前按合同通知。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 第一次租房，找中介还是找房东？</h3>
+<p>答：都可以。找中介要看备案和收费公示；找房东要核验身份证和产权证明。[1][2]</p>
+<h3>Q2 看房要核验哪些证件？</h3>
+<p>答：出租人身份证、不动产权证或其他合法出租证明。转租要看原出租人书面同意。[2]</p>
+<h3>Q3 押金一般多少？押一付三合法吗？</h3>
+<p>答：全国没有统一押金上限，也没有“押一付三”的法律规定，按合同约定。部分城市对租赁企业有监管要求，以当地为准。[4]</p>
+<h3>Q4 押金不退怎么办？</h3>
+<p>答：先看合同约定的返还时间和扣减情形。没有正当理由不得扣。协商不成，可以向住建部门、12345 投诉，或申请调解、仲裁、诉讼。[6]</p>
+<h3>Q5 房东要卖房，我能继续住吗？</h3>
+<p>答：买卖不破租赁。新房东要继续履行合同，除非合同另有约定。具体看合同和当地规定。</p>
+<h3>Q6 二房东转租合法吗？</h3>
+<p>答：转租要经原出租人同意，书面更稳。未经同意，原出租人可以解除合同。[2]</p>
+<h3>Q7 房屋维修谁负责？</h3>
+<p>答：一般由出租人负责，合同另有约定的除外。出租人不修，承租人可以催告或自行维修，费用由出租人承担。[5]</p>
+<h3>Q8 房东断水断电赶人怎么办？</h3>
+<p>答：出租人不得用暴力、威胁或其他非法方式迫使承租人腾退。先报警，保留证据，向住建部门投诉或起诉。[6]</p>
+<h3>Q9 租房要备案吗？收费吗？</h3>
+<p>答：出租人应在 30 日内备案，备案不收费。出租人不办，承租人也可以办。[8]</p>
+<h3>Q10 中介费怎么收？</h3>
+<p>答：明码标价，不得捆绑收费或标价外加价。全国没有统一费率，具体协商。[9]</p>
+<h3>Q11 甲醛超标怎么办？</h3>
+<p>答：先委托有资质机构检测，保留报告。按合同和《住房租赁条例》要求整改或解约，向住建部门、12345 投诉。</p>
+<h3>Q12 群租房、隔断房能租吗？</h3>
+<p>答：厨房、卫生间、阳台、过道、地下储藏室、车库不得单独住人，不得打隔断分割出租。遇到可以向住建部门投诉。[7]</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>先交意向金再看房</strong>：不交，先看房再谈钱。</li>
+<li><strong>不核验产权</strong>：二房东、假房东最常见，证件必须看。[2]</li>
+<li><strong>押金条款模糊</strong>：写清返还时间和扣减情形。[4]</li>
+<li><strong>口头承诺不写进合同</strong>：维修、费用、续租，全部落纸。</li>
+<li><strong>低价引流房</strong>：照片和实际不符，先看房再决定。</li>
+<li><strong>合同不给原件</strong>：至少拍照留存，谨慎签约。</li>
+<li><strong>群租隔断房</strong>：便宜但安全风险高，也可能被清退。[7]</li>
+<li><strong>把租金转给个人账户</strong>：尽量转账给合同上的出租人，备注用途。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>押金不退</strong>：协商→12345/住建投诉→调解/仲裁/诉讼，保留合同、转账记录、交接清单。[6]</li>
+<li><strong>房东暴力驱赶</strong>：先报警 110，保留录音录像，向住建部门投诉。[6]</li>
+<li><strong>房屋漏水、甲醛超标</strong>：书面通知房东维修或整改，保留检测报告和聊天记录。</li>
+<li><strong>中介乱收费</strong>：向市场监管 12315 投诉，保留收据和聊天记录。[9]</li>
+<li><strong>合同丢失</strong>：找对方补一份，保留转账记录、聊天记录、交接照片。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>押金</td>
+<td>1 到 3 个月租金</td>
+<td>按合同，退租时返还</td>
+</tr>
+<tr>
+<td>首期租金</td>
+<td>1 到 3 个月</td>
+<td>按合同</td>
+</tr>
+<tr>
+<td>中介费</td>
+<td>通常 1 个月租金左右</td>
+<td>全国无统一费率，协商 [9]</td>
+</tr>
+<tr>
+<td>搬家</td>
+<td>几百到上千元</td>
+<td>按距离和物品</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>1–3 天</td>
+<td>看房、签约、交接</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mohurd.gov.cn">住房和城乡建设部</a></li>
+<li>当地住建部门住房租赁服务平台</li>
+<li>12345 政务服务热线</li>
+<li>12315 市场监管投诉</li>
+</ul>
+</li>
+<li>相关条目：<a href="../03-%E5%B7%A5%E4%BD%9C%E4%B8%8E%E8%81%8C%E4%B8%9A/C-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%85%A5%E8%81%8C.html">C-01 第一次入职</a></li>
+<li>可打印清单：<a href="../../checklists/G-02-%E7%A7%9F%E6%88%BF-%E4%BA%A4%E6%8E%A5%E6%B8%85%E5%8D%95.html">G-02 租房交接清单</a></li>
+<li>术语：<a href="../../meta/%E6%9C%AF%E8%AF%AD%E8%A1%A8.html">押金</a>（待补）</li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：以 Ⅰ/Ⅱ 级法规和官方指引为主，部分为地方规定。</li>
+<li>主要来源：<ol>
+<li>《住房租赁条例》，<a href="https://www.gov.cn/zhengce/zhengceku/202507/content_7032956.htm">https://www.gov.cn/zhengce/zhengceku/202507/content_7032956.htm</a></li>
+<li>《中华人民共和国民法典》第七百一十二、七百一十三、七百一十六条；《商品房屋租赁管理办法》第七条</li>
+<li>《商品房屋租赁管理办法》第七条，<a href="https://www.gov.cn/zhengce/2022-01/25/content_5711968.htm">https://www.gov.cn/zhengce/2022-01/25/content_5711968.htm</a></li>
+<li>《住房租赁条例》第十、十九、二十五、三十六条；《北京市住房租赁条例》第三十六条</li>
+<li>《民法典》第七百一十二条、第七百一十三条</li>
+<li>《住房租赁条例》第十、十二、三十五条</li>
+<li>《住房租赁条例》第七、三十九条；《商品房屋租赁管理办法》第八、二十二条</li>
+<li>《住房租赁条例》第八、二十七条；《商品房屋租赁管理办法》第十四条</li>
+<li>住建部、市场监管总局《关于规范房地产经纪服务的意见》（建房规〔2023〕2号），<a href="https://www.gov.cn/gongbao/2023/issue_10566/202307/content_6890781.html">https://www.gov.cn/gongbao/2023/issue_10566/202307/content_6890781.html</a></li>
+<li>《房地产经纪管理办法》第十一、十二条，<a href="https://www.gov.cn/zhengce/2022-01/25/content_5711966.htm">https://www.gov.cn/zhengce/2022-01/25/content_5711966.htm</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地城市住房租赁；地方规定以当地为准。</li>
+<li>易变项：地方押金监管、群租标准、备案平台（M）。</li>
+<li>核实记录：<a href="../../sources/G-02.%E6%A0%B8%E5%AE%9E.html">sources/G-02.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="G-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%9E%E9%93%B6%E8%A1%8C%E5%8D%A1.html"><span class="dir">← 上一篇</span><span class="name">G-01 第一次办银行卡</span></a><a class="next" href="G-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B9%B0%E6%88%BF%E5%8A%9E%E6%88%BF%E8%B4%B7.html"><span class="dir">下一篇 →</span><span class="name">G-03 第一次买房/办房贷</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

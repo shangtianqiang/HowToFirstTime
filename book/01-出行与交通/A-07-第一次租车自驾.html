@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次租车自驾 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 出行与交通</nav>
+  <h1 class="post-title">第一次租车自驾</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>出行与交通</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>4 条</b></span><span class="chip ">耗时 <b>1-3天</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：取车先绕车拍照录像，看清保险和免赔条款，还车加满油、留好凭证，事故先报警报保险不私了。
+<strong>适用</strong>：持有效驾驶证、第一次在旅游地或异地租车自驾的人。
+<strong>不适用</strong>：长期租赁、以租代购、企业用车，合同和责任划分不同。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>材料</strong>：身份证、驾驶证、信用卡（预授权），部分平台支持信用免押。</li>
+<li><strong>驾龄</strong>：多数公司要求满 1 年，部分城市对 25 岁以下加收费用。</li>
+<li><strong>取车</strong>：绕车拍照录像，记录划痕、油量、里程、轮胎。</li>
+<li><strong>保险</strong>：看清交强险、商业险和免赔额，必要时加购不计免赔。</li>
+<li><strong>还车</strong>：加满油、清洁车内、带齐随车物品。</li>
+<li><strong>违章</strong>：押金通常保留 30 天，等违章查询期结束。</li>
+<li><strong>事故</strong>：拨 122、报保险、拍照，不私下赔钱。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 订车前</h3>
+<ul>
+<li>比价：同一车型在不同平台、不同取车点价格差别大。</li>
+<li>看合同：押金金额、免赔额、里程限制、异地还车费、提前还车规则。</li>
+<li>确认取还车点营业时间，红眼航班要选 24 小时门店。</li>
+<li>确认车辆性质：非营运车辆，不能用于网约车、货运。</li>
+<li>查目的地限行政策：外地牌照限行、进京证、景区通行证。</li>
+</ul>
+<h3>1.2 材料与资格</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 身份证</li>
+<li><input disabled="" type="checkbox"> 驾驶证（正副页），驾龄符合平台要求</li>
+<li><input disabled="" type="checkbox"> 信用卡，额度够押金预授权</li>
+<li><input disabled="" type="checkbox"> 电子或纸质订单</li>
+<li><input disabled="" type="checkbox"> 充电宝、手机支架、行车记录仪（可选）</li>
+<li>部分平台支持芝麻信用免押，但仍可能刷预授权。</li>
+</ul>
+<h3>1.3 取车前</h3>
+<ul>
+<li>下载离线地图，山区、隧道信号差。</li>
+<li>查沿途加油站、充电桩分布。</li>
+<li>把租车合同、保险单、门店电话存到手机。</li>
+<li>告诉家人行程和预计到达时间。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 到店取车</h3>
+<ul>
+<li>在哪：订单上的取车门店。</li>
+<li>做什么：出示身份证、驾驶证、信用卡，签租赁合同。</li>
+<li>看什么：合同里的押金、免赔额、里程限制、油量规则。</li>
+<li>完成标志：拿到钥匙、行驶证、保险单。</li>
+</ul>
+<h3>2.2 验车</h3>
+<ul>
+<li>在哪：门店停车区。</li>
+<li>做什么：绕车一圈拍照和录像，重点拍前后保险杠、轮毂、车门、挡风玻璃。</li>
+<li>看什么：划痕、凹陷、轮胎磨损、备胎和工具、三角警示牌、灭火器。</li>
+<li>记录：油量刻度、里程数、车内整洁度，拍照留存。</li>
+<li>完成标志：验车单双方确认，照片有时间戳。</li>
+</ul>
+<h3>2.3 上路</h3>
+<ul>
+<li>在哪：门店到目的地。</li>
+<li>做什么：调整座椅、后视镜，系安全带，试刹车和灯光。</li>
+<li>看什么：仪表盘警示灯、油量、胎压。</li>
+<li>完成标志：正常驶入道路。</li>
+<li>卡住了怎么办：车辆有异响或警示灯亮，立即靠边停车，联系门店换车。</li>
+</ul>
+<h3>2.4 途中</h3>
+<ul>
+<li>在哪：路上。</li>
+<li>做什么：按导航行驶，遵守限速，不疲劳驾驶。</li>
+<li>看什么：限行标志、施工路段、景区停车管制。</li>
+<li>完成标志：到达目的地，车辆停放在正规停车场。</li>
+</ul>
+<h3>2.5 还车</h3>
+<ul>
+<li>在哪：约定的还车点。</li>
+<li>做什么：加满油（或按合同油量），清理垃圾，核对随车物品。</li>
+<li>看什么：还车验车单，确认无新增损伤。</li>
+<li>完成标志：工作人员验车签字，押金退还流程启动。</li>
+<li>卡住了怎么办：对损伤认定有异议，出示取车时的照片和视频。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 租车需要什么证件？</h3>
+<p>答：身份证、驾驶证、信用卡。部分平台要求驾龄满 1 年，具体看平台规则和门店要求。</p>
+<h3>Q2 押金怎么退？</h3>
+<p>答：车辆押金还车验收后解冻，违章押金通常保留 30 天左右，确认无违章后返还。以合同约定为准。</p>
+<h3>Q3 保险买哪种？</h3>
+<p>答：交强险是法定必备，商业险看合同包含哪些。免赔额高的，可以加购不计免赔或尊享服务。</p>
+<h3>Q4 发生剐蹭怎么办？</h3>
+<p>答：先拍照、报警（有人伤或责任不清时），再报保险和门店，不私下赔钱、不擅自维修。</p>
+<h3>Q5 可以异地还车吗？</h3>
+<p>答：可以，但要提前在订单里选异地还车点，通常收取异地还车费，费用按距离计算。</p>
+<h3>Q6 油量怎么算？</h3>
+<p>答：多数合同要求“取车多少、还车多少”，少油按门店价格补，通常高于市场油价。还车前加满最划算。</p>
+<h3>Q7 可以开去外地吗？</h3>
+<p>答：多数可以，但部分合同限制行驶区域。跨省、进京、进藏等要提前告知门店。</p>
+<h3>Q8 车辆故障怎么办？</h3>
+<p>答：靠边停车、开双闪、放三角警示牌，联系门店救援，不要自行找修理厂维修。</p>
+<h3>Q9 违章怎么处理？</h3>
+<p>答：门店会通知违章，按合同从押金扣违约金，或要求本人处理。保留处理凭证。</p>
+<h3>Q10 新手司机能租吗？</h3>
+<p>答：多数平台要求驾龄满 1 年，部分车型要求 2 年以上。实习期内通常不租或限制车型。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>不验车就开走</strong>：还车时旧伤算你的。绕车拍视频，重点拍保险杠和轮毂。</li>
+<li><strong>只看低价</strong>：低价订单可能不含基础保险，或里程限制很严。</li>
+<li><strong>免赔额陷阱</strong>：小剐蹭自费几百上千，加购不计免赔前先算账。</li>
+<li><strong>油量规则</strong>：还车少油按高价补，提前加满。</li>
+<li><strong>异地还车费</strong>：下单时没选，还车时被加收，提前确认。</li>
+<li><strong>私人租车</strong>：没有营运资质，出事故保险可能拒赔。选正规租赁公司。</li>
+<li><strong>把车借给他人</strong>：合同通常只允许登记驾驶人驾驶，出事故保险可能不赔。</li>
+<li><strong>车内吸烟</strong>：多数合同禁烟，清洁费几百元。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>交通事故</strong>：先救人，拨 122 和 120，拍照，报保险和门店，不私了。</li>
+<li><strong>车辆被砸、被盗</strong>：报警，保护现场，联系门店和保险。</li>
+<li><strong>车辆故障</strong>：靠边、双闪、三角牌，人撤到护栏外，联系门店救援。</li>
+<li><strong>违章被扣车</strong>：配合交警处理，联系门店说明情况。</li>
+<li><strong>高原、山区驾驶</strong>：检查刹车和胎压，控制车速，不夜间赶山路。</li>
+<li><strong>押金纠纷</strong>：出示合同、验车照片和还车单，向平台投诉或拨 12315。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>日租金</td>
+<td>100–500 元/天</td>
+<td>按车型和季节，必选</td>
+</tr>
+<tr>
+<td>押金</td>
+<td>2000–10000 元</td>
+<td>预授权，可退，必选</td>
+</tr>
+<tr>
+<td>保险</td>
+<td>30–100 元/天</td>
+<td>基础险或不计免赔，可选</td>
+</tr>
+<tr>
+<td>异地还车费</td>
+<td>几百到上千元</td>
+<td>按距离，可选</td>
+</tr>
+<tr>
+<td>油费、过路费</td>
+<td>按实际</td>
+<td>自理，必选</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mot.gov.cn">交通运输部</a></li>
+<li><a href="https://www.mps.gov.cn">公安部交通管理局</a></li>
+<li>122 交通事故报警电话</li>
+</ul>
+</li>
+<li>相关条目：<a href="D-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AD%A6%E8%BD%A6.html">D-02 第一次学车</a>、<a href="A-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%AA%91%E7%94%B5%E5%8A%A8%E8%BD%A6%E4%B8%8A%E8%B7%AF.html">A-08 第一次骑电动车上路</a></li>
+<li>可打印清单：<a href="../../checklists/A-07-%E7%A7%9F%E8%BD%A6-%E5%8F%96%E8%BF%98%E8%BD%A6%E6%B8%85%E5%8D%95.html">A-07 租车清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《道路交通安全法》和租赁合同示范文本；Ⅱ 级为租赁平台合同条款和保险说明；Ⅲ 级为通行做法。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国道路交通安全法》，<a href="https://www.mps.gov.cn">https://www.mps.gov.cn</a></li>
+<li>交通运输部关于汽车租赁经营的说明，<a href="https://www.mot.gov.cn">https://www.mot.gov.cn</a></li>
+<li>神州租车租车须知，<a href="https://www.zuche.com">https://www.zuche.com</a></li>
+<li>一嗨租车租车协议，<a href="https://www.ehi.com.cn">https://www.ehi.com.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地正规汽车租赁公司。驾龄、年龄、押金、里程限制各平台不同。</li>
+<li>易变项：租金、保险产品、限行政策（M）。</li>
+<li>核实记录：<a href="../../sources/A-07.%E6%A0%B8%E5%AE%9E.html">sources/A-07.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="A-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%89%93%E7%BD%91%E7%BA%A6%E8%BD%A6%E4%B8%8E%E5%87%BA%E7%A7%9F%E8%BD%A6.html"><span class="dir">← 上一篇</span><span class="name">A-06 第一次打网约车/出租车</span></a><a class="next" href="A-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%AA%91%E7%94%B5%E5%8A%A8%E8%BD%A6%E4%B8%8A%E8%B7%AF.html"><span class="dir">下一篇 →</span><span class="name">A-08 第一次骑电动车上路</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

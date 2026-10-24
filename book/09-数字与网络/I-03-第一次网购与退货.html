@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次网购与退货 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 数字与网络</nav>
+  <h1 class="post-title">第一次网购与退货</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>数字与网络</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>4 条</b></span><span class="chip ">耗时 <b>半小时内</b></span><span class="chip ">花费 <b>百元内</b></span><span class="chip risk-low">风险 <b>低</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：只在正规平台下单，收货先验货再签收，七天内可无理由退货，商品完好、吊牌在，退款走平台。
+<strong>适用</strong>：第一次独立网购、退货、换货的成年人和学生。
+<strong>不适用</strong>：跨境电商、法拍、二手交易，规则不同。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>平台</strong>：正规电商 App，不点陌生链接、不脱离平台交易。</li>
+<li><strong>下单</strong>：看清商品参数、发货时间、退换规则、运费险。</li>
+<li><strong>收货</strong>：先验货再签收，贵重物品拍开箱视频。</li>
+<li><strong>七天无理由</strong>：收到之日起七日内，商品完好可退。</li>
+<li><strong>例外</strong>：定制、生鲜、数字化商品、报刊等不适用。</li>
+<li><strong>退款</strong>：走平台流程，不私下转账。</li>
+<li><strong>纠纷</strong>：平台客服、12315、消协。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 下单前</h3>
+<ul>
+<li>看商品详情、规格、材质、产地。</li>
+<li>看店铺资质、评分、评价，特别是差评。</li>
+<li>看发货时间、是否预售。</li>
+<li>看退换货规则和运费险。</li>
+<li>对比价格，警惕“先涨后降”。</li>
+</ul>
+<h3>1.2 支付</h3>
+<ul>
+<li>用平台官方支付，不扫商家私人收款码。</li>
+<li>不脱离平台交易，不加微信转账。</li>
+<li>保留订单和支付记录。</li>
+<li>完成标志：订单支付成功。</li>
+</ul>
+<h3>1.3 收货</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 核对快递单号和商品</li>
+<li><input disabled="" type="checkbox"> 贵重物品拍开箱视频</li>
+<li><input disabled="" type="checkbox"> 检查外观、数量、型号</li>
+<li><input disabled="" type="checkbox"> 保留包装和吊牌</li>
+<li><input disabled="" type="checkbox"> 有问题当场拒收或拍照</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 下单</h3>
+<ul>
+<li>在哪：电商平台 App。</li>
+<li>做什么：选规格、数量、地址，提交订单。</li>
+<li>看什么：优惠是否生效、实付金额。</li>
+<li>完成标志：订单生成。</li>
+</ul>
+<h3>2.2 发货与物流</h3>
+<ul>
+<li>查看物流状态。</li>
+<li>长时间不发货，联系客服或申请退款。</li>
+<li>完成标志：收到商品。</li>
+</ul>
+<h3>2.3 验货</h3>
+<ul>
+<li>外包装破损，当着快递员拆箱拍照。</li>
+<li>商品与描述不符，拒收或申请退货。</li>
+<li>完成标志：确认收货或拒收。</li>
+</ul>
+<h3>2.4 退货</h3>
+<ul>
+<li>在哪：平台订单页面。</li>
+<li>做什么：申请退货，选原因，上传照片。</li>
+<li>看什么：退货地址、运费承担、退款时间。</li>
+<li>完成标志：退货申请通过。</li>
+</ul>
+<h3>2.5 寄回与退款</h3>
+<ul>
+<li>按平台提供的地址寄回，保留快递单号。</li>
+<li>商家签收后关注退款进度。</li>
+<li>完成标志：退款到账。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 七天无理由怎么算？</h3>
+<p>答：自收到商品之日起七日内，商品完好可退。[1]</p>
+<h3>Q2 拆封了还能退吗？</h3>
+<p>答：拆封查验不影响商品完好，可以退；使用痕迹明显可能被拒。</p>
+<h3>Q3 退货运费谁出？</h3>
+<p>答：无理由退货通常买家承担，有运费险按保险赔付；质量问题卖家承担。</p>
+<h3>Q4 哪些商品不能无理由退？</h3>
+<p>答：定制、生鲜、在线下载或拆封的音像制品、报纸期刊、消费者确认不宜退货的。[1]</p>
+<h3>Q5 商家不发货怎么办？</h3>
+<p>答：申请退款，向平台投诉，必要时 12315。</p>
+<h3>Q6 收到假货怎么办？</h3>
+<p>答：保留商品和包装，拍照，申请退款并投诉，可主张赔偿。</p>
+<h3>Q7 预售商品能退吗？</h3>
+<p>答：看规则。定金通常不退，尾款可退，具体看平台和商家约定。</p>
+<h3>Q8 退款多久到账？</h3>
+<p>答：商家签收后 1–7 个工作日，按平台规则。</p>
+<h3>Q9 评价能改吗？</h3>
+<p>答：多数平台可以追评或修改，具体看规则。</p>
+<h3>Q10 快递丢了谁负责？</h3>
+<p>答：卖家负责发货风险，联系卖家补发或退款，卖家向快递索赔。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>脱离平台交易</strong>：没有保障，被骗难追。</li>
+<li><strong>扫私人收款码</strong>：钱直接给骗子。</li>
+<li><strong>不验货就签收</strong>：破损难定责。</li>
+<li><strong>剪吊牌、下水洗</strong>：影响二次销售，不能退。</li>
+<li><strong>超过七天</strong>：无理由退货失效。</li>
+<li><strong>轻信“好评返现”</strong>：可能违规，评价失真。</li>
+<li><strong>不保留包装</strong>：退货要原包装。</li>
+<li><strong>点陌生退款链接</strong>：钓鱼诈骗。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>商家跑路</strong>：平台投诉，申请平台先行赔付。</li>
+<li><strong>快递破损</strong>：拒收，拍照，联系卖家和快递。</li>
+<li><strong>退款不到账</strong>：联系平台客服，保留记录，12315。</li>
+<li><strong>买到违禁品</strong>：报警，保留证据。</li>
+<li><strong>信息泄露</strong>：改密码，举报，警惕诈骗电话。</li>
+<li><strong>被威胁</strong>：报警，保留聊天记录。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>商品</td>
+<td>按需</td>
+<td>必选</td>
+</tr>
+<tr>
+<td>运费</td>
+<td>0–20 元</td>
+<td>按店铺</td>
+</tr>
+<tr>
+<td>运费险</td>
+<td>几元</td>
+<td>可选</td>
+</tr>
+<tr>
+<td>退货快递</td>
+<td>8–20 元</td>
+<td>无理由退货</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半小时内</td>
+<td>下单</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.12315.cn">全国 12315 平台</a></li>
+<li><a href="https://www.samr.gov.cn">国家市场监督管理总局</a></li>
+<li><a href="https://www.spb.gov.cn">国家邮政局</a></li>
+<li>平台客服</li>
+</ul>
+</li>
+<li>相关条目：<a href="G-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B6%88%E8%B4%B9%E7%BB%B4%E6%9D%83.html">G-08 第一次消费维权</a>、<a href="I-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%98%B2%E8%AF%88%E9%AA%97.html">I-01 第一次防诈骗</a></li>
+<li>可打印清单：<a href="../../checklists/I-03-%E7%BD%91%E8%B4%AD%E9%80%80%E8%B4%A7-%E6%B5%81%E7%A8%8B%E6%B8%85%E5%8D%95.html">I-03 网购退货清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《消费者权益保护法》《电子商务法》；Ⅱ 级为市场监管部门和平台规则。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国消费者权益保护法》第二十五条，<a href="https://www.samr.gov.cn">https://www.samr.gov.cn</a></li>
+<li>《中华人民共和国电子商务法》，<a href="https://www.samr.gov.cn">https://www.samr.gov.cn</a></li>
+<li>全国 12315 平台投诉指南，<a href="https://www.12315.cn">https://www.12315.cn</a></li>
+<li>国家邮政局快递服务规定，<a href="https://www.spb.gov.cn">https://www.spb.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地网络购物。平台规则和运费标准不同。</li>
+<li>易变项：平台规则、运费险（M）。</li>
+<li>核实记录：<a href="../../sources/I-03.%E6%A0%B8%E5%AE%9E.html">sources/I-03.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="I-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B4%A6%E5%8F%B7%E8%A2%AB%E7%9B%97%E6%89%BE%E5%9B%9E.html"><span class="dir">← 上一篇</span><span class="name">I-02 第一次账号被盗/找回</span></a><a class="next" href="I-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD.html"><span class="dir">下一篇 →</span><span class="name">I-04 第一次数据备份</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

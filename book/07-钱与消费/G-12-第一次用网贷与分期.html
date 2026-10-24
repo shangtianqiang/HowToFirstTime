@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次用网贷/分期 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 钱与消费</nav>
+  <h1 class="post-title">第一次用网贷/分期</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>钱与消费</b></span><span class="chip ">最近核实 <b>2026-10-24</b></span><span class="chip ">来源 <b>8 条</b></span><span class="chip ">耗时 <b>半小时内</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-high">风险 <b>高</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：借钱前先查牌照、只看年化利率、算清怎么还，不碰以贷养贷，逾期尽早找机构协商。
+<strong>适用</strong>：第一次通过网络平台借款或办消费分期，想弄清成本、征信和风险的年轻人。
+<strong>不适用</strong>：买房贷款看 <a href="G-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B9%B0%E6%88%BF%E5%8A%9E%E6%88%BF%E8%B4%B7.html">G-03 第一次买房办房贷</a>；信用卡问题看 <a href="G-05-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%A8%E4%BF%A1%E7%94%A8%E5%8D%A1.html">G-05 第一次用信用卡</a>；怀疑被骗看 <a href="../09-%E6%95%B0%E5%AD%97%E4%B8%8E%E7%BD%91%E7%BB%9C/I-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%98%B2%E8%AF%88%E9%AA%97.html">I-01 第一次防诈骗</a>。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>先问三个问题</strong>：这笔钱非借不可吗？每月拿什么还？还不上怎么办？想不清楚就先不借。</li>
+<li><strong>认准持牌机构</strong>：银行和持牌消费金融公司，牌照在国家金融监督管理总局官网查得到 [7]。</li>
+<li><strong>只看年化利率</strong>：所有贷款产品都应明示年化利率，日息、月费率都要折成年化再比较 [1]。</li>
+<li><strong>分期手续费有水分</strong>：月费率 0.6% 的 12 期分期，名义年费率 7.2%，实际年化利率超过 13%。</li>
+<li><strong>借还都记入征信</strong>：逾期形成不良记录，自还清之日起保存 5 年 [3]。</li>
+<li><strong>卡住了找谁</strong>：放贷机构客服；投诉拨 12378 [6]；举报违规平台走中国互联网金融举报信息平台 [8]。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 借钱前先想清楚</h3>
+<ul>
+<li>先问自己三个问题：这笔钱非借不可吗？每月拿什么还？还不上怎么办？</li>
+<li>三个问题里有答不上来的，先不借。可以缓一缓、动用存款，或找家人商量。</li>
+<li>把每月固定收入和支出列出来，扣掉还款份额后还有结余，再考虑借。</li>
+<li>分清需要和想要。换手机、旅游、买电子产品这类消费，多数不急着借钱。</li>
+<li>把每次借款的页面、合同、还款记录截图存档，放在一个固定相册里。日后有争议，这些就是证据，用法可参考 <a href="G-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B6%88%E8%B4%B9%E7%BB%B4%E6%9D%83.html">G-08 第一次消费维权</a>。</li>
+<li>在校学生注意：监管规定小额贷款公司不得向大学生发放互联网消费贷款，未经批准设立的机构一律不得为大学生提供信贷服务 [2]。</li>
+</ul>
+<h3>1.2 提前查渠道</h3>
+<ul>
+<li>优先用银行手机银行，或持牌消费金融公司的官方 App。</li>
+<li>查牌照：打开国家金融监督管理总局许可证信息查询系统（xkz.nfra.gov.cn），按机构类型选「消费金融公司」，输入机构全称核对 [7]。</li>
+<li>小额贷款公司不在这个系统里，名单可到各地地方金融管理部门官网查，以当地为准。</li>
+<li>只从手机官方应用商店下载借款 App，不点短信和网页弹窗里的借款链接。</li>
+<li>看到「无门槛」「秒批」「黑户可贷」这类广告，直接关掉。正规机构放贷前都要查征信。</li>
+<li>借钱前可以先看 <a href="G-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%9E%E9%93%B6%E8%A1%8C%E5%8D%A1.html">G-01 第一次办银行卡</a>，把收款卡备好。</li>
+</ul>
+<p>材料清单：</p>
+<ul>
+<li><input disabled="" type="checkbox"> 本人身份证（实名、在有效期内）</li>
+<li><input disabled="" type="checkbox"> 本人银行卡（用于收款和还款）</li>
+<li><input disabled="" type="checkbox"> 实名手机号（能正常收验证码）</li>
+<li><input disabled="" type="checkbox"> 一份写清收入和还款来源的估算</li>
+</ul>
+<h3>1.3 下单前核对</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 在借款页找到「年化利率」四个字，截图留存</li>
+<li><input disabled="" type="checkbox"> 看清还款计划：每期还多少、总共还多少、哪天扣款</li>
+<li><input disabled="" type="checkbox"> 抄下合同里的放贷机构全称，和查到的牌照信息对一遍</li>
+<li><input disabled="" type="checkbox"> 看清提前还款有没有违约金</li>
+<li><input disabled="" type="checkbox"> 逐项取消默认勾选的会员、保障、权益包</li>
+<li><input disabled="" type="checkbox"> 确认「个人征信查询授权」是你自己勾选的</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<p>线上借款没有柜台，全部流程在 App 里完成。每一步对应一个核对点。</p>
+<h3>2.1 确认放贷机构是谁</h3>
+<ul>
+<li>在哪：借款页底部、贷款合同首页的「放贷机构」或「资金提供方」一栏。</li>
+<li>做什么：抄下机构全称，去许可证查询系统核对 [7]。</li>
+<li>看什么：机构类型。银行和消费金融公司能在金监总局系统里查到。</li>
+<li>说什么：查不到、对不上，就不往下走，卸载 App。</li>
+<li>完成标志：确认了放贷机构全称和类型。</li>
+</ul>
+<h3>2.2 读懂年化利率</h3>
+<ul>
+<li>在哪：借款页面的利率展示区、贷款合同利率条款。</li>
+<li>做什么：找「年化利率」这一项，再和日息、月费率对照。</li>
+<li>看什么：监管要求所有从事贷款业务的机构营销时，应当以明显的方式向借款人展示年化利率，并在签订贷款合同时载明 [1]。</li>
+<li>口径：贷款成本包括利息及与贷款直接相关的各类费用 [1]。手续费、保障费这类钱都要折进年化。</li>
+<li>举例算给你看：借 12000 元分 12 期，每月还 1000 元本金加 72 元手续费。名义年费率是 7.2%，但你的本金是逐月还掉的，平均只占用一半，按内部收益率折算，实际年化利率超过 13%。</li>
+<li>完成标志：能用一句话说出这笔钱的真实年化利率。</li>
+</ul>
+<h3>2.3 看清总成本和还款计划</h3>
+<ul>
+<li>在哪：借款金额确认页、还款计划页。</li>
+<li>做什么：把每期还款额、总还款额、扣款日抄下来或截图。</li>
+<li>看什么：总还款额减去本金就是总成本，拿它和年化利率互相验证。</li>
+<li>完成标志：知道自己总共要还多少钱、每月哪天扣款。</li>
+</ul>
+<h3>2.4 授权、签合同、收款</h3>
+<ul>
+<li>做什么：勾选征信查询授权，提交申请，等待审批结果。</li>
+<li>看什么：合同里的金额、利率、期限、机构全称，逐项和之前的截图对。</li>
+<li>注意：机构因审批发起的查询会留在征信报告里，短期频繁申请会被后续机构看到。</li>
+<li>完成标志：钱到账本人银行卡，收到电子合同并保存。</li>
+</ul>
+<h3>2.5 按时还款与结清</h3>
+<ul>
+<li>做什么：设好还款提醒，提前一天确认扣款卡里有足够余额。</li>
+<li>看什么：每期扣款是否成功，有没有扣款失败的通知。</li>
+<li>结清：最后一期还清后，向机构客服索要结清证明，截图或下载留存。</li>
+<li>看什么：结清信息报送征信需要时间，通常一个月左右更新，以征信中心官网说明为准。</li>
+<li>完成标志：App 显示已结清，手里有结清证明。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 什么是持牌机构？去哪查？</h3>
+<p>答：持牌机构指经金融管理部门批准、能合法放贷的机构，常见的有银行、消费金融公司、小额贷款公司。银行和消费金融公司在国家金融监督管理总局许可证信息查询系统查 [7]，小额贷款公司名单看地方金融管理部门官网，以当地为准。</p>
+<h3>Q2 页面只写「日息万五」，年化是多少？</h3>
+<p>答：0.05% 乘以 365 天，年化约 18.25%，这还没算其他费用。监管要求折算成年化展示 [1]，看到只写日息的页面，先换算再比较。</p>
+<h3>Q3 「免息分期」真的免息吗？</h3>
+<p>答：「免息」常指不收利息，但可能改收手续费或服务费。按监管口径，这些费用都属于贷款成本，要折进年化利率 [1]。只写「免息」不写年化的，问清客服再下单。</p>
+<h3>Q4 查一次征信会「弄花」征信吗？</h3>
+<p>答：你本人查自己的报告，属于个人查询，不是机构审批查询。机构因审批发起的查询会留记录，短期密集的审批查询通常被解读为缺钱，多数情况下会影响后续审批，以各机构风控标准为准。</p>
+<h3>Q5 借网贷会上征信吗？</h3>
+<p>答：正规持牌机构的借还记录会报送征信系统。按时还款是在积累正面记录，逾期才会留下负面记录。不上征信的借款更危险，那些机构往往不在监管视野内。</p>
+<h3>Q6 逾期一天就上征信吗？</h3>
+<p>答：各机构的宽限期和报送规则不同，以合同约定为准。按《征信业管理条例》，向征信机构提供个人不良信息前，应当事先告知信息主体本人 [3]。真发生逾期，你会先收到告知。</p>
+<h3>Q7 不良记录要背多久？</h3>
+<p>答：自不良行为或者事件终止之日起保存 5 年，超过 5 年的应当予以删除 [3]。也就是从你还清欠款那天起算 5 年，拖得越久记越久。</p>
+<h3>Q8 在校学生能借网贷吗？</h3>
+<p>答：小额贷款公司不得向大学生发放互联网消费贷款，未经监管部门批准设立的机构一律不得为大学生提供信贷服务 [2]。学生确有资金困难，优先找学校资助渠道和家人商量。</p>
+<h3>Q9 提前还款划算吗？</h3>
+<p>答：先看合同。有的产品提前还款免违约金，利息只算到还清日；有的按原计划收手续费。签约前查清这一条，再决定借不借。</p>
+<h3>Q10 为什么说以贷养贷是死循环？</h3>
+<p>答：借新钱还旧账，旧账的利息没少，新账又产生利息和手续费，欠款总额持续增加。能借的平台会越来越少，利率会越来越高，最后新的借不到，旧的还不上。发现自己在借新还旧，立刻停下来，按第 5 节的办法处理。</p>
+<h3>Q11 催收可以打给我的家人朋友吗？</h3>
+<p>答：2025 年发布的国家标准要求，催收作业避开每日 22:00 至次日 8:00，并明确禁止向联系人催收，担保人等连带责任人除外 [4]。遇到违反的，录音截图留证据，按第 5 节投诉。</p>
+<h3>Q12 结清证明怎么拿？为什么重要？</h3>
+<p>答：还清最后一期后，在 App 里找「结清证明」入口，或直接联系客服申请。它能证明你不再欠这笔钱，遇到征信异议或后续纠纷时用得上。拿到后核对姓名、金额、日期和印章。</p>
+<h3>Q13 网贷没结清，以后申请房贷有影响吗？</h3>
+<p>答：会有影响。审批方会看你的收入、负债和逾期记录，未结清负债算进月供负担，逾期记录是负面项。准备买房的，提前半年理清手上借款，房贷细节看 <a href="G-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B9%B0%E6%88%BF%E5%8A%9E%E6%88%BF%E8%B4%B7.html">G-03 第一次买房办房贷</a>。</p>
+<h3>Q14 结清后，征信多久更新？</h3>
+<p>答：机构按约定周期向征信系统报送数据，结清信息通常一个月左右更新，以征信中心官网说明为准。发现到期还没更新，先联系放贷机构确认报送情况，必要时向征信中心反映。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>只看日息月费率</strong>：换算成年化利率再比较，监管要求页面明示年化 [1]，找不到这一项就别借。</li>
+<li><strong>「免息分期」不免费</strong>：手续费、服务费都是贷款成本 [1]。下单前把总还款额和本金对一遍。</li>
+<li><strong>默认勾选的付费权益</strong>：会员费、保障计划、权益包常被悄悄勾上，逐项取消，取消不掉的就不借。</li>
+<li><strong>被推荐「再借一笔」</strong>：借款完成页常推送其他借款入口，误触就是多一笔债，用不到就关掉。</li>
+<li><strong>以贷养贷</strong>：借新还旧会让欠款总额持续增加，代价见 Q10。这是停手最快的理由。</li>
+<li><strong>逾期后玩失联</strong>：换号、拉黑不解决欠款，还让协商变难。逾期越早联系客服，可谈的余地越大。</li>
+<li><strong>花钱买「征信修复」「反催收」服务</strong>：征信异议申请本身不收费，具体以征信中心官网说明为准。收费代办的中介先收钱后失联，遇上了按 <a href="G-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B6%88%E8%B4%B9%E7%BB%B4%E6%9D%83.html">G-08 第一次消费维权</a> 留证据。</li>
+<li><strong>把验证码交给「客服」</strong>：自称帮你提额、消除逾期记录的来电多半是诈骗，对照 <a href="../09-%E6%95%B0%E5%AD%97%E4%B8%8E%E7%BD%91%E7%BB%9C/I-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%98%B2%E8%AF%88%E9%AA%97.html">I-01 第一次防诈骗</a> 处理。</li>
+<li><strong>借款拿去投资或还别的贷</strong>：合同约定了资金用途，挪作他用可能被要求提前还款，以合同为准。</li>
+<li><strong>结清后不管不问</strong>：不索要结清证明、不注销不用的借款账户，留下信息泄露和后续争议的空间。结清当天两件事都做掉。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>月底还不上了</strong>：第一步找放贷机构客服，说明困难，问有没有延期或分期安排。越早沟通，选择越多。</li>
+<li><strong>已经逾期，催收电话来了</strong>：正常沟通，记下通话时间和内容。对方核实你本人时如实说明还款意愿，不承诺做不到的日期。</li>
+<li><strong>遭遇暴力催收</strong>：深夜轰炸、威胁恐吓、骚扰家人朋友，先报警 110。放贷方是持牌机构的，向 12378 投诉 [6]；网贷平台违规的，到中国互联网金融举报信息平台举报 [8]。证据提前留好。</li>
+<li><strong>发现被冒名借款</strong>：先联系放贷机构声明不是本人借款并要求核实，同时报警。对征信报告里的不实记录，向征信中心提出异议，处理不收费。</li>
+<li><strong>接到「注销校园贷」「不处理影响征信」来电</strong>：这是常见诈骗话术。不下载对方要求的 App，不给验证码，直接挂断，对照 <a href="../09-%E6%95%B0%E5%AD%97%E4%B8%8E%E7%BD%91%E7%BB%9C/I-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%98%B2%E8%AF%88%E9%AA%97.html">I-01 第一次防诈骗</a>。</li>
+<li><strong>同时在多个平台欠款</strong>：停止新增借款，列出每笔的金额、利率、到期日，优先还利率最高的，和利率低的平台谈延期。向家人坦诚说明情况，压力大到影响睡眠和情绪时，找当地心理援助热线聊聊。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>查牌照与比价</td>
+<td>0 元</td>
+<td>官网自助完成，半小时内，必选</td>
+</tr>
+<tr>
+<td>本人查征信（互联网）</td>
+<td>0 元</td>
+<td>征信中心官网等渠道，互联网查询免费 [5]</td>
+</tr>
+<tr>
+<td>本人查征信（柜台，第 3 次起）</td>
+<td>10 元/次</td>
+<td>每年前 2 次免费 [5]</td>
+</tr>
+<tr>
+<td>借款利息</td>
+<td>按合同年化利率</td>
+<td>借了才发生，随金额和时间增长</td>
+</tr>
+<tr>
+<td>逾期罚息和违约金</td>
+<td>以合同约定为准</td>
+<td>能避免的费用，别让它发生</td>
+</tr>
+<tr>
+<td>提前还款违约金</td>
+<td>0 元或按合同</td>
+<td>签约前看清这一条</td>
+</tr>
+<tr>
+<td>结清证明</td>
+<td>0 元</td>
+<td>向机构客服索取，建议留档</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.pbccrc.org.cn">中国人民银行征信中心</a>（个人信用报告查询）</li>
+<li><a href="https://xkz.nfra.gov.cn">国家金融监督管理总局许可证信息查询</a> [7]</li>
+<li><a href="https://jubao.nifa.org.cn/ipnifa/index.html">中国互联网金融举报信息平台</a> [8]</li>
+<li>金融消费者投诉热线 12378 [6]；人民银行金融消费权益保护咨询投诉电话 12363 [6]</li>
+</ul>
+</li>
+<li>相关条目：<a href="G-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%9E%E9%93%B6%E8%A1%8C%E5%8D%A1.html">G-01 第一次办银行卡</a>、<a href="G-05-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%A8%E4%BF%A1%E7%94%A8%E5%8D%A1.html">G-05 第一次用信用卡</a>、<a href="G-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B6%88%E8%B4%B9%E7%BB%B4%E6%9D%83.html">G-08 第一次消费维权</a>、<a href="../09-%E6%95%B0%E5%AD%97%E4%B8%8E%E7%BD%91%E7%BB%9C/I-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%98%B2%E8%AF%88%E9%AA%97.html">I-01 第一次防诈骗</a></li>
+<li>可打印清单：<a href="../../checklists/G-12-%E7%BD%91%E8%B4%B7-%E7%94%A8%E5%89%8D%E8%87%AA%E6%9F%A5%E6%B8%85%E5%8D%95.html">G-12 网贷-用前自查清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级 3 条（央行公告、五部门通知、征信条例）；Ⅱ 级 5 条（催收国家标准解读、发改委收费通知、三部门公告、许可证查询系统、举报平台网址确认）；通行做法在正文以「通常」「多数情况下」表述。</li>
+<li>主要来源：<ol>
+<li>中国人民银行公告〔2021〕第 3 号（明示贷款年化利率），辽宁省地方金融管理局网站转载全文，<a href="https://jrjg.ln.gov.cn/lnsdfjrjddlj/ywzq/jgjg/703CFB652D124AE5B7B880ADB49084CB/index.shtml">https://jrjg.ln.gov.cn/lnsdfjrjddlj/ywzq/jgjg/703CFB652D124AE5B7B880ADB49084CB/index.shtml</a></li>
+<li>五部门《关于进一步规范大学生互联网消费贷款监督管理工作的通知》（2021 年），深圳市委金融办网站政策解读，<a href="https://jr.sz.gov.cn/sjrb/xxgk/zcfg/zcjd/zjjd/content/post_8640752.html">https://jr.sz.gov.cn/sjrb/xxgk/zcfg/zcjd/zjjd/content/post_8640752.html</a></li>
+<li>《征信业管理条例》（国务院令第 631 号，2013 年 3 月 15 日施行），中国银行官网转载全文，<a href="https://www.boc.cn/custserv/cs7/cs77/201409/t20140910_3860670.html">https://www.boc.cn/custserv/cs7/cs77/201409/t20140910_3860670.html</a></li>
+<li>国家标准《互联网金融 个人网络消费信贷 贷后催收风控指引》（2025 年发布），广州市花都区政府解读页，<a href="https://www.huadu.gov.cn/gzhdjr/gkmlpt/content/10/10246/post_10246238.html">https://www.huadu.gov.cn/gzhdjr/gkmlpt/content/10/10246/post_10246238.html</a></li>
+<li>国家发展改革委《关于进一步降低中国人民银行征信中心服务收费标准的通知》（2019 年），<a href="https://www.ndrc.gov.cn/xxgk/zcfb/ghxwj/201908/t20190819_960971.html">https://www.ndrc.gov.cn/xxgk/zcfb/ghxwj/201908/t20190819_960971.html</a></li>
+<li>国家金融监督管理总局、中国人民银行、中国证监会公告（2023 年 5 月 30 日），中国证监会网站转载，<a href="https://www.csrc.gov.cn/csrc/c100028/c7412349/content.shtml">https://www.csrc.gov.cn/csrc/c100028/c7412349/content.shtml</a></li>
+<li>国家金融监督管理总局许可证信息查询系统，<a href="https://xkz.nfra.gov.cn">https://xkz.nfra.gov.cn</a></li>
+<li>中国互联网金融举报信息平台网址确认，泉州市地方金融监督管理局常见问题页，<a href="https://qzjrb.gov.cn/hd/cjwt/202004/t20200429_2232587.htm">https://qzjrb.gov.cn/hd/cjwt/202004/t20200429_2232587.htm</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-24</li>
+<li>适用范围与地区差异：适用中国内地。小额贷款公司名单和地方监管口径以当地为准。</li>
+<li>易变项：各平台利率、活动规则、App 界面（M 级，12 个月内复核）。</li>
+<li>核实记录：<a href="../../sources/G-12.%E6%A0%B8%E5%AE%9E.html">sources/G-12.核实.html</a></li>
+<li>状态：已核实。全文为风险教育与流程事实，不构成金融建议，不推荐任何具体产品或平台。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="G-11-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AF%B7%E5%BE%8B%E5%B8%88.html"><span class="dir">← 上一篇</span><span class="name">G-11 第一次请律师</span></a><a class="next" href="../08-%E5%B1%85%E4%BD%8F%E4%B8%8E%E7%94%9F%E6%B4%BB/H-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%8B%AC%E5%B1%85.html"><span class="dir">下一篇 →</span><span class="name">H-01 第一次独居</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

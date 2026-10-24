@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次汇报/述职 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 工作与职业</nav>
+  <h1 class="post-title">第一次汇报/述职</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>工作与职业</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>3 条</b></span><span class="chip ">耗时 <b>半天</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>稳定</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先给结论，再讲三件关键事，用数字和事实支撑，控制时长，留出问答时间。
+<strong>适用</strong>：第一次在部门会、季度会、转正或年度述职上做正式汇报的人。
+<strong>不适用</strong>：对外提案、融资路演、学术答辩，结构和评价标准不同。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>先结论</strong>：第一页写清“做了什么、结果如何、要什么支持”。</li>
+<li><strong>三件事</strong>：只讲三个重点，其余放附录。</li>
+<li><strong>数字</strong>：目标、完成、差距、原因，用同一口径。</li>
+<li><strong>时长</strong>：10 分钟汇报准备 8 分钟内容，留 2 分钟缓冲。</li>
+<li><strong>排练</strong>：至少完整讲 3 遍，计时。</li>
+<li><strong>问答</strong>：不会的问题记下来，会后书面回复。</li>
+<li><strong>材料</strong>：提前发，现场带备份。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 明确要求</h3>
+<ul>
+<li>汇报对象是谁：直属领导、部门、公司管理层。</li>
+<li>目的是什么：同步进度、争取资源、述职评级。</li>
+<li>时长多少：5 分钟、15 分钟还是 30 分钟。</li>
+<li>形式：PPT、文档、口头、线上。</li>
+<li>评分标准：如有述职评分表，先拿到。</li>
+</ul>
+<h3>1.2 搭结构</h3>
+<ul>
+<li>结论页：一句话结论 + 三个关键数字。</li>
+<li>背景：为什么做，目标是什么。</li>
+<li>过程：关键动作，不超过三条。</li>
+<li>结果：完成度、收益、成本。</li>
+<li>问题与风险：不回避，给方案。</li>
+<li>下一步：计划、资源需求、时间点。</li>
+</ul>
+<h3>1.3 材料</h3>
+<ul>
+<li><input disabled="" type="checkbox"> PPT 或文档，页数控制在时长内</li>
+<li><input disabled="" type="checkbox"> 数据来源和口径说明</li>
+<li><input disabled="" type="checkbox"> 备份文件（U 盘、云端、邮件）</li>
+<li><input disabled="" type="checkbox"> 打印版（如需）</li>
+<li><input disabled="" type="checkbox"> 计时器</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 开场</h3>
+<ul>
+<li>在哪：会议室或线上。</li>
+<li>做什么：问好，说明汇报主题和时长。</li>
+<li>说什么：“我用 10 分钟汇报三件事：结果、问题、下一步。”</li>
+<li>完成标志：听众知道你要讲什么。</li>
+</ul>
+<h3>2.2 讲结论</h3>
+<ul>
+<li>第一页给结论和关键数字。</li>
+<li>先讲完成了什么，再讲怎么完成。</li>
+<li>不从头讲流水账。</li>
+</ul>
+<h3>2.3 讲过程与结果</h3>
+<ul>
+<li>每条动作对应一个结果。</li>
+<li>用同比、环比、目标完成率，不用模糊词。</li>
+<li>失败的事讲清原因和补救。</li>
+</ul>
+<h3>2.4 讲问题与下一步</h3>
+<ul>
+<li>问题要带方案，至少两个选项。</li>
+<li>需要支持的，明确说清要谁、要什么、什么时候。</li>
+<li>下一步有责任人、时间点、验收标准。</li>
+</ul>
+<h3>2.5 问答</h3>
+<ul>
+<li>听完整问题再答，没听清就复述确认。</li>
+<li>不会的：“这个数据我确认后今天下班前回复。”</li>
+<li>被质疑：先认可对方关注点，再给事实。</li>
+<li>完成标志：主持人说结束或进入下一项。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 汇报应该多长？</h3>
+<p>答：按组织者要求。没有要求时，10 分钟汇报准备 8 分钟内容，留 2 分钟缓冲。</p>
+<h3>Q2 第一页应该写什么？</h3>
+<p>答：结论。一句话说清结果和诉求，配三个关键数字。不要用“背景介绍”占第一页。</p>
+<h3>Q3 数据不好看怎么讲？</h3>
+<p>答：如实讲，说明原因、影响和补救措施。隐瞒或改口径，后面更难解释。</p>
+<h3>Q4 领导打断怎么办？</h3>
+<p>答：先回答他的问题，再问“我继续按顺序讲，还是先展开这一点？”</p>
+<h3>Q5 不会被问的问题怎么准备？</h3>
+<p>答：列出 10 个最可能被问的问题，准备答案和数据出处。</p>
+<h3>Q6 PPT 多少页合适？</h3>
+<p>答：10 分钟 8–12 页，每页一个观点。细节放附录，不堆字。</p>
+<h3>Q7 线上汇报要注意什么？</h3>
+<p>答：提前测试网络、麦克风、共享屏幕；准备断网时的电话接入方式。</p>
+<h3>Q8 述职和汇报有什么区别？</h3>
+<p>答：述职更强调个人职责履行和评价，通常有评分表；汇报侧重事情进展。</p>
+<h3>Q9 汇报材料要提前发吗？</h3>
+<p>答：要。提前 1 天发，方便对方预读；现场再讲重点，不逐页念。</p>
+<h3>Q10 讲砸了怎么办？</h3>
+<p>答：会后发书面补充，主动找关键听众沟通，下次改进。一次汇报不决定全部。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>从头讲背景</strong>：听众最关心结论，背景最多一页。</li>
+<li><strong>堆字</strong>：一页超过 6 行要点，没人看。</li>
+<li><strong>口径不一致</strong>：同一个数字前后不同，信用受损。</li>
+<li><strong>只报喜</strong>：问题藏着，后面爆出来更被动。</li>
+<li><strong>超时</strong>：占用别人时间，主持人会打断。</li>
+<li><strong>不排练</strong>：现场卡壳、翻页混乱。</li>
+<li><strong>问答硬编</strong>：编错数据比说“我确认后回复”更糟。</li>
+<li><strong>文件只存本地</strong>：现场电脑不兼容，打不开。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>投影故障</strong>：改用打印版或直接口头讲结论，会后补发材料。</li>
+<li><strong>被问住</strong>：记下问题，承诺回复时间，会后书面补充。</li>
+<li><strong>时间被压缩</strong>：只讲结论页和下一步，其余会后发。</li>
+<li><strong>领导临时缺席</strong>：照常讲给主持人，会后单独补报。</li>
+<li><strong>数据被质疑</strong>：说明来源和口径，现场不能确认的，会后核对。</li>
+<li><strong>设备不兼容</strong>：提前准备 PDF 版本，比 PPT 稳定。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>材料制作</td>
+<td>免费</td>
+<td>用现有工具</td>
+</tr>
+<tr>
+<td>打印</td>
+<td>几元到几十元</td>
+<td>可选</td>
+</tr>
+<tr>
+<td>准备时间</td>
+<td>1–3 天</td>
+<td>含排练</td>
+</tr>
+<tr>
+<td>汇报时长</td>
+<td>10–30 分钟</td>
+<td>按安排</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mohrss.gov.cn">人力资源和社会保障部</a></li>
+<li>公司内部汇报模板和评分表</li>
+</ul>
+</li>
+<li>相关条目：<a href="C-05-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%87%E8%AF%95%E7%94%A8%E6%9C%9F.html">C-05 第一次过试用期</a>、<a href="C-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B0%88%E6%B6%A8%E8%96%AA.html">C-07 第一次谈涨薪</a></li>
+<li>可打印清单：<a href="../../checklists/C-06-%E6%B1%87%E6%8A%A5-%E5%87%86%E5%A4%87%E6%B8%85%E5%8D%95.html">C-06 汇报清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅲ 级为职场通行做法；结构与时长建议来自公开的演讲和汇报方法，不属于法规。</li>
+<li>主要来源：<ol>
+<li>人社部职业培训公开课程（沟通与表达），<a href="https://www.mohrss.gov.cn">https://www.mohrss.gov.cn</a></li>
+<li>中国就业培训技术指导中心公开资料，<a href="https://www.cettic.gov.cn">https://www.cettic.gov.cn</a></li>
+<li>企业内部汇报规范（通行做法）</li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地职场汇报。各公司模板和评分标准不同。</li>
+<li>易变项：公司内部流程（S）。</li>
+<li>核实记录：<a href="../../sources/C-06.%E6%A0%B8%E5%AE%9E.html">sources/C-06.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="C-05-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%87%E8%AF%95%E7%94%A8%E6%9C%9F.html"><span class="dir">← 上一篇</span><span class="name">C-05 第一次过试用期</span></a><a class="next" href="C-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B0%88%E6%B6%A8%E8%96%AA.html"><span class="dir">下一篇 →</span><span class="name">C-07 第一次谈涨薪</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次独居 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 居住与生活</nav>
+  <h1 class="post-title">第一次独居</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>居住与生活</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>3 条</b></span><span class="chip ">耗时 <b>长期</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>稳定</b></span><span class="chip ">适用 <b>分市</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先确认门锁和燃气安全，记下物业、房东、水电燃气电话，不向陌生人透露独居，备好应急联系人。
+<strong>适用</strong>：第一次一个人租房、独自生活的成年人和刚毕业的学生。
+<strong>不适用</strong>：合租、住宿舍、与家人同住，安全和生活安排不同。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>门锁</strong>：入住先换锁芯或改密码，检查猫眼和门链。</li>
+<li><strong>燃气</strong>：闻异味不开灯，关阀开窗，到室外打电话。</li>
+<li><strong>水电</strong>：记下户号，开通线上缴费，知道总闸位置。</li>
+<li><strong>应急</strong>：存物业、房东、开锁、燃气抢修、110、120。</li>
+<li><strong>外卖快递</strong>：不写具体门牌，放门口或驿站，不轻易开门。</li>
+<li><strong>消防</strong>：备灭火器、灭火毯，熟悉逃生通道。</li>
+<li><strong>联系</strong>：至少一位家人或朋友知道你住哪、在哪上班。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 入住检查</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 门锁是否完好，能否换锁芯</li>
+<li><input disabled="" type="checkbox"> 猫眼、门链、窗户锁</li>
+<li><input disabled="" type="checkbox"> 燃气灶、热水器、排烟</li>
+<li><input disabled="" type="checkbox"> 电路、插座、漏电保护</li>
+<li><input disabled="" type="checkbox"> 水压、下水、马桶</li>
+<li><input disabled="" type="checkbox"> 消防通道和灭火器</li>
+<li><input disabled="" type="checkbox"> 邻居和物业电话</li>
+</ul>
+<h3>1.2 生活开通</h3>
+<ul>
+<li>电：户号、缴费方式、总闸位置。</li>
+<li>水：户号、缴费方式、总阀位置。</li>
+<li>燃气：开户或过户，检查软管和报警器。</li>
+<li>宽带：运营商、合约期、安装时间。</li>
+<li>垃圾：投放时间和分类要求。</li>
+</ul>
+<h3>1.3 安全准备</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 灭火器或灭火毯</li>
+<li><input disabled="" type="checkbox"> 急救包</li>
+<li><input disabled="" type="checkbox"> 手电筒</li>
+<li><input disabled="" type="checkbox"> 备用钥匙放信任的人那里</li>
+<li><input disabled="" type="checkbox"> 紧急联系人卡片</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 入住第一天</h3>
+<ul>
+<li>拍照记录房屋现状和电表水表读数。</li>
+<li>换锁芯或改智能锁密码。</li>
+<li>检查燃气、电路、门窗。</li>
+<li>完成标志：能安全入住。</li>
+</ul>
+<h3>2.2 开通生活服务</h3>
+<ul>
+<li>到供水、供电、燃气营业厅或线上开户。</li>
+<li>预约宽带安装。</li>
+<li>加入小区群，存物业电话。</li>
+<li>完成标志：水电燃气网络可用。</li>
+</ul>
+<h3>2.3 建立日常</h3>
+<ul>
+<li>固定买菜、做饭、打扫时间。</li>
+<li>备常用药和速食。</li>
+<li>设置缴费提醒。</li>
+<li>完成标志：生活运转顺畅。</li>
+</ul>
+<h3>2.4 安全习惯</h3>
+<ul>
+<li>出门反锁，睡前检查门窗和燃气。</li>
+<li>不向陌生人透露独居。</li>
+<li>外卖快递放门口，确认后再开门。</li>
+<li>完成标志：形成习惯。</li>
+</ul>
+<h3>2.5 应急演练</h3>
+<ul>
+<li>知道总闸、总阀、灭火器位置。</li>
+<li>知道最近医院和派出所。</li>
+<li>手机设置紧急联系人。</li>
+<li>完成标志：遇事不慌。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 独居要换锁吗？</h3>
+<p>答：建议换锁芯或改密码。房东和前任租客可能有钥匙。</p>
+<h3>Q2 燃气泄漏怎么办？</h3>
+<p>答：关阀门，开窗通风，不开关电器、不打火，到室外拨燃气公司或 119。</p>
+<h3>Q3 水电费怎么交？</h3>
+<p>答：记下户号，用支付宝、微信、网上国网或当地水务 App 缴费。</p>
+<h3>Q4 外卖快递怎么写地址？</h3>
+<p>答：写到小区和楼栋即可，不写具体门牌，放驿站或门口。</p>
+<h3>Q5 半夜有人敲门怎么办？</h3>
+<p>答：不开门，先问是谁，联系物业或房东，必要时拨 110。</p>
+<h3>Q6 一个人住怎么防入室？</h3>
+<p>答：反锁、门链、猫眼、监控门铃，窗户装限位器。</p>
+<h3>Q7 生病了怎么办？</h3>
+<p>答：备常用药，严重拨 120，告诉紧急联系人。</p>
+<h3>Q8 孤独怎么办？</h3>
+<p>答：保持社交，固定运动，养宠物量力而行，必要时找心理咨询。</p>
+<h3>Q9 租房东西坏了谁修？</h3>
+<p>答：看合同。自然损耗通常房东修，人为损坏租客修。</p>
+<h3>Q10 独居要买什么保险？</h3>
+<p>答：意外险、医疗险优先，预算够可加家财险。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>不换锁</strong>：前任租客或房东随时能进门。</li>
+<li><strong>不记户号</strong>：欠费停电才知道。</li>
+<li><strong>燃气软管老化</strong>：定期检查，超过年限更换。</li>
+<li><strong>在楼道堆杂物</strong>：消防隐患。</li>
+<li><strong>给陌生人开门</strong>：冒充物业、快递的骗局。</li>
+<li><strong>把备用钥匙放门口</strong>：容易被找到。</li>
+<li><strong>长时间不联系家人</strong>：出事没人知道。</li>
+<li><strong>只用一台电器插排</strong>：过载起火。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>燃气泄漏</strong>：关阀、开窗、撤离、室外打电话。</li>
+<li><strong>火灾</strong>：小火用灭火器，大火撤离，拨 119，不乘电梯。</li>
+<li><strong>入室盗窃</strong>：不要正面冲突，退到安全处拨 110。</li>
+<li><strong>漏水</strong>：关总阀，联系楼上和物业，拍照留证。</li>
+<li><strong>停电</strong>：查电费和总闸，问物业，备手电。</li>
+<li><strong>突发疾病</strong>：拨 120，开门锁，告诉急救人员地址。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>房租</td>
+<td>按城市</td>
+<td>月付或季付</td>
+</tr>
+<tr>
+<td>水电燃气</td>
+<td>100–300 元/月</td>
+<td>按用量</td>
+</tr>
+<tr>
+<td>宽带</td>
+<td>50–150 元/月</td>
+<td>按套餐</td>
+</tr>
+<tr>
+<td>生活用品</td>
+<td>500–2000 元</td>
+<td>首次置办</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>1–3 天</td>
+<td>入住和开通</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mohurd.gov.cn">住房和城乡建设部</a></li>
+<li><a href="https://www.mem.gov.cn">应急管理部</a></li>
+<li>当地燃气、供水、供电公司</li>
+<li>110、119、120</li>
+</ul>
+</li>
+<li>相关条目：<a href="G-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%A7%9F%E6%88%BF.html">G-02 第一次租房</a>、<a href="H-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%BC%80%E9%80%9A%E6%B0%B4%E7%94%B5%E7%87%83%E6%B0%94%E5%AE%BD%E5%B8%A6.html">H-04 第一次开通水电燃气宽带</a></li>
+<li>可打印清单：<a href="../../checklists/H-01-%E7%8B%AC%E5%B1%85-%E5%AE%89%E5%85%A8%E6%B8%85%E5%8D%95.html">H-01 独居清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《消防法》《城镇燃气管理条例》；Ⅱ 级为物业和水电气企业安全提示；Ⅲ 级为独居通行做法。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国消防法》，<a href="https://www.mem.gov.cn">https://www.mem.gov.cn</a></li>
+<li>《城镇燃气管理条例》，<a href="https://www.mohurd.gov.cn">https://www.mohurd.gov.cn</a></li>
+<li>应急管理部居民消防安全提示，<a href="https://www.mem.gov.cn">https://www.mem.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地城市独居租房。水电气开通流程分城市。</li>
+<li>易变项：缴费方式、物业规定（S）。</li>
+<li>核实记录：<a href="../../sources/H-01.%E6%A0%B8%E5%AE%9E.html">sources/H-01.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-12-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%A8%E7%BD%91%E8%B4%B7%E4%B8%8E%E5%88%86%E6%9C%9F.html"><span class="dir">← 上一篇</span><span class="name">G-12 第一次用网贷/分期</span></a><a class="next" href="H-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%90%AC%E5%AE%B6.html"><span class="dir">下一篇 →</span><span class="name">H-02 第一次搬家</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

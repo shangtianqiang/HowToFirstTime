@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次谈涨薪 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 工作与职业</nav>
+  <h1 class="post-title">第一次谈涨薪</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>工作与职业</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>3 条</b></span><span class="chip ">耗时 <b>半天</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：选对时机，用业绩和市场数据说话，提明确数字，被拒要反馈和时间表，别拿离职威胁。
+<strong>适用</strong>：第一次主动向直属领导或 HR 提出调薪的职场人。
+<strong>不适用</strong>：应届生首份工资谈判、晋升评审、股权激励，规则不同。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>时机</strong>：绩效周期、项目交付后、公司业绩好时，别在公司裁员或亏损时提。</li>
+<li><strong>依据</strong>：个人业绩 + 市场薪酬 + 内部同岗水平。</li>
+<li><strong>数字</strong>：给区间和目标值，别只说“想涨一点”。</li>
+<li><strong>方式</strong>：预约正式面谈，不在走廊、饭桌上提。</li>
+<li><strong>被拒</strong>：问清原因、改进点和下次评估时间。</li>
+<li><strong>书面</strong>：调薪结果要邮件或书面确认。</li>
+<li><strong>别做</strong>：威胁离职、拿同事工资比较、越级投诉。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 收集依据</h3>
+<ul>
+<li>过去 12 个月的业绩：目标、完成率、带来的收入或节省的成本。</li>
+<li>承担的额外职责：带新人、跨部门项目、值班。</li>
+<li>市场薪酬：招聘网站同岗位同城市的薪资区间。</li>
+<li>内部水平：同级别同事的职责范围（不打听具体工资）。</li>
+<li>公司经营状况：财报、融资、裁员消息。</li>
+</ul>
+<h3>1.2 定目标</h3>
+<ul>
+<li>目标涨幅：10%、15%、20%，给一个区间。</li>
+<li>底线：低于多少不接受，心里有数。</li>
+<li>备选方案：调岗、增加补贴、远程天数、培训机会。</li>
+<li>时间点：希望从哪个月生效。</li>
+</ul>
+<h3>1.3 准备材料</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 一页业绩清单，带数字</li>
+<li><input disabled="" type="checkbox"> 市场薪酬截图</li>
+<li><input disabled="" type="checkbox"> 额外职责说明</li>
+<li><input disabled="" type="checkbox"> 调薪申请邮件草稿</li>
+<li><input disabled="" type="checkbox"> 面谈提纲</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 预约面谈</h3>
+<ul>
+<li>在哪：邮件或即时通讯工具。</li>
+<li>做什么：约 30 分钟，说明想聊“职业发展和薪酬”。</li>
+<li>说什么：“我想约您 30 分钟，聊聊我今年的工作和发展，方便吗？”</li>
+<li>完成标志：确定时间。</li>
+</ul>
+<h3>2.2 面谈开场</h3>
+<ul>
+<li>在哪：会议室。</li>
+<li>做什么：先讲贡献，再讲诉求。</li>
+<li>说什么：“今年我完成了 A、B、C，带来 X 结果。基于这些和市场水平，我希望薪酬调整到 Y。”</li>
+<li>完成标志：对方明白你的诉求和依据。</li>
+</ul>
+<h3>2.3 讨论</h3>
+<ul>
+<li>对方可能会说预算有限、时机不对。</li>
+<li>问清：是预算问题、绩效问题，还是岗位级别问题。</li>
+<li>提出备选：分期调整、下次评估时间、补贴。</li>
+<li>不争吵，不威胁。</li>
+</ul>
+<h3>2.4 结果确认</h3>
+<ul>
+<li>当场没结果，约定回复时间。</li>
+<li>拿到口头承诺，发邮件确认：“感谢沟通，确认一下……”</li>
+<li>完成标志：书面确认调薪金额和生效日期。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 什么时候谈涨薪最好？</h3>
+<p>答：绩效评估周期、项目交付后、公司业绩好时。避免在公司裁员、亏损、领导刚换人时提。</p>
+<h3>Q2 涨幅提多少合适？</h3>
+<p>答：参考市场同岗位区间和内部水平，通常 10%–20%。跨级别或承担新职责可以更高。</p>
+<h3>Q3 可以拿同事工资比较吗？</h3>
+<p>答：不打听、不比较具体工资。讲自己的贡献和市场水平。</p>
+<h3>Q4 领导说“预算有限”怎么办？</h3>
+<p>答：问清下次评估时间，争取补贴、培训、调岗等替代方案，并书面确认。</p>
+<h3>Q5 被拒绝了怎么办？</h3>
+<p>答：问清具体差距，约定改进目标和复评时间。不要当场情绪化。</p>
+<h3>Q6 可以用离职威胁吗？</h3>
+<p>答：不建议。除非你真的准备走，否则会损害信任。</p>
+<h3>Q7 谈涨薪要越级吗？</h3>
+<p>答：先找直属领导，这是基本职场规则。越级容易让双方被动。</p>
+<h3>Q8 调薪后要签什么？</h3>
+<p>答：要书面调薪通知或邮件，写明金额、生效日期、发放方式。</p>
+<h3>Q9 公司不同意但市场价更高怎么办？</h3>
+<p>答：评估跳槽成本和机会，更新简历，理性比较，不冲动裸辞。</p>
+<h3>Q10 刚入职能谈涨薪吗？</h3>
+<p>答：试用期内一般不合适，转正评估时可以谈，但要有明确业绩。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>只讲苦劳不讲结果</strong>：领导看的是贡献，不是加班时长。</li>
+<li><strong>拿同事比较</strong>：容易被视为不专业，也打听不到真实数据。</li>
+<li><strong>威胁离职</strong>：除非真要走，否则后患大。</li>
+<li><strong>口头承诺</strong>：不书面确认，下次调整可能不认。</li>
+<li><strong>在公司困难时提</strong>：时机不对，容易被记恨。</li>
+<li><strong>越级投诉</strong>：破坏和直属领导的关系。</li>
+<li><strong>情绪化</strong>：谈崩了也要留余地，职场很小。</li>
+<li><strong>不看合同</strong>：调薪可能涉及岗位、工时、绩效条款变化。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>领导拖延</strong>：约定明确回复日期，到期邮件跟进。</li>
+<li><strong>被穿小鞋</strong>：保留沟通记录，评估是否换部门或换公司。</li>
+<li><strong>公司违反承诺</strong>：书面催告，必要时申请劳动仲裁。</li>
+<li><strong>调薪后工作量暴增</strong>：重新评估职责和薪酬是否匹配。</li>
+<li><strong>遭遇歧视性对待</strong>：保留证据，向 HR 或工会反映。</li>
+<li><strong>决定跳槽</strong>：先拿到书面 offer，再提离职，别裸辞。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>准备</td>
+<td>免费</td>
+<td>整理业绩和数据</td>
+</tr>
+<tr>
+<td>面谈</td>
+<td>30 分钟</td>
+<td>预约</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半天</td>
+<td>含准备和沟通</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mohrss.gov.cn">人力资源和社会保障部</a></li>
+<li>当地人社部门薪酬指导信息</li>
+<li>12333 热线</li>
+</ul>
+</li>
+<li>相关条目：<a href="C-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B1%87%E6%8A%A5%E8%BF%B0%E8%81%8C.html">C-06 第一次汇报/述职</a>、<a href="C-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B7%B3%E6%A7%BD.html">C-08 第一次跳槽</a></li>
+<li>可打印清单：<a href="../../checklists/C-07-%E8%B0%88%E6%B6%A8%E8%96%AA-%E5%87%86%E5%A4%87%E6%B8%85%E5%8D%95.html">C-07 谈涨薪清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅲ 级为职场通行做法；工资调整的法律原则为 Ⅰ 级。</li>
+<li>主要来源：<ol>
+<li>《劳动合同法》第三十五条（变更劳动合同需协商一致），<a href="https://www.mohrss.gov.cn">https://www.mohrss.gov.cn</a></li>
+<li>人社部工资支付相关规定，<a href="https://www.mohrss.gov.cn">https://www.mohrss.gov.cn</a></li>
+<li>公开薪酬调研报告（通行做法）</li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地企业职场。行业和公司差异大。</li>
+<li>易变项：市场薪酬、公司预算（M）。</li>
+<li>核实记录：<a href="../../sources/C-07.%E6%A0%B8%E5%AE%9E.html">sources/C-07.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="C-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B1%87%E6%8A%A5%E8%BF%B0%E8%81%8C.html"><span class="dir">← 上一篇</span><span class="name">C-06 第一次汇报/述职</span></a><a class="next" href="C-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B7%B3%E6%A7%BD.html"><span class="dir">下一篇 →</span><span class="name">C-08 第一次跳槽</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

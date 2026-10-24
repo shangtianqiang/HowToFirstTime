@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次开通水电燃气宽带 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 居住与生活</nav>
+  <h1 class="post-title">第一次开通水电燃气宽带</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>居住与生活</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>3 条</b></span><span class="chip ">耗时 <b>1-3天</b></span><span class="chip ">花费 <b>百元内</b></span><span class="chip risk-low">风险 <b>低</b></span><span class="chip ">时效 <b>稳定</b></span><span class="chip ">适用 <b>分市</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：带身份证和房产或租赁证明到营业厅或线上开户，燃气必须由燃气公司开通，宽带问清合约期和违约金。
+<strong>适用</strong>：第一次入住新房或租房、需要开通水、电、燃气、宽带的成年人。
+<strong>不适用</strong>：商用房产、工业用水电、集体宿舍，办理方式不同。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>材料</strong>：身份证、房产证或租赁合同、户口簿（部分）。</li>
+<li><strong>电</strong>：网上国网 App 或供电营业厅，记户号。</li>
+<li><strong>水</strong>：当地水务公司营业厅或线上。</li>
+<li><strong>燃气</strong>：必须由燃气公司开通，不私自改管。</li>
+<li><strong>宽带</strong>：三大运营商，问清合约期、光猫、安装费。</li>
+<li><strong>过户</strong>：二手房要办理水电燃气过户，结清欠费。</li>
+<li><strong>报修</strong>：存好各公司客服和抢修电话。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 材料</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 身份证</li>
+<li><input disabled="" type="checkbox"> 房产证或购房合同</li>
+<li><input disabled="" type="checkbox"> 租赁合同和房东授权（租房）</li>
+<li><input disabled="" type="checkbox"> 户口簿（部分业务）</li>
+<li><input disabled="" type="checkbox"> 银行卡</li>
+</ul>
+<h3>1.2 查清现状</h3>
+<ul>
+<li>问房东或前业主：户号、是否欠费、表具位置。</li>
+<li>拍照记录电表、水表、燃气表读数。</li>
+<li>确认燃气灶和热水器是否合规。</li>
+<li>确认宽带是否已覆盖。</li>
+</ul>
+<h3>1.3 选择套餐</h3>
+<ul>
+<li>电：居民阶梯电价，按用量。</li>
+<li>水：居民阶梯水价。</li>
+<li>燃气：居民阶梯气价。</li>
+<li>宽带：按速率和合约期，问清是否绑定手机号。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 办电</h3>
+<ul>
+<li>在哪：网上国网 App 或供电营业厅。</li>
+<li>做什么：实名认证，提交房产或租赁证明，获取户号。</li>
+<li>看什么：是否欠费、表具编号。</li>
+<li>完成标志：户号绑定成功，可线上缴费。</li>
+</ul>
+<h3>2.2 办水</h3>
+<ul>
+<li>在哪：当地水务营业厅或线上。</li>
+<li>做什么：开户或过户，签供用水合同。</li>
+<li>完成标志：拿到户号，可缴费。</li>
+</ul>
+<h3>2.3 办燃气</h3>
+<ul>
+<li>在哪：燃气公司营业厅。</li>
+<li>做什么：开户或过户，预约安检和通气。</li>
+<li>看什么：软管、灶具、热水器是否合规。</li>
+<li>完成标志：通气点火，拿到燃气卡或户号。</li>
+</ul>
+<h3>2.4 办宽带</h3>
+<ul>
+<li>在哪：运营商营业厅或线上。</li>
+<li>做什么：选套餐，预约安装。</li>
+<li>看什么：合约期、违约金、光猫押金。</li>
+<li>完成标志：安装完成，测速正常。</li>
+</ul>
+<h3>2.5 设置缴费</h3>
+<ul>
+<li>绑定支付宝、微信或官方 App。</li>
+<li>设置自动缴费或提醒。</li>
+<li>完成标志：不再担心欠费。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 租房能自己开户吗？</h3>
+<p>答：可以，带租赁合同和房东授权。部分城市要求房东到场或提供房产证明。</p>
+<h3>Q2 燃气能自己改管吗？</h3>
+<p>答：不能。燃气管道必须由燃气公司专业人员改动，私自改管违法且危险。</p>
+<h3>Q3 水电费怎么交？</h3>
+<p>答：线上 App、支付宝、微信、银行代扣，记户号即可。</p>
+<h3>Q4 二手房要过户吗？</h3>
+<p>答：要。水电燃气都要过户，结清前业主欠费，否则可能停供。</p>
+<h3>Q5 宽带合约期多长？</h3>
+<p>答：通常 1–2 年，提前解约可能收违约金，办前问清。</p>
+<h3>Q6 宽带安装要钱吗？</h3>
+<p>答：有的免费，有的收安装费或光猫押金，问清。</p>
+<h3>Q7 燃气开通要安检吗？</h3>
+<p>答：要。燃气公司上门安检，确认无泄漏后通气。</p>
+<h3>Q8 欠费会怎样？</h3>
+<p>答：可能停水停电停气，还会产生滞纳金，尽快补缴。</p>
+<h3>Q9 表具坏了谁修？</h3>
+<p>答：联系供水、供电、燃气公司，免费或按规定收费。</p>
+<h3>Q10 可以合表吗？</h3>
+<p>答：居民一户一表，合表要按当地政策申请，出租房常见。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>不查欠费</strong>：接手前业主的欠费。</li>
+<li><strong>私自改燃气</strong>：违法，泄漏风险。</li>
+<li><strong>不看合约期</strong>：宽带提前解约赔违约金。</li>
+<li><strong>不拍照表具</strong>：读数争议。</li>
+<li><strong>不办过户</strong>：账单还在前业主名下。</li>
+<li><strong>用无熄火保护灶具</strong>：燃气公司可能不予通气。</li>
+<li><strong>轻信上门推销</strong>：冒充燃气公司换管收费。</li>
+<li><strong>不留客服电话</strong>：报修找不到人。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>燃气泄漏</strong>：关阀、开窗、撤离、室外打电话。</li>
+<li><strong>停水停电</strong>：查欠费和抢修公告，问物业。</li>
+<li><strong>水管爆裂</strong>：关总阀，联系水务和物业。</li>
+<li><strong>宽带故障</strong>：重启光猫，报修，保留工单号。</li>
+<li><strong>表具异常</strong>：拍照，联系公司校验。</li>
+<li><strong>被冒充收费</strong>：核实工牌，拨官方客服。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开户</td>
+<td>免费</td>
+<td>多数地区</td>
+</tr>
+<tr>
+<td>水电燃气</td>
+<td>按用量</td>
+<td>阶梯价</td>
+</tr>
+<tr>
+<td>宽带</td>
+<td>50–200 元/月</td>
+<td>按套餐</td>
+</tr>
+<tr>
+<td>安装</td>
+<td>0–200 元</td>
+<td>按运营商</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>1–3 天</td>
+<td>含预约安装</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mohurd.gov.cn">住房和城乡建设部</a></li>
+<li>网上国网 App</li>
+<li>当地水务、燃气公司</li>
+<li>三大运营商</li>
+</ul>
+</li>
+<li>相关条目：<a href="H-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%8B%AC%E5%B1%85.html">H-01 第一次独居</a>、<a href="G-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%A7%9F%E6%88%BF.html">G-02 第一次租房</a></li>
+<li>可打印清单：<a href="../../checklists/H-04-%E5%BC%80%E9%80%9A%E6%B0%B4%E7%94%B5%E7%87%83%E6%B0%94%E5%AE%BD%E5%B8%A6-%E5%8A%9E%E7%90%86%E6%B8%85%E5%8D%95.html">H-04 开通水电燃气清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《城镇燃气管理条例》《电力法》；Ⅱ 级为水电气企业开户规定。</li>
+<li>主要来源：<ol>
+<li>《城镇燃气管理条例》，<a href="https://www.mohurd.gov.cn">https://www.mohurd.gov.cn</a></li>
+<li>《中华人民共和国电力法》，<a href="https://www.nea.gov.cn">https://www.nea.gov.cn</a></li>
+<li>居民阶梯水价和气价政策，<a href="https://www.ndrc.gov.cn">https://www.ndrc.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地居民住宅。开户材料和价格分城市。</li>
+<li>易变项：套餐价格、开户要求（S）。</li>
+<li>核实记录：<a href="../../sources/H-04.%E6%A0%B8%E5%AE%9E.html">sources/H-04.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="H-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%A3%85%E4%BF%AE.html"><span class="dir">← 上一篇</span><span class="name">H-03 第一次装修</span></a><a class="next" href="H-05-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%85%BB%E5%AE%A0%E7%89%A9.html"><span class="dir">下一篇 →</span><span class="name">H-05 第一次养宠物</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

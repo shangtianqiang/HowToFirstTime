@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次考研/考公 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 学习与技能</nav>
+  <h1 class="post-title">第一次考研/考公</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>学习与技能</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>4 条</b></span><span class="chip ">耗时 <b>长期</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>高频变动</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先看官方公告确认条件和时间，按考试大纲备考，报名信息一次填对，作弊和造假会记入诚信档案。
+<strong>适用</strong>：第一次报名全国硕士研究生招生考试或公务员录用考试的应届生、在职人员。
+<strong>不适用</strong>：博士申请、事业单位、教师招聘、选调生，流程不同。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>考研</strong>：研招网报名，9 月预报名，10 月正式报名，12 月初试，次年 3–4 月复试。</li>
+<li><strong>考公</strong>：国考看国家公务员局，省考看各省人事考试网，公告时间不同。</li>
+<li><strong>条件</strong>：学历、专业、年龄、基层经历，报名前逐条对照。</li>
+<li><strong>报名</strong>：信息一次填对，缴费成功才算完成。</li>
+<li><strong>备考</strong>：以官方大纲和真题为主，不迷信押题。</li>
+<li><strong>诚信</strong>：作弊、伪造材料会记入诚信档案，影响后续报考。</li>
+<li><strong>调剂</strong>：考研初试过线才能调剂，及时关注系统开放时间。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 确认考试</h3>
+<ul>
+<li>考研：学术型还是专业型，全日制还是非全日制，目标院校和专业。</li>
+<li>考公：国考还是省考，岗位表里的专业、学历、政治面貌、基层经历。</li>
+<li>看近 3 年公告和分数线，判断难度。</li>
+<li>确认考试科目和参考书目。</li>
+</ul>
+<h3>1.2 报名材料</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 身份证</li>
+<li><input disabled="" type="checkbox"> 学历证书、学位证书</li>
+<li><input disabled="" type="checkbox"> 学信网学历备案表</li>
+<li><input disabled="" type="checkbox"> 应届生学生证或在读证明</li>
+<li><input disabled="" type="checkbox"> 电子照片</li>
+<li><input disabled="" type="checkbox"> 工作证明、社保记录（在职报考）</li>
+<li><input disabled="" type="checkbox"> 报名费</li>
+</ul>
+<h3>1.3 备考计划</h3>
+<ul>
+<li>考研：政治、英语、专业课，按 3–6–9 个月分阶段。</li>
+<li>考公：行测、申论，按模块刷题，每周一次全真模拟。</li>
+<li>每天固定时段，记录完成情况。</li>
+<li>真题至少刷 2–3 遍，错题归类。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 看公告</h3>
+<ul>
+<li>在哪：研招网、国家公务员局、各省人事考试网。</li>
+<li>做什么：下载公告和岗位表，逐条核对条件。</li>
+<li>看什么：报名时间、考试时间、专业目录、基层经历要求。</li>
+<li>完成标志：确定报考单位和岗位。</li>
+</ul>
+<h3>2.2 网上报名</h3>
+<ul>
+<li>在哪：官方报名系统。</li>
+<li>做什么：注册、填信息、上传照片、选报考点、缴费。</li>
+<li>看什么：报名号、缴费状态、审核状态。</li>
+<li>完成标志：缴费成功，报名完成。</li>
+</ul>
+<h3>2.3 网上确认</h3>
+<ul>
+<li>在哪：报考点指定系统。</li>
+<li>做什么：上传身份证、学历证明、照片，确认信息。</li>
+<li>完成标志：审核通过。</li>
+</ul>
+<h3>2.4 打印准考证</h3>
+<ul>
+<li>在哪：报名系统。</li>
+<li>做什么：考前规定时间下载打印，核对考点和座位。</li>
+<li>完成标志：准考证信息无误。</li>
+</ul>
+<h3>2.5 参加考试</h3>
+<ul>
+<li>在哪：准考证上的考点。</li>
+<li>做什么：带身份证、准考证、文具，提前到场。</li>
+<li>看什么：考场规则，禁带电子设备。</li>
+<li>完成标志：考试结束。</li>
+</ul>
+<h3>2.6 复试/面试</h3>
+<ul>
+<li>考研：复试含笔试、面试、英语口语，按学校通知。</li>
+<li>考公：面试、体检、考察（政审）。</li>
+<li>准备自我介绍、专业问题、岗位认知。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 考研什么时候报名？</h3>
+<p>答：一般 9 月下旬预报名，10 月正式报名，11 月网上确认，12 月下旬初试。以研招网公告为准。[1]</p>
+<h3>Q2 考公什么时候报名？</h3>
+<p>答：国考一般 10 月发布公告并报名，11–12 月笔试；省考时间各省不同，看当地公告。[2]</p>
+<h3>Q3 报名信息填错了怎么办？</h3>
+<p>答：在报名截止前修改；截止后一般不能改，责任自负。报考点和报考单位要特别核对。</p>
+<h3>Q4 应届生身份有什么用？</h3>
+<p>答：考公很多岗位限应届生，考研应届生可预报名。毕业两年内未就业的部分情形仍按应届生对待，看公告。</p>
+<h3>Q5 考研能调剂吗？</h3>
+<p>答：初试成绩达到国家线和调入院校要求，可在调剂系统开放时申请。名额有限，要快。</p>
+<h3>Q6 考公年龄限制多少？</h3>
+<p>答：一般 18 周岁以上、35 周岁以下，应届硕士博士可放宽，具体看公告和岗位要求。</p>
+<h3>Q7 基层工作经历怎么算？</h3>
+<p>答：在县级及以下党政机关、企事业单位、村社区等工作的经历，具体口径看公告。</p>
+<h3>Q8 作弊有什么后果？</h3>
+<p>答：取消成绩，记入公务员考试录用诚信档案，若干年内不得报考；构成犯罪的追究刑事责任。[3]</p>
+<h3>Q9 考研和考公能同时准备吗？</h3>
+<p>答：可以，但时间冲突。多数人主攻一个，另一个作为备选。</p>
+<h3>Q10 体检和政审要注意什么？</h3>
+<p>答：如实填写病史，按通知到指定医院体检；政审要提供档案、无犯罪记录等材料。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>错过报名</strong>：没有补报名，等一年。</li>
+<li><strong>信息填错</strong>：专业、报考点、学习方式填错，无法考试。</li>
+<li><strong>只报一个岗位</strong>：考公竞争激烈，合理选择。</li>
+<li><strong>迷信押题</strong>：官方大纲和真题才是根本。</li>
+<li><strong>不练申论</strong>：只看不写，考场写不出。</li>
+<li><strong>忽视体检</strong>：血压、视力等不达标，前面白考。</li>
+<li><strong>档案有问题</strong>：提前确认档案位置和内容。</li>
+<li><strong>相信“内部指标”</strong>：招录公开透明，收费承诺都是骗局。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>报名系统卡顿</strong>：错峰登录，换浏览器，别在最后一天报。</li>
+<li><strong>准考证丢失</strong>：重新下载打印，考点一般可协助。</li>
+<li><strong>考试当天证件丢失</strong>：找考点考务办，按规则处理。</li>
+<li><strong>初试失利</strong>：准备调剂、二战或就业，别错过春招。</li>
+<li><strong>面试被问住</strong>：如实回答，展示思考过程。</li>
+<li><strong>体检不合格</strong>：按通知复检，确认是否符合岗位要求。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>报名费</td>
+<td>100–200 元</td>
+<td>按考试</td>
+</tr>
+<tr>
+<td>资料</td>
+<td>几百元</td>
+<td>真题、教材</td>
+</tr>
+<tr>
+<td>培训班</td>
+<td>几千到几万元</td>
+<td>可选</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>3–12 个月</td>
+<td>按基础</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://yz.chsi.com.cn">中国研究生招生信息网</a></li>
+<li><a href="https://www.scs.gov.cn">国家公务员局</a></li>
+<li>各省人事考试网</li>
+</ul>
+</li>
+<li>相关条目：<a href="D-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%86%99%E8%AE%BA%E6%96%87.html">D-06 第一次写论文</a>、<a href="C-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%9D%A2%E8%AF%95.html">C-02 第一次面试</a></li>
+<li>可打印清单：<a href="../../checklists/D-07-%E8%80%83%E7%A0%94%E8%80%83%E5%85%AC-%E6%8A%A5%E5%90%8D%E5%A4%87%E8%80%83%E6%B8%85%E5%8D%95.html">D-07 考研考公清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为考试录用规定和违纪处理办法；Ⅱ 级为研招网、公务员局公告。</li>
+<li>主要来源：<ol>
+<li>中国研究生招生信息网报名公告，<a href="https://yz.chsi.com.cn">https://yz.chsi.com.cn</a></li>
+<li>国家公务员局考试录用公告，<a href="https://www.scs.gov.cn">https://www.scs.gov.cn</a></li>
+<li>《公务员考试录用违纪违规行为处理办法》，<a href="https://www.scs.gov.cn">https://www.scs.gov.cn</a></li>
+<li>教育部全国硕士研究生招生工作管理规定，<a href="https://www.moe.gov.cn">https://www.moe.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地考研和公务员录用考试。每年时间、条件会调整。</li>
+<li>易变项：报名时间、岗位条件、分数线（H）。</li>
+<li>核实记录：<a href="../../sources/D-07.%E6%A0%B8%E5%AE%9E.html">sources/D-07.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="D-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%86%99%E8%AE%BA%E6%96%87.html"><span class="dir">← 上一篇</span><span class="name">D-06 第一次写论文</span></a><a class="next" href="D-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AD%A6%E6%B8%B8%E6%B3%B3.html"><span class="dir">下一篇 →</span><span class="name">D-08 第一次学游泳</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

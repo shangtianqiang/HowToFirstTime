@@ -2,7 +2,7 @@
 
 > 每个人都会遇到第一次。这份手册把每一步写清楚，把坑标出来。
 
-**🌐 在线预览：[https://shangtianqiang.github.io/HowToFirstTime/](https://shangtianqiang.github.io/HowToFirstTime/)** —— 点开即可按栏目浏览、按关键词/耗时/花费/风险检索全部 107 篇条目。
+**🌐 在线预览：[点开检索页，按栏目浏览、按关键词/耗时/花费/风险检索全部 107 篇条目](https://shangtianqiang.github.io/HowToFirstTime/)**
 
 给第一次做某件事、身边又没人可问的普通成年人。每篇覆盖一个完整场景，按「准备 → 现场 → 出问题怎么办」的时间顺序写，篇首放一张 30 秒速查卡。
 
@@ -210,6 +210,13 @@ python -m http.server 8000
 node tools/build-index.mjs
 ```
 
+重新生成全部阅读页（`book/`、`checklists/`、`sources/` 等目录下的 `.html` 由脚本从 Markdown 生成，改完正文后跑一次即可，产物与 `index.json` 一并提交）：
+
+```bash
+npm install
+node tools/build-site.mjs
+```
+
 跑全部检查：
 
 ```bash
@@ -225,11 +232,12 @@ node tools/check-links.mjs
 
 ```text
 人生第一次/
-├── book/            # 正文，按 10 个栏目分目录
-├── sources/         # 每篇的核实记录
-├── checklists/      # 可打印的一页清单
+├── book/            # 正文，按 10 个栏目分目录（.md 源文件 + 生成的 .html 阅读页）
+├── sources/         # 每篇的核实记录（.md + 生成的 .html）
+├── checklists/      # 可打印的一页清单（.md + 生成的 .html）
 ├── meta/            # 模板、规范、主题地图、术语表、策划方案
-├── tools/           # 索引构建与检查脚本
+├── assets/          # 检索页封面图与图片来源说明
+├── tools/           # 索引构建、站点渲染与检查脚本
 ├── index.html       # 静态检索页
 ├── index.json       # 检索数据，由脚本生成
 ├── updates/         # 按月更新日志
@@ -240,6 +248,7 @@ node tools/check-links.mjs
 ## 更新记录
 
 - 2026-10-24：新增 13 篇：A-11 住酒店/民宿、A-12 长途自驾游、B-09 办身份证/补办、C-13 做副业/接私活、C-14 灵活就业社保、D-11 办健身卡、E-11 报兴趣班、F-11 成人疫苗、F-12 拔智齿、G-11 请律师、G-12 网贷/分期、I-09 短视频/直播、J-09 离婚登记；全部逐条核实。
+- 2026-10-24：全部 343 个 Markdown 页面预渲染为带样式网页（`tools/build-site.mjs`，marked），检索页与文章互链全部指向渲染后的页面，修复「点进条目看到原始 Markdown」的问题。
 - 2026-10-24：检索页 UI 全面改版（参考 howtolivebetter.net 版式）：深绿主色 + 奶白底、悬浮胶囊导航、首屏图文精选轮播、栏目大图卡片；新增 11 张 Unsplash 封面图（`assets/CREDITS.md` 记录来源与许可）；`tools/check-links.mjs` 修复 HEAD 请求误报。
 - 2026-10-23：新增 8 篇：C-02 面试、C-03 签劳动合同、C-04 工资五险一金、G-02 租房、G-06 个税、F-01 挂号看病、F-09 医保报销、I-01 防诈骗。
 - 2026-10-23：开启 GitHub Pages，线上检索页可用。

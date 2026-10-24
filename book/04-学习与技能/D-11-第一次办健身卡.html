@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次办健身卡 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 学习与技能</nav>
+  <h1 class="post-title">第一次办健身卡</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>学习与技能</b></span><span class="chip ">最近核实 <b>2026-10-24</b></span><span class="chip ">来源 <b>7 条</b></span><span class="chip ">耗时 <b>长期</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>分省</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先定目标选近的馆，从短卡买起；付款 7 天内没消费可要求退本金，退款条款看清再签。
+<strong>适用</strong>：第一次办商业健身房会员、团课卡或私教课的人。
+<strong>不适用</strong>：学游泳看 <a href="D-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AD%A6%E6%B8%B8%E6%B3%B3.html">D-08 第一次学游泳</a>；退款维权细节看 <a href="../../book/07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B6%88%E8%B4%B9%E7%BB%B4%E6%9D%83.html">G-08 第一次消费维权</a>；有伤病先看医生，体检可参考 <a href="../../book/06-%E5%81%A5%E5%BA%B7%E4%B8%8E%E5%8C%BB%E7%96%97/F-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%93%E6%A3%80.html">F-02 第一次体检</a>。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>先试再买</strong>：用单次票或体验课试练，确认距离、时段、器械都合适。</li>
+<li><strong>从短买起</strong>：先买月卡或季卡，频率稳定后再续长卡。</li>
+<li><strong>冷静期</strong>：付款 7 天内未消费，可请求返还预付款本金 [3]，部分地区规则更优，以当地为准。</li>
+<li><strong>合同五项</strong>：退款、转卡、停卡、有效期、搬迁关闭怎么退，逐条写清；「概不退款」条款无效 [2][3]。</li>
+<li><strong>留凭证</strong>：盖章合同、发票、付款记录都留好。</li>
+<li><strong>出事找谁</strong>：受伤找场馆工作人员，必要时拨 120；退款被拒拨 12315 或找当地消协。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 办卡前 1 到 2 周：想清楚三件事</h3>
+<p><strong>目标</strong>。你想练什么，决定你选什么馆。减脂增肌看重力量区和器械数量，减压塑形看重团课表，游泳要先确认泳池开放时段。</p>
+<p><strong>距离</strong>。通常选离家里或单位 1.5 公里以内、通勤顺路的馆（通行做法）。多数人弃练的原因不是懒，是太远。</p>
+<p><strong>时段</strong>。确定你能固定训练的时间段。按这个时段去馆里看一次人流，避开排队等器械的高峰。</p>
+<h3>1.2 实地考察：按「三看」选馆</h3>
+<p>中消协建议选择体育健身机构时坚持「三看」[6]：</p>
+<ul>
+<li>一看证照：营业执照、教练员从业资格证等是否公示。</li>
+<li>二看经营情况：经营环境、规模，器械新旧和卫生。</li>
+<li>三看诚信情况：市场口碑、社会信誉、有无关店纠纷。</li>
+</ul>
+<p>同时不轻信口头承诺，不冲动大额办卡 [6]。多数场馆提供单次票或免费体验课，通常需要预约，以场馆为准。试练时重点看你常用区域的排队情况，看巡场教练是否在岗。</p>
+<h3>1.3 签约当天</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 身份证</li>
+<li><input disabled="" type="checkbox"> 银行卡或移动支付，不用大额现金</li>
+<li><input disabled="" type="checkbox"> 预算上限，写在手机备忘里，超了不买</li>
+<li><input disabled="" type="checkbox"> 有旧伤或慢性病的，想清楚要不要先咨询医生</li>
+</ul>
+<p>当天可以不签。回去睡一晚再决定，损失通常很小。</p>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 选卡种</h3>
+<ul>
+<li>常见卡种从短到长：单次票、次卡、月卡、季卡、半年卡、年卡、储值卡。</li>
+<li>新手通常先买 1 到 3 个月的卡（通行做法）。频率稳定在一周 2 次以上，再考虑长卡。</li>
+<li>长卡单价低，但按总花费算：办了不去的年卡，比常去的月卡贵得多。</li>
+<li>监管部门鼓励按月购买会员卡或短期课程 [5]。</li>
+<li>私教课单独计费。有的城市对课时类预付款设了上限，例如上海规定同一消费者课时类不超过 20000 元、60 次 [4]，以当地为准。</li>
+</ul>
+<h3>2.2 签合同：逐条看五项</h3>
+<p>按商务部办法，单用途预付卡的章程和协议应写明购卡、充值、使用、退卡方式，收费项目和标准，双方权利义务和违约责任 [1]。缺项的合同，你可以要求补齐再签。</p>
+<p>签之前问清五件事，并要求写进合同：</p>
+<ol>
+<li>退款：什么条件退、按什么标准扣、多久到账。</li>
+<li>转卡：转给他人收不收费、手续怎么办。</li>
+<li>停卡：出差、受伤能不能停，最长停多久。</li>
+<li>有效期：从哪天起算，到期没练完怎么处理。</li>
+<li>搬迁关闭：场馆搬迁或关闭，按什么规则退余额。</li>
+</ol>
+<p>格式条款注意：合同里出现「概不退款」「不补办」「解释权归经营者」一类内容，这些条款无效 [2][3]。要求修改后再签，改不了就换一家。</p>
+<h3>2.3 付款与拿凭证</h3>
+<ul>
+<li>用银行卡或移动支付付款，留下付款记录。</li>
+<li>索要盖公章的合同和发票，合同拍照备份。</li>
+<li>确认有效期从哪天起算。有的从签约日、有的从首次入场日起算，以合同为准。</li>
+<li>完成标志：合同、发票、会员卡（实体或电子）三样到手。</li>
+</ul>
+<h3>2.4 第一次训练：体测与着装</h3>
+<ul>
+<li>体测：多数入会含一次，量身高、体重、体脂。数据作参考，不因「体测差」当场买课。</li>
+<li>有伤病史提前告知教练，请他给调整建议。</li>
+<li>着装：运动鞋、透气上衣、毛巾、水壶。泳池另备泳衣泳帽，见 <a href="D-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AD%A6%E6%B8%B8%E6%B3%B3.html">D-08 第一次学游泳</a>。</li>
+<li>贵重物品锁进更衣柜，不带进器械区。</li>
+</ul>
+<h3>2.5 器械礼仪与安全</h3>
+<ul>
+<li>用完器械把配重归零、哑铃归位，擦掉汗。</li>
+<li>一次只用一个器械，组间休息久时让给赶时间的人。</li>
+<li>手机戴耳机，不外放。拍照录像避开他人。</li>
+<li>不认识的器械先问巡场教练，不硬试大重量。</li>
+<li>力量训练从固定器械学起，动作稳定后再上哑铃杠铃。起始重量按能标准完成 8 到 12 次来选（通行做法）。</li>
+</ul>
+<h3>2.6 新手训练安排的常识</h3>
+<ul>
+<li>频率：多数新手从每周 2 到 3 次、每次 45 到 60 分钟开始（通行做法）。</li>
+<li>结构：5 到 10 分钟热身，主体训练，5 到 10 分钟拉伸收尾。</li>
+<li>先学动作再加重：深蹲、硬拉、推举这类复合动作，先用轻重量找标准动作。</li>
+<li>练后 1 到 2 天肌肉酸胀通常正常。关节刺痛或持续疼痛，停练观察。</li>
+<li>恢复靠睡眠和饮食，新手优先保证这两项。</li>
+</ul>
+<h3>2.7 面对私教推销</h3>
+<ul>
+<li>「不买课会练伤」：多数新手靠固定器械和正确热身就能安全起步。可以先不买，练两周再决定。</li>
+<li>「体测不达标就得买课」：各馆体测标准不一。要求把课程内容和服务写进合同，再决定。</li>
+<li>「今天特价最后一天」：这类优惠通常还会出现。离场冷静一天。</li>
+<li>决定买课时，先按 10 节以内买，练完再加。总金额参考当地课时类预付款上限 [4]。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 第一次办卡，月卡和年卡怎么选？</h3>
+<p>答：先用月卡验证自己一周能不能去 2 次。能坚持 2 到 3 个月再升级长卡。监管部门也鼓励按月购买 [5]。年卡单价低，去了才划算。</p>
+<h3>Q2 买完卡后悔了，能退吗？</h3>
+<p>答：按最高法 2025 年 5 月 1 日施行的司法解释，付款 7 日内未消费，你可以请求返还预付款本金，此前已获得过相同商品或服务的除外 [3]。北京规定购卡 7 日内未兑付的可要求全额退卡 [2]。上海等地推广含「七天冷静期」的示范合同文本 [5]。你所在城市规则可能不同，以当地为准。先与门店协商，不成再投诉。</p>
+<h3>Q3 合同写「概不退款」还有救吗？</h3>
+<p>答：这类条款属于无效格式条款 [2][3]。你可以按法定规则主张退款。协商不成，向 12315 平台或当地消协投诉。</p>
+<h3>Q4 健身房关门或搬迁了怎么办？</h3>
+<p>答：北京要求经营者停业、注销或变更场所时及时告知并公告 [2]。按最高法解释，变更场所给接受服务造成明显不便的，你可以请求解除合同 [3]。商务部办法要求终止兑付未到期卡的经营者提供免费退卡，并提前至少 30 天公示 [1]。各地执行有差异，以当地为准。</p>
+<h3>Q5 私教课是不是必须买？</h3>
+<p>答：不是。固定器械、团课和正规教学视频足够新手起步。想提速再买少量课时，按次买，不囤几十节。</p>
+<h3>Q6 转卡费、停卡费正常吗？</h3>
+<p>答：收费项目和标准应写进协议 [1]。金额是否合理没有统一标准，签前问清并写进合同，再决定买不买。</p>
+<h3>Q7 卡到期没练完怎么办？</h3>
+<p>答：看合同约定，有的可付费延期，有的作废。签约时把延期规则问清写进合同，之后少一个争议点。</p>
+<h3>Q8 在健身房受伤，责任怎么算？</h3>
+<p>答：先处理伤情，再谈责任。场馆是经营场所，活动组织者负有安全保障义务 [7]，具体责任由法院按情形认定。按「自甘风险」规则，自愿参加有风险的文体活动后，因其他参加者的行为受伤，一般不能要求对方担责，对方有故意或重大过失的除外 [7]。</p>
+<h3>Q9 要不要买场馆推荐的意外险？</h3>
+<p>答：可选。先查你已有的意外险是否覆盖健身运动，再决定是否加购，费用以场馆公示为准。</p>
+<h3>Q10 第一次进馆练什么？</h3>
+<p>答：5 到 10 分钟快走或单车热身，然后做 2 到 3 个固定器械动作，最后拉伸。第一周的目标是熟悉器械和动作，不是练到力竭。</p>
+<h3>Q11 一周练几次、每次多久？</h3>
+<p>答：多数新手一周 2 到 3 次、每次 45 到 60 分钟（通行做法）。频率比单次时长重要。</p>
+<h3>Q12 练后酸痛还能继续练吗？</h3>
+<p>答：肌肉酸胀通常 2 到 3 天缓解，可以练其他部位。关节刺痛、持续疼痛或影响日常活动的，停练观察，不缓解就就医。</p>
+<h3>Q13 卡丢了怎么办？</h3>
+<p>答：记名卡的挂失和转让方式应写进章程 [1]。合同写「丢卡不补」的，该条款无效 [3]。凭身份证和付款凭证到前台挂失，补办费用以场馆公示为准。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>超长卡诱惑</strong>：不办「终身卡」「五年卡」等超长期预付卡 [6]。差价抵不上关店风险。</li>
+<li><strong>大额充值</strong>：不受「充得多折得多」的诱惑 [6]。按 3 个月用量充。</li>
+<li><strong>口头承诺</strong>：「随时退」「随时转」没写进合同就不算数 [6]。当场要求落到书面。</li>
+<li><strong>倒计时优惠</strong>：「今天不办就恢复原价」通常还会再出现。离场睡一晚再决定。</li>
+<li><strong>免费体测变推销</strong>：体测数据只作参考。把「数据差」和「买课」挂钩的话术可以直接拒绝。</li>
+<li><strong>囤私教课</strong>：一次买几十节，退课难。按 10 节以内买。上海对课时类预付款设有金额和次数上限 [4]，以当地为准。</li>
+<li><strong>不核对余额</strong>：次卡、储值卡定期核对消费记录和余额 [6]，发现异常当场提出。</li>
+<li><strong>忽略停卡规则</strong>：出差、生病都可能中断训练。停卡手续和费用提前问清。</li>
+<li><strong>现金付款</strong>：现金难留痕。用银行卡或移动支付，凭证和合同放一起保存。</li>
+<li><strong>关店前兆</strong>：频繁换教练、低价清卡、换法定代表人。出现这些迹象，先暂停加购，核对余额并考虑申请退款。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>门店突然关店</strong>：第一步保全证据：合同、付款记录、关店公告拍照。向 12315 投诉或找当地消协。按最高法典型案例，消费者可以主张向原股东或协助逃债的「职业闭店人」追责 [3]。涉嫌诈骗的报警。</li>
+<li><strong>退款被拒</strong>：第一步用文字（微信、短信）书面提出，留聊天记录。再向 12315 平台投诉，或向经营者所在地消协组织投诉 [6]。付款 7 日内未消费的退款请求有司法解释支撑 [3]。</li>
+<li><strong>训练中受伤</strong>：第一步停止运动，找工作人员，必要时拨 120。保留病历、诊断证明和缴费凭证。要求场馆做书面事故记录。</li>
+<li><strong>器械故障伤人</strong>：停用该器械，拍照，立刻告知前台并要求登记。伤情处理同上。</li>
+<li><strong>搬迁后太远</strong>：变更场所造成明显不便的，可请求解除合同 [3]。先协商退款，不成再投诉。</li>
+<li><strong>卡或手环丢失</strong>：凭身份证到前台挂失。「丢卡不补」条款无效 [3]，补办成本以场馆公示为准。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单次门票</td>
+<td>30–100 元</td>
+<td>试馆用，可选</td>
+</tr>
+<tr>
+<td>月卡</td>
+<td>100–500 元</td>
+<td>新手起步首选，城市差异大，必选其一</td>
+</tr>
+<tr>
+<td>季卡到年卡</td>
+<td>500–4000 元</td>
+<td>频率稳定后再买，可选</td>
+</tr>
+<tr>
+<td>私教课</td>
+<td>150–500 元一节</td>
+<td>一二线城市偏上区间，可选</td>
+</tr>
+<tr>
+<td>体测</td>
+<td>0–200 元</td>
+<td>多数入会含一次，可选</td>
+</tr>
+<tr>
+<td>泳池、团课加项</td>
+<td>以场馆公示为准</td>
+<td>部分卡种不含，可选</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>每周 2–3 次，每次 1–2 小时</td>
+<td>含往返、热身、洗澡</td>
+</tr>
+</tbody></table></div>
+<p>金额为通行区间（Ⅲ 级），以当地和场馆公示为准。</p>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.12315.cn">全国 12315 平台</a></li>
+<li><a href="https://www.mofcom.gov.cn">商务部</a></li>
+<li><a href="https://www.beijing.gov.cn">北京市人民政府</a></li>
+<li><a href="https://www.shanghai.gov.cn">上海市人民政府</a></li>
+<li><a href="https://cca.org.cn">中国消费者协会</a></li>
+<li><a href="https://www.sport.gov.cn">国家体育总局</a></li>
+</ul>
+</li>
+<li>相关条目：<a href="D-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AD%A6%E6%B8%B8%E6%B3%B3.html">D-08 第一次学游泳</a>、<a href="../../book/07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B6%88%E8%B4%B9%E7%BB%B4%E6%9D%83.html">G-08 第一次消费维权</a>、<a href="../../book/06-%E5%81%A5%E5%BA%B7%E4%B8%8E%E5%8C%BB%E7%96%97/F-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%93%E6%A3%80.html">F-02 第一次体检</a></li>
+<li>可打印清单：<a href="../../checklists/D-11-%E5%81%A5%E8%BA%AB%E5%8D%A1-%E9%80%89%E5%8D%A1%E6%B8%85%E5%8D%95.html">D-11 健身卡选卡清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为民法典、商务部部门规章、北京市地方性法规、最高法司法解释、上海多部门规范性文件；Ⅱ 级为体育总局解读和中消协提醒；Ⅲ 级为通行做法（选馆距离、训练安排、价格区间）；Ⅳ 级为亲历经验（销售话术与避坑细节）。</li>
+<li>主要来源：<ol>
+<li>商务部《单用途商业预付卡管理办法（试行）》，<a href="https://www.mofcom.gov.cn/zfxxgk/zc/gz/art/2021/art_82805c1937a64a4186ea15c23fc675c5.html">https://www.mofcom.gov.cn/zfxxgk/zc/gz/art/2021/art_82805c1937a64a4186ea15c23fc675c5.html</a></li>
+<li>《北京市单用途预付卡管理条例》，<a href="http://www.beijing.gov.cn/zhengce/dfxfg/202111/t20211130_2549001.html">http://www.beijing.gov.cn/zhengce/dfxfg/202111/t20211130_2549001.html</a></li>
+<li>《最高人民法院关于审理预付式消费民事纠纷案件适用法律若干问题的解释》（法释〔2025〕4 号）及典型案例，<a href="https://www.court.gov.cn/zixun/xiangqing/459321.html">https://www.court.gov.cn/zixun/xiangqing/459321.html</a></li>
+<li>《上海市体育健身行业预付式消费经营活动监管实施办法》（沪体规文〔2025〕1 号），<a href="https://www.shanghai.gov.cn/nw12344/20250116/6d32dc15f72d476e88edaf7951d969ff.html">https://www.shanghai.gov.cn/nw12344/20250116/6d32dc15f72d476e88edaf7951d969ff.html</a></li>
+<li>国家体育总局网站：健身行业预付式消费监管解读，<a href="https://www.sport.gov.cn/n20001280/n20001265/n20067533/c28422640/content.html">https://www.sport.gov.cn/n20001280/n20001265/n20067533/c28422640/content.html</a></li>
+<li>中国消费者协会：健身预付消费提醒，<a href="https://cca.org.cn/single/11179/63567.html">https://cca.org.cn/single/11179/63567.html</a></li>
+<li>国家体育总局网站：《民法典》「自甘风险」条款解读，<a href="https://www.sport.gov.cn/n20001280/n20745751/n20767239/c21454990/content.html">https://www.sport.gov.cn/n20001280/n20745751/n20767239/c21454990/content.html</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-24</li>
+<li>适用范围与地区差异：冷静期、退款时限、预付限额由各地规定。正文涉及的北京、上海规则仅适用于当地，其他地区以当地为准。</li>
+<li>易变项：地方预付费监管政策（M）；场馆价格、课程与教练（以场馆公示为准）。</li>
+<li>核实记录：<a href="../../sources/D-11.%E6%A0%B8%E5%AE%9E.html">sources/D-11.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="D-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%A8AI%E5%B7%A5%E5%85%B7%E5%8A%9E%E4%BA%8B.html"><span class="dir">← 上一篇</span><span class="name">D-10 第一次用 AI 工具办事</span></a><a class="next" href="../05-%E5%AE%B6%E5%BA%AD%E4%B8%8E%E8%82%B2%E5%84%BF/E-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%BD%93%E7%88%B8%E7%88%B8.html"><span class="dir">下一篇 →</span><span class="name">E-01 第一次当爸爸</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

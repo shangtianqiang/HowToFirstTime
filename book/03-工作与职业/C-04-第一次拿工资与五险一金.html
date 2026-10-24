@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次拿工资与五险一金 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 工作与职业</nav>
+  <h1 class="post-title">第一次拿工资与五险一金</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>工作与职业</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>10 条</b></span><span class="chip ">耗时 <b>半小时内</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：第一份工资到手，先看工资条上的应发、代扣和实发，再去查社保、公积金有没有按时缴。
+<strong>适用</strong>：第一次拿正式工资、第一次缴五险一金的毕业生和职场新人。
+<strong>不适用</strong>：个体户、自由职业者、劳务报酬（另立条目）。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>发薪日</strong>：按合同约定日期支付。遇节假日或休息日，提前到最近的工作日。至少每月支付一次。[1]</li>
+<li><strong>加班费</strong>：工作日延长工时不低于 150%；休息日不能补休不低于 200%；法定节假日不低于 300%。[2]</li>
+<li><strong>五险</strong>：养老、医疗、工伤、失业、生育。养老、医疗、失业由单位和个人共同缴；工伤、生育由单位缴，个人不缴。[3]</li>
+<li><strong>一金</strong>：住房公积金，单位和个人共同缴，钱归职工个人所有，比例均不低于 5%。[4]</li>
+<li><strong>缴费基数</strong>：单位按工资总额，个人按本人工资；各省按全口径平均工资核定上下限，灵活就业人员可在 60%–300% 之间选。[5]</li>
+<li><strong>断缴</strong>：养老保险不会清零，缴费年限累计；医保断缴 3 个月内可补缴，超过 3 个月按当地规定，等待期原则上不超过 6 个月。[6]</li>
+<li><strong>怎么查</strong>：社保用国家社会保险公共服务平台、掌上 12333、电子社保卡；公积金用全国住房公积金小程序或 12329。[7]</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 工资构成与发薪</h3>
+<ul>
+<li>问清工资构成：基本工资、绩效、补贴、奖金、提成。</li>
+<li>问清发薪日、发薪方式、是否代扣个税和社保。</li>
+<li>工资必须以法定货币支付，不能用实物代替。[1]</li>
+<li>至少每月支付一次。临时工、非全日制按约定周期。[1]</li>
+<li>试用期工资不低于同岗位最低档工资或合同工资的 80%，且不低于当地最低工资。[8]</li>
+</ul>
+<h3>1.2 加班费</h3>
+<ul>
+<li>工作日延长工作时间：不低于工资的 150%。[2]</li>
+<li>休息日安排工作又不能补休：不低于 200%。[2]</li>
+<li>法定节假日安排工作：不低于 300%。[2]</li>
+<li>加班要有记录：考勤、排班表、工作群通知、邮件。</li>
+<li>公司用“调休”替代休息日加班费，要符合规定；法定节假日不能只调休。</li>
+</ul>
+<h3>1.3 五险一金</h3>
+<ul>
+<li><strong>养老保险</strong>：单位缴一部分，个人缴一部分，累计缴费年限影响养老金。[3]</li>
+<li><strong>医疗保险</strong>：单位缴一部分，个人缴一部分，用于门诊、住院报销和医保个人账户。[3]</li>
+<li><strong>失业保险</strong>：单位和个人共同缴，缴满 1 年、非本人意愿中断就业，可以申领失业保险金。[3]</li>
+<li><strong>工伤保险</strong>：单位缴，个人不缴。工作受伤、职业病按工伤处理。[3]</li>
+<li><strong>生育保险</strong>：单位缴，个人不缴。生育医疗费用和生育津贴从这里出。[3]</li>
+<li><strong>住房公积金</strong>：单位和个人共同缴，归个人所有，可用于买房、建房、租房等。[4]</li>
+</ul>
+<h3>1.4 缴费基数与查询</h3>
+<ul>
+<li>单位按职工工资总额缴，个人按本人工资缴。[5]</li>
+<li>各省按全口径城镇单位就业人员平均工资核定个人缴费基数上下限。</li>
+<li>灵活就业人员可以在 60%–300% 之间选择基数。[5]</li>
+<li>具体比例分省分市，每年调整，查当地人社局和公积金中心。</li>
+<li>社保查询：国家社会保险公共服务平台、掌上 12333、电子社保卡、国家政务服务平台。[7]</li>
+<li>公积金查询：全国住房公积金小程序、12329 热线、当地公积金中心。[7]</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 收到第一份工资</h3>
+<ul>
+<li>在哪：银行账户、工资条、公司薪酬系统。</li>
+<li>做什么：核对到账金额和工资条。</li>
+<li>看什么：应发、代扣社保、代扣公积金、代扣个税、实发。</li>
+<li>说什么：金额不对，先找 HR 或财务核对。</li>
+<li>完成标志：确认应发和实发能对上。</li>
+<li>卡住了怎么办：保留工资条和银行流水。</li>
+</ul>
+<h3>2.2 看工资条</h3>
+<ul>
+<li>应发工资：基本工资、绩效、补贴、奖金、加班费。</li>
+<li>代扣项目：养老、医疗、失业、公积金、个税。</li>
+<li>实发工资：应发减去代扣。</li>
+<li>国家层面只要求提供个人工资清单，没有统一项目格式。[9]</li>
+<li>工资支付记录单位要保存 2 年以上。[9]</li>
+</ul>
+<h3>2.3 查社保</h3>
+<ul>
+<li>在哪：国家社会保险公共服务平台、掌上 12333、电子社保卡。</li>
+<li>做什么：查参保状态、缴费基数、缴费月数、个人账户。</li>
+<li>看什么：养老、医疗、失业、工伤、生育是否都在缴。</li>
+<li>说什么：发现漏缴，先问 HR，再向社保征收机构反映。</li>
+<li>完成标志：缴费记录和工资条上的代扣对得上。</li>
+<li>卡住了怎么办：拨 12333。</li>
+</ul>
+<h3>2.4 查公积金</h3>
+<ul>
+<li>在哪：全国住房公积金小程序、12329、当地公积金中心。</li>
+<li>做什么：查账户余额、缴存基数、月缴存额。</li>
+<li>看什么：单位和个人是否都按时缴。</li>
+<li>说什么：单位少缴，向公积金中心投诉。</li>
+<li>完成标志：缴存记录连续。</li>
+<li>卡住了怎么办：拨 12329。</li>
+</ul>
+<h3>2.5 发现问题</h3>
+<ul>
+<li>工资少发：先核对考勤、绩效、加班记录，再找 HR。</li>
+<li>社保漏缴：保留工资条和合同，向社保征收机构举报。</li>
+<li>公积金少缴：向公积金中心投诉。</li>
+<li>公司要求“自愿放弃社保”：这类条款通常无效。[3]</li>
+<li>拖欠工资：向劳动保障监察部门投诉。</li>
+</ul>
+<h3>2.6 保存证据</h3>
+<ul>
+<li>劳动合同、工资条、银行流水。</li>
+<li>考勤记录、排班表、加班通知。</li>
+<li>社保和公积金缴费记录。</li>
+<li>和 HR 沟通的邮件、微信记录。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 第一份工资怎么算？</h3>
+<p>答：应发工资减去代扣社保、公积金、个税，就是实发。工资条上每一项都要能对上。[9]</p>
+<h3>Q2 发薪日遇周末或节假日怎么办？</h3>
+<p>答：提前到最近的工作日支付。[1]</p>
+<h3>Q3 加班费怎么算？</h3>
+<p>答：工作日延时 150%，休息日不能补休 200%，法定节假日 300%。[2]</p>
+<h3>Q4 五险是哪五险？谁缴？</h3>
+<p>答：养老、医疗、工伤、失业、生育。养老、医疗、失业由单位和个人共同缴；工伤、生育由单位缴，个人不缴。[3]</p>
+<h3>Q5 公积金有什么用？</h3>
+<p>答：归职工个人所有，可用于购买、建造、翻建、大修自住住房，可提取，也可申请公积金贷款。[4]</p>
+<h3>Q6 社保基数怎么定？</h3>
+<p>答：单位按工资总额，个人按本人工资；各省按全口径平均工资核定上下限，灵活就业人员可在 60%–300% 之间选。[5]</p>
+<h3>Q7 社保断缴会清零吗？</h3>
+<p>答：养老保险不会清零，缴费年限累计。医保断缴 3 个月内可补缴，超过 3 个月按当地规定，等待期原则上不超过 6 个月。[6]</p>
+<h3>Q8 试用期工资最低多少？</h3>
+<p>答：不低于本单位同岗位最低档工资或合同工资的 80%，且不低于当地最低工资。[8]</p>
+<h3>Q9 公司少缴、漏缴社保怎么办？</h3>
+<p>答：向 12333、劳动保障监察部门或社保费征收机构投诉。欠缴按日加收万分之五滞纳金，逾期可处欠缴额 1–3 倍罚款。[3][10]</p>
+<h3>Q10 怎么查社保和公积金？</h3>
+<p>答：社保用国家社会保险公共服务平台、掌上 12333、电子社保卡；公积金用全国住房公积金小程序、12329。[7]</p>
+<h3>Q11 个税怎么扣？</h3>
+<p>答：单位按月预扣预缴，年度汇算多退少补。专项附加扣除在个人所得税 App 填报。详见 G-06《第一次个税申报》。</p>
+<h3>Q12 工资条必须有哪些项目？</h3>
+<p>答：国家层面只要求提供个人工资清单，没有统一项目格式。一般包括应发、代扣、实发。[9]</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>只看实发不看明细</strong>：应发、代扣、实发要能对上。[9]</li>
+<li><strong>“自愿放弃社保”</strong>：通常无效，单位仍要缴。[3]</li>
+<li><strong>按最低基数缴社保</strong>：可能影响养老、医保、公积金待遇。[5]</li>
+<li><strong>加班不算钱</strong>：保留考勤和加班通知，离职时一起主张。</li>
+<li><strong>公积金不缴或少缴</strong>：向公积金中心投诉。</li>
+<li><strong>工资发现金、不走银行</strong>：留好工资条和签收记录。</li>
+<li><strong>试用期不缴社保</strong>：用工 30 日内就要办社保登记。[3]</li>
+<li><strong>工资条随手扔</strong>：至少保存到离职后一年。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>工资少发</strong>：核对考勤、绩效、加班，先找 HR，保留证据。</li>
+<li><strong>社保漏缴</strong>：向社保征收机构举报，拨 12333。[10]</li>
+<li><strong>公积金少缴</strong>：向公积金中心投诉，逾期可申请法院强制执行。[4]</li>
+<li><strong>公司拖欠工资</strong>：向劳动保障监察部门投诉，或申请劳动仲裁。</li>
+<li><strong>离职后社保断缴</strong>：尽快以灵活就业身份续缴，或在新单位续上。[6]</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>社保个人部分</td>
+<td>按工资和当地比例</td>
+<td>工资条代扣</td>
+</tr>
+<tr>
+<td>公积金个人部分</td>
+<td>不低于 5%</td>
+<td>工资条代扣</td>
+</tr>
+<tr>
+<td>个税</td>
+<td>按收入和扣除</td>
+<td>单位代扣</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半小时</td>
+<td>核对工资条和缴费记录</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mohrss.gov.cn">人力资源和社会保障部</a></li>
+<li>国家社会保险公共服务平台</li>
+<li>掌上 12333、电子社保卡</li>
+<li>全国住房公积金小程序、12329</li>
+<li>12333 人社服务热线</li>
+</ul>
+</li>
+<li>相关条目：<a href="C-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%85%A5%E8%81%8C.html">C-01 第一次入职</a>、<a href="C-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%AD%BE%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C.html">C-03 第一次签劳动合同</a>、<a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%AA%E7%A8%8E%E7%94%B3%E6%8A%A5.html">G-06 第一次个税申报</a></li>
+<li>可打印清单：<a href="../../checklists/C-04-%E5%B7%A5%E8%B5%84%E7%A4%BE%E4%BF%9D-%E6%A0%B8%E5%AF%B9%E6%B8%85%E5%8D%95.html">C-04 工资社保核对清单</a></li>
+<li>术语：<a href="../../meta/%E6%9C%AF%E8%AF%AD%E8%A1%A8.html">五险一金</a>、<a href="../../meta/%E6%9C%AF%E8%AF%AD%E8%A1%A8.html">社保基数</a>、<a href="../../meta/%E6%9C%AF%E8%AF%AD%E8%A1%A8.html">公积金</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：以 Ⅰ/Ⅱ 级法规和官方指引为主，具体比例分省分市。</li>
+<li>主要来源：<ol>
+<li>人社部《工资支付暂行规定》第五、七条，<a href="https://www.mohrss.gov.cn/xxgk2020/gzk/gz/202112/t20211228_431557.html">https://www.mohrss.gov.cn/xxgk2020/gzk/gz/202112/t20211228_431557.html</a></li>
+<li>《中华人民共和国劳动法》第四十四条；《工资支付暂行规定》第十三条</li>
+<li>《中华人民共和国社会保险法》第十、二十三、三十三、四十四、五十三、五十八、八十六、九十五条，<a href="https://www.gov.cn/guoqing/2021-10/29/content_5647616.htm">https://www.gov.cn/guoqing/2021-10/29/content_5647616.htm</a></li>
+<li>《住房公积金管理条例》第二、三、十八、二十四、二十六、三十八条，<a href="https://www.mohurd.gov.cn/gongkai/fdzdgknr/zfhcxjsbwj/gkzhudongfalvfagui/gkzhudongfagui/art/2019/art_18379_240516.html">https://www.mohurd.gov.cn/gongkai/fdzdgknr/zfhcxjsbwj/gkzhudongfalvfagui/gkzhudongfagui/art/2019/art_18379_240516.html</a></li>
+<li>《社会保险法》第十二条；国办发〔2019〕13号，<a href="https://www.gov.cn/zhengce/content/2019-04/04/content_5379629.htm">https://www.gov.cn/zhengce/content/2019-04/04/content_5379629.htm</a></li>
+<li>《社会保险法》第十六、四十五条；《基本医疗保险关系转移接续暂行办法》第十一条；中国政府网 2026-07-28 问答，<a href="https://www.gov.cn/hudong/202607/content_7076806.htm">https://www.gov.cn/hudong/202607/content_7076806.htm</a></li>
+<li>国家社会保险公共服务平台；全国住房公积金小程序；12329</li>
+<li>《劳动合同法》第二十条，<a href="https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fl/202011/t20201102_394622.html">https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fl/202011/t20201102_394622.html</a></li>
+<li>《工资支付暂行规定》第六条</li>
+<li>人社部 12333 服务，<a href="https://www.mohrss.gov.cn/SYrlzyhshbzb/zhuanti/jinbaogongcheng/jbgcdianhuazixunfuwu/">https://www.mohrss.gov.cn/SYrlzyhshbzb/zhuanti/jinbaogongcheng/jbgcdianhuazixunfuwu/</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地企业职工。</li>
+<li>易变项：社保基数、缴费比例、最低工资（M，分省分市）。</li>
+<li>核实记录：<a href="../../sources/C-04.%E6%A0%B8%E5%AE%9E.html">sources/C-04.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="C-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%AD%BE%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C.html"><span class="dir">← 上一篇</span><span class="name">C-03 第一次签劳动合同</span></a><a class="next" href="C-05-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%87%E8%AF%95%E7%94%A8%E6%9C%9F.html"><span class="dir">下一篇 →</span><span class="name">C-05 第一次过试用期</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>A-02 第一次坐高铁 · 核实记录 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">A-02 第一次坐高铁 · 核实记录</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">一、逐条核实表</a><a href="#sec-1">二、未确定事项</a><a href="#sec-2">三、争议与差异</a><a href="#sec-3">四、调研问题清单</a></nav>
+  <main class="content">
+
+<ul>
+<li>核实人：项目组</li>
+<li>核实日期：2026-10-23</li>
+<li>对应版本：v1.0</li>
+<li>适用范围：中国内地 G/D/C 字头列车</li>
+<li>当前状态：已核实</li>
+</ul>
+<h2 id="sec-0">一、逐条核实表</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>正文位置</th>
+<th>文中说法</th>
+<th>依据等级</th>
+<th>来源（机构 + 标题 + 文号）</th>
+<th>原文摘录</th>
+<th>URL</th>
+<th>访问日期</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1.1</td>
+<td>12306 实名核验“已通过”才能订票</td>
+<td>Ⅱ</td>
+<td>12306《用户注册》</td>
+<td>“核验，结果为‘已通过’的，才可以按规定订票”</td>
+<td><a href="https://kyfw.12306.cn/otn/regist/init">https://kyfw.12306.cn/otn/regist/init</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0、2.1</td>
+<td>提前到站和停止检票时间以车站公告为准</td>
+<td>Ⅱ+Ⅲ</td>
+<td>12306《进出站》</td>
+<td>“车站将在开车时间之前提前停止售票、检票……关注车站……公告”</td>
+<td><a href="https://kyfw.12306.cn/otn/gonggao/enterAndExit.html">https://kyfw.12306.cn/otn/gonggao/enterAndExit.html</a></td>
+<td>2026-10-23</td>
+<td>已核实（分钟数为通行做法）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1.3、Q5</td>
+<td>退票费：8 天以上免费；48 小时至 8 天 5%；24 至 48 小时 10%；24 小时内 20%，最低 2 元</td>
+<td>Ⅱ</td>
+<td>12306《铁路旅客购票须知》《退改说明》</td>
+<td>“距车票乘车站开车前8天以上的不收退票费”</td>
+<td><a href="https://mobile.12306.cn/otsmobile/h5/otsbussiness/info/orderWarmTips.html?tabIndex=6">https://mobile.12306.cn/otsmobile/h5/otsbussiness/info/orderWarmTips.html?tabIndex=6</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1.3、Q5</td>
+<td>改签规则；开车后改签的车票不能退</td>
+<td>Ⅱ</td>
+<td>12306《退改说明》</td>
+<td>改签按开车前时间和改签后日期分档收费</td>
+<td><a href="https://mobile.12306.cn/otsmobile/h5/otsbussiness/info/orderWarmTips.html?tabIndex=6">https://mobile.12306.cn/otsmobile/h5/otsbussiness/info/orderWarmTips.html?tabIndex=6</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1.3、Q1</td>
+<td>候补：6 个订单，每单 3 个日期、60 个车次、19 人；截止不晚于开车前 20 分钟</td>
+<td>Ⅱ</td>
+<td>12306《候补购票》</td>
+<td>“每个用户同时可以保有6个待兑现的候补订单”</td>
+<td><a href="https://mobile.12306.cn/otsmobile/h5/otsbussiness/houbuRules/houbuRules.html">https://mobile.12306.cn/otsmobile/h5/otsbussiness/houbuRules/houbuRules.html</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>6</td>
+<td>1.4、Q4</td>
+<td>充电宝≤100Wh；打火机≤2；火柴≤2 小盒；白酒 24%–70%≤3000mL</td>
+<td>Ⅰ</td>
+<td>国家铁路局、公安部《铁路旅客禁止、限制携带和托运物品目录》（公告第1号）</td>
+<td>“酒精体积百分含量大于或者等于24%、小于或者等于70%的酒类饮品累计不超过3000毫升”</td>
+<td><a href="https://www.gov.cn/zhengce/zhengceku/2022-05/31/content_5693212.htm">https://www.gov.cn/zhengce/zhengceku/2022-05/31/content_5693212.htm</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Q10</td>
+<td>儿童票按年龄：6 岁以下免费不占座，6–14 岁儿童票，14 岁以上全价</td>
+<td>Ⅰ</td>
+<td>《铁路旅客运输规程》第十二条</td>
+<td>“年满6周岁且未满14周岁的儿童应当购买儿童优惠票”</td>
+<td><a href="https://www.nra.gov.cn/xxgk/gkml/ztjg/gfzd/bmgz/202211/t20221117_338894.shtml">https://www.nra.gov.cn/xxgk/gkml/ztjg/gfzd/bmgz/202211/t20221117_338894.shtml</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Q9</td>
+<td>学生票每学年 4 次，普速硬座等 50%，动车二等座等 75%</td>
+<td>Ⅱ</td>
+<td>12306《铁路旅客购票须知》</td>
+<td>“每学年……可购买……四次单程的学生优惠票”</td>
+<td><a href="https://mobile.12306.cn/otsmobile/h5/otsbussiness/info/buyTicketsInstruction.html">https://mobile.12306.cn/otsmobile/h5/otsbussiness/info/buyTicketsInstruction.html</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Q6、5</td>
+<td>坐过站由列车长编记录，前方站免费送回；出站后不受理</td>
+<td>Ⅱ+Ⅰ</td>
+<td>12306《误售误购》；《铁路旅客运输规程》</td>
+<td>“指定最近列车免费送至车票到站或原票乘车站……出站后提出的不予受理”</td>
+<td><a href="https://kyfw.12306.cn/otn/gonggao/soldByMistake.html">https://kyfw.12306.cn/otn/gonggao/soldByMistake.html</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Q8、5</td>
+<td>遗失物品可在 12306 登记查找，车站保管，凭身份证签收</td>
+<td>Ⅱ</td>
+<td>12306《遗失物品查找服务说明》</td>
+<td>“注册用户可为本人及乘车人办理遗失物品查找、登记”</td>
+<td><a href="http://mobile.12306.cn/weixin/wxinfo/lostInfo">http://mobile.12306.cn/weixin/wxinfo/lostInfo</a></td>
+<td>2026-10-23</td>
+<td>已核实（保管期限未查到）</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Q7、5</td>
+<td>12306 可查中转换乘；铁路原因影响换乘，退票不收退票费</td>
+<td>Ⅱ</td>
+<td>12306《中转换乘和选座功能使用说明》</td>
+<td>“遇有旅客列车晚点，或其中一段停运等铁路原因影响中转换乘的，退票时……不收取退票费”</td>
+<td><a href="https://kyfw.12306.cn/otn/gonggao/chooseSeat_transferConnection.html">https://kyfw.12306.cn/otn/gonggao/chooseSeat_transferConnection.html</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-1">二、未确定事项</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>内容</th>
+<th>卡在哪</th>
+<th>正文处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>提前到站分钟数</td>
+<td>无全国统一规定</td>
+<td>写“多数车站建议至少提前 30 分钟”，并注明以车站公告为准</td>
+</tr>
+<tr>
+<td>2</td>
+<td>停止检票分钟数</td>
+<td>3–5 分钟为通行做法</td>
+<td>写“一般”，并注明以车站公告为准</td>
+</tr>
+<tr>
+<td>3</td>
+<td>遗失物品保管期限</td>
+<td>未查到统一公开规定</td>
+<td>只写登记和领取流程，不写期限</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-2">三、争议与差异</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>说法</th>
+<th>冲突来源</th>
+<th>采用口径</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>儿童票按身高还是年龄</td>
+<td>旧规则按身高</td>
+<td>按年龄</td>
+<td>现行《铁路旅客运输规程》已改为按年龄</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-3">四、调研问题清单</h2>
+<ol>
+<li>第一次坐高铁的人最容易在哪个环节卡住？</li>
+<li>哪些票种和证件需要走人工通道？</li>
+<li>候补、改签、退票的规则怎么讲才不会记错？</li>
+<li>站内换乘和出站换乘有什么区别？</li>
+<li>哪些旧攻略里的说法已经变了？</li>
+</ol>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

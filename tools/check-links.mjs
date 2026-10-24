@@ -6,7 +6,7 @@ const urls = new Set();
 
 for (const file of files) {
   const text = await readFile(file, 'utf8');
-  for (const match of text.matchAll(/https?:\/\/[^\s)<>"']+/g)) {
+  for (const match of text.matchAll(/https?:\/\/[^\s()<>"']+/g)) {
     let url = match[0].replace(/[.,;:]+$/, '');
     if (url.includes('…') || url.includes('...')) continue;
     if (url.includes('example.com') || url.includes('localhost') || url.includes('127.0.0.1')) continue;

@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>J-09 第一次办离婚登记 · 核实记录 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">J-09 第一次办离婚登记 · 核实记录</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">关键核实项</a><a href="#sec-1">未确定事项与处理</a><a href="#sec-2">争议与差异</a></nav>
+  <main class="content">
+
+<ul>
+<li>核实人：项目组</li>
+<li>核实日期：2026-10-24</li>
+<li>对应版本：v1.0</li>
+<li>当前状态：已核实</li>
+<li>对应条目：<a href="../book/10-%E4%BA%BA%E7%94%9F%E8%8A%82%E7%82%B9/J-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%9E%E7%A6%BB%E5%A9%9A%E7%99%BB%E8%AE%B0.html">J-09 正文</a> · <a href="../checklists/J-09-%E7%A6%BB%E5%A9%9A%E7%99%BB%E8%AE%B0-%E6%9D%90%E6%96%99%E4%B8%8E%E6%B5%81%E7%A8%8B%E6%B8%85%E5%8D%95.html">J-09 清单</a></li>
+<li>说明：以下摘录均为 2026-10-24 实际抓取到的页面文字，未抓到原文的项登记在「未确定事项」。</li>
+</ul>
+<h2 id="sec-0">关键核实项</h2>
+<h3>1. 现行条例为 2025 年修订版，2025 年 5 月 10 日施行</h3>
+<ul>
+<li>文中说法：按 2025 年施行的《婚姻登记条例》办理，登记免费、全国通办。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源：《婚姻登记条例》（国务院令第 804 号）全文，生态环境部网站转载国务院令</li>
+<li>URL：<a href="https://www.mee.gov.cn/zcwj/gwywj/202504/t20250410_1113983.shtml">https://www.mee.gov.cn/zcwj/gwywj/202504/t20250410_1113983.shtml</a></li>
+<li>原文摘录：「婚姻登记条例（中华人民共和国国务院令　第804号）」「本条例自2025年5月10日起施行。」</li>
+<li>访问日期：2026-10-24</li>
+<li>状态：已核实</li>
+</ul>
+<h3>2. 协议离婚须签订书面协议并亲自共同申请</h3>
+<ul>
+<li>文中说法：双方自愿，已就子女抚养、财产、债务写进书面离婚协议书，两人共同到登记机关申请。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源：《婚姻登记条例》第十三条（同上 URL）；《民法典》第一千零七十六条</li>
+<li>URL：<a href="https://xxgk.yczf.gov.cn/xzf/ycmzj/fdzdgknr/fgwj_41995/202112/t20211203_1506727.shtml">https://xxgk.yczf.gov.cn/xzf/ycmzj/fdzdgknr/fgwj_41995/202112/t20211203_1506727.shtml</a></li>
+<li>原文摘录：「内地居民自愿离婚的，男女双方应当签订书面离婚协议，亲自到婚姻登记机关共同申请离婚登记。」（条例第十三条）「离婚协议应当载明双方自愿离婚的意思表示和对子女抚养、财产以及债务处理等事项协商一致的意见。」（民法典第一千零七十六条）</li>
+<li>访问日期：2026-10-24</li>
+<li>状态：已核实</li>
+</ul>
+<h3>3. 离婚登记材料为身份证和结婚证，不再需要户口簿</h3>
+<ul>
+<li>文中说法：双方身份证、结婚证，不再需要户口簿。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源：《婚姻登记条例》第十五条；民政部负责人答记者问（央视网转载）</li>
+<li>URL：<a href="https://www.mee.gov.cn/zcwj/gwywj/202504/t20250410_1113983.shtml">https://www.mee.gov.cn/zcwj/gwywj/202504/t20250410_1113983.shtml</a> 、<a href="https://news.cctv.com/2025/05/10/ARTIwNVcPgyHTdroNUNQDElq250510.shtml">https://news.cctv.com/2025/05/10/ARTIwNVcPgyHTdroNUNQDElq250510.shtml</a></li>
+<li>原文摘录：「（一）本人的居民身份证；（二）本人的结婚证。」（条例第十五条）「男女双方只需要出具本人的居民身份证，本人无配偶以及与对方当事人没有直系血亲和三代以内旁系血亲关系的签字声明，不再需要出具户口簿。」（答记者问，表述结婚登记；离婚登记材料以条例第十五条为准）</li>
+<li>访问日期：2026-10-24</li>
+<li>状态：已核实</li>
+</ul>
+<h3>4. 冷静期 30 天，任何一方可撤回</h3>
+<ul>
+<li>文中说法：申请后 30 天内任一方可单独撤回。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源：《民法典》第一千零七十七条第一款</li>
+<li>URL：<a href="https://xxgk.yczf.gov.cn/xzf/ycmzj/fdzdgknr/fgwj_41995/202112/t20211203_1506727.shtml">https://xxgk.yczf.gov.cn/xzf/ycmzj/fdzdgknr/fgwj_41995/202112/t20211203_1506727.shtml</a></li>
+<li>原文摘录：「自婚姻登记机关收到离婚登记申请之日起三十日内，任何一方不愿意离婚的，可以向婚姻登记机关撤回离婚登记申请。」</li>
+<li>访问日期：2026-10-24</li>
+<li>状态：已核实</li>
+</ul>
+<h3>5. 届满后 30 天内须共同申领，逾期视为撤回</h3>
+<ul>
+<li>文中说法：届满后 30 天内两人共同申领离婚证，逾期视为撤回，程序终止。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源：《民法典》第一千零七十七条第二款；《婚姻登记条例》第十六条</li>
+<li>URL：<a href="https://xxgk.yczf.gov.cn/xzf/ycmzj/fdzdgknr/fgwj_41995/202112/t20211203_1506727.shtml">https://xxgk.yczf.gov.cn/xzf/ycmzj/fdzdgknr/fgwj_41995/202112/t20211203_1506727.shtml</a></li>
+<li>原文摘录：「前款规定期间届满后三十日内，双方应当亲自到婚姻登记机关申请发给离婚证；未申请的，视为撤回离婚登记申请。」（民法典）「当事人未在法律规定期限内申请发给离婚证的，视为撤回离婚登记申请，离婚登记程序终止。」（条例第十六条）</li>
+<li>访问日期：2026-10-24</li>
+<li>状态：已核实</li>
+</ul>
+<h3>6. 婚姻登记全国通办，含离婚登记</h3>
+<ul>
+<li>文中说法：全国通办，不再受户籍地限制。</li>
+<li>依据等级：Ⅱ</li>
+<li>来源：民政部负责人就婚姻登记「全国通办」政策答记者问（央视网转载，2025-05-10）</li>
+<li>URL：<a href="https://news.cctv.com/2025/05/10/ARTIwNVcPgyHTdroNUNQDElq250510.shtml">https://news.cctv.com/2025/05/10/ARTIwNVcPgyHTdroNUNQDElq250510.shtml</a></li>
+<li>原文摘录：「双方均是内地居民的结婚登记、离婚登记和补领婚姻登记证件都属于全国通办的受理范围。」</li>
+<li>访问日期：2026-10-24</li>
+<li>状态：已核实</li>
+</ul>
+<h3>7. 申请与领证须为同一个登记机关</h3>
+<ul>
+<li>文中说法：申请可以全国任选机关，领证要回到原机关。</li>
+<li>依据等级：Ⅱ</li>
+<li>来源：民政部负责人答记者问（央视网转载）</li>
+<li>URL：<a href="https://news.cctv.com/2025/05/10/ARTIwNVcPgyHTdroNUNQDElq250510.shtml">https://news.cctv.com/2025/05/10/ARTIwNVcPgyHTdroNUNQDElq250510.shtml</a></li>
+<li>原文摘录：「双方在申请离婚时，可以向任意一个有职权的婚姻登记机关申请，离婚登记（领取离婚证）环节和离婚申请必须是同一个婚姻登记机关。」</li>
+<li>访问日期：2026-10-24</li>
+<li>状态：已核实</li>
+</ul>
+<h3>8. 三种不予受理协议离婚的情形</h3>
+<ul>
+<li>文中说法：未达成协议、一方无或限制民事行为能力、结婚登记不在内地办理的，不予受理协议离婚。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源：《婚姻登记条例》第十四条</li>
+<li>URL：<a href="https://www.mee.gov.cn/zcwj/gwywj/202504/t20250410_1113983.shtml">https://www.mee.gov.cn/zcwj/gwywj/202504/t20250410_1113983.shtml</a></li>
+<li>原文摘录：「（一）未达成离婚协议的；（二）属于无民事行为能力人或者限制民事行为能力人的；（三）其结婚登记不是在中国内地办理的。」</li>
+<li>访问日期：2026-10-24</li>
+<li>状态：已核实</li>
+</ul>
+<h3>9. 家暴等情形可向法院起诉离婚，并可申请人身安全保护令</h3>
+<ul>
+<li>文中说法：一方不同意或存在家暴的，向法院提起离婚诉讼；因家暴或面临现实危险申请保护令的，法院应当受理。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源：《民法典》第一千零七十九条；《反家庭暴力法》第二十三条及第三十条</li>
+<li>URL：<a href="https://xxgk.yczf.gov.cn/xzf/ycmzj/fdzdgknr/fgwj_41995/202112/t20211203_1506727.shtml">https://xxgk.yczf.gov.cn/xzf/ycmzj/fdzdgknr/fgwj_41995/202112/t20211203_1506727.shtml</a> 、<a href="https://kjj.hainanzhou.gov.cn/lnb/zcfg1/gjzc1__zcfg/gjzc/content_1501008">https://kjj.hainanzhou.gov.cn/lnb/zcfg1/gjzc1__zcfg/gjzc/content_1501008</a></li>
+<li>原文摘录：「夫妻一方要求离婚的，可以由有关组织进行调解或者直接向人民法院提起离婚诉讼。」（民法典）「当事人因遭受家庭暴力或者面临家庭暴力的现实危险，向人民法院申请人身安全保护令的，人民法院应当受理。」（反家暴法第二十三条）</li>
+<li>访问日期：2026-10-24</li>
+<li>状态：已核实</li>
+</ul>
+<h3>10. 子女抚养、抚养费、探望的法定表述</h3>
+<ul>
+<li>文中说法：不满两周岁以母亲直接抚养为原则，已满八周岁尊重真实意愿；抚养费由双方协议，协议不成由法院判决；不直接抚养一方有探望权。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源：《民法典》第一千零八十四条、第一千零八十五条、第一千零八十六条</li>
+<li>URL：<a href="https://xxgk.yczf.gov.cn/xzf/ycmzj/fdzdgknr/fgwj_41995/202112/t20211203_1506727.shtml">https://xxgk.yczf.gov.cn/xzf/ycmzj/fdzdgknr/fgwj_41995/202112/t20211203_1506727.shtml</a></li>
+<li>原文摘录：「离婚后，不满两周岁的子女，以由母亲直接抚养为原则。」「离婚后，子女由一方直接抚养的，另一方应当负担部分或者全部抚养费。负担费用的多少和期限的长短，由双方协议；协议不成的，由人民法院判决。」「离婚后，不直接抚养子女的父或者母，有探望子女的权利，另一方有协助的义务。」</li>
+<li>访问日期：2026-10-24</li>
+<li>状态：已核实</li>
+</ul>
+<h3>11. 完成离婚登记即解除婚姻关系</h3>
+<ul>
+<li>文中说法：完成离婚登记，婚姻关系即解除；领证当天已生效，离婚证和法院文书效力同源。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源：《民法典》第一千零八十条</li>
+<li>URL：<a href="https://xxgk.yczf.gov.cn/xzf/ycmzj/fdzdgknr/fgwj_41995/202112/t20211203_1506727.shtml">https://xxgk.yczf.gov.cn/xzf/ycmzj/fdzdgknr/fgwj_41995/202112/t20211203_1506727.shtml</a></li>
+<li>原文摘录：「完成离婚登记，或者离婚判决书、调解书生效，即解除婚姻关系。」</li>
+<li>访问日期：2026-10-24</li>
+<li>状态：已核实</li>
+</ul>
+<h3>12. 出具虚假材料记入信用记录</h3>
+<ul>
+<li>文中说法：出具虚假证件或书面材料的，承担法律责任，相关信息记入信用记录。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源：《婚姻登记条例》第二十三条</li>
+<li>URL：<a href="https://www.mee.gov.cn/zcwj/gwywj/202504/t20250410_1113983.shtml">https://www.mee.gov.cn/zcwj/gwywj/202504/t20250410_1113983.shtml</a></li>
+<li>原文摘录：「当事人应当对所出具证件和书面材料的真实性、合法性负责，出具虚假证件或者书面材料的，应当承担相应法律责任，相关信息按照国家有关规定记入信用记录，并纳入全国信用信息共享平台。」</li>
+<li>访问日期：2026-10-24</li>
+<li>状态：已核实</li>
+</ul>
+<h3>13. 婚姻登记免费</h3>
+<ul>
+<li>文中说法：登记免费，婚姻登记费自 2017 年 4 月 1 日起停征。</li>
+<li>依据等级：Ⅱ</li>
+<li>来源：新华网报道《婚姻登记下月起免费 新人“领证”还需准备点啥？》（2017-03-25，财政部、国家发改委通知）</li>
+<li>URL：<a href="http://www.xinhuanet.com/politics/2017-03/25/c_1120691795.htm">http://www.xinhuanet.com/politics/2017-03/25/c_1120691795.htm</a></li>
+<li>原文摘录：「财政部、发改委日前下发通知，要求自2017年4月1日起，取消或停征41项中央设立的行政事业性收费，这其中就包括民政部门的婚姻登记费。」（页面可见文字）</li>
+<li>访问日期：2026-10-24</li>
+<li>状态：已核实</li>
+</ul>
+<h3>14. 登记机关提供婚姻家庭辅导和心理辅导</h3>
+<ul>
+<li>文中说法：婚姻登记机关提供婚姻家庭辅导服务，办理离婚登记过程中可开展心理辅导、调解。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源：《婚姻登记条例》第五条、第十七条</li>
+<li>URL：<a href="https://www.mee.gov.cn/zcwj/gwywj/202504/t20250410_1113983.shtml">https://www.mee.gov.cn/zcwj/gwywj/202504/t20250410_1113983.shtml</a></li>
+<li>原文摘录：「婚姻登记机关在办理离婚登记过程中，可以根据情况及时对离婚登记当事人开展心理辅导、调解等工作。」（第十七条）</li>
+<li>访问日期：2026-10-24</li>
+<li>状态：已核实</li>
+</ul>
+<h2 id="sec-1">未确定事项与处理</h2>
+<ol>
+<li>发离婚证时结婚证是否当场收回或注明注销：2025 年条例条文未明文规定。正文写「多数情况下由登记机关收回或注明注销，以当地为准」。要查：民政部《婚姻登记工作规范》原文。</li>
+<li>离婚协议书份数（部分地区一式三份）与单人照片要求：属地方通行做法，未逐地核实。正文注明「以当地要求为准」。</li>
+<li>预约渠道（官网、小程序、政务服务网、电话、现场取号）各地不同：正文写「以当地为准」，未核实统一口径。</li>
+<li>冷静期与申领期遇节假日是否顺延、起算日细则：未见权威口径。正文未写具体算法，写「以受理回执单和登记机关告知为准」。</li>
+<li>孩子户口迁移所需材料与流程：各地公安要求不同，未核实统一口径，正文写「以当地公安部门要求为准」。</li>
+<li>心理援助渠道的具体号码：未核实。正文只写 12345 转接，未写专门热线号码。</li>
+<li>深圳龙华区政策问答全文中关于再婚登记材料、离婚冷静期问答的细节：页面抓取不完整，仅部分段落可用，正文未单独引用其条文级内容。</li>
+</ol>
+<h2 id="sec-2">争议与差异</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>说法</th>
+<th>冲突来源</th>
+<th>采用口径</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>离婚登记是否要户口簿</td>
+<td>2025 年前地方指南要求户口簿；新条例第十五条未列</td>
+<td>以新条例为准：身份证加结婚证</td>
+<td>Ⅰ 级法规优先，2025 年 5 月 10 日已施行</td>
+</tr>
+<tr>
+<td>2</td>
+<td>协议书份数与照片</td>
+<td>各地指南不一</td>
+<td>通常一式三份、部分地区要照片，以当地为准</td>
+<td>Ⅲ 级通行做法，不写死</td>
+</tr>
+<tr>
+<td>3</td>
+<td>结婚证收回方式</td>
+<td>各地做法不一</td>
+<td>多数情况下收回或注明注销，以当地为准</td>
+<td>Ⅲ 级通行做法，条例无明文</td>
+</tr>
+</tbody></table></div>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

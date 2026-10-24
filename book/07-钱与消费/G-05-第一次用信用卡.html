@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次用信用卡 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 钱与消费</nav>
+  <h1 class="post-title">第一次用信用卡</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>钱与消费</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>3 条</b></span><span class="chip ">耗时 <b>半小时内</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：看清账单日、还款日和免息期，全额还款不付利息，最低还款和分期成本高，逾期上征信。
+<strong>适用</strong>：第一次申请和使用信用卡的成年人。
+<strong>不适用</strong>：公务卡、商务卡、境外信用卡，规则不同。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>免息期</strong>：账单日次日起到还款日，最长约 50–56 天。</li>
+<li><strong>全额还款</strong>：到期还款日前还清，免利息。</li>
+<li><strong>最低还款</strong>：日息约万分之五，按月计复利，成本高。</li>
+<li><strong>分期</strong>：手续费折算年化可能超过 10%。</li>
+<li><strong>逾期</strong>：上征信，影响房贷车贷，还可能被催收。</li>
+<li><strong>年费</strong>：多数卡刷满次数免年费，问清规则。</li>
+<li><strong>盗刷</strong>：立即挂失、报警、申诉。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 申请</h3>
+<ul>
+<li>年满 18 周岁，有稳定收入，征信良好。</li>
+<li>材料：身份证、收入证明、社保或公积金记录。</li>
+<li>选卡：看年费、权益、返现、积分，不只看额度。</li>
+<li>不通过中介办卡，不交“包装费”。</li>
+</ul>
+<h3>1.2 拿到卡后</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 激活并设置密码</li>
+<li><input disabled="" type="checkbox"> 绑定官方 App</li>
+<li><input disabled="" type="checkbox"> 开通交易提醒</li>
+<li><input disabled="" type="checkbox"> 记下账单日和还款日</li>
+<li><input disabled="" type="checkbox"> 设置自动还款</li>
+<li><input disabled="" type="checkbox"> 阅读领用合约</li>
+</ul>
+<h3>1.3 关键日期</h3>
+<ul>
+<li>账单日：出账单的日期。</li>
+<li>还款日：最后还款日期，通常在账单日后 20 天左右。</li>
+<li>免息期：账单日次日消费最长，账单日当天消费最短。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 用卡</h3>
+<ul>
+<li>刷卡或绑定移动支付。</li>
+<li>不把卡和密码交给他人。</li>
+<li>网购注意商户是否正规。</li>
+<li>完成标志：交易成功，收到提醒。</li>
+</ul>
+<h3>2.2 查账单</h3>
+<ul>
+<li>每月账单日出账后核对消费明细。</li>
+<li>有疑问及时联系银行，申请调单。</li>
+<li>完成标志：确认账单无误。</li>
+</ul>
+<h3>2.3 还款</h3>
+<ul>
+<li>全额还款：免利息。</li>
+<li>最低还款：剩余部分计息，不推荐长期使用。</li>
+<li>分期：看清手续费和提前还款规则。</li>
+<li>完成标志：还款到账。</li>
+</ul>
+<h3>2.4 提额与用卡</h3>
+<ul>
+<li>按时还款、保持活跃，银行可能主动提额。</li>
+<li>不频繁申请多张卡，影响征信查询记录。</li>
+<li>完成标志：额度满足需求。</li>
+</ul>
+<h3>2.5 销卡</h3>
+<ul>
+<li>还清欠款，积分处理完，再申请销卡。</li>
+<li>销卡后剪断磁条和芯片。</li>
+<li>完成标志：收到销卡确认。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 免息期怎么算？</h3>
+<p>答：账单日次日消费免息期最长，账单日当天消费最短。具体天数看银行账单。</p>
+<h3>Q2 最低还款划算吗？</h3>
+<p>答：不划算。未还部分按日息约万分之五计息，按月计复利，长期成本很高。</p>
+<h3>Q3 分期手续费高吗？</h3>
+<p>答：折算成年化可能超过 10%，提前还款可能仍收手续费，办前算清。</p>
+<h3>Q4 逾期一天会上征信吗？</h3>
+<p>答：多数银行有容时服务，但不要赌。逾期可能上征信并收违约金。</p>
+<h3>Q5 年费怎么免？</h3>
+<p>答：多数卡刷满规定次数或金额免年费，高端卡可能刚性年费，问清。</p>
+<h3>Q6 信用卡能取现吗？</h3>
+<p>答：能，但取现没有免息期，从取现当天计息，还有手续费，不建议。</p>
+<h3>Q7 信用卡套现违法吗？</h3>
+<p>答：套现违反领用合约，情节严重的可能涉及非法经营，不要做。</p>
+<h3>Q8 卡被盗刷怎么办？</h3>
+<p>答：立即挂失、冻结，保留交易记录，报警，向银行申请拒付。</p>
+<h3>Q9 征信报告怎么查？</h3>
+<p>答：通过人民银行征信中心官网或银行 App 每年免费查询，不要频繁查。</p>
+<h3>Q10 多张卡影响房贷吗？</h3>
+<p>答：可能影响。负债率过高、查询记录过多，银行会谨慎批贷。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>只还最低还款</strong>：利息滚雪球。</li>
+<li><strong>分期当免费</strong>：手续费不低。</li>
+<li><strong>逾期不管</strong>：征信污点保留 5 年。</li>
+<li><strong>套现</strong>：违规，可能封卡。</li>
+<li><strong>把卡借给他人</strong>：盗刷和法律责任。</li>
+<li><strong>点陌生提额链接</strong>：钓鱼诈骗。</li>
+<li><strong>不设自动还款</strong>：忘记还款。</li>
+<li><strong>销卡不剪卡</strong>：信息泄露。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>盗刷</strong>：挂失、报警、申请拒付，保留证据。</li>
+<li><strong>还款失败</strong>：确认到账，必要时手动还款，保留凭证。</li>
+<li><strong>被降额</strong>：问清原因，保持正常用卡。</li>
+<li><strong>年费争议</strong>：核对免年费条件，向银行申诉。</li>
+<li><strong>催收骚扰</strong>：保留录音，向金融监管投诉。</li>
+<li><strong>征信错误</strong>：向银行和征信中心提出异议。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年费</td>
+<td>0–几百元</td>
+<td>刷满可免</td>
+</tr>
+<tr>
+<td>利息</td>
+<td>日息约万分之五</td>
+<td>未全额还款</td>
+</tr>
+<tr>
+<td>分期手续费</td>
+<td>每期 0.3%–0.8%</td>
+<td>折算年化更高</td>
+</tr>
+<tr>
+<td>取现手续费</td>
+<td>1%–3%</td>
+<td>不建议</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半小时内</td>
+<td>申请或还款</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.pbc.gov.cn">中国人民银行</a></li>
+<li><a href="https://www.nfra.gov.cn">国家金融监督管理总局</a></li>
+<li>人民银行征信中心</li>
+<li>12378 投诉热线</li>
+</ul>
+</li>
+<li>相关条目：<a href="G-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%9E%E9%93%B6%E8%A1%8C%E5%8D%A1.html">G-01 第一次办银行卡</a>、<a href="G-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%90%86%E8%B4%A2.html">G-07 第一次理财</a></li>
+<li>可打印清单：<a href="../../checklists/G-05-%E4%BF%A1%E7%94%A8%E5%8D%A1-%E7%94%A8%E5%8D%A1%E6%B8%85%E5%8D%95.html">G-05 信用卡清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《民法典》合同编和银行卡业务规定；Ⅱ 级为金融监管总局消费者提示。</li>
+<li>主要来源：<ol>
+<li>中国人民银行征信中心说明，<a href="https://www.pbccrc.org.cn">https://www.pbccrc.org.cn</a></li>
+<li>国家金融监督管理总局信用卡消费者提示，<a href="https://www.nfra.gov.cn">https://www.nfra.gov.cn</a></li>
+<li>商业银行信用卡业务监督管理办法，<a href="https://www.nfra.gov.cn">https://www.nfra.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地个人信用卡。利率、年费、权益各银行不同。</li>
+<li>易变项：权益、年费、分期费率（M）。</li>
+<li>核实记录：<a href="../../sources/G-05.%E6%A0%B8%E5%AE%9E.html">sources/G-05.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="G-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B9%B0%E8%BD%A6.html"><span class="dir">← 上一篇</span><span class="name">G-04 第一次买车</span></a><a class="next" href="G-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%AA%E7%A8%8E%E7%94%B3%E6%8A%A5.html"><span class="dir">下一篇 →</span><span class="name">G-06 第一次个税申报</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

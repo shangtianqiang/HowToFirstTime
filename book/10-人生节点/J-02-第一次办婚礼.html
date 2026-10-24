@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次办婚礼 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 人生节点</nav>
+  <h1 class="post-title">第一次办婚礼</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>人生节点</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>3 条</b></span><span class="chip ">耗时 <b>长期</b></span><span class="chip ">花费 <b>万元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>分市</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先定预算和宾客名单，再订酒店婚庆，合同写清服务、定金、违约，婚礼当天留好影像和票据。
+<strong>适用</strong>：第一次筹备婚礼、婚宴的新人及双方家庭。
+<strong>不适用</strong>：旅行结婚、集体婚礼、领证不办酒，流程简化。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>预算</strong>：先定总预算，再分配到酒店、婚庆、婚纱、摄影、婚车。</li>
+<li><strong>名单</strong>：先定宾客人数，再订场地，别反过来。</li>
+<li><strong>合同</strong>：服务内容、日期、人员、设备、定金、违约，逐条写清。</li>
+<li><strong>酒店</strong>：最低消费、菜标、服务费、押金、取消规则。</li>
+<li><strong>婚庆</strong>：看营业执照和案例，不付全款。</li>
+<li><strong>影像</strong>：底片归属、交付时间、逾期违约。</li>
+<li><strong>当天</strong>：留一人管钱、一人管流程、一人管物品。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 预算与分工</h3>
+<ul>
+<li>总预算：酒席、婚庆、婚纱、摄影、婚车、喜糖、烟酒。</li>
+<li>双方家庭出资和分工写清，避免当天争执。</li>
+<li>留 10% 备用金。</li>
+<li>定婚期，避开旺季和节假日可省钱。</li>
+</ul>
+<h3>1.2 订酒店</h3>
+<ul>
+<li>看场地容量、层高、音响、停车。</li>
+<li>问最低消费、服务费、开瓶费、超时费。</li>
+<li>试菜，确认菜量和口味。</li>
+<li>合同写清取消和改期规则。</li>
+</ul>
+<h3>1.3 订婚庆</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 营业执照</li>
+<li><input disabled="" type="checkbox"> 案例和客片</li>
+<li><input disabled="" type="checkbox"> 服务清单：布置、主持、摄影、摄像、化妆</li>
+<li><input disabled="" type="checkbox"> 人员名单和到场时间</li>
+<li><input disabled="" type="checkbox"> 设备清单</li>
+<li><input disabled="" type="checkbox"> 合同和付款节点</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 筹备</h3>
+<ul>
+<li>定婚期、场地、婚庆、婚纱。</li>
+<li>拍婚纱照，选片，确认交付时间。</li>
+<li>发请柬，统计人数。</li>
+<li>排座次，定伴郎伴娘。</li>
+</ul>
+<h3>2.2 彩排</h3>
+<ul>
+<li>提前一天到场地彩排。</li>
+<li>走位、音乐、灯光、话筒。</li>
+<li>确认主持人串词和双方父母发言。</li>
+<li>完成标志：流程走通。</li>
+</ul>
+<h3>2.3 婚礼当天</h3>
+<ul>
+<li>早上化妆、接亲、敬茶。</li>
+<li>酒店签到、迎宾、仪式、敬酒。</li>
+<li>保管好戒指、红包、证件。</li>
+<li>完成标志：仪式结束。</li>
+</ul>
+<h3>2.4 结算</h3>
+<ul>
+<li>核对酒店实际桌数和消费。</li>
+<li>婚庆尾款按合同付。</li>
+<li>收取摄影摄像交付时间。</li>
+<li>完成标志：费用结清。</li>
+</ul>
+<h3>2.5 婚后</h3>
+<ul>
+<li>收取照片和视频，确认数量和质量。</li>
+<li>保存合同、发票、影像。</li>
+<li>完成标志：资料归档。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 婚礼预算怎么分？</h3>
+<p>答：酒席通常占一半，婚庆、婚纱、摄影、婚车占其余。先定总预算再分配。</p>
+<h3>Q2 酒店定金能退吗？</h3>
+<p>答：看合同。通常不可退，改期可能收手续费。</p>
+<h3>Q3 婚庆合同要注意什么？</h3>
+<p>答：服务内容、人员、设备、日期、违约、付款节点，口头承诺写进合同。</p>
+<h3>Q4 摄影底片归谁？</h3>
+<p>答：合同约定。多数套餐给精修和部分底片，全部底片要加钱，提前谈。</p>
+<h3>Q5 婚纱租赁要注意什么？</h3>
+<p>答：看清洁、破损赔偿、改尺寸、取还时间。</p>
+<h3>Q6 婚宴食品安全怎么保证？</h3>
+<p>答：选有资质的酒店，试菜，留菜样，发现问题及时投诉。</p>
+<h3>Q7 彩礼有法律规定吗？</h3>
+<p>答：法律禁止借婚姻索取财物，彩礼纠纷按司法解释处理。[1]</p>
+<h3>Q8 婚礼当天超支怎么办？</h3>
+<p>答：提前和酒店确认加桌规则，留备用金。</p>
+<h3>Q9 婚庆公司跑路怎么办？</h3>
+<p>答：报警、向市场监管投诉，联合其他新人维权。</p>
+<h3>Q10 不办婚礼可以吗？</h3>
+<p>答：可以。领证即确立婚姻关系，婚礼是仪式。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>先订场地后定人数</strong>：坐不下或空桌。</li>
+<li><strong>口头承诺</strong>：不写进合同不算。</li>
+<li><strong>付全款</strong>：公司跑路。</li>
+<li><strong>不看合同违约条款</strong>：改期、取消损失大。</li>
+<li><strong>低价婚庆</strong>：现场加价、减配。</li>
+<li><strong>不试菜</strong>：菜量少、口味差。</li>
+<li><strong>摄影摄像不签交付时间</strong>：拖半年。</li>
+<li><strong>当天没人管钱</strong>：超支混乱。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>天气突变</strong>：准备室内备用方案。</li>
+<li><strong>人员迟到</strong>：主持人暖场，调整流程。</li>
+<li><strong>设备故障</strong>：准备备用音响和话筒。</li>
+<li><strong>宾客超员</strong>：联系酒店加桌。</li>
+<li><strong>食物中毒</strong>：就医，留菜样，拨 12315。</li>
+<li><strong>婚庆纠纷</strong>：保留合同和聊天记录，投诉或起诉。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>婚宴</td>
+<td>几千到几万元/桌</td>
+<td>按城市</td>
+</tr>
+<tr>
+<td>婚庆</td>
+<td>1–5 万元</td>
+<td>按配置</td>
+</tr>
+<tr>
+<td>婚纱摄影</td>
+<td>几千到几万元</td>
+<td>按套餐</td>
+</tr>
+<tr>
+<td>婚纱礼服</td>
+<td>几千元</td>
+<td>租或买</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>3–12 个月</td>
+<td>筹备</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mca.gov.cn">民政部</a></li>
+<li><a href="https://www.samr.gov.cn">国家市场监督管理总局</a></li>
+<li>12315</li>
+<li>当地婚庆行业协会</li>
+</ul>
+</li>
+<li>相关条目：<a href="J-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%93%E5%A9%9A%E7%99%BB%E8%AE%B0.html">J-01 第一次结婚登记</a>、<a href="G-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B6%88%E8%B4%B9%E7%BB%B4%E6%9D%83.html">G-08 第一次消费维权</a></li>
+<li>可打印清单：<a href="../../checklists/J-02-%E5%A9%9A%E7%A4%BC-%E7%AD%B9%E5%A4%87%E6%B8%85%E5%8D%95.html">J-02 婚礼清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《民法典》婚姻家庭编；Ⅱ 级为市场监管部门婚庆消费提示；Ⅲ 级为婚礼筹备通行做法。</li>
+<li>主要来源：<ol>
+<li>《民法典》第一千零四十二条（禁止借婚姻索取财物），<a href="https://www.court.gov.cn">https://www.court.gov.cn</a></li>
+<li>最高人民法院涉彩礼纠纷司法解释，<a href="https://www.court.gov.cn">https://www.court.gov.cn</a></li>
+<li>市场监管总局婚庆服务消费提示，<a href="https://www.samr.gov.cn">https://www.samr.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地婚礼筹备。价格和习俗分地区。</li>
+<li>易变项：婚庆价格、地方习俗（M）。</li>
+<li>核实记录：<a href="../../sources/J-02.%E6%A0%B8%E5%AE%9E.html">sources/J-02.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="J-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%93%E5%A9%9A%E7%99%BB%E8%AE%B0.html"><span class="dir">← 上一篇</span><span class="name">J-01 第一次结婚登记</span></a><a class="next" href="J-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%8B%AC%E8%87%AA%E8%BF%87%E5%B9%B4%E7%A6%BB%E5%AE%B6.html"><span class="dir">下一篇 →</span><span class="name">J-03 第一次独自过年/离家</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

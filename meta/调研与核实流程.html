@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>调研与核实流程 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">调研与核实流程</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">一、七步流水线</a><a href="#sec-1">二、问题清单法（六维）</a><a href="#sec-2">三、核实记录</a><a href="#sec-3">四、复核清单（发布前必过）</a><a href="#sec-4">五、复审周期</a><a href="#sec-5">六、发布</a></nav>
+  <main class="content">
+
+<p>一篇条目从选题到发布，走七步。每一步都有产出，缺一步不算完成。</p>
+<h2 id="sec-0">一、七步流水线</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>动作</th>
+<th>产出</th>
+<th>完成标志</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>列问题清单</td>
+<td>30–50 个问题</td>
+<td>覆盖「人、事、时、地、钱、险」六维</td>
+</tr>
+<tr>
+<td>2</td>
+<td>查官方来源</td>
+<td>来源清单 + 原文摘录</td>
+<td>每个强制表述都有 Ⅰ/Ⅱ 级来源</td>
+</tr>
+<tr>
+<td>3</td>
+<td>写速查卡</td>
+<td>4–6 条结论</td>
+<td>不看正文也能独立使用</td>
+</tr>
+<tr>
+<td>4</td>
+<td>写正文</td>
+<td>九个板块初稿</td>
+<td>模板无缺项</td>
+</tr>
+<tr>
+<td>5</td>
+<td>自检</td>
+<td>对照复核清单</td>
+<td>10 项全过</td>
+</tr>
+<tr>
+<td>6</td>
+<td>交叉复核</td>
+<td>第二人逐条核对</td>
+<td>关键事实 100% 可定位</td>
+</tr>
+<tr>
+<td>7</td>
+<td>发布与登记</td>
+<td>正文 + 核实记录 + 清单 + 更新日志</td>
+<td><code>status</code> 改为「已核实」</td>
+</tr>
+</tbody></table></div>
+<p><strong>写作顺序建议：</strong> 先写速查卡，逼自己提炼结论；再写现场流程；再写准备事项；最后写 FAQ、避坑和依据。不要从第一段开始顺着写。</p>
+<h2 id="sec-1">二、问题清单法（六维）</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>要问的问题</th>
+<th>示例（坐飞机）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>人</td>
+<td>谁要做？年龄、证件、资格限制？</td>
+<td>未成年人能单独坐吗？</td>
+</tr>
+<tr>
+<td>事</td>
+<td>先后顺序？每步完成标志？</td>
+<td>先值机还是先托运？</td>
+</tr>
+<tr>
+<td>时</td>
+<td>提前多久？各环节耗时？截止时间？</td>
+<td>起飞前多久停止值机？</td>
+</tr>
+<tr>
+<td>地</td>
+<td>去哪？哪个窗口、网站、App？</td>
+<td>T2 还是 T3？</td>
+</tr>
+<tr>
+<td>钱</td>
+<td>花多少？哪些必选？怎么退？</td>
+<td>行李超重怎么收费？</td>
+</tr>
+<tr>
+<td>险</td>
+<td>最容易错在哪？被骗/被罚/被拒？找谁？</td>
+<td>误机了还能改签吗？</td>
+</tr>
+</tbody></table></div>
+<p>问题来源优先级：</p>
+<ol>
+<li>官方 FAQ。</li>
+<li>搜索引擎「大家还在问」。</li>
+<li>问答社区高赞问题。</li>
+<li>对 3–5 位零经验者的访谈。</li>
+</ol>
+<p>不要凭作者想象编问题。问题清单也放进核实记录。</p>
+<h2 id="sec-2">三、核实记录</h2>
+<p>每篇配一份 <code>sources/ID.核实.md</code>：</p>
+<pre><code class="language-markdown"># A-01 第一次坐飞机 · 核实记录
+
+- 核实人：
+- 核实日期：2026-10-23
+- 对应版本：v1.0
+- 适用范围：中国内地出发的国内航班
+
+| # | 正文位置 | 文中说法 | 依据等级 | 来源（机构 + 标题 + 文号） | 原文摘录 | URL | 访问日期 | 状态 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 0. 速查卡 | 提前 2 小时到机场 | Ⅱ | 某机场官网《乘机指南》 | 「建议国内航班提前 2 小时到达」 | https://… | 2026-10-23 | 已核实 |
+
+## 待核实
+
+| # | 内容 | 卡在哪 | 下一步 |
+| --- | --- | --- | --- |
+
+## 争议与差异
+
+| # | 说法 | 冲突来源 | 采用口径 | 理由 |
+| --- | --- | --- | --- | --- |
+</code></pre>
+<p>状态取值：<code>已核实</code> / <code>部分核实</code> / <code>待核实</code> / <code>有争议</code>。</p>
+<h2 id="sec-3">四、复核清单（发布前必过）</h2>
+<ol>
+<li>速查卡能否脱离正文独立使用。</li>
+<li>每个步骤是否写清「在哪、做什么、看什么、完成标志」。</li>
+<li>所有强制表述是否有 Ⅰ/Ⅱ 级来源。</li>
+<li>金额、时限、年龄、证件要求是否与原文一致。</li>
+<li>地方差异是否写明「以当地为准」并给出查询入口。</li>
+<li>是否覆盖至少 8 个高频错误。</li>
+<li>FAQ 是否来自真实问题，而不是作者自问自答。</li>
+<li>所有外链是否可访问，失效的是否有存档。</li>
+<li>交叉引用是否带条目标题和步骤名。</li>
+<li>是否存在医疗诊断、法律结论、投资建议或绝对化承诺。</li>
+</ol>
+<h2 id="sec-4">五、复审周期</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>时效等级</th>
+<th>复审周期</th>
+<th>触发条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S</td>
+<td>24 个月</td>
+<td>法规修订时立即复审</td>
+</tr>
+<tr>
+<td>M</td>
+<td>12 个月</td>
+<td>官方规则调整时立即复审</td>
+</tr>
+<tr>
+<td>H</td>
+<td>6 个月</td>
+<td>政策变化、重大事件时立即复审</td>
+</tr>
+</tbody></table></div>
+<p><code>node tools/check-stale.mjs</code> 会算出超期条目。</p>
+<h2 id="sec-5">六、发布</h2>
+<ol>
+<li>把 <code>status</code> 从 <code>初稿</code> 改为 <code>已核实</code>。</li>
+<li>更新 <code>last_verified</code> 和 <code>source_count</code>。</li>
+<li>跑 <code>node tools/build-index.mjs</code>。</li>
+<li>跑全部检查。</li>
+<li>在 <code>updates/YYYY-MM.md</code> 记一条。</li>
+</ol>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>主题地图 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">主题地图</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">A 出行与交通（12）</a><a href="#sec-1">B 证件与跨境（9）</a><a href="#sec-2">C 工作与职业（14）</a><a href="#sec-3">D 学习与技能（11）</a><a href="#sec-4">E 家庭与育儿（11）</a><a href="#sec-5">F 健康与医疗（12）</a><a href="#sec-6">G 钱与消费（12）</a><a href="#sec-7">H 居住与生活（8）</a><a href="#sec-8">I 数字与网络（9）</a><a href="#sec-9">J 人生节点（9）</a><a href="#sec-10">统计</a></nav>
+  <main class="content">
+
+<p>10 个栏目、107 个条目。优先级定义：</p>
+<ul>
+<li><strong>P0</strong>：高频、做错代价大、规则容易变，优先做。</li>
+<li><strong>P1</strong>：常见，但容错率高，或可以靠官方页面自助完成。</li>
+<li><strong>P2</strong>：低频、细分，或需要专业资质才能写准。</li>
+</ul>
+<p>状态：<code>已建</code> 表示骨架已就位，<code>—</code> 表示尚未创建。</p>
+<h2 id="sec-0">A 出行与交通（12）</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A-01</td>
+<td>第一次坐飞机</td>
+<td>P0</td>
+<td>国内航班全流程</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>A-02</td>
+<td>第一次坐高铁</td>
+<td>P0</td>
+<td>12306 购票到出站</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>A-03</td>
+<td>第一次坐火车</td>
+<td>P0</td>
+<td>普速列车与长途夜车</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>A-04</td>
+<td>第一次坐地铁</td>
+<td>P1</td>
+<td>购票、扫码、换乘、早晚高峰</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>A-05</td>
+<td>第一次坐长途大巴</td>
+<td>P2</td>
+<td>客运站购票、安检、途中</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>A-06</td>
+<td>第一次打网约车/出租车</td>
+<td>P0</td>
+<td>叫车、上车核对、路线、夜间安全、投诉</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>A-07</td>
+<td>第一次租车自驾</td>
+<td>P1</td>
+<td>租车材料、保险、验车、还车、异地还车</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>A-08</td>
+<td>第一次骑电动车上路</td>
+<td>P1</td>
+<td>上牌、头盔、载人规定、充电、事故处理</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>A-09</td>
+<td>第一次独自旅行</td>
+<td>P1</td>
+<td>行程、住宿、安全、突发</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>A-10</td>
+<td>第一次春运回家</td>
+<td>P1</td>
+<td>抢票、候补、车站客流、行李</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>A-11</td>
+<td>第一次住酒店/民宿</td>
+<td>P1</td>
+<td>预订、实名入住、押金、安全自检、纠纷</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>A-12</td>
+<td>第一次长途自驾游</td>
+<td>P1</td>
+<td>车况检查、高速规则、疲劳驾驶、事故处理</td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-1">B 证件与跨境（9）</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>B-01</td>
+<td>第一次出国</td>
+<td>P0</td>
+<td>护照、签证、边检、入境、回国</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>B-02</td>
+<td>第一次办护照/通行证</td>
+<td>P0</td>
+<td>预约、材料、照片、领取</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>B-03</td>
+<td>第一次办签证</td>
+<td>P1</td>
+<td>签证类型、材料、送签、面签</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>B-04</td>
+<td>第一次过海关</td>
+<td>P1</td>
+<td>申报、免税额度、禁限物品</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>B-05</td>
+<td>第一次境外支付与通讯</td>
+<td>P1</td>
+<td>信用卡、现金、漫游、eSIM、当地卡</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>B-06</td>
+<td>第一次出国留学</td>
+<td>P1</td>
+<td>申请、签证、住宿、开户、保险、认证</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>B-07</td>
+<td>第一次境外务工</td>
+<td>P2</td>
+<td>合法渠道、合同、签证、风险</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>B-08</td>
+<td>第一次回国入境</td>
+<td>P1</td>
+<td>入境申报、免税、检疫</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>B-09</td>
+<td>第一次办身份证/补办身份证</td>
+<td>P0</td>
+<td>首申、换补领、异地受理、临时证</td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-2">C 工作与职业（14）</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C-01</td>
+<td>第一次入职</td>
+<td>P0</td>
+<td>材料、合同、社保、工资</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>C-02</td>
+<td>第一次面试</td>
+<td>P0</td>
+<td>简历、着装、自我介绍、提问、offer</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>C-03</td>
+<td>第一次签劳动合同</td>
+<td>P0</td>
+<td>必看条款、试用期、违约金、竞业</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>C-04</td>
+<td>第一次拿工资与五险一金</td>
+<td>P0</td>
+<td>工资条、个税、社保公积金查询</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>C-05</td>
+<td>第一次过试用期</td>
+<td>P1</td>
+<td>考核、转正、被辞退</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>C-06</td>
+<td>第一次汇报/述职</td>
+<td>P1</td>
+<td>结构、时长、PPT、问答</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>C-07</td>
+<td>第一次谈涨薪</td>
+<td>P2</td>
+<td>时机、依据、话术、被拒</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>C-08</td>
+<td>第一次跳槽</td>
+<td>P1</td>
+<td>离职流程、竞业、社保断缴、入职衔接</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>C-09</td>
+<td>第一次被裁员</td>
+<td>P1</td>
+<td>补偿、失业金、社保、再就业</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>C-10</td>
+<td>第一次出差</td>
+<td>P2</td>
+<td>预订、报销、行程、安全</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>C-11</td>
+<td>第一次开公司/个体户</td>
+<td>P2</td>
+<td>注册、税务、社保、记账</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>C-12</td>
+<td>第一次请年假/病假/婚假</td>
+<td>P1</td>
+<td>法定天数、材料、工资</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>C-13</td>
+<td>第一次做副业/接私活</td>
+<td>P1</td>
+<td>竞业边界、劳务合同、个税、收款</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>C-14</td>
+<td>第一次缴灵活就业社保</td>
+<td>P1</td>
+<td>参保条件、基数档位、缴费渠道、待遇</td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-3">D 学习与技能（11）</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>D-01</td>
+<td>第一次学外语入门</td>
+<td>P0</td>
+<td>零基础前 90 天</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>D-02</td>
+<td>第一次学车</td>
+<td>P0</td>
+<td>C1/C2 全流程</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>D-03</td>
+<td>第一次考职业资格证</td>
+<td>P1</td>
+<td>选证、报名、备考、领证</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>D-04</td>
+<td>第一次自学编程</td>
+<td>P1</td>
+<td>方向、路线、项目、避坑</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>D-05</td>
+<td>第一次公开演讲</td>
+<td>P1</td>
+<td>结构、排练、紧张、问答</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>D-06</td>
+<td>第一次写论文</td>
+<td>P2</td>
+<td>选题、文献、格式、查重、答辩</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>D-07</td>
+<td>第一次考研/考公</td>
+<td>P1</td>
+<td>报名、备考、调剂、面试</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>D-08</td>
+<td>第一次学游泳</td>
+<td>P1</td>
+<td>选班、装备、安全、进度</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>D-09</td>
+<td>第一次自己做饭</td>
+<td>P0</td>
+<td>厨具、食材、基础菜、安全</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>D-10</td>
+<td>第一次用 AI 工具办事</td>
+<td>P1</td>
+<td>选工具、提问、核验、隐私</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>D-11</td>
+<td>第一次办健身卡</td>
+<td>P2</td>
+<td>选馆、卡种、合同退费、新手训练</td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-4">E 家庭与育儿（11）</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>E-01</td>
+<td>第一次当爸爸</td>
+<td>P0</td>
+<td>怀孕到孩子 1 岁</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>E-02</td>
+<td>第一次备孕与产检</td>
+<td>P1</td>
+<td>检查、建档、节奏</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>E-03</td>
+<td>第一次陪产</td>
+<td>P1</td>
+<td>待产包、入院、陪产、签字</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>E-04</td>
+<td>第一次照顾新生儿</td>
+<td>P1</td>
+<td>喂养、睡眠、黄疸、哭闹</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>E-05</td>
+<td>第一次给孩子上户口/办医保</td>
+<td>P0</td>
+<td>出生证明、户口、参保</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>E-06</td>
+<td>第一次选幼儿园</td>
+<td>P2</td>
+<td>资质、距离、费用、报名</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>E-07</td>
+<td>第一次送孩子上小学</td>
+<td>P2</td>
+<td>报名、材料、学区、入学准备</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>E-08</td>
+<td>第一次照顾生病的孩子</td>
+<td>P1</td>
+<td>挂号、用药、观察、复诊</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>E-09</td>
+<td>第一次照顾年迈父母</td>
+<td>P1</td>
+<td>体检、慢病、陪诊、照护资源</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>E-10</td>
+<td>第一次面对亲人离世</td>
+<td>P1</td>
+<td>死亡证明、殡葬、遗产、社保注销</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>E-11</td>
+<td>第一次给孩子报兴趣班</td>
+<td>P2</td>
+<td>资质、预付费、合同、退费</td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-5">F 健康与医疗（12）</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F-01</td>
+<td>第一次自己挂号看病</td>
+<td>P0</td>
+<td>选科、挂号、就诊、检查、取药</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>F-02</td>
+<td>第一次体检</td>
+<td>P1</td>
+<td>选套餐、空腹、读报告</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>F-03</td>
+<td>第一次住院/手术</td>
+<td>P1</td>
+<td>入院、押金、陪护、签字、出院</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>F-04</td>
+<td>第一次看牙</td>
+<td>P1</td>
+<td>检查、洗牙、补牙、费用</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>F-05</td>
+<td>第一次配眼镜</td>
+<td>P2</td>
+<td>验光、镜片、选框、避坑</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>F-06</td>
+<td>第一次看心理医生</td>
+<td>P1</td>
+<td>科室、挂号、咨询、隐私</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>F-07</td>
+<td>第一次拨 120/急救</td>
+<td>P0</td>
+<td>判断、呼救、心肺复苏、AED</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>F-08</td>
+<td>第一次买商业保险</td>
+<td>P1</td>
+<td>险种、健康告知、等待期、理赔</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>F-09</td>
+<td>第一次医保报销</td>
+<td>P0</td>
+<td>目录、起付线、比例、异地</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>F-10</td>
+<td>第一次献血</td>
+<td>P2</td>
+<td>条件、流程、间隔、恢复</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>F-11</td>
+<td>第一次打成人疫苗</td>
+<td>P1</td>
+<td>疫苗种类、预约、接种流程、记录查询</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>F-12</td>
+<td>第一次拔智齿</td>
+<td>P1</td>
+<td>科室、术前术后护理、异常信号、费用</td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-6">G 钱与消费（12）</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>G-01</td>
+<td>第一次办银行卡</td>
+<td>P0</td>
+<td>材料、一类二类、激活、费用</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>G-02</td>
+<td>第一次租房</td>
+<td>P0</td>
+<td>找房、看合同、押金、交接、退租</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>G-03</td>
+<td>第一次买房/办房贷</td>
+<td>P1</td>
+<td>资格、首付、贷款、网签、交房</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>G-04</td>
+<td>第一次买车</td>
+<td>P1</td>
+<td>预算、配置、合同、上牌、保险</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>G-05</td>
+<td>第一次用信用卡</td>
+<td>P1</td>
+<td>申请、账单日、免息期、分期、征信</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>G-06</td>
+<td>第一次个税申报</td>
+<td>P0</td>
+<td>专项附加扣除、年度汇算</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>G-07</td>
+<td>第一次理财</td>
+<td>P1</td>
+<td>风险等级、流动性、费用、避坑</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>G-08</td>
+<td>第一次消费维权</td>
+<td>P0</td>
+<td>证据、12315、平台投诉、退货</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>G-09</td>
+<td>第一次报警/报案</td>
+<td>P0</td>
+<td>什么情况报、怎么报、回执、跟进</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>G-10</td>
+<td>第一次劳动仲裁/打官司</td>
+<td>P1</td>
+<td>证据、时效、流程、费用</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>G-11</td>
+<td>第一次请律师</td>
+<td>P1</td>
+<td>找律师、核验执业证、委托合同、收费</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>G-12</td>
+<td>第一次用网贷/分期</td>
+<td>P0</td>
+<td>持牌渠道、年化利率、征信、催收投诉</td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">H 居住与生活（8）</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>H-01</td>
+<td>第一次独居</td>
+<td>P0</td>
+<td>租房、水电、做饭、安全、应急</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>H-02</td>
+<td>第一次搬家</td>
+<td>P1</td>
+<td>打包、搬家公司、交接、地址变更</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>H-03</td>
+<td>第一次装修</td>
+<td>P1</td>
+<td>找公司、合同、预算、验收、甲醛</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>H-04</td>
+<td>第一次开通水电燃气宽带</td>
+<td>P1</td>
+<td>开户、过户、缴费、报修</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>H-05</td>
+<td>第一次养宠物</td>
+<td>P2</td>
+<td>选择、疫苗、证件、费用、责任</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>H-06</td>
+<td>第一次处理邻里纠纷</td>
+<td>P2</td>
+<td>沟通、物业、报警、诉讼</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>H-07</td>
+<td>第一次办居住证</td>
+<td>P1</td>
+<td>条件、材料、积分、续签</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>H-08</td>
+<td>第一次找家政/保姆</td>
+<td>P2</td>
+<td>渠道、合同、背景、保险</td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-8">I 数字与网络（9）</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>I-01</td>
+<td>第一次防诈骗</td>
+<td>P0</td>
+<td>高发骗局、识别、止付、报警</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>I-02</td>
+<td>第一次账号被盗/找回</td>
+<td>P1</td>
+<td>冻结、申诉、证据、防二次</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>I-03</td>
+<td>第一次网购与退货</td>
+<td>P1</td>
+<td>规则、七天无理由、运费险、投诉</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>I-04</td>
+<td>第一次数据备份</td>
+<td>P1</td>
+<td>备份策略、云盘、恢复演练</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>I-05</td>
+<td>第一次发布作品与版权</td>
+<td>P2</td>
+<td>署名、授权、侵权、维权</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>I-06</td>
+<td>第一次实名认证与隐私</td>
+<td>P1</td>
+<td>必要性、授权、注销、泄露</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>I-07</td>
+<td>第一次网上办事</td>
+<td>P1</td>
+<td>政务平台、实名、材料、进度</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>I-08</td>
+<td>第一次二手交易</td>
+<td>P2</td>
+<td>验货、面交、平台担保、纠纷</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>I-09</td>
+<td>第一次发短视频/开直播</td>
+<td>P1</td>
+<td>实名、内容红线、肖像授权、带货资质</td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-9">J 人生节点（9）</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>条目</th>
+<th>优先级</th>
+<th>一句话范围</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>J-01</td>
+<td>第一次结婚登记</td>
+<td>P1</td>
+<td>条件、材料、预约、婚检</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>J-02</td>
+<td>第一次办婚礼</td>
+<td>P2</td>
+<td>预算、合同、流程、避坑</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>J-03</td>
+<td>第一次独自过年/离家</td>
+<td>P2</td>
+<td>交通、住宿、安全、情绪</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>J-04</td>
+<td>第一次跨城定居</td>
+<td>P1</td>
+<td>户口、社保、租房、生活接入</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>J-05</td>
+<td>第一次失业</td>
+<td>P1</td>
+<td>失业金、医保、社保、求职</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>J-06</td>
+<td>第一次退休</td>
+<td>P2</td>
+<td>条件、手续、养老金、医保</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>J-07</td>
+<td>第一次立遗嘱/意定监护</td>
+<td>P2</td>
+<td>形式、公证、效力、变更</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>J-08</td>
+<td>第一次面对身后事安排</td>
+<td>P2</td>
+<td>捐献、殡葬、遗产、注销</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>J-09</td>
+<td>第一次办离婚登记</td>
+<td>P1</td>
+<td>冷静期、材料、协议内容、后续变更</td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-10">统计</h2>
+<ul>
+<li>栏目 10 个，条目 107 个。</li>
+<li>P0 27 个，P1 58 个，P2 22 个。</li>
+<li>已建 107 个，已核实 107 个。</li>
+</ul>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次签劳动合同 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 工作与职业</nav>
+  <h1 class="post-title">第一次签劳动合同</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>工作与职业</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>8 条</b></span><span class="chip ">耗时 <b>半小时内</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-high">风险 <b>高</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：用工 1 个月内必须签书面合同；签之前逐条看期限、试用期、工资、社保、违约金，签完拿一份原件。
+<strong>适用</strong>：第一次和用人单位签劳动合同的毕业生、求职者。
+<strong>不适用</strong>：实习协议、劳务合同、劳务派遣、公务员和事业单位聘用合同（另立条目）。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>签合同时间</strong>：用工之日起 1 个月内要签书面劳动合同。超过 1 个月不满 1 年不签，每月要付二倍工资。[1]</li>
+<li><strong>试用期上限</strong>：合同 3 个月到 1 年，试用期最多 1 个月；1 到 3 年最多 2 个月；3 年以上或无固定期限最多 6 个月。同一单位只能约定一次。[1]</li>
+<li><strong>试用期工资</strong>：不得低于本单位同岗位最低档工资，或合同工资的 80%，且不得低于当地最低工资。[1]</li>
+<li><strong>合同各执一份</strong>：签完你和单位各拿一份原件。单位不给，可以要。[1]</li>
+<li><strong>不能交</strong>：身份证原件、押金、保证金、服装费。[1]</li>
+<li><strong>违约金</strong>：只有专项培训服务期和竞业限制两种情形能约定违约金。[1]</li>
+<li><strong>竞业限制</strong>：只适用于高管、高级技术人员和负保密义务的人，期限不超过 2 年，解除后要按月给补偿。[1]</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 签之前先问清</h3>
+<ul>
+<li>合同期限：固定期限、无固定期限，还是以完成一定工作任务为期限。</li>
+<li>工作内容和工作地点。公司能不能单方面调岗，要看合同。[1]</li>
+<li>工时制度：标准工时、综合工时还是不定时工时。</li>
+<li>工资构成：基本工资、绩效、补贴、奖金，发薪日。</li>
+<li>社保和公积金什么时候开始缴，基数怎么定。</li>
+<li>试用期长度、试用期工资、转正条件。</li>
+<li>有没有服务期、竞业限制、保密条款。</li>
+<li>有没有违约金，违约金怎么算。</li>
+</ul>
+<h3>1.2 必备条款</h3>
+<p>劳动合同应当具备这些条款：[1]</p>
+<ul>
+<li>用人单位名称、住所和法定代表人或主要负责人。</li>
+<li>劳动者姓名、住所和身份证件号码。</li>
+<li>劳动合同期限。</li>
+<li>工作内容和工作地点。</li>
+<li>工作时间和休息休假。</li>
+<li>劳动报酬。</li>
+<li>社会保险。</li>
+<li>劳动保护、劳动条件和职业危害防护。</li>
+<li>法律、法规规定应当纳入劳动合同的其他事项。</li>
+</ul>
+<h3>1.3 试用期</h3>
+<ul>
+<li>合同 3 个月以上不满 1 年：试用期不超过 1 个月。</li>
+<li>合同 1 年以上不满 3 年：试用期不超过 2 个月。</li>
+<li>合同 3 年以上或无固定期限：试用期不超过 6 个月。</li>
+<li>合同不满 3 个月，或以完成一定工作任务为期限：不得约定试用期。</li>
+<li>同一单位同一劳动者只能约定一次试用期。[1]</li>
+<li>试用期包含在合同期限内。只写试用期不写合同期，试用期不成立。[1]</li>
+<li>试用期工资不低于同岗位最低档工资或合同工资的 80%，且不低于当地最低工资。[1]</li>
+<li>试用期解除也要符合法定情形。以“不符合录用条件”解除，单位要说明理由。[1]</li>
+</ul>
+<h3>1.4 违约金、服务期与竞业限制</h3>
+<ul>
+<li><strong>服务期</strong>：只有单位为你提供专项培训费用、进行专业技术培训，才能约定服务期。[1]</li>
+<li><strong>违约金</strong>：服务期违约金不得超过单位提供的培训费用，也不得超过服务期尚未履行部分应分摊的培训费用。[1]</li>
+<li><strong>竞业限制</strong>：只适用于高管、高级技术人员和其他负有保密义务的人，期限不超过 2 年。[1]</li>
+<li><strong>竞业补偿</strong>：解除或终止合同后，单位要在竞业限制期限内按月给补偿。没约定补偿的，按劳动者解除前 12 个月平均工资的 30% 算，且不低于当地最低工资。[5]</li>
+<li>普通岗位被要求签竞业限制，可以问清原因、范围和补偿。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 签合同</h3>
+<ul>
+<li>在哪：HR 办公室或入职办理处。</li>
+<li>做什么：逐条读合同，确认空白处都填了。</li>
+<li>看什么：期限、试用期、工资、工时、社保、违约金、解除条款。</li>
+<li>说什么：有疑问当场问，不要先签再问。</li>
+<li>完成标志：双方签字盖章。</li>
+<li>卡住了怎么办：公司催着签，你可以要求带走一份草稿看一天。</li>
+</ul>
+<h3>2.2 核对空白处</h3>
+<ul>
+<li>合同里的空白处要么填好，要么划掉。</li>
+<li>不要签空白合同。</li>
+<li>岗位、地点、工资、试用期，必须写清楚，不能只写“按公司规定”。</li>
+<li>附件、员工手册、岗位说明书，确认你看过并留一份。</li>
+</ul>
+<h3>2.3 拿到原件</h3>
+<ul>
+<li>合同文本由单位和劳动者各执一份。[1]</li>
+<li>签完当场要一份原件。</li>
+<li>单位只给复印件，要求补原件。</li>
+<li>拿不到原件，拍照留存，并保留沟通记录。</li>
+</ul>
+<h3>2.4 电子劳动合同</h3>
+<ul>
+<li>可靠电子签名加数据电文，和书面合同有同等效力。[4]</li>
+<li>单位要免费提供至少一份纸质件。[4]</li>
+<li>确认电子合同平台、签署记录和下载方式。</li>
+<li>电子合同也要看清条款，不要一路点“同意”。</li>
+</ul>
+<h3>2.5 发现问题</h3>
+<ul>
+<li>条款违法：先提出修改，保留沟通记录。</li>
+<li>公司拒绝修改：可以拒签，或签后向劳动监察投诉。</li>
+<li>已经签了：保留合同、工资条、考勤记录，后续主张权利。</li>
+<li>合同无效或部分无效，由仲裁机构或法院确认。[1]</li>
+</ul>
+<h3>2.6 保存证据</h3>
+<ul>
+<li>合同原件、附件、员工手册。</li>
+<li>offer、面试聊天记录、入职通知。</li>
+<li>工资条、银行流水、考勤记录。</li>
+<li>社保和公积金缴费记录。</li>
+<li>工作安排的邮件、微信记录。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 什么时候签劳动合同？</h3>
+<p>答：用工之日起 1 个月内。[1]</p>
+<h3>Q2 公司不签合同怎么办？</h3>
+<p>答：超过 1 个月不满 1 年不签，单位要每月付二倍工资。满 1 年还不签，视为已订无固定期限合同。[1]</p>
+<h3>Q3 试用期最长多久？</h3>
+<p>答：合同 3 个月到 1 年最多 1 个月；1 到 3 年最多 2 个月；3 年以上或无固定期限最多 6 个月。[1]</p>
+<h3>Q4 试用期工资最低多少？</h3>
+<p>答：不低于本单位同岗位最低档工资或合同工资的 80%，且不低于当地最低工资。[1]</p>
+<h3>Q5 试用期被辞退有补偿吗？</h3>
+<p>答：试用期解除也要符合法定情形。以“不符合录用条件”解除，单位要说明理由。违法解除可以主张赔偿金。[1]</p>
+<h3>Q6 合同里写“自愿放弃社保”，有效吗？</h3>
+<p>答：这类条款通常无效。单位仍要依法缴社保。[1][3]</p>
+<h3>Q7 公司要收押金、扣身份证，合法吗？</h3>
+<p>答：不合法。单位不得扣押身份证等证件，也不得要求担保或收取财物。[1]</p>
+<h3>Q8 合同里约定违约金，都要赔吗？</h3>
+<p>答：只有专项培训服务期和竞业限制两种情形能约定违约金。其他违约金条款可能无效。[1]</p>
+<h3>Q9 竞业限制最多几年？补偿怎么算？</h3>
+<p>答：最多 2 年。解除或终止后按月给补偿；没约定补偿的，按解除前 12 个月平均工资的 30% 算，且不低于当地最低工资。[1][5]</p>
+<h3>Q10 电子合同有效吗？</h3>
+<p>答：可靠电子签名加数据电文，和书面合同有同等效力。单位要免费提供至少一份纸质件。[4]</p>
+<h3>Q11 合同签了，但公司不给原件怎么办？</h3>
+<p>答：合同文本由双方各执一份，可以要求单位给原件。拿不到就拍照、保留沟通记录，向劳动监察投诉。[1]</p>
+<h3>Q12 三方协议能代替劳动合同吗？</h3>
+<p>答：不能。三方协议是民事协议，报到接收后终止，单位仍要依法签劳动合同。[6]</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>空白合同</strong>：不要签。空白处要么填好，要么划掉。</li>
+<li><strong>只写试用期不写合同期</strong>：试用期不成立，按合同期算。[1]</li>
+<li><strong>试用期超长</strong>：超过法定上限的部分无效。[1]</li>
+<li><strong>“自愿放弃社保”</strong>：通常无效，单位仍要缴。[1][3]</li>
+<li><strong>随意调岗条款</strong>：调岗要协商一致并书面确认，合同里写“公司可随时调岗”要警惕。[1]</li>
+<li><strong>服务期违约金过高</strong>：不得超过培训费和未履行部分分摊额。[1]</li>
+<li><strong>竞业限制范围过宽</strong>：普通岗位被限制离职去向，要看清补偿和范围。[1]</li>
+<li><strong>口头承诺不写进合同</strong>：工资、奖金、补贴、岗位，尽量写进书面合同。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>公司不签合同</strong>：保留工牌、考勤、工资记录、工作聊天记录。满 1 个月未签，可以主张二倍工资。[1]</li>
+<li><strong>被逼签空白合同</strong>：拒绝，保留录音、聊天记录，向劳动监察投诉。</li>
+<li><strong>合同条款违法</strong>：先提出修改；公司拒绝，签后向劳动监察投诉或申请仲裁。</li>
+<li><strong>试用期被辞退</strong>：要求书面解除通知和理由；认为违法，申请劳动仲裁。</li>
+<li><strong>合同丢失</strong>：找单位补一份，或复印盖章；保留工资条、社保记录作为劳动关系证据。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>合同签订</td>
+<td>免费</td>
+<td>单位不得收费</td>
+</tr>
+<tr>
+<td>复印</td>
+<td>几元</td>
+<td>自留备份</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半小时到半天</td>
+<td>读合同、问问题</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mohrss.gov.cn">人力资源和社会保障部</a></li>
+<li>12333 人力资源社会保障服务热线</li>
+<li>当地劳动保障监察部门</li>
+<li>当地劳动人事争议仲裁委员会</li>
+</ul>
+</li>
+<li>相关条目：<a href="C-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%85%A5%E8%81%8C.html">C-01 第一次入职</a>、<a href="C-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%9D%A2%E8%AF%95.html">C-02 第一次面试</a></li>
+<li>可打印清单：<a href="../../checklists/C-03-%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C-%E6%A0%B8%E5%AF%B9%E6%B8%85%E5%8D%95.html">C-03 劳动合同核对清单</a></li>
+<li>术语：<a href="../../meta/%E6%9C%AF%E8%AF%AD%E8%A1%A8.html">试用期</a>、<a href="../../meta/%E6%9C%AF%E8%AF%AD%E8%A1%A8.html">五险一金</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：以 Ⅰ/Ⅱ 级官方来源为主。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国劳动合同法》第八、九、十、十四、十六、十七、十九、二十、二十二、二十三、二十四、二十五、二十六、二十七、三十五、八十二、八十三条，<a href="https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fl/202011/t20201102_394622.html">https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fl/202011/t20201102_394622.html</a></li>
+<li>《中华人民共和国劳动合同法实施条例》第六、七条，<a href="https://www.gov.cn/flfg/2008-09/19/content_1099500.htm">https://www.gov.cn/flfg/2008-09/19/content_1099500.htm</a></li>
+<li>《中华人民共和国社会保险法》第五十八条，<a href="https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fl/202011/t20201102_394629.html">https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/fl/202011/t20201102_394629.html</a></li>
+<li>人社部《电子劳动合同订立指引》（人社厅发〔2021〕54号），<a href="https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/gfxwj/ldgx/202107/t20210709_418119.html">https://www.mohrss.gov.cn/xxgk2020/fdzdgknr/zcfg/gfxwj/ldgx/202107/t20210709_418119.html</a></li>
+<li>最高人民法院《关于审理劳动争议案件适用法律问题的解释（一）》第三十六条，<a href="https://www.court.gov.cn/zixun/xiangqing/282121.html">https://www.court.gov.cn/zixun/xiangqing/282121.html</a></li>
+<li>山东省人社厅《就业协议书与劳动合同的区别？》，<a href="https://hrss.shandong.gov.cn/articles/ch00610/201504/52097.shtml">https://hrss.shandong.gov.cn/articles/ch00610/201504/52097.shtml</a></li>
+<li>人社部《求职者 维护就业权益请看这里》（2024-11-15），<a href="https://chinajob.mohrss.gov.cn/c/2024-11-15/418573.shtml">https://chinajob.mohrss.gov.cn/c/2024-11-15/418573.shtml</a></li>
+<li>人社部 12333 服务，<a href="https://www.mohrss.gov.cn/SYrlzyhshbzb/zhuanti/jinbaogongcheng/jbgcdianhuazixunfuwu/">https://www.mohrss.gov.cn/SYrlzyhshbzb/zhuanti/jinbaogongcheng/jbgcdianhuazixunfuwu/</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地企业劳动合同。</li>
+<li>易变项：最低工资、社保基数（M，分省）。</li>
+<li>核实记录：<a href="../../sources/C-03.%E6%A0%B8%E5%AE%9E.html">sources/C-03.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="C-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%9D%A2%E8%AF%95.html"><span class="dir">← 上一篇</span><span class="name">C-02 第一次面试</span></a><a class="next" href="C-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8B%BF%E5%B7%A5%E8%B5%84%E4%B8%8E%E4%BA%94%E9%99%A9%E4%B8%80%E9%87%91.html"><span class="dir">下一篇 →</span><span class="name">C-04 第一次拿工资与五险一金</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

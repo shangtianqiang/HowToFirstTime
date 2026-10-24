@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>依据分级与引用规则 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">依据分级与引用规则</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">一、四级依据</a><a href="#sec-1">二、使用规则</a><a href="#sec-2">三、来源白名单</a><a href="#sec-3">四、来源黑名单</a><a href="#sec-4">五、引用格式</a><a href="#sec-5">六、链接失效</a></nav>
+  <main class="content">
+
+<p>流程类内容不能照搬医学证据分级。这里按「这条说法是从哪来的」分级。</p>
+<h2 id="sec-0">一、四级依据</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>等级</th>
+<th>名称</th>
+<th>定义</th>
+<th>正文写法</th>
+<th>能不能写「必须」</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ⅰ</td>
+<td>法规与强制标准</td>
+<td>法律、行政法规、部门规章、国家标准，有文号，有官方原文</td>
+<td>「按规定必须……」</td>
+<td>能</td>
+</tr>
+<tr>
+<td>Ⅱ</td>
+<td>官方办事指引</td>
+<td>政府部门、公共服务机构、企业官方规则（12306、航司运输总条件、医院、银行、学校官网）</td>
+<td>「按官方指引……」</td>
+<td>能</td>
+</tr>
+<tr>
+<td>Ⅲ</td>
+<td>多方一致的通行做法</td>
+<td>至少 2 个独立可信来源相互印证，或行业公认惯例</td>
+<td>「通常」「多数情况下」</td>
+<td>不能</td>
+</tr>
+<tr>
+<td>Ⅳ</td>
+<td>亲历者经验</td>
+<td>署名、时间、地点、条件明确的个人经历</td>
+<td>「有人遇到过……」「个人经验，不保证普遍适用」</td>
+<td>不能</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-1">二、使用规则</h2>
+<ol>
+<li>「必须」「不得」「否则会被罚款/拒绝」只能由 Ⅰ 或 Ⅱ 支撑。</li>
+<li>Ⅲ 级必须注明「以现场为准」。</li>
+<li>Ⅳ 级不能单独支撑任何流程步骤，只能作为提醒。</li>
+<li>同一段混用不同等级时，逐句标注，或在本段末统一说明。</li>
+<li>查不到依据，写「待核实」，在 <code>sources/ID.核实.md</code> 登记，不用推测补齐。</li>
+<li>来源之间有冲突时，取最新、最高级别的官方口径，并在核实记录「争议与差异」里写明。</li>
+</ol>
+<h2 id="sec-2">三、来源白名单</h2>
+<h3>交通</h3>
+<ul>
+<li>交通运输部、中国民用航空局、国铁集团</li>
+<li>12306 官网、航空公司运输总条件、机场官网</li>
+<li>12326 民航服务质量监督电话</li>
+</ul>
+<h3>证件与跨境</h3>
+<ul>
+<li>国家移民管理局、外交部领事服务网、中国领事 App</li>
+<li>海关总署</li>
+<li>目的地国家驻华使领馆官网、签证中心官网</li>
+</ul>
+<h3>工作与职业</h3>
+<ul>
+<li>人力资源和社会保障部、地方人社局、公积金管理中心</li>
+<li>《劳动合同法》《社会保险法》及其实施条例</li>
+<li>国家税务总局、个人所得税 App</li>
+</ul>
+<h3>学习与技能</h3>
+<ul>
+<li>教育部、考试机构官方大纲</li>
+<li>欧洲语言共同参考框架（CEFR）</li>
+<li>各语种官方文化机构：歌德学院、塞万提斯学院、法语联盟、日本国际交流基金会、韩国国立国际教育院</li>
+<li>公安部交通管理局、交管 12123、各地车管所</li>
+</ul>
+<h3>家庭与育儿</h3>
+<ul>
+<li>国家卫生健康委员会、国家医保局</li>
+<li>公安部及各地公安机关户口登记规定</li>
+<li>人力资源和社会保障部生育保险规定</li>
+<li>世界卫生组织（WHO）、联合国儿童基金会（UNICEF）</li>
+</ul>
+<h3>健康与医疗</h3>
+<ul>
+<li>国家卫生健康委员会、国家医保局、医院官网</li>
+<li>疾控中心、医学会官方指南</li>
+</ul>
+<h3>钱与消费</h3>
+<ul>
+<li>中国人民银行、国家金融监督管理总局</li>
+<li>国家税务总局、12315 平台</li>
+<li>银行、支付平台官方费率页</li>
+</ul>
+<h3>居住与生活</h3>
+<ul>
+<li>住房和城乡建设部、各地政务服务平台</li>
+<li>水、电、燃气、宽带官方客服</li>
+<li>物业、中介的官方合同范本</li>
+</ul>
+<h3>数字与网络</h3>
+<ul>
+<li>公安部网安局、国家互联网信息办公室</li>
+<li>平台官方规则、反诈中心、消费者协会</li>
+</ul>
+<h3>人生节点</h3>
+<ul>
+<li>民政部、公安部、人社部、司法部</li>
+<li>公证处、殡葬管理机构</li>
+</ul>
+<h3>国际组织与学术</h3>
+<ul>
+<li>WHO、UNICEF、CEFR 等官方文件</li>
+<li>期刊论文（附 DOI 或 PubMed 链接）</li>
+<li>大学公开课、学术综述</li>
+</ul>
+<h2 id="sec-3">四、来源黑名单</h2>
+<p>以下来源不能作为依据：</p>
+<ul>
+<li>知乎、微信公众号、小红书、抖音、百度百科、百家号、搜狐号、网易号</li>
+<li>聚合站、攻略站、内容农场、AI 生成内容</li>
+<li>中介广告、驾校销售话术、留学中介宣传页</li>
+<li>无法追溯作者的「网友说」</li>
+<li>已经被官方辟谣的说法</li>
+</ul>
+<p>一手媒体可以收，但只在同时满足以下条件时：</p>
+<ol>
+<li>记者署名的原创调查或现场报道，出自有新闻采编资质的媒体或境外主流媒体。</li>
+<li>只用来证明「发生过这类事」，数字不从报道里取，流程不靠它支撑。</li>
+<li>附原链接和 web.archive.org 存档链接，存档在写作当天做。</li>
+<li>在核实记录里注明来源性质。</li>
+<li>没被判决的个人不写全名。</li>
+</ol>
+<h2 id="sec-4">五、引用格式</h2>
+<p>正文用 <code>[1]</code> 标注关键事实。文末「依据与核实」列来源，格式：</p>
+<pre><code class="language-text">[1] 中国民用航空局. 公共航空运输旅客服务管理规定（交通运输部令2021年第3号）.
+    https://www.caac.gov.cn/... 访问日期：2026-10-23.
+</code></pre>
+<p>来源信息至少包含：发布机构、文件或页面标题、文号或版本、URL、访问日期。</p>
+<h2 id="sec-5">六、链接失效</h2>
+<p>按顺序处理：</p>
+<ol>
+<li>换同一机构官网的新地址。</li>
+<li>换能逐字核对同一事实的另一份官方原文。</li>
+<li>用 web.archive.org 存档，注明「原页面已下线，此为某年某月某日存档」。</li>
+</ol>
+<p><code>node tools/check-links.mjs</code> 每周检查一次。只修「确定失效」（404、410）；「没连上」「握手失败」多半是网站限制，不急着改。</p>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

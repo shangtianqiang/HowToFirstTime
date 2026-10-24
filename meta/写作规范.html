@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>写作规范 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">写作规范</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">一、语言</a><a href="#sec-1">二、禁止的写法</a><a href="#sec-2">三、事实</a><a href="#sec-3">四、地区与时效</a><a href="#sec-4">五、结构与格式</a><a href="#sec-5">六、交叉引用</a><a href="#sec-6">七、发布前</a></nav>
+  <main class="content">
+
+<p>适用于 <code>book/</code> 下的正文、<code>checklists/</code> 下的清单、<code>sources/</code> 下的说明文字。<code>meta/</code> 下的规范文件自己不受限。</p>
+<h2 id="sec-0">一、语言</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>人称</td>
+<td>统一用「你」。涉及机构写清主体：航空公司、车站工作人员、医院、公司。</td>
+</tr>
+<tr>
+<td>句长</td>
+<td>一句一件事。平均不超过 30 字，最长不超过 50 字。</td>
+</tr>
+<tr>
+<td>段落</td>
+<td>每段不超过 5 句，一段只讲一个环节。</td>
+</tr>
+<tr>
+<td>语体</td>
+<td>口语化书面语。不写公文腔，不写网络梗，不写营销腔。</td>
+</tr>
+<tr>
+<td>术语</td>
+<td>第一次出现时用一句日常话解释，保留原词。同一板块不重复解释。</td>
+</tr>
+<tr>
+<td>标题</td>
+<td>条目标题用「第一次X」；步骤标题用动词短语；只有 FAQ 用问句。</td>
+</tr>
+<tr>
+<td>数字</td>
+<td>用阿拉伯数字。金额写「元」，时间写「分钟/小时/天」，日期写「2026年10月23日」。</td>
+</tr>
+<tr>
+<td>单位</td>
+<td>公里、米、公斤、升。引用原文里的「斤」「里」可以保留，后面加换算。</td>
+</tr>
+<tr>
+<td>括号</td>
+<td>括号里的补充不超过 10 字。超过就拆成独立句。不套括号。</td>
+</tr>
+<tr>
+<td>标点</td>
+<td>少用破折号。不用分号并列长句。列举超过 3 项用列表。</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-1">二、禁止的写法</h2>
+<ul>
+<li>元叙述：「本条讲的是」「这篇不劝你」「这一节算的是」。</li>
+<li>段尾升华：「从这一刻起，你就真正长大了」。</li>
+<li>空转加强词：「值得注意的是」「本质上」「不得不说」。</li>
+<li>需要读者二次翻译的比喻：「另一头」「那张皮」「挡箭牌」。</li>
+<li>电报体：把一句话拆成五六个两三字的短句。</li>
+<li>绝对化：「一定」「绝对」「百分之百」「包过」「永远不会」。</li>
+<li>恐吓式表达：「不这么做就完了」「后果不堪设想」。</li>
+<li>医疗诊断、法律结论、投资建议。</li>
+<li>广告、带货、课程推销、返利链接。</li>
+</ul>
+<h2 id="sec-2">三、事实</h2>
+<ol>
+<li>每条关键事实标依据等级：Ⅰ 法规与强制标准、Ⅱ 官方办事指引、Ⅲ 多方一致的通行做法、Ⅳ 亲历者经验。</li>
+<li>「必须」「不得」「否则会被拒绝/罚款」只能由 Ⅰ 或 Ⅱ 级来源支撑。</li>
+<li>Ⅲ 级只能写成「通常」「多数情况下」，并注明「以现场为准」。</li>
+<li>Ⅳ 级只能写进「避坑提醒」「常见问题」「现场细节」，不能单独支撑流程步骤。</li>
+<li>查不到就写「待核实」，不写推测。</li>
+<li>数字、时限、金额、年龄、证件要求，必须和来源原文一致。</li>
+<li>引用文献、法规、公告，放「延伸资源」或「依据与核实」，正文中用 <code>[1]</code> 标注。</li>
+</ol>
+<h2 id="sec-3">四、地区与时效</h2>
+<ul>
+<li>涉及地方政策的，写「以当地为准」，并给官方查询入口，不写死某一城市的标准。</li>
+<li><code>volatility = H</code> 的条目，在标题下加一行：「以下规则截至 2026年10月，办事前请再查一次官网。」</li>
+<li>政策已变但未复核，<code>status</code> 改为「待更新」，检索页会标黄。</li>
+<li>复核周期：S 24 个月，M 12 个月，H 6 个月。</li>
+</ul>
+<h2 id="sec-4">五、结构与格式</h2>
+<ul>
+<li>每篇正文 4000–8000 字。超过 10000 字拆成「主篇 + 专题长文」。</li>
+<li>步骤编号连续，不跳号。</li>
+<li>表格不超过 6 列。</li>
+<li>图片只用于指示牌、票据、界面截图；每张配一句说明；不用装饰图。</li>
+<li>外链只放在「延伸资源」和「依据与核实」，正文中间不放推广链接。</li>
+</ul>
+<h2 id="sec-5">六、交叉引用</h2>
+<p>统一格式：</p>
+<pre><code class="language-text">见 A-02《第一次坐高铁》2.2「安检」
+</code></pre>
+<ul>
+<li>必须带条目标题、步骤号、步骤名。</li>
+<li>禁止裸编号「见 A-02」。</li>
+<li>禁止相对指路「见下一条」「见上文」。</li>
+<li>步骤号变动时，跑 <code>node tools/check-refs.mjs</code>。</li>
+</ul>
+<h2 id="sec-6">七、发布前</h2>
+<p>对照 <code>meta/调研与核实流程.md</code> 的复核清单，10 项全过，才把 <code>status</code> 改成「已核实」。</p>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

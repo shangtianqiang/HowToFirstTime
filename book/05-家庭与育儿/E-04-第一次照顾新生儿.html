@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次照顾新生儿 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 家庭与育儿</nav>
+  <h1 class="post-title">第一次照顾新生儿</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>家庭与育儿</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>4 条</b></span><span class="chip ">耗时 <b>长期</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-high">风险 <b>高</b></span><span class="chip ">时效 <b>稳定</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：按需喂养、仰卧睡、不捂热，黄疸加重和发热立即就医，脐带保持干燥，出生 24 小时内接种疫苗。
+<strong>适用</strong>：第一次照顾 0–28 天新生儿的父母和祖辈。
+<strong>不适用</strong>：早产儿、低出生体重儿、有先天疾病的新生儿，需按医生方案护理。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>喂养</strong>：母乳按需喂，出生后 1 小时内早接触、早吸吮。</li>
+<li><strong>睡眠</strong>：仰卧，硬床垫，不枕枕头，不同床睡，不蒙头。</li>
+<li><strong>体温</strong>：腋温 36–37℃，超过 37.5℃ 或低于 36℃ 就医。</li>
+<li><strong>黄疸</strong>：出生 24 小时内出现、加重快、持续久，立即就医。</li>
+<li><strong>脐带</strong>：保持干燥，按医嘱消毒，红肿渗液就医。</li>
+<li><strong>疫苗</strong>：出生 24 小时内乙肝疫苗、卡介苗。</li>
+<li><strong>危险信号</strong>：发热、呼吸急促、拒奶、嗜睡、抽搐、皮肤发紫。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 用品</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 纸尿裤、湿巾</li>
+<li><input disabled="" type="checkbox"> 和尚服、包被、帽子</li>
+<li><input disabled="" type="checkbox"> 婴儿床、硬床垫、睡袋</li>
+<li><input disabled="" type="checkbox"> 奶瓶、奶粉（备用）</li>
+<li><input disabled="" type="checkbox"> 体温计</li>
+<li><input disabled="" type="checkbox"> 脐带消毒用品</li>
+<li><input disabled="" type="checkbox"> 婴儿浴盆、毛巾</li>
+</ul>
+<h3>1.2 环境</h3>
+<ul>
+<li>室温 22–26℃，湿度 50%–60%。</li>
+<li>婴儿床放在父母床边，同房不同床。</li>
+<li>床上不放枕头、毛绒玩具、厚被子。</li>
+<li>家里不抽烟，不喷香水。</li>
+</ul>
+<h3>1.3 知识准备</h3>
+<ul>
+<li>学会母乳喂养姿势和含接。</li>
+<li>学会拍嗝、换尿布、脐带护理。</li>
+<li>记住新生儿危险信号。</li>
+<li>存好儿科急诊电话。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 喂养</h3>
+<ul>
+<li>母乳：按需，每天 8–12 次，含接要深，听到吞咽声。</li>
+<li>配方奶：按说明冲调，先水后粉，不随意加浓。</li>
+<li>喂后竖抱拍嗝 10–15 分钟。</li>
+<li>完成标志：宝宝满足、尿量足够。</li>
+</ul>
+<h3>2.2 睡眠</h3>
+<ul>
+<li>仰卧放床，头偏向一侧。</li>
+<li>不同床睡，睡袋代替被子。</li>
+<li>夜间喂奶后拍嗝再放回床。</li>
+<li>完成标志：宝宝安静入睡。</li>
+</ul>
+<h3>2.3 换尿布与清洁</h3>
+<ul>
+<li>每次便后温水清洗，从前向后。</li>
+<li>涂护臀霜，保持干燥。</li>
+<li>脐带未脱落前，纸尿裤折边避开脐部。</li>
+<li>完成标志：皮肤干净、无红臀。</li>
+</ul>
+<h3>2.4 脐带护理</h3>
+<ul>
+<li>洗手，用 75% 酒精或医院指定消毒液。</li>
+<li>从根部向外消毒，保持干燥。</li>
+<li>不强行扯掉脐带残端。</li>
+<li>完成标志：脐带自然脱落，无红肿渗液。</li>
+</ul>
+<h3>2.5 观察与记录</h3>
+<ul>
+<li>记录喂奶次数、大小便次数、体温。</li>
+<li>出生 24 小时内排胎便，48 小时内排尿。</li>
+<li>每天测体温，异常复测。</li>
+<li>完成标志：形成规律，能及时发现异常。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 新生儿多久喂一次？</h3>
+<p>答：母乳按需，通常每天 8–12 次，夜间也要喂。配方奶约每 3 小时一次，按需调整。[1]</p>
+<h3>Q2 怎么判断吃饱了？</h3>
+<p>答：每天 6 次以上小便、体重稳步增长、喂后满足。母乳喂养看吞咽和乳房变软。</p>
+<h3>Q3 黄疸什么时候要紧？</h3>
+<p>答：出生 24 小时内出现、黄疸迅速加重、手心脚心发黄、宝宝嗜睡拒奶，立即就医。</p>
+<h3>Q4 新生儿能枕枕头吗？</h3>
+<p>答：不能。1 岁前不用枕头，床上不放软物，仰卧睡，降低窒息风险。</p>
+<h3>Q5 脐带怎么护理？</h3>
+<p>答：保持干燥，按医嘱用酒精消毒根部，尿布避开脐部，红肿渗液就医。</p>
+<h3>Q6 新生儿体温多少正常？</h3>
+<p>答：腋温 36–37℃。超过 37.5℃ 或低于 36℃，尤其 3 个月内发热，立即就医。</p>
+<h3>Q7 要不要补维生素 D？</h3>
+<p>答：母乳喂养儿通常出生后数日开始每天补充维生素 D 400 国际单位，具体遵医嘱。[2]</p>
+<h3>Q8 宝宝哭要不要马上抱？</h3>
+<p>答：新生儿哭是沟通，先排查饿、尿、冷热、困，及时回应不会“惯坏”。</p>
+<h3>Q9 能给宝宝喝水吗？</h3>
+<p>答：6 个月内纯母乳或配方奶喂养通常不需要额外喝水，天热或发热遵医嘱。</p>
+<h3>Q10 出生要打什么疫苗？</h3>
+<p>答：出生 24 小时内接种乙肝疫苗第一针和卡介苗，之后按免疫规划程序接种。[3]</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>捂热</strong>：穿盖过多会导致体温过高甚至捂热综合征。</li>
+<li><strong>枕枕头、软床</strong>：增加窒息风险。</li>
+<li><strong>奶粉冲太浓</strong>：加重肾脏负担。</li>
+<li><strong>自行挤乳头</strong>：可能感染，不要做。</li>
+<li><strong>挑马牙、擦口腔</strong>：损伤黏膜，引发感染。</li>
+<li><strong>黄疸在家等</strong>：加重可能损伤听力或大脑。</li>
+<li><strong>不拍嗝</strong>：吐奶、呛奶风险。</li>
+<li><strong>亲嘴、亲吻宝宝</strong>：可能传播疱疹病毒。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>发热</strong>：3 个月内体温 ≥38℃ 立即就医，不自行退烧。</li>
+<li><strong>呛奶</strong>：立即侧卧，拍背，清理口鼻，拨 120。</li>
+<li><strong>呼吸急促</strong>：安静时每分钟超过 60 次，立即就医。</li>
+<li><strong>抽搐</strong>：侧卧，移开硬物，记录时间，拨 120。</li>
+<li><strong>脐部红肿渗液</strong>：就医，可能脐炎。</li>
+<li><strong>皮肤发紫、拒奶、嗜睡</strong>：立即就医。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>纸尿裤</td>
+<td>200–500 元/月</td>
+<td>必选</td>
+</tr>
+<tr>
+<td>奶粉</td>
+<td>200–600 元/月</td>
+<td>按需</td>
+</tr>
+<tr>
+<td>婴儿床</td>
+<td>500–2000 元</td>
+<td>一次性</td>
+</tr>
+<tr>
+<td>疫苗</td>
+<td>免疫规划内免费</td>
+<td>自费苗另计</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>全天</td>
+<td>每 2–3 小时喂一次</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.nhc.gov.cn">国家卫生健康委员会</a></li>
+<li><a href="https://www.chinacdc.cn">中国疾病预防控制中心</a></li>
+<li>当地妇幼保健院</li>
+<li>儿科急诊 120</li>
+</ul>
+</li>
+<li>相关条目：<a href="E-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%99%AA%E4%BA%A7.html">E-03 第一次陪产</a>、<a href="E-05-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99%E5%AD%A9%E5%AD%90%E4%B8%8A%E6%88%B7%E5%8F%A3%E5%8A%9E%E5%8C%BB%E4%BF%9D.html">E-05 第一次给孩子上户口/办医保</a></li>
+<li>可打印清单：<a href="../../checklists/E-04-%E6%96%B0%E7%94%9F%E5%84%BF-%E6%8A%A4%E7%90%86%E6%B8%85%E5%8D%95.html">E-04 新生儿清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅱ 级为国家卫健委、疾控中心新生儿护理和免疫规划要求；Ⅲ 级为育儿通行做法。</li>
+<li>主要来源：<ol>
+<li>国家卫健委新生儿保健技术规范，<a href="https://www.nhc.gov.cn">https://www.nhc.gov.cn</a></li>
+<li>中国营养学会婴幼儿喂养指南，<a href="https://www.cnsoc.org">https://www.cnsoc.org</a></li>
+<li>国家免疫规划儿童免疫程序，<a href="https://www.chinacdc.cn">https://www.chinacdc.cn</a></li>
+<li>世界卫生组织母乳喂养建议，<a href="https://www.who.int">https://www.who.int</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地足月健康新生儿家庭护理。早产儿和患病儿遵医嘱。</li>
+<li>易变项：免疫规划程序、喂养建议（S）。</li>
+<li>核实记录：<a href="../../sources/E-04.%E6%A0%B8%E5%AE%9E.html">sources/E-04.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="E-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%99%AA%E4%BA%A7.html"><span class="dir">← 上一篇</span><span class="name">E-03 第一次陪产</span></a><a class="next" href="E-05-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%99%E5%AD%A9%E5%AD%90%E4%B8%8A%E6%88%B7%E5%8F%A3%E5%8A%9E%E5%8C%BB%E4%BF%9D.html"><span class="dir">下一篇 →</span><span class="name">E-05 第一次给孩子上户口/办医保</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

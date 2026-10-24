@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次请年假/病假/婚假 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 工作与职业</nav>
+  <h1 class="post-title">第一次请年假/病假/婚假</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>工作与职业</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>4 条</b></span><span class="chip ">耗时 <b>1-3天</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-low">风险 <b>低</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>分省</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先查清自己的年假天数，病假要正规病假条，婚假看当地奖励天数，请假走书面流程并留记录。
+<strong>适用</strong>：第一次在职场请带薪年假、病假、婚假、丧假的上班族。
+<strong>不适用</strong>：产假、陪产假、育儿假，规则另见 E 栏目。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>年假</strong>：累计工作满 1 年不满 10 年 5 天；10–20 年 10 天；20 年以上 15 天。</li>
+<li><strong>年假不含</strong>：法定节假日和休息日不计入年假。</li>
+<li><strong>病假</strong>：要医院病假条，医疗期内不能随意辞退。</li>
+<li><strong>婚假</strong>：国家规定 3 天，各省另有奖励假，以当地条例为准。</li>
+<li><strong>丧假</strong>：直系亲属 1–3 天，路程另算，工资照发。</li>
+<li><strong>流程</strong>：书面或 OA 申请，附证明，留审批记录。</li>
+<li><strong>未休年假</strong>：应休未休按日工资 300% 支付。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 查清天数</h3>
+<ul>
+<li>年假按累计工作年限算，不是只算本单位。</li>
+<li>新入职当年年假按剩余日历天数折算。</li>
+<li>婚假、丧假、病假天数看公司制度和国家、地方规定。</li>
+<li>问 HR：年假余额、是否可跨年、请假审批人。</li>
+</ul>
+<h3>1.2 准备证明</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 年假：提前申请，安排交接</li>
+<li><input disabled="" type="checkbox"> 病假：医院病假条、病历、缴费单</li>
+<li><input disabled="" type="checkbox"> 婚假：结婚证</li>
+<li><input disabled="" type="checkbox"> 丧假：死亡证明或亲属关系证明</li>
+<li><input disabled="" type="checkbox"> OA 申请或书面请假单</li>
+</ul>
+<h3>1.3 安排工作</h3>
+<ul>
+<li>列出请假期间在办事项和接手人。</li>
+<li>设置邮件自动回复。</li>
+<li>把紧急联系人告诉同事。</li>
+<li>请假前完成关键节点。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 提交申请</h3>
+<ul>
+<li>在哪：OA、邮件或纸质请假单。</li>
+<li>做什么：写清假别、起止时间、事由、交接人。</li>
+<li>看什么：审批流程和时限。</li>
+<li>完成标志：提交成功，有记录。</li>
+</ul>
+<h3>2.2 审批</h3>
+<ul>
+<li>直属领导审批，超过一定天数要上级审批。</li>
+<li>病假要附病假条，婚假附结婚证。</li>
+<li>完成标志：审批通过。</li>
+</ul>
+<h3>2.3 交接</h3>
+<ul>
+<li>和接手人当面交接。</li>
+<li>共享文件权限、客户联系方式。</li>
+<li>完成标志：接手人确认。</li>
+</ul>
+<h3>2.4 休假期间</h3>
+<ul>
+<li>保持紧急联系方式畅通，但不必处理日常事务。</li>
+<li>病假期间遵医嘱休息，保留复诊记录。</li>
+<li>完成标志：休假结束。</li>
+</ul>
+<h3>2.5 返岗与销假</h3>
+<ul>
+<li>返岗当天销假。</li>
+<li>核对工资条，确认假期工资计算正确。</li>
+<li>完成标志：考勤恢复正常。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 年假有多少天？</h3>
+<p>答：累计工作满 1 年不满 10 年 5 天，满 10 年不满 20 年 10 天，满 20 年 15 天。[1]</p>
+<h3>Q2 年假包括周末吗？</h3>
+<p>答：国家法定休假日、休息日不计入年休假假期。[1]</p>
+<h3>Q3 年假可以跨年吗？</h3>
+<p>答：单位因生产工作需要，经职工同意可以不安排或跨 1 个年度安排，但要征得同意并记录。</p>
+<h3>Q4 没休完年假有补偿吗？</h3>
+<p>答：单位应休未休的年假，按日工资收入的 300% 支付，其中包含正常工作期间的工资。[2]</p>
+<h3>Q5 请病假会被辞退吗？</h3>
+<p>答：医疗期内单位不得依照无过失性辞退或经济性裁员解除劳动合同。[3]</p>
+<h3>Q6 病假工资怎么算？</h3>
+<p>答：不低于当地最低工资标准的 80%，具体比例按当地规定和公司制度。</p>
+<h3>Q7 婚假多少天？</h3>
+<p>答：国家规定 3 天，各省人口与计划生育条例另有奖励假，天数差异大，以当地规定为准。[4]</p>
+<h3>Q8 丧假有几天？</h3>
+<p>答：直系亲属死亡时一般 1–3 天，外地奔丧可给路程假，工资照发。</p>
+<h3>Q9 请假要提前多久？</h3>
+<p>答：年假按公司制度，通常提前 3–7 天；病假可事后补，但要及时通知；婚假提前 1–2 周。</p>
+<h3>Q10 公司不批年假怎么办？</h3>
+<p>答：书面申请并保留记录，向劳动监察投诉或申请仲裁，要求安排年假或支付补偿。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>口头请假</strong>：没有记录，算旷工就麻烦。</li>
+<li><strong>病假条造假</strong>：属严重违纪，可能被解除。</li>
+<li><strong>年假跨年作废</strong>：公司规定不能对抗法定补偿，但要及时主张。</li>
+<li><strong>婚假按国家 3 天算</strong>：忽略地方奖励假，少休了。</li>
+<li><strong>请假不交接</strong>：回来一堆烂摊子，影响评价。</li>
+<li><strong>休假期间失联</strong>：紧急事务找不到人，影响团队。</li>
+<li><strong>病假期间兼职</strong>：可能违反公司制度。</li>
+<li><strong>不核对工资条</strong>：假期工资算错没发现。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>公司不批病假</strong>：提交病假条，书面说明，必要时向劳动监察投诉。</li>
+<li><strong>医疗期满被解除</strong>：可主张经济补偿和医疗补助费。</li>
+<li><strong>年假被强制清零</strong>：保留考勤和申请记录，申请仲裁。</li>
+<li><strong>工伤停工留薪</strong>：按《工伤保险条例》处理，原工资福利待遇不变。</li>
+<li><strong>婚假期间被要求上班</strong>：保留通知记录，拒绝或要求补休。</li>
+<li><strong>请假影响绩效</strong>：确认考核规则，依法休假不应被歧视。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>年假</td>
+<td>带薪</td>
+<td>5–15 天</td>
+</tr>
+<tr>
+<td>病假</td>
+<td>按病假工资</td>
+<td>医疗期 3–24 个月</td>
+</tr>
+<tr>
+<td>婚假</td>
+<td>带薪</td>
+<td>3 天 + 地方奖励</td>
+</tr>
+<tr>
+<td>丧假</td>
+<td>带薪</td>
+<td>1–3 天</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mohrss.gov.cn">人力资源和社会保障部</a></li>
+<li>12333 热线</li>
+<li>当地人口与计划生育条例</li>
+</ul>
+</li>
+<li>相关条目：<a href="C-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%AD%BE%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C.html">C-03 第一次签劳动合同</a>、<a href="C-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8B%BF%E5%B7%A5%E8%B5%84%E4%B8%8E%E4%BA%94%E9%99%A9%E4%B8%80%E9%87%91.html">C-04 第一次拿工资与五险一金</a></li>
+<li>可打印清单：<a href="../../checklists/C-12-%E8%AF%B7%E5%81%87-%E6%9D%90%E6%96%99%E4%B8%8E%E6%B5%81%E7%A8%8B%E6%B8%85%E5%8D%95.html">C-12 请假清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《职工带薪年休假条例》《劳动合同法》；Ⅱ 级为地方条例和人社部门解释。</li>
+<li>主要来源：<ol>
+<li>《职工带薪年休假条例》第三条、第五条，<a href="https://www.gov.cn">https://www.gov.cn</a></li>
+<li>《企业职工带薪年休假实施办法》，<a href="https://www.mohrss.gov.cn">https://www.mohrss.gov.cn</a></li>
+<li>《劳动合同法》第四十二条（医疗期），<a href="https://www.mohrss.gov.cn">https://www.mohrss.gov.cn</a></li>
+<li>各省人口与计划生育条例（婚假奖励），<a href="https://www.gov.cn">https://www.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地企业职工。婚假、病假工资标准分省。</li>
+<li>易变项：地方婚假天数、病假工资比例（M）。</li>
+<li>核实记录：<a href="../../sources/C-12.%E6%A0%B8%E5%AE%9E.html">sources/C-12.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="C-11-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%BC%80%E5%85%AC%E5%8F%B8%E4%B8%AA%E4%BD%93%E6%88%B7.html"><span class="dir">← 上一篇</span><span class="name">C-11 第一次开公司/个体户</span></a><a class="next" href="C-13-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%81%9A%E5%89%AF%E4%B8%9A%E4%B8%8E%E6%8E%A5%E7%A7%81%E6%B4%BB.html"><span class="dir">下一篇 →</span><span class="name">C-13 第一次做副业/接私活</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

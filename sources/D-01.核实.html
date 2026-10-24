@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>D-01 第一次学外语入门 · 核实记录 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">D-01 第一次学外语入门 · 核实记录</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">一、逐条核实表</a><a href="#sec-1">二、未确定事项</a><a href="#sec-2">三、争议与差异</a><a href="#sec-3">四、调研问题清单</a></nav>
+  <main class="content">
+
+<ul>
+<li>核实人：项目组</li>
+<li>核实日期：2026-10-23</li>
+<li>对应版本：v1.0</li>
+<li>适用范围：零基础成年自学者，前 90 天</li>
+<li>当前状态：已核实</li>
+</ul>
+<h2 id="sec-0">一、逐条核实表</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>正文位置</th>
+<th>文中说法</th>
+<th>依据等级</th>
+<th>来源（机构 + 标题）</th>
+<th>原文摘录</th>
+<th>URL</th>
+<th>访问日期</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>0、1.1、Q12</td>
+<td>CEFR A1–C2 能力描述</td>
+<td>Ⅱ</td>
+<td>欧洲委员会《CEFR 全球量表》Table 1</td>
+<td>“A1: familiar everyday expressions…; C2: understand with ease virtually everything heard or read.”</td>
+<td><a href="https://www.coe.int/en/web/common-european-framework-reference-languages/table-1-cefr-3.3-common-reference-levels-global-scale">https://www.coe.int/en/web/common-european-framework-reference-languages/table-1-cefr-3.3-common-reference-levels-global-scale</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0、Q11、7</td>
+<td>各语种官方考试：IELTS、Goethe、DELE、DELF/DALF、JLPT、TOPIK</td>
+<td>Ⅱ</td>
+<td>各考试机构官网</td>
+<td>各机构页面列明考试等级和主办方</td>
+<td><a href="https://www.ielts.org/about-ielts">https://www.ielts.org/about-ielts</a></td>
+<td>2026-10-23</td>
+<td>已核实（报名时间和费用以官网为准）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0、1.4、Q1</td>
+<td>A1 指导学时 90–100 小时；90 天每天约 1 小时</td>
+<td>Ⅱ</td>
+<td>Cambridge《Guided learning hours》</td>
+<td>“A1… 90—100”；“approximately 200 guided learning hours… to progress from one level to the next”</td>
+<td><a href="https://support.cambridgeenglish.org/hc/en-gb/articles/202838506-Guided-learning-hours">https://support.cambridgeenglish.org/hc/en-gb/articles/202838506-Guided-learning-hours</a></td>
+<td>2026-10-23</td>
+<td>已核实（指导值，不承诺）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0、Q4</td>
+<td>间隔练习优于集中突击；先密后疏</td>
+<td>Ⅲ</td>
+<td>Cepeda 等《Distributed Practice in Verbal Recall Tasks》</td>
+<td>“The ISI producing maximal retention increased as retention interval increased.”</td>
+<td><a href="https://www.yorku.ca/ncepeda/publications/CPVWR2006.html">https://www.yorku.ca/ncepeda/publications/CPVWR2006.html</a></td>
+<td>2026-10-23</td>
+<td>已核实（研究共识）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Q4</td>
+<td>看剧能附带学词，但增益有限，依赖词频</td>
+<td>Ⅲ</td>
+<td>Rodgers &amp; Webb (2017), ITL</td>
+<td>“viewing television contributed to significant gains… frequency of occurrence”</td>
+<td><a href="https://doi.org/10.1075/itl.18034.rod">https://doi.org/10.1075/itl.18034.rod</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0、1.3、Q3</td>
+<td>入门顺序：发音/字母→高频词→常用句→句中补语法</td>
+<td>Ⅲ</td>
+<td>CEFR Companion Volume 第 5 章；教学共识</td>
+<td>CEFR 描述语音、词汇、语法能力，不规定教学顺序</td>
+<td><a href="https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2018/1680787989.pdf">https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2018/1680787989.pdf</a></td>
+<td>2026-10-23</td>
+<td>已核实（教学共识）</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1.4、Q2</td>
+<td>每天 30–60 分钟，固定时段</td>
+<td>Ⅲ</td>
+<td>教学实践；Cambridge 指导学时推算</td>
+<td>按 A1 90–100 小时、90 天推算</td>
+<td>同上</td>
+<td>2026-10-23</td>
+<td>已核实（建议值）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Q12</td>
+<td>成年人学外语的特点</td>
+<td>Ⅲ</td>
+<td>二语习得研究综述</td>
+<td>成年人在策略和母语经验上有优势，语音模仿可能更难</td>
+<td>研究综述</td>
+<td>2026-10-23</td>
+<td>已核实（一般结论）</td>
+</tr>
+<tr>
+<td>9</td>
+<td>8</td>
+<td>90 天接近 A1，不承诺通过考试</td>
+<td>Ⅲ</td>
+<td>Cambridge 指导学时推算</td>
+<td>“A1… 90—100”</td>
+<td><a href="https://support.cambridgeenglish.org/hc/en-gb/articles/202838506-Guided-learning-hours">https://support.cambridgeenglish.org/hc/en-gb/articles/202838506-Guided-learning-hours</a></td>
+<td>2026-10-23</td>
+<td>已核实（推算）</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-1">二、未确定事项</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>内容</th>
+<th>卡在哪</th>
+<th>正文处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>听说读写固定配比</td>
+<td>官方没有规定</td>
+<td>写“听说先行、读写跟进”，标为教学经验</td>
+</tr>
+<tr>
+<td>2</td>
+<td>频繁换教材的影响</td>
+<td>未查到直接对照研究</td>
+<td>只写经验提醒，不写研究结论</td>
+</tr>
+<tr>
+<td>3</td>
+<td>90 天达到 A1</td>
+<td>因人而异</td>
+<td>写“可覆盖 A1 下限”，不承诺</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-2">三、争议与差异</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>说法</th>
+<th>冲突来源</th>
+<th>采用口径</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>学习顺序</td>
+<td>不同教学法主张不同</td>
+<td>写“教学共识”，不写唯一正确</td>
+<td>没有官方强制顺序</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-3">四、调研问题清单</h2>
+<ol>
+<li>零基础的人第一周最该做什么？</li>
+<li>听说读写要不要按固定顺序？</li>
+<li>每天 15 分钟和 1 小时，效果差在哪？</li>
+<li>哪些流行方法缺乏证据？</li>
+<li>怎么用 CEFR 给自己定一个可检查的目标？</li>
+</ol>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>D-11 第一次办健身卡 · 核实记录 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">D-11 第一次办健身卡 · 核实记录</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">关键核实项</a><a href="#sec-1">原文摘录</a><a href="#sec-2">未确定事项与处理</a><a href="#sec-3">争议与差异</a></nav>
+  <main class="content">
+
+<ul>
+<li>核实人：项目组</li>
+<li>核实日期：2026-10-24</li>
+<li>对应版本：v1.0</li>
+<li>当前状态：已核实</li>
+<li>以下来源访问日期均为 2026-10-24。</li>
+</ul>
+<h2 id="sec-0">关键核实项</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>文中说法</th>
+<th>依据等级</th>
+<th>来源</th>
+<th>URL</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>单用途预付卡企业应备案；章程协议须写明购卡、使用、退卡方式与收费项目；应提供退卡服务并退至本人同名银行账户；终止兑付须提前 30 天公示</td>
+<td>Ⅰ</td>
+<td>商务部《单用途商业预付卡管理办法（试行）》（商务部令 2012 年第 9 号，2016 年修订）</td>
+<td><a href="https://www.mofcom.gov.cn/zfxxgk/zc/gz/art/2021/art_82805c1937a64a4186ea15c23fc675c5.html">https://www.mofcom.gov.cn/zfxxgk/zc/gz/art/2021/art_82805c1937a64a4186ea15c23fc675c5.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>2</td>
+<td>北京：购卡 7 日内未兑付可要求全额退卡（5 日内退回）；未约定退款期限的 15 日内退回；「概不退款」等格式条款无效；停业、变更场所须告知并公告</td>
+<td>Ⅰ</td>
+<td>《北京市单用途预付卡管理条例》（2022 年 6 月 1 日施行）</td>
+<td><a href="http://www.beijing.gov.cn/zhengce/dfxfg/202111/t20211130_2549001.html">http://www.beijing.gov.cn/zhengce/dfxfg/202111/t20211130_2549001.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>3</td>
+<td>全国（司法）：付款 7 日内未消费可请求返还预付款本金；排除退款权、「丢卡不补」等格式条款无效；变更经营场所明显不便等情形可请求解除合同；典型案例支持向原股东、「职业闭店人」追责</td>
+<td>Ⅰ</td>
+<td>最高人民法院《关于审理预付式消费民事纠纷案件适用法律若干问题的解释》（法释〔2025〕4 号）及典型案例</td>
+<td><a href="https://www.court.gov.cn/zixun/xiangqing/459321.html">https://www.court.gov.cn/zixun/xiangqing/459321.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>4</td>
+<td>上海：同一消费者预付款总计不超 20000 元；会籍类一次不超 5000 元、24 个月；课时类不超 20000 元、60 次；储值类不超 5000 元；按余额 30% 或 50% 专用存款账户存管</td>
+<td>Ⅰ</td>
+<td>《上海市体育健身行业预付式消费经营活动监管实施办法》（沪体规文〔2025〕1 号，2025 年 3 月 1 日施行）</td>
+<td><a href="https://www.shanghai.gov.cn/nw12344/20250116/6d32dc15f72d476e88edaf7951d969ff.html">https://www.shanghai.gov.cn/nw12344/20250116/6d32dc15f72d476e88edaf7951d969ff.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>5</td>
+<td>监管部门鼓励按月购买健身会员卡或短期课程，签订含「七天冷静期」的示范合同文本</td>
+<td>Ⅱ</td>
+<td>国家体育总局网站：上海市体育健身行业预付式消费监管解读</td>
+<td><a href="https://www.sport.gov.cn/n20001280/n20001265/n20067533/c28422640/content.html">https://www.sport.gov.cn/n20001280/n20001265/n20067533/c28422640/content.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>6</td>
+<td>中消协建议「三看」（证照、经营、诚信），不受大额充值诱惑、不办「终身卡」「五年卡」，签书面合同、保存凭证，向经营者所在地消协投诉</td>
+<td>Ⅱ</td>
+<td>中国消费者协会：健身预付消费提醒</td>
+<td><a href="https://cca.org.cn/single/11179/63567.html">https://cca.org.cn/single/11179/63567.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>7</td>
+<td>自愿参加有一定风险的文体活动，因其他参加者行为受伤一般不得求偿（故意或重大过失除外）；活动组织者负有安全保障义务</td>
+<td>Ⅰ</td>
+<td>《民法典》第一千一百七十六条（国家体育总局网站文章引述）</td>
+<td><a href="https://www.sport.gov.cn/n20001280/n20745751/n20767239/c21454990/content.html">https://www.sport.gov.cn/n20001280/n20745751/n20767239/c21454990/content.html</a></td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-1">原文摘录</h2>
+<p>以下摘录均为 2026-10-24 实际抓取到的页面文字。</p>
+<ol>
+<li><p>商务部《单用途商业预付卡管理办法（试行）》：</p>
+<ul>
+<li>第七条（备案）：「集团发卡企业和品牌发卡企业向其工商登记注册地省、自治区、直辖市人民政府商务主管部门备案」，开展单用途卡业务之日起 30 日内。</li>
+<li>第二十一条（退卡）：应依章程或协议约定提供退卡服务；「发卡企业或售卡企业应将资金退至与退卡人同名的银行账户内，并留存银行账户信息。卡内资金余额不足100元（含）的，可支付现金。」</li>
+<li>第二十二条：终止兑付未到期卡的，「应提供免费退卡服务，并在终止兑付日前至少30日公示」。</li>
+<li>第二十五条（余额上限）：零售业、住宿餐饮业发卡企业「预收资金余额不得超过其上一会计年度主营业务收入的40%」。</li>
+<li>第二十六条（存管）：「规模发卡企业不低于上一季度预收资金余额的20%；集团发卡企业不低于30%；品牌发卡企业不低于40%。」</li>
+<li>第四十二条：「本办法自2012年11月1日起实施。」</li>
+</ul>
+</li>
+<li><p>《北京市单用途预付卡管理条例》：</p>
+<ul>
+<li>第十六条：「消费者自购买预付卡之日起七日内未兑付商品或者服务的，有权要求经营者退卡，经营者应当自消费者要求退卡之日起五日内一次性全额退回预收款」。</li>
+<li>第十七条：未约定退款期限的，「应当自消费者提出退款要求之日起十五日内退回」；「由于经营者原因导致消费者退款的，按照原约定的优惠方案退回预收款余额。」</li>
+<li>第十五条：「经营者制定的格式条款、通知、声明、店堂告示、消费者须知等不得包含概不退款、不补办、解释权归经营者等对消费者不公平、不合理的规定。」</li>
+<li>第十八条：「经营者出现停业、注销等情形导致预付卡无法兑付或者经营场所变更的，应当及时通过电话、短信或者微信等方式告知消费者，并在经营场所、网页的显著位置发布公告。」</li>
+<li>第三十五条：2021 年 11 月 26 日通过，自 2022 年 6 月 1 日起施行。</li>
+</ul>
+</li>
+<li><p>最高人民法院预付式消费司法解释（法释〔2025〕4 号，2024 年 11 月 18 日审判委员会第 1932 次会议通过，2025 年 5 月 1 日施行）：</p>
+<ul>
+<li>第十四条：消费者「自付款之日起七日内请求经营者返还预付款本金的，人民法院应予支持」。</li>
+<li>第九条：格式条款无效情形包括「排除消费者依法解除合同或者请求返还预付款的权利」「约定消费者遗失记名预付卡后不补办」等。</li>
+<li>第十三条：经营者「变更经营场所给消费者接受商品或服务造成明显不便」等情形，消费者请求解除合同的，法院应予支持。</li>
+<li>典型案例：「消费者有权选择向公司原股东或者帮助逃债的『职业闭店人』『背债人』主张权利」。</li>
+</ul>
+</li>
+<li><p>《上海市体育健身行业预付式消费经营活动监管实施办法》：</p>
+<ul>
+<li>第八条：「经营者对同一消费者收取各类预付凭证预付款总计不得超过20000元。」</li>
+<li>第八条：「不得对同一消费者一次性收取或者变相收取金额超过5000元、时长超过24个月的会籍类预付款；金额超过20000元、次数超过60次的课时类预付款；金额超过5000元的储值类等预付款。」</li>
+<li>第十条：「会籍类预付凭证时长为3个月以内的，应将预收资金余额的30%采取专用存款账户管理；时长超过3个月的，应将预收资金余额的50%采取专用存款账户管理。」</li>
+<li>第十七条：「本办法自2025年3月1日起施行，有效期至2026年12月31日。」</li>
+</ul>
+</li>
+<li><p>国家体育总局网站解读：</p>
+<ul>
+<li>「鼓励广大消费者按月购买健身会员卡或者短期课程等，签订享有『七天冷静期』的示范合同文本」</li>
+</ul>
+</li>
+<li><p>中国消费者协会健身消费提醒：</p>
+<ul>
+<li>一看证照：「包括营业执照、教练员从业资格证等」。</li>
+<li>「不办理『终身卡』『五年卡』等超长期预付卡」。</li>
+<li>「不要轻信经营者的口头承诺，务必要求与商家签订书面合同」。</li>
+<li>「保存好发票、聊天记录、消费记录、预付款余额等凭证」。</li>
+<li>协商不成的，「可向经营者所在地消协组织投诉」。</li>
+</ul>
+</li>
+<li><p>《民法典》第一千一百七十六条（体育总局网站文章引述，分段摘录后合并）：</p>
+<ul>
+<li>「自愿参加具有一定风险的文体活动，因其他参加者的行为受到损害的，受害人不得请求其他参加者承担侵权责任，但是其他参加者对损害的发生有故意或者重大过失的除外。」</li>
+<li>「活动组织者的责任适用本法第一千一百九十八条至第一千二百零一条的规定。」</li>
+</ul>
+</li>
+</ol>
+<h2 id="sec-2">未确定事项与处理</h2>
+<ol>
+<li>价格区间（月卡、季卡到年卡、私教课单价）为通行做法，各地差异大，正文写区间并注明以当地和场馆公示为准。</li>
+<li>场馆是否投保公众责任险、人身意外险无全国统一要求，正文按「可选」处理，以场馆公示为准。</li>
+<li>教练从业资格证书的具体类型和要求未做全国性核实，正文只写「看是否公示」，以当地规定和机构公示为准。</li>
+<li>北京、上海之外城市的冷静期、退款时限、预付限额未逐一核实，正文统一写「以当地为准」。</li>
+<li>上海「七天冷静期」出现在监管解读鼓励使用的示范合同文本中，不是实施办法的直接条文，正文按此口径表述。</li>
+</ol>
+<h2 id="sec-3">争议与差异</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>说法</th>
+<th>冲突来源</th>
+<th>采用口径</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>「7 天冷静期」的性质</td>
+<td>北京条例直接规定退卡；最高法解释规定诉讼中支持返还本金；上海为示范合同文本条款</td>
+<td>分层表述，分别标注来源，并注明以当地为准</td>
+<td>三者适用范围和法律效力不同，不能合并成一条全国规则</td>
+</tr>
+<tr>
+<td>2</td>
+<td>预付限额</td>
+<td>上海有明确金额和次数上限；多数地区无对应量化规定</td>
+<td>上海数据标注地名，其他地区写「以当地为准」</td>
+<td>地方规定差异大，不宜写死统一数字</td>
+</tr>
+</tbody></table></div>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

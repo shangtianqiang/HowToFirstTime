@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次立遗嘱/意定监护 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 人生节点</nav>
+  <h1 class="post-title">第一次立遗嘱/意定监护</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>人生节点</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>4 条</b></span><span class="chip ">耗时 <b>半天</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>稳定</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：遗嘱形式要合法，打印和录像遗嘱要有两名见证人，多份遗嘱以最后一份为准，意定监护要书面并最好公证。
+<strong>适用</strong>：第一次订立遗嘱、安排意定监护、做遗产规划的中年人和老年人。
+<strong>不适用</strong>：遗产纠纷诉讼、涉外继承，需要专业律师。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>形式</strong>：自书、代书、打印、录音录像、口头、公证。</li>
+<li><strong>见证人</strong>：打印、代书、录音录像遗嘱要有 2 名以上见证人。</li>
+<li><strong>签名</strong>：打印遗嘱每页签名，注明年月日。</li>
+<li><strong>多份遗嘱</strong>：以最后一份为准，公证遗嘱不再优先。</li>
+<li><strong>必留份</strong>：要为缺乏劳动能力又没有生活来源的继承人保留份额。</li>
+<li><strong>意定监护</strong>：书面形式，最好公证。</li>
+<li><strong>见证人资格</strong>：继承人、受遗赠人、利害关系人不能当见证人。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 盘点财产</h3>
+<ul>
+<li>房产、存款、股票、基金、保险。</li>
+<li>车辆、股权、知识产权。</li>
+<li>债权债务。</li>
+<li>数字资产：账号、虚拟货币（按平台规则）。</li>
+<li>列清单，写清权属和证件位置。</li>
+</ul>
+<h3>1.2 确定继承人</h3>
+<ul>
+<li>配偶、子女、父母。</li>
+<li>想给谁、给多少。</li>
+<li>是否需要为未成年子女、无劳动能力的继承人留份额。</li>
+<li>是否遗赠给国家、集体或他人。</li>
+</ul>
+<h3>1.3 选形式</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>形式</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>自书</td>
+<td>本人亲笔书写、签名、注明年月日</td>
+</tr>
+<tr>
+<td>代书</td>
+<td>2 名以上见证人，其中一人代书，各方签名</td>
+</tr>
+<tr>
+<td>打印</td>
+<td>2 名以上见证人，每页签名，注明年月日</td>
+</tr>
+<tr>
+<td>录音录像</td>
+<td>2 名以上见证人，记录姓名、肖像、日期</td>
+</tr>
+<tr>
+<td>公证</td>
+<td>到公证处办理，证明力强</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 起草</h3>
+<ul>
+<li>写清财产范围、继承人、份额。</li>
+<li>语言明确，不产生歧义。</li>
+<li>不处分他人财产。</li>
+<li>完成标志：遗嘱草稿。</li>
+</ul>
+<h3>2.2 找见证人</h3>
+<ul>
+<li>2 名以上，无利害关系。</li>
+<li>继承人、受遗赠人不能当见证人。</li>
+<li>见证人全程在场。</li>
+<li>完成标志：见证人确定。</li>
+</ul>
+<h3>2.3 订立</h3>
+<ul>
+<li>按选定形式签署。</li>
+<li>自书要亲笔，不能打印后签名。</li>
+<li>打印遗嘱每页签名。</li>
+<li>录音录像要记录见证人姓名和日期。</li>
+<li>完成标志：遗嘱签署完成。</li>
+</ul>
+<h3>2.4 保管</h3>
+<ul>
+<li>原件放保险柜或交信任的人。</li>
+<li>告知一位信任的家人存放位置。</li>
+<li>可交公证处保管。</li>
+<li>完成标志：安全保管。</li>
+</ul>
+<h3>2.5 意定监护</h3>
+<ul>
+<li>书面指定信任的人作为失能后的监护人。</li>
+<li>写清权限范围。</li>
+<li>最好公证。</li>
+<li>完成标志：协议签署。</li>
+</ul>
+<h3>2.6 变更</h3>
+<ul>
+<li>情况变化可重新订立。</li>
+<li>新遗嘱要注明日期，妥善保管。</li>
+<li>完成标志：更新完成。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 遗嘱必须公证吗？</h3>
+<p>答：不必须。公证遗嘱证明力强，但其他合法形式也有效。</p>
+<h3>Q2 打印遗嘱有效吗？</h3>
+<p>答：有效，但要有 2 名以上见证人在场，遗嘱人和见证人每页签名，注明年月日。[1]</p>
+<h3>Q3 多份遗嘱哪个算？</h3>
+<p>答：以最后一份合法有效的遗嘱为准，公证遗嘱不再优先。[1]</p>
+<h3>Q4 可以把财产全给一个子女吗？</h3>
+<p>答：可以，但要为缺乏劳动能力又没有生活来源的继承人保留必要份额。</p>
+<h3>Q5 见证人可以是子女吗？</h3>
+<p>答：不可以。继承人、受遗赠人、利害关系人不能作为见证人。</p>
+<h3>Q6 遗嘱能改吗？</h3>
+<p>答：能。立遗嘱人可以撤回、变更遗嘱，以最后一份为准。</p>
+<h3>Q7 意定监护是什么？</h3>
+<p>答：具有完全民事行为能力的成年人，可以书面指定自己失能后的监护人。[2]</p>
+<h3>Q8 意定监护要公证吗？</h3>
+<p>答：不强制，但公证能增强证明力，减少争议。</p>
+<h3>Q9 遗嘱要写哪些财产？</h3>
+<p>答：写清房产、存款、股票等，注明权属和证件位置，不处分他人财产。</p>
+<h3>Q10 遗嘱执行人怎么定？</h3>
+<p>答：可以指定信任的人或专业机构作为遗产管理人。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>自书遗嘱打印后签名</strong>：形式不合法。</li>
+<li><strong>见证人是子女</strong>：遗嘱可能无效。</li>
+<li><strong>处分夫妻共同财产全部</strong>：只能处分自己份额。</li>
+<li><strong>遗嘱没写日期</strong>：效力争议。</li>
+<li><strong>多份遗嘱没注明日期</strong>：难以确定最后一份。</li>
+<li><strong>口头遗嘱</strong>：只在危急情况有效，危急解除后要书面。</li>
+<li><strong>不做意定监护</strong>：失能后无人有权代理。</li>
+<li><strong>遗嘱藏起来不告诉任何人</strong>：可能没人知道。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>遗嘱争议</strong>：做笔迹鉴定，按民法典处理。</li>
+<li><strong>继承人丧失劳动能力</strong>：保留必留份。</li>
+<li><strong>遗嘱丢失</strong>：用复印件或见证人证言，效力较弱。</li>
+<li><strong>意定监护争议</strong>：向法院申请指定监护。</li>
+<li><strong>涉外财产</strong>：按财产所在地法律办理，咨询律师。</li>
+<li><strong>被胁迫立遗嘱</strong>：可以请求撤销。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>自书遗嘱</td>
+<td>免费</td>
+<td>自己书写</td>
+</tr>
+<tr>
+<td>代书遗嘱</td>
+<td>几百到几千元</td>
+<td>律师见证</td>
+</tr>
+<tr>
+<td>公证遗嘱</td>
+<td>几百到几千元</td>
+<td>按财产</td>
+</tr>
+<tr>
+<td>意定监护公证</td>
+<td>几百到几千元</td>
+<td>按事项</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半天</td>
+<td>起草到签署</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.moj.gov.cn">司法部</a></li>
+<li><a href="https://www.court.gov.cn">最高人民法院</a></li>
+<li>当地公证处</li>
+<li>12348 法律服务热线</li>
+</ul>
+</li>
+<li>相关条目：<a href="E-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%9D%A2%E5%AF%B9%E4%BA%B2%E4%BA%BA%E7%A6%BB%E4%B8%96.html">E-10 第一次面对亲人离世</a>、<a href="J-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%9D%A2%E5%AF%B9%E8%BA%AB%E5%90%8E%E4%BA%8B%E5%AE%89%E6%8E%92.html">J-08 第一次面对身后事安排</a></li>
+<li>可打印清单：<a href="../../checklists/J-07-%E9%81%97%E5%98%B1%E6%84%8F%E5%AE%9A%E7%9B%91%E6%8A%A4-%E6%B8%85%E5%8D%95.html">J-07 遗嘱清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《民法典》继承编和总则编。</li>
+<li>主要来源：<ol>
+<li>《民法典》第一千一百三十四条至一千一百四十四条（遗嘱形式），<a href="https://www.court.gov.cn">https://www.court.gov.cn</a></li>
+<li>《民法典》第三十三条（意定监护），<a href="https://www.court.gov.cn">https://www.court.gov.cn</a></li>
+<li>《民法典》第一千一百四十二条（遗嘱撤回变更），<a href="https://www.court.gov.cn">https://www.court.gov.cn</a></li>
+<li>司法部公证遗嘱办理指南，<a href="https://www.moj.gov.cn">https://www.moj.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地遗嘱和意定监护。公证费用分地区。</li>
+<li>易变项：公证收费（S）。</li>
+<li>核实记录：<a href="../../sources/J-07.%E6%A0%B8%E5%AE%9E.html">sources/J-07.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="J-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%80%80%E4%BC%91.html"><span class="dir">← 上一篇</span><span class="name">J-06 第一次退休</span></a><a class="next" href="J-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%9D%A2%E5%AF%B9%E8%BA%AB%E5%90%8E%E4%BA%8B%E5%AE%89%E6%8E%92.html"><span class="dir">下一篇 →</span><span class="name">J-08 第一次面对身后事安排</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

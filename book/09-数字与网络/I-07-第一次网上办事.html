@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次网上办事 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 数字与网络</nav>
+  <h1 class="post-title">第一次网上办事</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>数字与网络</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>3 条</b></span><span class="chip ">耗时 <b>半天</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-low">风险 <b>低</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>分省</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：认准政务平台官方入口，先实名认证，材料拍清楚，提交后记下办件编号，按进度查询或补正。
+<strong>适用</strong>：第一次通过政务 App、小程序或官网办理社保、公积金、户籍、证照等事项的人。
+<strong>不适用</strong>：必须现场办理的事项、需要原件核验的业务。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>入口</strong>：国家政务服务平台、当地一网通办、部门官方 App。</li>
+<li><strong>实名</strong>：先完成实名认证和人脸核验。</li>
+<li><strong>材料</strong>：身份证、户口簿、证明文件拍清楚，按格式上传。</li>
+<li><strong>办件编号</strong>：提交后记下，查询和补正都要用。</li>
+<li><strong>进度</strong>：在平台查，或拨 12345。</li>
+<li><strong>结果</strong>：电子证照下载，纸质证照可选邮寄。</li>
+<li><strong>防骗</strong>：不点短信链接，不向“代办”交钱。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 确认入口</h3>
+<ul>
+<li>国家政务服务平台或当地政务服务 App。</li>
+<li>部门官网：人社、医保、公积金、公安、税务。</li>
+<li>认准官方域名和备案信息。</li>
+<li>不用搜索引擎广告位链接。</li>
+</ul>
+<h3>1.2 材料</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 身份证正反面</li>
+<li><input disabled="" type="checkbox"> 户口簿</li>
+<li><input disabled="" type="checkbox"> 相关证明：结婚证、出生证明、劳动合同</li>
+<li><input disabled="" type="checkbox"> 电子照片，按规格</li>
+<li><input disabled="" type="checkbox"> 银行卡（如需）</li>
+<li><input disabled="" type="checkbox"> 授权委托书（代办）</li>
+</ul>
+<h3>1.3 设备</h3>
+<ul>
+<li>手机能拍照、人脸识别。</li>
+<li>网络稳定。</li>
+<li>材料存成 PDF 或 JPG，大小符合要求。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 注册与实名</h3>
+<ul>
+<li>在哪：政务平台 App。</li>
+<li>做什么：注册，绑定手机号，实名认证。</li>
+<li>看什么：认证等级，是否能办目标事项。</li>
+<li>完成标志：实名通过。</li>
+</ul>
+<h3>2.2 找事项</h3>
+<ul>
+<li>搜索事项名称，看办理指南。</li>
+<li>看受理条件、材料清单、办理时限、是否收费。</li>
+<li>完成标志：确认能办。</li>
+</ul>
+<h3>2.3 填表上传</h3>
+<ul>
+<li>按提示填写，材料拍正、清晰、完整。</li>
+<li>多页材料合并 PDF。</li>
+<li>完成标志：提交成功。</li>
+</ul>
+<h3>2.4 拿办件编号</h3>
+<ul>
+<li>记下办件编号和查询密码。</li>
+<li>截图保存。</li>
+<li>完成标志：可查询进度。</li>
+</ul>
+<h3>2.5 跟进与补正</h3>
+<ul>
+<li>定期查进度。</li>
+<li>收到补正通知，在规定时间内补。</li>
+<li>完成标志：办结。</li>
+</ul>
+<h3>2.6 领取结果</h3>
+<ul>
+<li>电子证照在“我的证照”下载。</li>
+<li>纸质证照选择邮寄或窗口领取。</li>
+<li>完成标志：拿到结果。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 网上办事要实名吗？</h3>
+<p>答：多数事项要实名认证和人脸核验，确保本人办理。</p>
+<h3>Q2 材料怎么拍？</h3>
+<p>答：光线充足、四角完整、文字清晰，不反光，不遮挡。</p>
+<h3>Q3 办件编号丢了怎么办？</h3>
+<p>答：用账号登录查“我的办件”，或拨 12345 提供身份证号查询。</p>
+<h3>Q4 可以代办吗？</h3>
+<p>答：部分事项可以，需授权委托书和双方身份证，具体看办事指南。</p>
+<h3>Q5 网上办要收费吗？</h3>
+<p>答：多数政务事项免费，少数工本费按公示收取。</p>
+<h3>Q6 电子证照有效吗？</h3>
+<p>答：与纸质证照具有同等效力，可在政务平台亮证使用。</p>
+<h3>Q7 老年人不会用怎么办？</h3>
+<p>答：可到政务大厅“帮办代办”窗口，或由家人协助，注意授权。</p>
+<h3>Q8 提交后多久办结？</h3>
+<p>答：按事项承诺时限，简单事项当天，复杂事项几个工作日到几十天。</p>
+<h3>Q9 被退回怎么办？</h3>
+<p>答：看退回原因，补材料或改信息，重新提交。</p>
+<h3>Q10 怎么防钓鱼？</h3>
+<p>答：只从官方应用商店下载，不点短信链接，核对域名。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>搜索引擎广告</strong>：假政务网站。</li>
+<li><strong>短信链接</strong>：钓鱼。</li>
+<li><strong>找“代办”交钱</strong>：官方免费或低收费。</li>
+<li><strong>材料模糊</strong>：被退回。</li>
+<li><strong>不记办件编号</strong>：查不到进度。</li>
+<li><strong>错过补正期限</strong>：视为放弃。</li>
+<li><strong>多人共用一个账号</strong>：信息混乱。</li>
+<li><strong>在网吧办理</strong>：信息泄露。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>认证失败</strong>：检查光线、网络，换设备，到线下窗口。</li>
+<li><strong>系统故障</strong>：错峰办理，拨 12345。</li>
+<li><strong>材料被退回</strong>：按原因补正。</li>
+<li><strong>办件超时</strong>：拨 12345 投诉。</li>
+<li><strong>信息被冒用</strong>：报警，联系平台冻结。</li>
+<li><strong>老年人操作困难</strong>：到大厅帮办窗口。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>办事</td>
+<td>多数免费</td>
+<td>按事项</td>
+</tr>
+<tr>
+<td>邮寄</td>
+<td>10–30 元</td>
+<td>可选</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半天</td>
+<td>含认证和上传</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://gjzwfw.www.gov.cn">国家政务服务平台</a></li>
+<li>当地政务服务 App</li>
+<li>12345 政务热线</li>
+</ul>
+</li>
+<li>相关条目：<a href="I-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81%E4%B8%8E%E9%9A%90%E7%A7%81.html">I-06 第一次实名认证与隐私</a>、<a href="H-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%9E%E5%B1%85%E4%BD%8F%E8%AF%81.html">H-07 第一次办居住证</a></li>
+<li>可打印清单：<a href="../../checklists/I-07-%E7%BD%91%E4%B8%8A%E5%8A%9E%E4%BA%8B-%E6%9D%90%E6%96%99%E6%B8%85%E5%8D%95.html">I-07 网上办事清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅱ 级为国家政务服务平台和部门办事指南；Ⅲ 级为网上办事通行做法。</li>
+<li>主要来源：<ol>
+<li>国家政务服务平台办事指南，<a href="https://gjzwfw.www.gov.cn">https://gjzwfw.www.gov.cn</a></li>
+<li>国务院关于加快推进政务服务“一网通办”的意见，<a href="https://www.gov.cn">https://www.gov.cn</a></li>
+<li>12345 政务服务热线说明，<a href="https://www.gov.cn">https://www.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地政务服务网上办理。事项和材料分省市。</li>
+<li>易变项：平台入口、办理时限（M）。</li>
+<li>核实记录：<a href="../../sources/I-07.%E6%A0%B8%E5%AE%9E.html">sources/I-07.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="I-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81%E4%B8%8E%E9%9A%90%E7%A7%81.html"><span class="dir">← 上一篇</span><span class="name">I-06 第一次实名认证与隐私</span></a><a class="next" href="I-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BA%8C%E6%89%8B%E4%BA%A4%E6%98%93.html"><span class="dir">下一篇 →</span><span class="name">I-08 第一次二手交易</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

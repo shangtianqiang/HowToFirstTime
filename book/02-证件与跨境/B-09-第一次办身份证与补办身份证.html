@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次办身份证/补办身份证 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 证件与跨境</nav>
+  <h1 class="post-title">第一次办身份证/补办身份证</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>证件与跨境</b></span><span class="chip ">最近核实 <b>2026-10-24</b></span><span class="chip ">来源 <b>10 条</b></span><span class="chip ">耗时 <b>1-3天</b></span><span class="chip ">花费 <b>百元内</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：带户口簿（换领带旧证）到户政窗口办，首次免费、换领 20 元、补领 40 元，急用可先办 3 日可得的临时证。
+<strong>适用</strong>：第一次申领、到期换领、丢失补领居民身份证的中国内地居民，含未成年人由监护人代办。
+<strong>不适用</strong>：护照、港澳台通行证等出入境证件，看 <a href="B-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%9E%E6%8A%A4%E7%85%A7%E4%B8%8E%E9%80%9A%E8%A1%8C%E8%AF%81.html">B-02 第一次办护照/通行证</a>；居住证办理看 <a href="../08-%E5%B1%85%E4%BD%8F%E4%B8%8E%E7%94%9F%E6%B4%BB/H-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%9E%E5%B1%85%E4%BD%8F%E8%AF%81.html">H-07 第一次办居住证</a>。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>办证类型</strong>：首次申领免费；期满换领 20 元；丢失补领或损坏换领 40 元；临时身份证 10 元。</li>
+<li><strong>提前多久</strong>：到期换证窗口，2025 年以来多地放宽到期满前 6 个月，以当地为准。</li>
+<li><strong>必须带</strong>：居民户口簿；换领另带旧证；异地补领多带居住、就业或就学证明之一。</li>
+<li><strong>在哪办</strong>：户籍地派出所，或现居住地、就学地的异地受理点。</li>
+<li><strong>多久拿到</strong>：法定 60 日内发放，多数地区 7–20 个工作日。</li>
+<li><strong>急用怎么办</strong>：申领临时身份证，3 日内发放，有效期 3 个月。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 提前 7 天</h3>
+<ul>
+<li>分清你要办的类型：首次申领、期满换领、丢失补领、损坏换领。类型不同，材料和收费都不同。</li>
+<li>首次申领看年龄：满 16 周岁的公民，应当自年满 16 周岁之日起 3 个月内申请。未满 16 周岁的，由监护人代为申请。</li>
+<li>检查户口簿：姓名、出生日期、住址要和你实际情况一致。有变动的，先去派出所变更户口簿，再办身份证。</li>
+<li>查受理点：户籍地在派出所或户政大厅办。人不在户籍地的，查现居住地公安派出所综合窗口是否开通异地受理。</li>
+<li>查是否要预约：用当地公安政务服务平台、政务 App 或 12345 热线确认。能预约就约，省排队时间。</li>
+<li>学生和上班族可以挑周末场、专场：不少地区在换证高峰期开放延时服务，以当地公告为准。</li>
+</ul>
+<h3>1.2 提前 24 小时</h3>
+<ul>
+<li>准备拍照的着装：穿深色有领上衣。白色、浅色上衣在白色背景里容易融成一片，制式服装也不行。</li>
+<li>常戴眼镜的把眼镜带上。拍照时镜框不能遮眼，镜片不能反光，反光时可能要换无镜片镜框。</li>
+<li>头发整理好，不遮眉眼。不要化浓妆，不戴美瞳和明显首饰。</li>
+<li>护理手指：办证要采集指纹，手指干燥脱皮会采录失败。提前一两天涂润肤霜，采集当天搓热双手。</li>
+</ul>
+<h3>1.3 出门前</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 居民户口簿（首次申领、补领都要交验）</li>
+<li><input disabled="" type="checkbox"> 旧身份证（期满换领、损坏换领要交验）</li>
+<li><input disabled="" type="checkbox"> 异地办理：居住证、暂住登记材料、劳动合同、学生证等证明材料之一</li>
+<li><input disabled="" type="checkbox"> 未满 16 周岁：监护人身份证和证明监护关系的户口簿</li>
+<li><input disabled="" type="checkbox"> 工本费：换领 20 元或补领 40 元，支持现金或手机支付（首次免费）</li>
+<li><input disabled="" type="checkbox"> 预约信息或预约单</li>
+<li><input disabled="" type="checkbox"> 邮寄送达的：写好能签收的地址和电话</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 到达与取号</h3>
+<ul>
+<li>在哪：派出所户政窗口、户政办事大厅，或政务服务大厅的公安户政区。</li>
+<li>做什么：取号，向工作人员说明办证类型，首次、换领还是补领。</li>
+<li>看什么：叫号屏和窗口指引。部分大厅有自助受理机，可自助完成拍照和信息填报。</li>
+<li>完成标志：叫到号，坐到受理窗口前。</li>
+</ul>
+<h3>2.2 窗口核验</h3>
+<ul>
+<li>做什么：交户口簿和旧证，工作人员核验你的身份信息和户籍登记内容。</li>
+<li>说什么：说清办证类型和领证方式，自取还是邮寄。异地办理的，交验就业、就学或居住证明材料之一。</li>
+<li>看什么：工作人员核对户籍信息。发现登记错误的，先更正再办证。</li>
+<li>完成标志：信息确认无误，进入拍照和采集指纹环节。</li>
+</ul>
+<h3>2.3 拍照与采集指纹</h3>
+<ul>
+<li>拍照：现场免费拍摄。要求是近期正面免冠彩色相片，白色背景，头部占照片尺寸的 2/3。</li>
+<li>对照片不满意可以申请重拍，重拍次数以当地规定为准。</li>
+<li>采集指纹：按规定登记指纹信息，通常采左右手各一枚，采集时按工作人员提示放手指。</li>
+<li>完成标志：工作人员提示采集完毕，让你核对申领登记表并签字。</li>
+</ul>
+<h3>2.4 缴费与拿凭证</h3>
+<ul>
+<li>做什么：按办证类型缴工本费，首次申领不缴费。</li>
+<li>看什么：拿《居民身份证领取凭证》，凭证上写领证时间、地点或邮寄单号。</li>
+<li>说什么：需要临时身份证的，在这个环节向窗口提出，问清办理条件。</li>
+<li>完成标志：拿到凭证，离开窗口。</li>
+</ul>
+<h3>2.5 领证</h3>
+<ul>
+<li>自取：按凭证上的日期，本人到受理点领取。现场核对证件信息、比对指纹并签字确认。</li>
+<li>邮寄：多数地区支持付费邮寄到家，资费以当地为准。邮寄的也要按当地要求完成核验。</li>
+<li>换领的注意：领取新证时必须交回旧证，这是法律的明文规定。</li>
+<li>完成标志：新证到手，旧证按规则处理完。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 多大年龄要办身份证？</h3>
+<p>答：满 16 周岁应当办理，法律规定自年满 16 周岁之日起 3 个月内申请。未满 16 周岁的自愿办理，由监护人代为申请，不少家长在入学、出行前给孩子办。</p>
+<h3>Q2 首次申领要花钱吗？</h3>
+<p>答：不要。自 2018 年 4 月 1 日起，全国停征首次申领居民身份证工本费。</p>
+<h3>Q3 换领和补领各收多少钱？</h3>
+<p>答：期满换领每证 20 元，丢失补领或损坏换领每证 40 元。收费依据是发改价格〔2003〕2322 号文，公安机关不得加收其他任何费用。</p>
+<h3>Q4 多久能拿到证？</h3>
+<p>答：法定时限是自提交申领登记表之日起 60 日内发放，交通不便地区可延长，延长不超过 30 日。多数地区实际 7–20 个工作日，部分地区提供加急服务，以受理点告知为准。</p>
+<h3>Q5 身份证丢了，人在外地，能补办吗？</h3>
+<p>答：能。居民身份证异地受理已在全国范围实施，补领不用回户籍地。受理地公安机关以全国人口基本信息资源库核验你的身份。</p>
+<h3>Q6 异地办理要带什么？</h3>
+<p>答：证明你合法稳定就业、就学、居住的材料之一。常见的有居住证、暂住登记材料、劳动合同、工商执照、学生证、房屋权属证明或租赁合同。具体清单以当地为准。</p>
+<h3>Q7 旧证过期前多久能换？</h3>
+<p>答：原来普遍是有效期满前 3 个月，2025 年以来多地放宽到期满前 6 个月。2025 年是二代证集中到期的高峰，早点换能避开排队。</p>
+<h3>Q8 急着用证怎么办？</h3>
+<p>答：申请临时居民身份证。在申领、换领、补领期间急需用证的，可以申领临时证，凭户口簿和近期一寸免冠黑白相片办理，公安机关 3 日内发放，有效期 3 个月。</p>
+<h3>Q9 临时身份证能坐高铁、坐飞机吗？</h3>
+<p>答：通常可以用于购票和人工核验环节，多数场景与正式证件效力相同。个别自助闸机可能只认正式证，出行前向铁路、机场客服确认。</p>
+<h3>Q10 能自己带照片吗？</h3>
+<p>答：多数地区现场免费采集，不接受自带照片。部分地区接受有资质照相馆出具的相片回执，是否适用以当地规定为准。</p>
+<h3>Q11 领新证时旧证要交吗？</h3>
+<p>答：换领的必须交回原证。丢失补领的没有旧证可交；事后找到了旧证，主动交给派出所处理，不要继续使用。</p>
+<h3>Q12 网上能办吗？</h3>
+<p>答：部分地区已开通丢失补领、损坏换领的全程网办，网上申请后选邮寄送达或到派出所领取。期满换领多数要本人到场采集照片和指纹。以当地公安政务服务平台为准。</p>
+<h3>Q13 电子身份证能代替实体证吗？</h3>
+<p>答：不能完全替代。网号、网证用于互联网服务中的身份登记和核验，自愿申领。需要查验实体证件的场合，比如窗口办事、部分住宿和运输场景，仍要带实体证。</p>
+<h3>Q14 照片要求记不住怎么办？</h3>
+<p>答：记三样就够：深色有领上衣、白色背景、常戴眼镜就戴着。不化浓妆、不穿白色上衣和制式服装，其余交给现场摄影师。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>等过期才去换</strong>：过期证不能正常使用，出行、办卡、办事都会受阻。到期前 6 个月内就可以办，别拖到失效。</li>
+<li><strong>穿白衣拍照</strong>：白色或浅色上衣会被要求当场换，部分大厅没有备用衣服。出发前自己备好深色有领上衣。</li>
+<li><strong>浓妆美瞳拍进去</strong>：妆太浓、美瞳颜色明显，可能被要求卸妆重拍，白跑一趟。办证当天按素颜净面准备。</li>
+<li><strong>指纹采不上干着急</strong>：手指干燥、脱皮会采录失败，反复重试拖时间。提前护理手指，采集时按紧、放平。</li>
+<li><strong>旧证随手扔</strong>：换领的旧证要交回，补领后找到的旧证要上交。旧证留在手里有被冒用的风险。</li>
+<li><strong>异地不带证明材料</strong>：以为只带旧证就能异地办，现场要就业、就学或居住证明之一。出门前打电话或上网查清单。</li>
+<li><strong>邮寄地址填错</strong>：填了单位地址或已退租的地址，证寄丢还要再补。填能当面签收的常用地址。</li>
+<li><strong>把临时证当长期证用</strong>：临时证有效期只有 3 个月，到期作废。收到正式证后，把临时证交给受理点或按规定处理。</li>
+<li><strong>监护人材料没带齐</strong>：给未成年人首次申领，监护人身份证和户口簿都要带，缺一样就要再跑一趟。</li>
+<li><strong>不核对登记表就签字</strong>：姓名、身份证号、地址错了，制出来的证要重新换发。签字前逐项核对。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>证件丢了又要马上出行</strong>：先到就近派出所办补领，同时问能否办临时身份证。乘车的具体核验以铁路、民航现场要求为准，也可用其官方电子临时证明渠道。</li>
+<li><strong>户口簿也丢了</strong>：先向户籍地派出所申请补领户口簿，或开户籍证明，再办身份证。先后顺序和所需材料以当地为准。</li>
+<li><strong>相貌变化大</strong>：做过大手术或外貌明显变化的，异地受理点可能不受理。回户籍地公安机关申请，由其核实身份后办理。</li>
+<li><strong>指纹缺失或无法采集</strong>：手指残疾、缺失的，向工作人员说明，按规定登记备注，不影响办证。</li>
+<li><strong>未成年学生的监护人到不了场</strong>：部分地区支持学校配合公安机关组织集体办理，或允许委托办理，带齐证明材料，以当地政策为准。</li>
+<li><strong>姓名改过</strong>：先在户口簿完成变更登记，再办新证。证和户口簿信息对不上，后续办事会卡住。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>首次申领</td>
+<td>0 元</td>
+<td>2018 年 4 月起停征工本费，必选</td>
+</tr>
+<tr>
+<td>期满换领工本费</td>
+<td>20 元</td>
+<td>发改价格〔2003〕2322 号，必选</td>
+</tr>
+<tr>
+<td>丢失补领或损坏换领</td>
+<td>40 元</td>
+<td>同上，按实际发生</td>
+</tr>
+<tr>
+<td>临时身份证</td>
+<td>10 元</td>
+<td>急用可选，3 日内发放</td>
+</tr>
+<tr>
+<td>邮寄资费</td>
+<td>10–25 元</td>
+<td>各地不同，可选，以当地邮政公示为准</td>
+</tr>
+<tr>
+<td>现场办理时间</td>
+<td>约 30–60 分钟</td>
+<td>含取号、核验、拍照、录指纹、缴费</td>
+</tr>
+<tr>
+<td>制证等待</td>
+<td>多数 7–20 个工作日</td>
+<td>法定 60 日内，交通不便地区可延长 30 日</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://ywtb.mps.gov.cn">公安部&quot;互联网+政务服务&quot;平台</a></li>
+<li><a href="https://gjzwfw.www.gov.cn">国家政务服务平台</a></li>
+<li>当地公安政务服务平台、派出所户政窗口，政务服务热线 12345</li>
+</ul>
+</li>
+<li>相关条目：<a href="B-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%9E%E6%8A%A4%E7%85%A7%E4%B8%8E%E9%80%9A%E8%A1%8C%E8%AF%81.html">B-02 第一次办护照/通行证</a>、<a href="../09-%E6%95%B0%E5%AD%97%E4%B8%8E%E7%BD%91%E7%BB%9C/I-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BD%91%E4%B8%8A%E5%8A%9E%E4%BA%8B.html">I-07 第一次网上办事</a>、<a href="../09-%E6%95%B0%E5%AD%97%E4%B8%8E%E7%BD%91%E7%BB%9C/I-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81%E4%B8%8E%E9%9A%90%E7%A7%81.html">I-06 第一次实名认证与隐私</a></li>
+<li>可打印清单：<a href="../../checklists/B-09-%E8%BA%AB%E4%BB%BD%E8%AF%81-%E5%8A%9E%E7%90%86%E6%B8%85%E5%8D%95.html">B-09 身份证清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《居民身份证法》《临时居民身份证管理办法》《户口居民身份证管理工作规范（试行）》及国家收费文件；Ⅱ 级为公安机关办事指南、照片标准答复和新华社换证指南；Ⅲ 级为多地通行做法（邮寄资费、网办范围、加急时限）。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国居民身份证法》第七、十、十一、十二、二十一条，江苏法治宣传教育平台转载全文，<a href="https://jsnews.jschina.com.cn/zt2024/fzsxxxpt/hdxf/xffl/202404/t20240411_3389419.shtml">https://jsnews.jschina.com.cn/zt2024/fzsxxxpt/hdxf/xffl/202404/t20240411_3389419.shtml</a></li>
+<li>《中华人民共和国临时居民身份证管理办法》第二、七、十一、十二、十七条，重庆市公安局转载全文，<a href="https://gaj.cq.gov.cn/zwgk/jczwgk/flfg_224734/202512/t20251202_15204474.html">https://gaj.cq.gov.cn/zwgk/jczwgk/flfg_224734/202512/t20251202_15204474.html</a></li>
+<li>公安部《户口居民身份证管理工作规范（试行）》第八十至八十四条，北京市人民政府网站，<a href="https://www.beijing.gov.cn/zhengce/zhengcefagui/202211/t20221116_2860246.html">https://www.beijing.gov.cn/zhengce/zhengcefagui/202211/t20221116_2860246.html</a></li>
+<li>《国家发展改革委 财政部关于居民身份证收费标准及有关问题的通知》（发改价格〔2003〕2322 号），国家发展改革委信息公开，<a href="https://zfxxgk.ndrc.gov.cn/web/iteminfo.jsp?id=19901">https://zfxxgk.ndrc.gov.cn/web/iteminfo.jsp?id=19901</a></li>
+<li>《财政部 国家发展改革委关于停征免征和调整部分行政事业性收费有关政策的通知》（财税〔2018〕37 号），财政部税政司，<a href="http://szs.mof.gov.cn/zhengcefabu/201804/t20180416_2868702.htm">http://szs.mof.gov.cn/zhengcefabu/201804/t20180416_2868702.htm</a></li>
+<li>北京市财政局等《关于停征首次申领居民身份证工本费有关事项的通知》（京财综〔2018〕944 号），北京市通州区人民政府，<a href="https://www.bjtzh.gov.cn/bjtz/zwgk/xzsysf/2026052215411955538/index.shtml">https://www.bjtzh.gov.cn/bjtz/zwgk/xzsysf/2026052215411955538/index.shtml</a></li>
+<li>北京市公安局&quot;居民身份证照片标准&quot;热点答复（依据 GA461—2004），<a href="https://gaj.beijing.gov.cn/hudong/rddf/202003/t20200331_1771797.html">https://gaj.beijing.gov.cn/hudong/rddf/202003/t20200331_1771797.html</a></li>
+<li>《国家网络身份认证公共服务管理办法》，国家互联网信息办公室，<a href="https://www.cac.gov.cn/2025-05/23/c_1749711107835487.htm">https://www.cac.gov.cn/2025-05/23/c_1749711107835487.htm</a></li>
+<li>新华社《第二代居民身份证迎来换证高峰 换领身份证，这份指南请收好》（2025 年 7 月 12 日），<a href="https://www.news.cn/politics/20250712/c3c03765e25b4530aed54fbc2755c91f/c.html">https://www.news.cn/politics/20250712/c3c03765e25b4530aed54fbc2755c91f/c.html</a></li>
+<li>《居民身份证异地受理工作十条准则》，霍山县人民政府转发，<a href="https://www.ahhuoshan.gov.cn/public/6598281/31493491.html">https://www.ahhuoshan.gov.cn/public/6598281/31493491.html</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-24</li>
+<li>适用范围与地区差异：适用于中国内地居民身份证业务。异地受理所需证明材料、实际制证时限、邮寄服务、网办范围、临时身份证异地受理，各地执行有差异，以当地公安机关公告为准。</li>
+<li>易变项：换证提前期（3 个月放宽至 6 个月）、全程网办覆盖范围、邮寄资费（M，12 个月内复核）。</li>
+<li>核实记录：<a href="../../sources/B-09.%E6%A0%B8%E5%AE%9E.html">sources/B-09.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="B-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9B%9E%E5%9B%BD%E5%85%A5%E5%A2%83.html"><span class="dir">← 上一篇</span><span class="name">B-08 第一次回国入境</span></a><a class="next" href="../03-%E5%B7%A5%E4%BD%9C%E4%B8%8E%E8%81%8C%E4%B8%9A/C-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%85%A5%E8%81%8C.html"><span class="dir">下一篇 →</span><span class="name">C-01 第一次入职</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

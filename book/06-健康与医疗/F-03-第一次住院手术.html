@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次住院/手术 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 健康与医疗</nav>
+  <h1 class="post-title">第一次住院/手术</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>健康与医疗</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>4 条</b></span><span class="chip ">耗时 <b>1-3天</b></span><span class="chip ">花费 <b>万元级</b></span><span class="chip risk-high">风险 <b>高</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>分机构</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：带齐证件办入院和医保登记，术前禁食禁水听医嘱，签字前问清手术风险和替代方案，出院拿好小结和发票。
+<strong>适用</strong>：第一次住院、做择期手术或日间手术的成年患者和家属。
+<strong>不适用</strong>：急诊抢救、门诊小手术、日间化疗，流程简化。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>入院</strong>：住院证、身份证、医保卡、押金。</li>
+<li><strong>医保登记</strong>：入院后按医院要求时限办，异地先备案。</li>
+<li><strong>陪护</strong>：办陪护证，遵守探视时间。</li>
+<li><strong>术前</strong>：禁食 6–8 小时、禁水 2–4 小时，按麻醉科要求。</li>
+<li><strong>签字</strong>：手术同意书、麻醉同意书，问清风险、替代方案、费用。</li>
+<li><strong>出院</strong>：结算、出院小结、诊断证明、病历复印。</li>
+<li><strong>复查</strong>：按医嘱时间复查，保留所有报告。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 入院材料</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 住院证</li>
+<li><input disabled="" type="checkbox"> 身份证</li>
+<li><input disabled="" type="checkbox"> 医保卡</li>
+<li><input disabled="" type="checkbox"> 银行卡或现金（押金）</li>
+<li><input disabled="" type="checkbox"> 既往病历、检查报告</li>
+<li><input disabled="" type="checkbox"> 用药清单</li>
+<li><input disabled="" type="checkbox"> 过敏史</li>
+</ul>
+<h3>1.2 生活用品</h3>
+<ul>
+<li>换洗衣物、拖鞋、毛巾、牙刷、水杯、吸管。</li>
+<li>纸巾、湿巾、便盆或尿壶（按需）。</li>
+<li>手机、充电器、充电宝。</li>
+<li>陪护人的折叠床或租用。</li>
+</ul>
+<h3>1.3 术前准备</h3>
+<ul>
+<li>按医嘱停药：抗凝药、降糖药等，不自行停。</li>
+<li>备皮、清洁，按护士要求。</li>
+<li>禁食禁水时间严格遵医嘱。</li>
+<li>取下假牙、首饰、隐形眼镜。</li>
+<li>签手术和麻醉同意书，问清风险。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 办入院</h3>
+<ul>
+<li>在哪：住院处。</li>
+<li>做什么：交住院证、身份证、医保卡，交押金。</li>
+<li>看什么：床位、科室、住院号。</li>
+<li>完成标志：拿到住院手环，入住病房。</li>
+</ul>
+<h3>2.2 医保登记</h3>
+<ul>
+<li>在哪：医保窗口或线上。</li>
+<li>做什么：刷医保卡登记，异地就医先备案。</li>
+<li>看什么：报销比例、起付线、自费项目。</li>
+<li>完成标志：医保登记成功。</li>
+</ul>
+<h3>2.3 术前检查</h3>
+<ul>
+<li>抽血、心电图、胸片、B 超等。</li>
+<li>麻醉评估，告知病史和用药。</li>
+<li>完成标志：检查完成，手术排期。</li>
+</ul>
+<h3>2.4 手术当天</h3>
+<ul>
+<li>禁食禁水，换病号服。</li>
+<li>家属在手术等候区。</li>
+<li>术后回病房，监测生命体征。</li>
+<li>完成标志：手术结束，安全返回病房。</li>
+</ul>
+<h3>2.5 术后恢复</h3>
+<ul>
+<li>按医嘱活动、饮食、用药。</li>
+<li>观察伤口、引流、疼痛。</li>
+<li>早期下床，预防血栓。</li>
+<li>完成标志：达到出院标准。</li>
+</ul>
+<h3>2.6 出院</h3>
+<ul>
+<li>医生开出出院医嘱。</li>
+<li>结算费用，打印发票和清单。</li>
+<li>拿出院小结、诊断证明。</li>
+<li>复印病历（如需）。</li>
+<li>完成标志：办理出院，预约复查。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 住院要交多少押金？</h3>
+<p>答：按病种和医院，几千到几万元。医保患者押金通常低于自费患者。</p>
+<h3>Q2 医保怎么报销？</h3>
+<p>答：入院登记医保，出院结算时直接报销，个人承担自付部分。异地就医要先备案。[1]</p>
+<h3>Q3 手术同意书必须本人签吗？</h3>
+<p>答：一般由患者本人签；不能签的由法定代理人或授权委托人签。签字前医生应说明风险。</p>
+<h3>Q4 术前为什么要禁食禁水？</h3>
+<p>答：防止麻醉时呕吐物误吸，具体时间按麻醉科要求，不能自行缩短。</p>
+<h3>Q5 可以指定医生手术吗？</h3>
+<p>答：看医院规定，特需服务可能另收费。急诊由值班医生处理。</p>
+<h3>Q6 术后疼痛怎么办？</h3>
+<p>答：告诉护士，按医嘱用镇痛药。不要硬扛，疼痛影响恢复。</p>
+<h3>Q7 住院要请护工吗？</h3>
+<p>答：看病情和家属时间。护工要选医院认可的正规机构，签合同。</p>
+<h3>Q8 出院后多久复查？</h3>
+<p>答：按出院小结上的时间，一般术后 1–2 周、1 个月、3 个月。</p>
+<h3>Q9 病历能复印吗？</h3>
+<p>答：可以。出院后到病案室申请，带身份证和委托书，按规定收费。</p>
+<h3>Q10 异地就医怎么备案？</h3>
+<p>答：通过国家医保服务平台 App 或参保地医保经办机构备案，选定点医院，出院直接结算。[1]</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>不办医保登记</strong>：出院无法直接结算，报销麻烦。</li>
+<li><strong>异地不备案</strong>：报销比例降低或无法直接结算。</li>
+<li><strong>自行停药</strong>：抗凝药、降压药突然停，手术风险增加。</li>
+<li><strong>偷偷进食</strong>：麻醉误吸风险。</li>
+<li><strong>不看费用清单</strong>：自费项目多，出院才发现。</li>
+<li><strong>轻信“专家飞刀”</strong>：核实资质和收费，走正规流程。</li>
+<li><strong>护工不签合同</strong>：出问题难追责。</li>
+<li><strong>出院不带小结</strong>：复查和报销都要用。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>术后出血</strong>：立即按呼叫铃，叫护士。</li>
+<li><strong>发热、伤口红肿</strong>：报告医生，可能感染。</li>
+<li><strong>呼吸困难、胸痛</strong>：立即呼叫，警惕肺栓塞。</li>
+<li><strong>输液反应</strong>：关输液阀，叫护士。</li>
+<li><strong>费用争议</strong>：核对清单，向医保办或卫健部门投诉。</li>
+<li><strong>医疗纠纷</strong>：封存病历，保留证据，走调解或法律途径。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>押金</td>
+<td>3000–30000 元</td>
+<td>按病种</td>
+</tr>
+<tr>
+<td>手术费</td>
+<td>几千到几万元</td>
+<td>按手术</td>
+</tr>
+<tr>
+<td>住院费</td>
+<td>几百元/天</td>
+<td>按病房</td>
+</tr>
+<tr>
+<td>护工</td>
+<td>200–400 元/天</td>
+<td>可选</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>3–14 天</td>
+<td>按手术</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.nhc.gov.cn">国家卫生健康委员会</a></li>
+<li><a href="https://www.nhsa.gov.cn">国家医保局</a></li>
+<li>国家医保服务平台 App</li>
+<li>当地卫健委医患纠纷调解委员会</li>
+</ul>
+</li>
+<li>相关条目：<a href="F-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%87%AA%E5%B7%B1%E6%8C%82%E5%8F%B7%E7%9C%8B%E7%97%85.html">F-01 第一次自己挂号看病</a>、<a href="F-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8C%BB%E4%BF%9D%E6%8A%A5%E9%94%80.html">F-09 第一次医保报销</a></li>
+<li>可打印清单：<a href="../../checklists/F-03-%E4%BD%8F%E9%99%A2%E6%89%8B%E6%9C%AF-%E5%87%86%E5%A4%87%E6%B8%85%E5%8D%95.html">F-03 住院手术清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《基本医疗卫生与健康促进法》《医疗纠纷预防和处理条例》；Ⅱ 级为医保和医院住院规定。</li>
+<li>主要来源：<ol>
+<li>《医疗纠纷预防和处理条例》，<a href="https://www.nhc.gov.cn">https://www.nhc.gov.cn</a></li>
+<li>国家医保局异地就医直接结算规定，<a href="https://www.nhsa.gov.cn">https://www.nhsa.gov.cn</a></li>
+<li>国家卫健委手术安全核查制度，<a href="https://www.nhc.gov.cn">https://www.nhc.gov.cn</a></li>
+<li>医疗机构病历管理规定，<a href="https://www.nhc.gov.cn">https://www.nhc.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地医院住院和手术。押金、报销比例分医院和地区。</li>
+<li>易变项：医保政策、医院流程（M）。</li>
+<li>核实记录：<a href="../../sources/F-03.%E6%A0%B8%E5%AE%9E.html">sources/F-03.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="F-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%93%E6%A3%80.html"><span class="dir">← 上一篇</span><span class="name">F-02 第一次体检</span></a><a class="next" href="F-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9C%8B%E7%89%99.html"><span class="dir">下一篇 →</span><span class="name">F-04 第一次看牙</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

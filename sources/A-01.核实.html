@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>A-01 第一次坐飞机 · 核实记录 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">A-01 第一次坐飞机 · 核实记录</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">一、逐条核实表</a><a href="#sec-1">二、未确定事项</a><a href="#sec-2">三、争议与差异</a><a href="#sec-3">四、调研问题清单</a></nav>
+  <main class="content">
+
+<ul>
+<li>核实人：项目组</li>
+<li>核实日期：2026-10-23</li>
+<li>对应版本：v1.0</li>
+<li>适用范围：中国内地出发的国内航班</li>
+<li>当前状态：已核实</li>
+</ul>
+<h2 id="sec-0">一、逐条核实表</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>正文位置</th>
+<th>文中说法</th>
+<th>依据等级</th>
+<th>来源（机构 + 标题 + 文号）</th>
+<th>原文摘录</th>
+<th>URL</th>
+<th>访问日期</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>0、1.4</td>
+<td>国内航班通常建议提前 2 小时到机场</td>
+<td>Ⅱ+Ⅲ</td>
+<td>民航局《航空旅行常识·办理乘机手续时间》</td>
+<td>“各机场、航站楼……截止办理乘机手续的时间是不同的”</td>
+<td><a href="https://www.caac.gov.cn/INDEX/HLFW/HKLXCS/202303/t20230316_217602.html">https://www.caac.gov.cn/INDEX/HLFW/HKLXCS/202303/t20230316_217602.html</a></td>
+<td>2026-10-23</td>
+<td>已核实（2 小时为通行建议）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0、2.2、Q8</td>
+<td>值机截止由承运人规定；误机按承运人/非承运人原因处理</td>
+<td>Ⅰ</td>
+<td>《公共航空运输旅客服务管理规定》第 29、34 条，交通运输部令 2021 年第 3 号</td>
+<td>“旅客在承运人……停止办理乘机登记手续前……办理”</td>
+<td><a href="https://www.gov.cn/zhengce/2021-03/03/content_5711514.htm">https://www.gov.cn/zhengce/2021-03/03/content_5711514.htm</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0、2.4</td>
+<td>国航首都机场 T3 值机截止 45 分钟，登机口 15 分钟关闭</td>
+<td>Ⅱ</td>
+<td>国航首都机场航站楼公告</td>
+<td>公告列明 T3 值机截止和登机口关闭时间</td>
+<td><a href="https://www.airchina.com.cn/zh-CN/content/c/2024-03-12/17408.shtml">https://www.airchina.com.cn/zh-CN/content/c/2024-03-12/17408.shtml</a></td>
+<td>2026-10-23</td>
+<td>已核实（示例，按航司）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0、2.3、5</td>
+<td>有效乘机证件种类；安检流程；暂存不超过 30 天</td>
+<td>Ⅰ</td>
+<td>《民用航空安全检查规则》第 29、31、32、37、38、41 条，交通运输部令 2016 年第 76 号</td>
+<td>“安全检查包括证件检查、人身检查、随身行李物品检查、托运行李检查等”</td>
+<td><a href="http://xxgk.mot.gov.cn/gz/202112/t20211227_3633450.html">http://xxgk.mot.gov.cn/gz/202112/t20211227_3633450.html</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0、1.2、Q3、Q4</td>
+<td>充电宝禁止托运；100Wh/160Wh 分档；液体和化妆品限制</td>
+<td>Ⅰ</td>
+<td>《民航旅客限制随身携带或托运物品目录》</td>
+<td>“充电宝、锂电池禁止作为行李托运……额定能量小于或等于100Wh”</td>
+<td><a href="http://www.caac.gov.cn/PHONE/XXGK_17/XXGK/TZTG/201612/P020161213519957158902.pdf">http://www.caac.gov.cn/PHONE/XXGK_17/XXGK/TZTG/201612/P020161213519957158902.pdf</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0、1.2、4</td>
+<td>2025-06-28 起境内航班禁带无 3C 标识、标识不清、被召回批次充电宝</td>
+<td>Ⅰ</td>
+<td>民航局《禁止旅客携带无3C标识及被召回的充电宝乘坐境内航班》（2025-06-26）</td>
+<td>“自6月28日起禁止旅客携带没有3C标识、3C标识不清晰、被召回型号或批次的充电宝乘坐境内航班”</td>
+<td><a href="http://www.caac.gov.cn/XWZX/MHYW/202506/t20250626_227805.html">http://www.caac.gov.cn/XWZX/MHYW/202506/t20250626_227805.html</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>7</td>
+<td>1.2、Q5</td>
+<td>国航国内计重航线免费行李额 40/30/20 千克</td>
+<td>Ⅱ</td>
+<td>国航行李运输页面</td>
+<td>“头等舱客票40千克，公务舱客票30千克，经济舱客票20千克”</td>
+<td><a href="https://www.airchina.com.cn/zh-CN/content/travel_info/preparing/conditions/contact_us/baggage_transport/">https://www.airchina.com.cn/zh-CN/content/travel_info/preparing/conditions/contact_us/baggage_transport/</a></td>
+<td>2026-10-23</td>
+<td>已核实（示例，按航司）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Q9、5</td>
+<td>延误/取消的餐食住宿责任；经停地、备降不论原因均提供</td>
+<td>Ⅰ</td>
+<td>《航班正常管理规定》第 27、29 条，交通运输部令 2016 年第 56 号</td>
+<td>“由于天气……等非承运人原因……协助旅客安排餐食和住宿，费用由旅客自理”</td>
+<td><a href="https://www.gov.cn/zhengce/2016-05/20/content_5726194.htm">https://www.gov.cn/zhengce/2016-05/20/content_5726194.htm</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>9</td>
+<td>0、7</td>
+<td>12326 是监督电话，先向航司或机场投诉</td>
+<td>Ⅱ</td>
+<td>民航局 12326 开通新闻（2019-03-15）</td>
+<td>“‘12326’电话不是航空公司和机场投诉电话的替代者，而是监督者”</td>
+<td><a href="http://www.caac.gov.cn/PHONE/XWZX/MHYW/201903/t20190315_195176.html">http://www.caac.gov.cn/PHONE/XWZX/MHYW/201903/t20190315_195176.html</a></td>
+<td>2026-10-23</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Q10、5</td>
+<td>行李损坏 7 日内、延误 21 日内提出异议；赔偿限额另定</td>
+<td>Ⅰ</td>
+<td>《中华人民共和国民用航空法》第 142 条（2025 年修订，2026-07-01 施行）</td>
+<td>“托运行李发生损失的……七日内提出……延误……二十一日内”</td>
+<td><a href="http://www.npc.gov.cn/npc/c2/c30834/202512/t20251227_450737.html">http://www.npc.gov.cn/npc/c2/c30834/202512/t20251227_450737.html</a></td>
+<td>2026-10-23</td>
+<td>已核实（时限确定，限额未定）</td>
+</tr>
+<tr>
+<td>11</td>
+<td>8</td>
+<td>新《民航法》施行后的赔偿制度调整</td>
+<td>Ⅱ</td>
+<td>民航局 2026-05-08 解读</td>
+<td>解读提到国内航空运输赔偿责任限额调整，正式限额公告未查到</td>
+<td><a href="http://www.caac.gov.cn/XXGK/XXGK/ZCFBJD/202605/t20260508_230782.html">http://www.caac.gov.cn/XXGK/XXGK/ZCFBJD/202605/t20260508_230782.html</a></td>
+<td>2026-10-23</td>
+<td>部分核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-1">二、未确定事项</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>内容</th>
+<th>卡在哪</th>
+<th>正文处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>“提前 2 小时”</td>
+<td>无民航局统一文件，属通行建议</td>
+<td>写成“通常建议”，并注明以机场和航司为准</td>
+</tr>
+<tr>
+<td>2</td>
+<td>行李赔偿具体限额</td>
+<td>新《民航法》施行后限额公告未查到</td>
+<td>不写具体金额，只写时限和“以承运人及民航局最新规定为准”</td>
+</tr>
+<tr>
+<td>3</td>
+<td>喷雾是否单独受限</td>
+<td>目录未单列，按液态物品执行</td>
+<td>写“按液态物品规则，各机场尺度有差异”</td>
+</tr>
+<tr>
+<td>4</td>
+<td>完全丢失行李的异议起算点</td>
+<td>《民航法》第 142 条未单列</td>
+<td>只写损坏 7 日、延误 21 日，丢失按承运人条件</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-2">三、争议与差异</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>说法</th>
+<th>冲突来源</th>
+<th>采用口径</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>免费行李额 40/30/20 是否全国统一</td>
+<td>旧民航局指南与各航司运输总条件</td>
+<td>写“以所购航司为准”，国航数字仅作示例</td>
+<td>该标准已非全国统一强制规定</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-3">四、调研问题清单</h2>
+<ol>
+<li>第一次坐飞机的人，最怕哪五件事？</li>
+<li>哪些规定全国统一，哪些由机场或航司自定？</li>
+<li>哪些环节最容易排错队、走错楼？</li>
+<li>误机、延误、行李丢失，第一步分别找谁？</li>
+<li>哪些说法是旧攻略里常见但已经过时的？</li>
+</ol>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

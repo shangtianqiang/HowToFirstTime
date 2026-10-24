@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>F-12 第一次拔智齿 · 核实记录 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">F-12 第一次拔智齿 · 核实记录</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">关键核实项</a><a href="#sec-1">原文摘录</a><a href="#sec-2">未确定事项与处理</a><a href="#sec-3">争议与差异</a><a href="#sec-4">核实结论</a></nav>
+  <main class="content">
+
+<ul>
+<li>核实人：项目组</li>
+<li>核实日期：2026-10-24</li>
+<li>对应版本：v1.0</li>
+<li>当前状态：已核实</li>
+<li>以下来源访问日期均为 2026-10-24。</li>
+</ul>
+<h2 id="sec-0">关键核实项</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>文中说法</th>
+<th>依据等级</th>
+<th>来源</th>
+<th>URL</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>拔智齿流程含拍片、局麻、切开牙龈、缝合、咬棉球止血</td>
+<td>Ⅱ</td>
+<td>贵州医科大学口腔医学院（附属口腔医院口腔颌面外科科普）</td>
+<td><a href="https://kqx.gmc.edu.cn/info/1222/11905.htm">https://kqx.gmc.edu.cn/info/1222/11905.htm</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>2</td>
+<td>轻咬棉球 30–40 分钟，复杂拔牙可延长到 1 小时</td>
+<td>Ⅱ</td>
+<td>温州医科大学附属口腔医院、四川大学华西口腔医院</td>
+<td><a href="https://www.dentist.ac.cn/show/31/3689.html">https://www.dentist.ac.cn/show/31/3689.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>3</td>
+<td>拔牙 2 小时后进食温凉软食、对侧咀嚼；当天不刷牙不漱口</td>
+<td>Ⅱ</td>
+<td>贵州医科大学口腔医学院</td>
+<td><a href="https://kqx.gmc.edu.cn/info/1222/11905.htm">https://kqx.gmc.edu.cn/info/1222/11905.htm</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>4</td>
+<td>24 小时后方可刷牙漱口；24–48 小时口水带血丝属正常</td>
+<td>Ⅱ</td>
+<td>温州医科大学附属口腔医院（中华口腔医学会科普平台）、华西口腔医院</td>
+<td><a href="https://www.dentist.ac.cn/show/31/3689.html">https://www.dentist.ac.cn/show/31/3689.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>5</td>
+<td>术后 24 小时内冰敷、每次约 15 分钟；24 小时内不热敷</td>
+<td>Ⅱ</td>
+<td>四川大学华西口腔医院、贵州医科大学口腔医学院</td>
+<td><a href="https://www.hxkq.org/html/news/articles/7668.html">https://www.hxkq.org/html/news/articles/7668.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>6</td>
+<td>术后 3 天内禁烟酒辛辣；7–10 天拆线；72 小时内避免剧烈运动</td>
+<td>Ⅱ</td>
+<td>贵州医科大学口腔医学院、四川大学华西口腔医院</td>
+<td><a href="https://kqx.gmc.edu.cn/info/1222/11905.htm">https://kqx.gmc.edu.cn/info/1222/11905.htm</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>7</td>
+<td>冠周炎是拔智齿最常见原因；急性期先消炎，慢性期后评估拔除；一般一次拔单侧一颗或同侧上下两颗</td>
+<td>Ⅱ</td>
+<td>四川大学华西口腔医院</td>
+<td><a href="https://www.hxkq.org/Html/Mobile/Articles/14068.html">https://www.hxkq.org/Html/Mobile/Articles/14068.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>8</td>
+<td>干槽症疼痛典型在术后第二或第三天出现，可放射至耳部；多见于拔除下颌磨牙（通常是智齿），吸烟者更常见</td>
+<td>Ⅲ</td>
+<td>MSD 诊疗手册专业版《拔牙后的并发症》</td>
+<td><a href="https://www.msdmanuals.cn/professional/dental-disorders/dental-emergencies/postextraction-problems">https://www.msdmanuals.cn/professional/dental-disorders/dental-emergencies/postextraction-problems</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>9</td>
+<td>术前告知基础疾病与抗凝药；急性炎症先治疗再拔牙；女性避开月经期；不空腹拔牙；不舔不吸创口、不用吸管</td>
+<td>Ⅱ</td>
+<td>驻马店市中医院健康教育栏目</td>
+<td><a href="https://www.zmdszyy.cn/contents/135/16182.html">https://www.zmdszyy.cn/contents/135/16182.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>10</td>
+<td>治疗性牙科费用（拔牙、根管治疗、牙周牙龈治疗）纳入医保统筹基金支付；种植牙、烤瓷修复、美白不予支付</td>
+<td>Ⅱ</td>
+<td>福建省医疗保障局</td>
+<td><a href="https://ybj.fujian.gov.cn/ztzl/jjjc/djqzpb/201907/t20190703_4912292.htm">https://ybj.fujian.gov.cn/ztzl/jjjc/djqzpb/201907/t20190703_4912292.htm</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>11</td>
+<td>智齿因空间不足异位萌出、阻生；发炎要由医生处理；备孕前处理有问题的智齿</td>
+<td>Ⅱ</td>
+<td>中南大学湘雅口腔医院</td>
+<td><a href="https://xykqyy.csu.edu.cn/info/1012/6775.htm">https://xykqyy.csu.edu.cn/info/1012/6775.htm</a></td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-1">原文摘录</h2>
+<p>以下文字均为 2026-10-24 访问页面时抓取的原文。</p>
+<p><strong>1. 贵州医科大学口腔医学院《智齿拔除跟我这样做，从“齿”不痛》（2024-05-27，来源：口腔颌面外科）</strong></p>
+<ul>
+<li>「拔牙后轻咬住棉球30-40分钟方可吐出，过早吐出容易导致出血。」</li>
+<li>「拔牙2小时后方可进食，以软食偏冷为主，并尽量用对侧咀嚼。」</li>
+<li>「拔除智齿当天不能漱口和刷牙，以防止出血」「请不要吮吸创口，不要吐口水否则会影响伤口愈合」</li>
+<li>「可在局部冰敷，以减轻肿胀。24小时内不可热敷。」</li>
+<li>「麻醉一般在2小时左右消除」「应在拔牙后7-10天到医院拆除缝线」「拔牙后3天内禁烟、酒及辛辣刺激性食物」</li>
+<li>流程描述：「拍片-局麻-检查麻醉效果-切开牙龈」及「拔牙创搔刮复位-进行缝合—咬棉球止血」</li>
+<li>「如果疼痛加重迹象，应到医院就诊。」</li>
+</ul>
+<p><strong>2. 温州医科大学附属口腔医院《这些注意事项，拔牙后必看！》（2019-12-25，刊于 dentist.ac.cn 口腔健康栏目）</strong></p>
+<ul>
+<li>「拔牙后棉球咬40分钟左右即可吐出，复杂拔牙可将时间延长至1小时。」</li>
+<li>「患者在拔牙后2小时方可进食。」</li>
+<li>「在24小时后方可刷牙漱口！」</li>
+<li>「24-48小时内，口水中带血或嘴里有血腥味是正常现象，不必紧张！」</li>
+<li>「吸烟、饮酒对伤口愈合都有不好的影响。」</li>
+</ul>
+<p><strong>3. 四川大学华西口腔医院《拔牙之后的故事，了解一下》（2018-11-15，牙槽外科）</strong></p>
+<ul>
+<li>「拔牙后30-60分钟之后，将纱球吐出」</li>
+<li>「拔牙24小时内不要刷牙不要漱口。」</li>
+<li>「术后24小时内冰敷可以帮助局部血管收缩，每1小时冰敷15分钟」</li>
+<li>「取出纱球后2、3天内，口水里面可能会带点『血丝』，这是正常现象。」</li>
+<li>「需要放置备用纱球继续压迫止血30-60分钟，如止血无效，则需前往医院止血」</li>
+<li>「术后7天内要避免吸烟」</li>
+<li>「目前没有任何证据说明『拔牙可以瘦脸』」</li>
+</ul>
+<p><strong>4. 四川大学华西口腔医院《不顾大局的智齿又发炎了怎么办？》（2023-08-23）</strong></p>
+<ul>
+<li>「冠周炎是拔除智齿最常见的原因，原则上只要有发炎风险都会建议拔除」（并提到一年发作超过 2 次以上者更应拔除）</li>
+<li>「在急性期应该以消炎、镇痛、切开引流、增强全身抵抗力的治疗为主。当炎症转入慢性期后，如果满足拔牙指征就要尽早拔除，以防感染再次发生。」</li>
+<li>「一般情况下可以一次性拔除单侧的一颗或同侧上下两颗智齿，特殊条件下可选择一次性拔除四颗智齿。」</li>
+</ul>
+<p><strong>5. 驻马店市中医院《拔牙全攻略：术前准备与术后护理指南》（2026-05-22）</strong></p>
+<ul>
+<li>「若有高血压、糖尿病、心脏病等基础疾病，或长期服用抗凝药、激素药，需携带近期体检报告和病历告知医生」</li>
+<li>「近期有感冒、发烧或口腔急性炎症（如智齿冠周炎），需先治疗炎症再拔牙」</li>
+<li>「女性需避开月经期及前后3-5天」</li>
+<li>「不要空腹拔牙，术前1-2小时可吃清淡易消化食物（如粥、面条），避免低血糖引发术中头晕」</li>
+<li>「避免用舌头舔、吸吮创口，不用力吐口水、用吸管喝水，防止负压破坏血凝块引发出血或干槽症」</li>
+</ul>
+<p><strong>6. MSD 诊疗手册专业版《拔牙后的并发症》</strong></p>
+<ul>
+<li>「拔牙后牙槽骨炎的疼痛从血凝块溶解的牙槽窝裸露骨面发出」</li>
+<li>「典型情况为，手术后第二或第三天开始疼痛」（疼痛可「放射至耳部」）</li>
+<li>「它在吸烟或使用口服避孕药的人中更为常见，主要发生在拔除下颌磨牙后（通常是智齿）」</li>
+</ul>
+<p><strong>7. 中南大学湘雅口腔医院《“智齿发炎“该怎么办？》（2019-06-13）</strong></p>
+<ul>
+<li>「智齿往往会因为空间不足而造成异位萌出、阻生」</li>
+<li>「一定要来医院！让医生给你处理！」</li>
+<li>备孕提醒：「一定要在怀孕前看看牙医，把位置不良或者龋坏的智齿拔了」</li>
+</ul>
+<p><strong>8. 福建省医疗保障局《看牙，哪些费用可纳入医保报销？》（2019-06-19）</strong></p>
+<ul>
+<li>「治疗性质的牙科治疗，比如拔牙、根管治疗以及治疗牙周病、牙龈炎等发生的治疗性费用纳入医保统筹基金支付」</li>
+<li>「如果是种植牙、烤瓷牙修复、牙齿美白等医疗美容修复费用，医保统筹基金不予支付」</li>
+</ul>
+<h2 id="sec-2">未确定事项与处理</h2>
+<ol>
+<li>各机构收费区间（挂号、拍片、拔牙、药费）未抓到官方价格公示原文，正文写常见区间并注明「以机构公示为准」。</li>
+<li>医保报销比例、门诊统筹起付线分地区。正文只写「治疗性项目纳入统筹基金支付」的省级医保局口径，报销细节转 F-09。</li>
+<li>「当天别自己开车」「安排陪同」为通行建议，未抓到官方强制规定，按 Ⅲ 级写法处理，注明以医嘱为准。</li>
+<li>冰敷窗口期存在差异：贵州医科大学口径为 24 小时内、华西口腔口径为术后 24 小时内每 1 小时冰敷 15 分钟；个别宣教提到 48 小时。正文采用 24 小时口径，并注明以医嘱为准。</li>
+<li>拔牙后恢复刷牙的确切天数、温盐水漱口浓度各院宣教不完全一致，正文只写「24 小时后轻刷避开创口」的共识口径。</li>
+</ol>
+<h2 id="sec-3">争议与差异</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>说法</th>
+<th>冲突来源</th>
+<th>采用口径</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>咬棉球时长</td>
+<td>贵州医大 30–40 分钟；温医大 40 分钟左右、复杂可至 1 小时；华西 30–60 分钟</td>
+<td>写 30–40 分钟，复杂拔牙可到 1 小时</td>
+<td>多方区间重叠，取交集并保留复杂牙上限</td>
+</tr>
+<tr>
+<td>2</td>
+<td>恢复期禁烟时长</td>
+<td>贵州医大 3 天内禁烟酒；华西 术后 7 天内避免吸烟</td>
+<td>3 天内不烟酒，恢复期越久越好</td>
+<td>取多方一致下限，正文避坑不再写死上限</td>
+</tr>
+<tr>
+<td>3</td>
+<td>干槽症疼痛出现时间</td>
+<td>MSD「第二或第三天」； Mayo 等英文来源「1–3 天」</td>
+<td>术后 2–3 天疼痛不减反重</td>
+<td>与 MSD 中文口径一致，只写信号不诊断</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-4">核实结论</h2>
+<p>关键事实核实成功 10 项以上，正文无「待核实」项，status 记为「已核实」。复核周期 24 个月（S）。</p>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

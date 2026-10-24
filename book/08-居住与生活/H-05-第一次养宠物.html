@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次养宠物 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 居住与生活</nav>
+  <h1 class="post-title">第一次养宠物</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>居住与生活</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>4 条</b></span><span class="chip ">耗时 <b>长期</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>分市</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先确认住所能否养、家人是否过敏，犬只要打狂犬疫苗并登记，出门牵绳，伤人主人要担责。
+<strong>适用</strong>：第一次养猫、狗等伴侣动物的成年人和家庭。
+<strong>不适用</strong>：养殖场、救助机构、异宠，管理和防疫要求不同。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>先确认</strong>：房东是否允许、家人是否过敏、每天有没有时间。</li>
+<li><strong>犬只</strong>：打狂犬疫苗、办养犬登记、出门牵绳、戴犬牌。</li>
+<li><strong>猫</strong>：疫苗、驱虫、猫砂盆、封窗。</li>
+<li><strong>医院</strong>：选有动物诊疗许可证的宠物医院。</li>
+<li><strong>责任</strong>：宠物伤人，主人承担侵权责任。</li>
+<li><strong>禁养</strong>：当地禁养犬种不养。</li>
+<li><strong>费用</strong>：食物、疫苗、驱虫、看病，每年几千元。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 养前评估</h3>
+<ul>
+<li>房东和物业是否允许养宠。</li>
+<li>家人是否过敏、是否怕动物。</li>
+<li>每天能否遛狗 1–2 小时。</li>
+<li>出差、旅行时谁照顾。</li>
+<li>预算：每年几千到上万元。</li>
+</ul>
+<h3>1.2 选择</h3>
+<ul>
+<li>领养优先，正规救助机构。</li>
+<li>买宠物看繁殖场资质，不买来路不明的幼犬。</li>
+<li>幼犬要看过疫苗记录和母犬。</li>
+<li>不冲动购买“网红品种”。</li>
+</ul>
+<h3>1.3 用品与证件</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 食盆、水盆</li>
+<li><input disabled="" type="checkbox"> 狗粮或猫粮</li>
+<li><input disabled="" type="checkbox"> 牵引绳、胸背带</li>
+<li><input disabled="" type="checkbox"> 猫砂盆、猫砂</li>
+<li><input disabled="" type="checkbox"> 航空箱或外出包</li>
+<li><input disabled="" type="checkbox"> 疫苗本</li>
+<li><input disabled="" type="checkbox"> 养犬登记证（犬只）</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 疫苗与驱虫</h3>
+<ul>
+<li>幼犬幼猫按兽医方案接种疫苗。</li>
+<li>犬只每年打狂犬疫苗。</li>
+<li>体内外驱虫按体重和季节。</li>
+<li>完成标志：疫苗本记录完整。</li>
+</ul>
+<h3>2.2 登记</h3>
+<ul>
+<li>在哪：当地派出所、城管或指定平台。</li>
+<li>做什么：提交身份证、居住证明、疫苗证明，办理养犬登记。</li>
+<li>看什么：禁养犬种目录、登记费用。</li>
+<li>完成标志：拿到犬牌或登记证。</li>
+</ul>
+<h3>2.3 日常照顾</h3>
+<ul>
+<li>定时喂食，不喂人吃的剩菜。</li>
+<li>每天遛狗，牵绳，清理粪便。</li>
+<li>猫砂盆每天清理。</li>
+<li>完成标志：形成规律。</li>
+</ul>
+<h3>2.4 就医</h3>
+<ul>
+<li>选有动物诊疗许可证的医院。</li>
+<li>绝育、洗牙、体检按兽医建议。</li>
+<li>保留病历和发票。</li>
+<li>完成标志：健康档案完整。</li>
+</ul>
+<h3>2.5 出行与寄养</h3>
+<ul>
+<li>出行用航空箱，不把宠物单独留车内。</li>
+<li>寄养选正规机构，看疫苗要求。</li>
+<li>完成标志：安全出行。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 租房能养宠物吗？</h3>
+<p>答：看合同和房东要求。多数合同会写明是否允许，违约可能被要求搬离。</p>
+<h3>Q2 养狗要办证吗？</h3>
+<p>答：多数城市要求养犬登记，具体到派出所、城管或线上平台办理。[1]</p>
+<h3>Q3 狂犬疫苗多久打一次？</h3>
+<p>答：犬只每年接种一次狂犬疫苗，具体按当地动物防疫要求。[2]</p>
+<h3>Q4 遛狗必须牵绳吗？</h3>
+<p>答：要。携带犬只出户应佩戴犬牌并系犬绳，大型犬还要戴嘴套（按地方规定）。[2]</p>
+<h3>Q5 狗咬了人怎么办？</h3>
+<p>答：立即送医，垫付医疗费，保留记录，联系保险公司；主人依法承担侵权责任。[3]</p>
+<h3>Q6 哪些狗不能养？</h3>
+<p>答：各城市有禁养犬种目录，养前查当地规定。</p>
+<h3>Q7 猫要打什么疫苗？</h3>
+<p>答：猫三联和狂犬疫苗，按兽医方案。</p>
+<h3>Q8 宠物看病贵吗？</h3>
+<p>答：常见病几百到几千元，手术更贵。建议买宠物医疗险。</p>
+<h3>Q9 可以遗弃宠物吗？</h3>
+<p>答：不可以。遗弃可能违法，也会造成社会问题。养不了要找人领养。</p>
+<h3>Q10 宠物扰民怎么办？</h3>
+<p>答：训练减少吠叫，避开休息时间遛狗，和邻居沟通，必要时加隔音。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>冲动养宠</strong>：时间、费用、搬家都可能弃养。</li>
+<li><strong>不牵绳</strong>：伤人、被车撞、走失。</li>
+<li><strong>不办登记</strong>：被举报罚款。</li>
+<li><strong>买病宠</strong>：星期狗，治病花更多。</li>
+<li><strong>不封窗</strong>：猫坠楼。</li>
+<li><strong>喂人食</strong>：巧克力、洋葱、葡萄对宠物有毒。</li>
+<li><strong>不打疫苗</strong>：狂犬病风险。</li>
+<li><strong>把宠物留车内</strong>：高温窒息。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>被咬伤</strong>：立即冲洗伤口 15 分钟，就医打狂犬疫苗，报备。</li>
+<li><strong>宠物误食</strong>：带包装就医，不要自行催吐。</li>
+<li><strong>走失</strong>：在小区群、平台发布，贴寻宠启事，查监控。</li>
+<li><strong>宠物伤人</strong>：送医、垫付、保留记录，协商或走法律。</li>
+<li><strong>火灾、地震</strong>：先保证人的安全，再救宠物。</li>
+<li><strong>遗弃纠纷</strong>：联系救助机构，不随意丢弃。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>领养或购买</td>
+<td>0–几千元</td>
+<td>领养便宜</td>
+</tr>
+<tr>
+<td>食物</td>
+<td>100–500 元/月</td>
+<td>按体型</td>
+</tr>
+<tr>
+<td>疫苗驱虫</td>
+<td>几百元/年</td>
+<td>必选</td>
+</tr>
+<tr>
+<td>看病</td>
+<td>几百到几千元</td>
+<td>按病情</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>每天 1–2 小时</td>
+<td>遛狗和清理</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.moa.gov.cn">农业农村部</a></li>
+<li><a href="https://www.mps.gov.cn">公安部</a></li>
+<li>当地城管、派出所</li>
+<li>有资质的宠物医院</li>
+</ul>
+</li>
+<li>相关条目：<a href="H-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%8B%AC%E5%B1%85.html">H-01 第一次独居</a>、<a href="E-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%85%A7%E9%A1%BE%E5%B9%B4%E8%BF%88%E7%88%B6%E6%AF%8D.html">E-09 第一次照顾年迈父母</a></li>
+<li>可打印清单：<a href="../../checklists/H-05-%E5%85%BB%E5%AE%A0%E7%89%A9-%E5%87%86%E5%A4%87%E6%B8%85%E5%8D%95.html">H-05 养宠物清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《动物防疫法》《民法典》侵权责任编；Ⅱ 级为地方养犬管理规定。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国动物防疫法》第三十条，<a href="https://www.moa.gov.cn">https://www.moa.gov.cn</a></li>
+<li>《中华人民共和国民法典》第一千二百四十五条至一千二百四十七条，<a href="https://www.court.gov.cn">https://www.court.gov.cn</a></li>
+<li>农业农村部犬只防疫规定，<a href="https://www.moa.gov.cn">https://www.moa.gov.cn</a></li>
+<li>地方养犬管理条例（以当地公安、城管公示为准）</li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地城市养宠。禁养犬种和登记流程分城市。</li>
+<li>易变项：地方养犬规定、疫苗要求（M）。</li>
+<li>核实记录：<a href="../../sources/H-05.%E6%A0%B8%E5%AE%9E.html">sources/H-05.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="H-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%BC%80%E9%80%9A%E6%B0%B4%E7%94%B5%E7%87%83%E6%B0%94%E5%AE%BD%E5%B8%A6.html"><span class="dir">← 上一篇</span><span class="name">H-04 第一次开通水电燃气宽带</span></a><a class="next" href="H-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%A4%84%E7%90%86%E9%82%BB%E9%87%8C%E7%BA%A0%E7%BA%B7.html"><span class="dir">下一篇 →</span><span class="name">H-06 第一次处理邻里纠纷</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -20,7 +20,7 @@ const items = entries.map((entry) => ({
   source_count: entry.fm.source_count,
   related: entry.fm.related,
   summary: entry.summary,
-  path: entry.relativePath,
+  path: entry.relativePath.replace(/\.md$/, '.html'),
 }));
 
 items.sort((a, b) => String(a.id).localeCompare(String(b.id)));

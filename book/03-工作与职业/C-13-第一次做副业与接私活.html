@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次做副业/接私活 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 工作与职业</nav>
+  <h1 class="post-title">第一次做副业/接私活</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>工作与职业</b></span><span class="chip ">最近核实 <b>2026-10-24</b></span><span class="chip ">来源 <b>7 条</b></span><span class="chip ">耗时 <b>长期</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>稳定</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：接活前先查劳动合同和公司制度，关键条款落在书面，留齐记录，依法报税。
+<strong>适用</strong>：有主业、想用业余时间接私活或做副业挣收入的上班族。
+<strong>不适用</strong>：打算注册公司或个体户经营的，看 <a href="C-11-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%BC%80%E5%85%AC%E5%8F%B8%E4%B8%AA%E4%BD%93%E6%88%B7.html">C-11 第一次开公司/个体户</a>；已与公司发生劳动争议的，看 <a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%B3%E5%8A%A8%E4%BB%B2%E8%A3%81%E6%89%93%E5%AE%98%E5%8F%B8.html">G-10 第一次劳动仲裁/打官司</a>。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>接活前</strong>：先读劳动合同、保密协议、竞业限制协议和员工手册，确认公司对兼职的规定。</li>
+<li><strong>选活</strong>：不与主业同客户、同业务，不用公司设备和资料，不占本职工作时间。</li>
+<li><strong>报价</strong>：书面写清工作范围、交付标准、修改次数和付款节点。</li>
+<li><strong>收款</strong>：大单先收预付款，尾款到账再交源文件，转账备注写清用途。</li>
+<li><strong>报税</strong>：劳务报酬由支付方依法预扣预缴，次年 3 月 1 日至 6 月 30 日并入综合所得汇算，多退少补。</li>
+<li><strong>卡住了找谁</strong>：公司制度问题问 HR，劳动关系问题打 12333，税务问题打 12366。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 接第一单前先查什么</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 重读劳动合同：重点看兼职限制、保密条款、知识产权归属、竞业限制（约定离职后一段时间不得到竞争单位任职）。</li>
+<li><input disabled="" type="checkbox"> 翻员工手册或规章制度里关于兼职的条款。</li>
+<li><input disabled="" type="checkbox"> 签过保密协议、竞业限制协议的，把禁做的事项列成清单。</li>
+<li><input disabled="" type="checkbox"> 《劳动合同法》第二十四条规定，竞业限制期限不得超过二年。在限期内避开协议约定的行业和地域。</li>
+<li><input disabled="" type="checkbox"> 评估时间：每周能稳定投入多少小时，别挤占本职产出。</li>
+<li><input disabled="" type="checkbox"> 公务员、部分国企和金融从业者另有兼职申报规定，以所在单位和行业监管要求为准。</li>
+</ul>
+<h3>1.2 选什么类型的副业</h3>
+<ul>
+<li>技能型：设计、翻译、编程、写作、剪辑、咨询。单价高，靠作品集获客。</li>
+<li>时间型：周末兼职、跑腿、代驾。门槛低，单价也低。</li>
+<li>内容型：自媒体、付费专栏。启动成本低，回报周期长。</li>
+<li>挑选原则：与主业距离越远越稳，需要大额垫资的先跳过。</li>
+<li>与主业同行业的单子通常风险最高，特别是签了竞业限制协议的人。</li>
+</ul>
+<h3>1.3 报价与工具准备</h3>
+<ul>
+<li>想清楚计价方式：按小时、按件，还是按项目一口价。</li>
+<li>参考价：问同行，看平台公开成交价，报低不如报准。</li>
+<li>准备收款账户、一份简易书面协议模板、一张需求确认清单。</li>
+<li>只用自己的电脑、自己的账号处理私活，公司资产不碰。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 找活与筛选客户</h3>
+<ul>
+<li>在哪：熟人介绍、同行转介、自由职业平台、垂直社区。</li>
+<li>做什么：看清需求描述，问清预算区间和交付时间。</li>
+<li>看什么：平台的服务费率通常在几个百分点到两成之间，各平台不同，以平台公示规则为准。</li>
+<li>慎重接：说不清需求、不肯书面确认、要求先垫大额资金的客户。</li>
+<li>完成标志：锁定一个需求明确、能对上账的客户。</li>
+</ul>
+<h3>2.2 谈需求与报价</h3>
+<ul>
+<li>做什么：确认工作范围、交付物清单、修改次数、交付时间。</li>
+<li>说什么：口头谈完，把结论发一条文字消息让对方确认。</li>
+<li>看什么：对方是否愿意书面确认。只肯口头承诺的，风险自担。</li>
+<li>完成标志：双方对「做什么、交什么、何时交、给多少」有一致的文字记录。</li>
+</ul>
+<h3>2.3 签书面协议</h3>
+<ul>
+<li>拿什么签：劳务合同、承揽合同或简易书面协议都行，关键是内容完整。</li>
+<li>写什么：双方信息、工作内容、交付标准、总价与付款节点（比如预付 30%、验收后付尾款）、修改次数、知识产权归属、保密要求。</li>
+<li>看什么：甲方加的排他条款、违约金条款，看清范围和期限再签。</li>
+<li>完成标志：双方签字或确认，各留一份。</li>
+</ul>
+<h3>2.4 交付与收款</h3>
+<ul>
+<li>做什么：按约定时间交付，保留文件、邮件、聊天记录等交付凭证。</li>
+<li>看什么：对照合同里的验收标准逐条核对，别凭感觉算交付。</li>
+<li>多数人这样做：尾款到账再交源文件或授权，先交可预览的版本。</li>
+<li>说什么：转账时备注「某项目尾款」，方便对账。</li>
+<li>完成标志：尾款到账，项目归档。</li>
+</ul>
+<h3>2.5 记账与报税</h3>
+<ul>
+<li>做什么：记录每笔收入，写明日期、客户、金额、税款。</li>
+<li>看什么：支付方（公司或平台）依法按劳务报酬预扣预缴个税，收款时看清是否已扣。</li>
+<li>做什么：次年 3 月 1 日至 6 月 30 日，在个人所得税 App 办理年度汇算，多退少补。</li>
+<li>完成标志：汇算完成，记录留存备查。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 公司能禁止我下班后兼职吗？</h3>
+<p>答：法律没有一刀切禁止兼职。《劳动合同法》第三十九条规定，劳动者同时与其他用人单位建立劳动关系，对完成本单位工作任务造成严重影响，或者经用人单位提出拒不改正的，用人单位可以解除劳动合同。公司制度明确禁止兼职的，违反可能被认定为严重违纪。先读制度再接活。</p>
+<h3>Q2 签了竞业限制协议还能接同行业的私活吗？</h3>
+<p>答：不能想接就接。《劳动合同法》第二十四条规定，竞业限制适用于高级管理人员、高级技术人员和其他负有保密义务的人员，期限不得超过二年。在职期间接同业活也可能违反保密或竞业约定。拿不准就去问 HR 或咨询专业意见。</p>
+<h3>Q3 劳务报酬个税怎么算？</h3>
+<p>答：按《个人所得税扣缴申报管理办法（试行）》，支付方预扣预缴时，每次收入不超过 4000 元的减 800 元费用，超过 4000 元的减 20% 费用，再按预扣率表二（20%–40%）预扣。次年并入综合所得汇算，多退少补。</p>
+<h3>Q4 预扣的税是不是白扣了？</h3>
+<p>答：不是。预扣只是暂扣，汇算时并入全年综合所得按年度税率算总账，多扣的部分按多退少补处理。很多人汇算后能退税。</p>
+<h3>Q5 一单 3000 元，到手多少？</h3>
+<p>答：3000 元减 800 元费用得 2200 元，预扣 2200×20%＝440 元，到手 2560 元。这笔税次年并入综合所得重算，可能退回一部分。</p>
+<h3>Q6 平台抽成一般多少？</h3>
+<p>答：各平台不同，通常在几个百分点到两成之间，提现可能另有手续费。接单前看平台公示的费率规则，以平台为准。</p>
+<h3>Q7 甲方不给尾款怎么办？</h3>
+<p>答：先按合同书面催告并保留记录。协商不成，可以按合同约定的争议解决方式处理，比如调解或起诉。符合条件可申请法律援助，拨打 12348。</p>
+<h3>Q8 客户要发票怎么办？</h3>
+<p>答：个人提供服务，客户要发票时可以到税务机关申请代开。各地流程和口径不同，以当地为准，办之前先打 12366 问清。</p>
+<h3>Q9 副业收入要告诉公司吗？</h3>
+<p>答：法律没有普遍要求员工申报副业。但公务员、部分国企和金融从业者有兼职申报规定，以所在单位制度和行业监管要求为准。不申报不等于可以违反保密和竞业约定。</p>
+<h3>Q10 做副业影响主业社保吗？</h3>
+<p>答：一般不影响。社保跟主业的劳动关系挂钩，主业单位照常为你缴纳。副业如果是劳务关系，通常不产生社保缴费义务。各地执行有差异，以当地社保政策为准。</p>
+<h3>Q11 用公司的电脑和素材做私活行吗？</h3>
+<p>答：不要。公司设备、账号、代码、素材属于公司资源，拿去接私活可能违反保密和知识产权条款，也容易构成违纪。用自己的设备、自己的时间、自己攒的素材。</p>
+<h3>Q12 在公司接触的客户算我的资源吗？</h3>
+<p>答：属于公司商业秘密范畴的客户名单、报价方案，不能带走自用或转卖。你独立开发的新客户才是你的。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>只谈口头价</strong>：口头约定后期容易扯皮。范围、价格、修改次数都落到书面。</li>
+<li><strong>不留底</strong>：交付记录、聊天记录、转账凭证都保存。出了纠纷，这些就是证据。</li>
+<li><strong>先干活后谈钱</strong>：大单先收预付款再开工，预付一部分是通行做法。</li>
+<li><strong>无限修改</strong>：合同里写明修改次数和范围，超出部分另算加急费。</li>
+<li><strong>用公司资源</strong>：公司电脑、账号、素材用于私活，两头都可能违规，这是被发现的高发原因。</li>
+<li><strong>接同业单</strong>：与主业同客户、同业务的单子最容易踩竞业和保密红线。</li>
+<li><strong>以为不用报税</strong>：预扣不等于最终税额。记得次年 3 月 1 日至 6 月 30 日办汇算。</li>
+<li><strong>副业挤垮本职</strong>：本职产出下滑最先被注意到，被发现的风险也先从这里来。</li>
+<li><strong>同时接太多单</strong>：交付质量崩了，口碑就没了。宁可少接、按期交。</li>
+<li><strong>垫资接单</strong>：要求先垫材料费、保证金、押金的客户，风险高，先停下。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>被公司发现做副业</strong>：第一步对照公司制度和影响程度。被约谈时配合说明，按要求整改；制度禁止的先停掉。涉及竞业限制争议的，咨询当地劳动仲裁机构或拨打 12333，参考 <a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%B3%E5%8A%A8%E4%BB%B2%E8%A3%81%E6%89%93%E5%AE%98%E5%8F%B8.html">G-10 第一次劳动仲裁/打官司</a>。</li>
+<li><strong>客户拖欠尾款</strong>：第一步书面催告并留证。协商不成按合同争议条款处理，金额大可起诉，符合条件申请 12348 法律援助。</li>
+<li><strong>交付后被指不合格拒付</strong>：第一步拿出合同里的验收标准逐条对照。没有书面标准的，先补一份书面确认再谈。</li>
+<li><strong>公司要求二选一</strong>：先分清法律边界。兼职「严重影响」本职或「经提出拒不改正」才构成解除条件，公司需要按《劳动合同法》第三十九条处理。拿不准就咨询当地人社部门。</li>
+<li><strong>收到补税通知</strong>：按汇算结果办理补税，别拖着。操作有疑问打 12366 或在个人所得税 App 里查。</li>
+<li><strong>甲方要求先开发票再付款</strong>：到税务机关申请代开发票，流程以当地为准，先打 12366 问清再跑。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>接活渠道</td>
+<td>免费–抽成两成内</td>
+<td>熟人介绍免费，平台按费率抽成，以平台规则为准，必选其一</td>
+</tr>
+<tr>
+<td>劳务报酬预扣税</td>
+<td>预扣 20%–40%</td>
+<td>支付方依法代扣，汇算多退少补，必选</td>
+</tr>
+<tr>
+<td>代开发票税费</td>
+<td>按规定缴纳</td>
+<td>客户要票时到税务机关代开，需要时必选</td>
+</tr>
+<tr>
+<td>合同模板</td>
+<td>免费–百元内</td>
+<td>公开模板免费，请人把关另算，可选</td>
+</tr>
+<tr>
+<td>设备与软件</td>
+<td>0–千元级</td>
+<td>用自有设备起步，技能型可能要买工具，可选</td>
+</tr>
+<tr>
+<td>时间投入</td>
+<td>长期</td>
+<td>每周数小时起，见回报通常要数月，可选</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://12366.chinatax.gov.cn">12366 纳税服务平台</a>（劳务报酬个税咨询、网络提问）</li>
+<li><a href="https://www.chinatax.gov.cn">国家税务总局</a>（个人所得税 App 下载、汇算公告）</li>
+<li>12333 人社服务热线（劳动关系、竞业限制咨询）</li>
+<li>12348 公共法律服务热线（合同纠纷、法律援助）</li>
+</ul>
+</li>
+<li>相关条目：<a href="C-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%AD%BE%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C.html">C-03 第一次签劳动合同</a>、<a href="C-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8B%BF%E5%B7%A5%E8%B5%84%E4%B8%8E%E4%BA%94%E9%99%A9%E4%B8%80%E9%87%91.html">C-04 第一次拿工资与五险一金</a>、<a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%AA%E7%A8%8E%E7%94%B3%E6%8A%A5.html">G-06 第一次个税申报</a>、<a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%B3%E5%8A%A8%E4%BB%B2%E8%A3%81%E6%89%93%E5%AE%98%E5%8F%B8.html">G-10 第一次劳动仲裁/打官司</a></li>
+<li>可打印清单：<a href="../../checklists/C-13-%E5%89%AF%E4%B8%9A-%E5%90%88%E8%A7%84%E8%87%AA%E6%9F%A5%E6%B8%85%E5%8D%95.html">C-13 副业合规自查清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《劳动合同法》《个人所得税法》和国家税务总局公告；Ⅱ 级为省级人社部门官方问答、税务机关公开解读和 12366 平台；Ⅲ 级为平台费率、尾款流程等通行做法。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国劳动合同法》全文（国家信访局网站转载），<a href="https://www.gjxfj.gov.cn/gjxfj/xxgk/fgwj/flfg/webinfo/2016/03/1460585589931971.htm">https://www.gjxfj.gov.cn/gjxfj/xxgk/fgwj/flfg/webinfo/2016/03/1460585589931971.htm</a></li>
+<li>福建省人社厅《〈劳动合同法〉对竞业限制是怎样规定的？》，<a href="http://rst.fujian.gov.cn/wz/cjwt/ldgx/ldht/202311/t20231129_6328032.htm">http://rst.fujian.gov.cn/wz/cjwt/ldgx/ldht/202311/t20231129_6328032.htm</a></li>
+<li>《个人所得税扣缴申报管理办法（试行）》（国家税务总局公告 2018 年第 61 号），<a href="https://fgk.chinatax.gov.cn/zcfgk/c100012/c5194838/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100012/c5194838/content.html</a></li>
+<li>广东省税务局《个人所得税——税率（预扣率、核定征收率、所得率）表》，<a href="https://guangdong.chinatax.gov.cn/gdsw/fssw_nsrxt_kjxz/2025-10/09/content_b02be06c906e46bca00673beb9e7783a.shtml">https://guangdong.chinatax.gov.cn/gdsw/fssw_nsrxt_kjxz/2025-10/09/content_b02be06c906e46bca00673beb9e7783a.shtml</a></li>
+<li>《中华人民共和国个人所得税法》（国家税务总局法规库），<a href="https://fgk.chinatax.gov.cn/zcfgk/c100009/c5193028/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100009/c5193028/content.html</a></li>
+<li>《国家税务总局关于全面实施新个人所得税法若干征管衔接问题的公告》（2018 年第 56 号），<a href="https://fgk.chinatax.gov.cn/zcfgk/c100012/c5194836/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100012/c5194836/content.html</a></li>
+<li>上海市税务局关于 12366 纳税服务平台的通知，<a href="https://shanghai.chinatax.gov.cn/hptax/tzgg/qtgg/201906/t445865.html">https://shanghai.chinatax.gov.cn/hptax/tzgg/qtgg/201906/t445865.html</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-24</li>
+<li>适用范围与地区差异：法条和个税规则全国适用。代开发票流程、社保执行口径、各地劳动仲裁做法有差异，以当地为准。平台费率以各平台公示规则为准。</li>
+<li>易变项：年度汇算办理时间和免于申报标准以当年汇算公告为准；平台费率随规则调整。</li>
+<li>核实记录：<a href="../../sources/C-13.%E6%A0%B8%E5%AE%9E.html">sources/C-13.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="C-12-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AF%B7%E5%B9%B4%E5%81%87%E7%97%85%E5%81%87%E5%A9%9A%E5%81%87.html"><span class="dir">← 上一篇</span><span class="name">C-12 第一次请年假/病假/婚假</span></a><a class="next" href="C-14-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BC%B4%E7%81%B5%E6%B4%BB%E5%B0%B1%E4%B8%9A%E7%A4%BE%E4%BF%9D.html"><span class="dir">下一篇 →</span><span class="name">C-14 第一次缴灵活就业社保</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

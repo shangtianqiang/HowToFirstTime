@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>B-09 第一次办身份证/补办身份证 · 核实记录 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">B-09 第一次办身份证/补办身份证 · 核实记录</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">关键核实项</a><a href="#sec-1">未确定事项与处理</a><a href="#sec-2">争议与差异</a></nav>
+  <main class="content">
+
+<ul>
+<li>核实人：项目组</li>
+<li>核实日期：2026-10-24</li>
+<li>对应版本：v1.0</li>
+<li>当前状态：已核实</li>
+</ul>
+<h2 id="sec-0">关键核实项</h2>
+<h3>1. 办理时限：60 日内发放，交通不便可延长 30 日</h3>
+<ul>
+<li>文中说法：法定时限为自提交申领登记表之日起 60 日内发放，交通不便地区延长不超过 30 日。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源名称：《中华人民共和国居民身份证法》第十二条（江苏法治宣传教育平台转载全文）</li>
+<li>URL：<a href="https://jsnews.jschina.com.cn/zt2024/fzsxxxpt/hdxf/xffl/202404/t20240411_3389419.shtml">https://jsnews.jschina.com.cn/zt2024/fzsxxxpt/hdxf/xffl/202404/t20240411_3389419.shtml</a></li>
+<li>原文摘录：「公安机关应当自公民提交《居民身份证申领登记表》之日起六十日内发放居民身份证」；「交通不便的地区，办理时间可以适当延长，但延长时间不得超过三十日」。</li>
+<li>访问日期：2026-10-24</li>
+</ul>
+<h3>2. 申领年龄与监护人代办</h3>
+<ul>
+<li>文中说法：满 16 周岁应当自年满 16 周岁之日起 3 个月内申请；未满 16 周岁由监护人代为申请。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源名称：《中华人民共和国居民身份证法》第七条（同上转载全文）</li>
+<li>URL：<a href="https://jsnews.jschina.com.cn/zt2024/fzsxxxpt/hdxf/xffl/202404/t20240411_3389419.shtml">https://jsnews.jschina.com.cn/zt2024/fzsxxxpt/hdxf/xffl/202404/t20240411_3389419.shtml</a></li>
+<li>原文摘录：「公民应当自年满十六周岁之日起三个月内，向常住户口所在地的公安机关申请领取居民身份证。未满十六周岁的公民，由监护人代为申请领取居民身份证。」</li>
+<li>访问日期：2026-10-24</li>
+</ul>
+<h3>3. 申领材料与换领补领规则</h3>
+<ul>
+<li>文中说法：首次申领交验居民户口簿；领取新证时必须交回原证；丢失的应当申请补领。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源名称：《中华人民共和国居民身份证法》第十条、第十一条（同上转载全文）</li>
+<li>URL：<a href="https://jsnews.jschina.com.cn/zt2024/fzsxxxpt/hdxf/xffl/202404/t20240411_3389419.shtml">https://jsnews.jschina.com.cn/zt2024/fzsxxxpt/hdxf/xffl/202404/t20240411_3389419.shtml</a></li>
+<li>原文摘录：第十条「申请领取居民身份证，应当填写《居民身份证申领登记表》，交验居民户口簿。」第十一条「领取新证时，必须交回原证」「居民身份证丢失的，应当申请补领」。</li>
+<li>访问日期：2026-10-24</li>
+</ul>
+<h3>4. 收费标准：换领 20 元、补领 40 元、临时证 10 元，不得加收费用</h3>
+<ul>
+<li>文中说法：期满换领每证 20 元，丢失补领或损坏换领每证 40 元，临时身份证每证 10 元。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源名称：《国家发展改革委 财政部关于居民身份证收费标准及有关问题的通知》（发改价格〔2003〕2322 号），国家发展改革委信息公开</li>
+<li>URL：<a href="https://zfxxgk.ndrc.gov.cn/web/iteminfo.jsp?id=19901">https://zfxxgk.ndrc.gov.cn/web/iteminfo.jsp?id=19901</a></li>
+<li>原文摘录：「对申领、换领第二代居民身份证的居民收取工本费每证 20 元」，丢失补领或损坏换领的「每证 40 元」，临时第二代居民身份证「每证 10 元」；收费单位「不得擅自增加收费项目，扩大收费范围、提高收费标准或加收其他任何费用」。</li>
+<li>访问日期：2026-10-24</li>
+</ul>
+<h3>5. 首次申领免收工本费</h3>
+<ul>
+<li>文中说法：自 2018 年 4 月 1 日起，首次申领居民身份证停征工本费。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源名称：《财政部 国家发展改革委关于停征免征和调整部分行政事业性收费有关政策的通知》（财税〔2018〕37 号），财政部税政司</li>
+<li>URL：<a href="http://szs.mof.gov.cn/zhengcefabu/201804/t20180416_2868702.htm">http://szs.mof.gov.cn/zhengcefabu/201804/t20180416_2868702.htm</a></li>
+<li>原文摘录：「一、自 2018 年 4 月 1 日起，停征首次申领居民身份证工本费。」</li>
+<li>访问日期：2026-10-24</li>
+<li>补充佐证：北京市财政局等转发文件（京财综〔2018〕944 号），北京市通州区人民政府，<a href="https://www.bjtzh.gov.cn/bjtz/zwgk/xzsysf/2026052215411955538/index.shtml">https://www.bjtzh.gov.cn/bjtz/zwgk/xzsysf/2026052215411955538/index.shtml</a> ，摘录：「自 2018 年 4 月 1 日起，在全市范围内停征『第二代居民身份证费』……中首次申领居民身份证工本费。」</li>
+</ul>
+<h3>6. 临时身份证：申领情形、3 日内发放、有效期 3 个月</h3>
+<ul>
+<li>文中说法：申领、换领、补领期间急需用证的，可凭户口簿和一寸免冠黑白相片申领临时身份证，3 日内发放，有效期 3 个月。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源名称：《中华人民共和国临时居民身份证管理办法》，重庆市公安局转载全文</li>
+<li>URL：<a href="https://gaj.cq.gov.cn/zwgk/jczwgk/flfg_224734/202512/t20251202_15204474.html">https://gaj.cq.gov.cn/zwgk/jczwgk/flfg_224734/202512/t20251202_15204474.html</a></li>
+<li>原文摘录：第二条「在申请领取、换领、补领居民身份证期间，急需使用居民身份证的，可以申请领取临时居民身份证」；第十一条「应当交验居民户口簿、本人近期一寸免冠黑白相片」；第十二条「在收到申请后的三日内将临时居民身份证发给申领人」；第七条「临时居民身份证的有效期限为三个月」。</li>
+<li>访问日期：2026-10-24</li>
+</ul>
+<h3>7. 异地受理条件与不予受理情形</h3>
+<ul>
+<li>文中说法：可在现居住地异地申领、换领、补领；补领交验户口簿或居住证；证明就业就学居住的材料之一可交验居住证、暂住登记材料、劳动合同、学生证、房屋租赁合同等；相貌变化大且未登记指纹难以确认身份的不予受理。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源名称：公安部《户口居民身份证管理工作规范（试行）》第八十三条，北京市人民政府网站</li>
+<li>URL：<a href="https://www.beijing.gov.cn/zhengce/zhengcefagui/202211/t20221116_2860246.html">https://www.beijing.gov.cn/zhengce/zhengcefagui/202211/t20221116_2860246.html</a></li>
+<li>原文摘录：「申请领取的，交验居民户口簿；申请补领的，交验居民户口簿或者居住证」；不予受理情形包括「相貌变化较大，且居民身份证未登记指纹信息，难以确认身份的」。</li>
+<li>访问日期：2026-10-24</li>
+</ul>
+<h3>8. 异地受理证明材料清单与身份核验</h3>
+<ul>
+<li>文中说法：异地办证受理地公安机关以全国人口基本信息资源库核验身份；证明合法稳定就业、就学、居住的材料包括居住证、暂住登记材料、劳动合同、工商执照、学生证、房屋权属证明或租赁合同等。</li>
+<li>依据等级：Ⅱ</li>
+<li>来源名称：《居民身份证异地受理工作十条准则》，霍山县人民政府转发</li>
+<li>URL：<a href="https://www.ahhuoshan.gov.cn/public/6598281/31493491.html">https://www.ahhuoshan.gov.cn/public/6598281/31493491.html</a></li>
+<li>原文摘录：第一条「受理地公安机关要以全国人口基本信息资源库数据信息为准，严格核验申领人身份信息」；第二条「证明合法稳定就业、就学、居住的，需交验下列证明材料之一：（一）居住证；（二）在居住地公安机关办理暂住登记的，可提供公安机关核验过的登记材料」等。</li>
+<li>访问日期：2026-10-24</li>
+</ul>
+<h3>9. 照片标准：白色背景、深色有领、常戴眼镜者佩戴眼镜</h3>
+<ul>
+<li>文中说法：照片为近期正面免冠彩色相片，白色背景，头部占照片尺寸 2/3，不着制式服装或白色上衣，常戴眼镜的应佩戴眼镜。</li>
+<li>依据等级：Ⅱ</li>
+<li>来源名称：北京市公安局「【户政业务】居民身份证照片标准」热点答复（依据 GA461—2004）</li>
+<li>URL：<a href="https://gaj.beijing.gov.cn/hudong/rddf/202003/t20200331_1771797.html">https://gaj.beijing.gov.cn/hudong/rddf/202003/t20200331_1771797.html</a></li>
+<li>原文摘录：「申领人近期正面免冠彩色相片，头部占照片尺寸 2/3，不着制式服装或白色上衣，常戴眼镜的公民应配戴眼镜」「白色背景无边框，人像清晰，层次丰富，神态自然，无明显畸变」。</li>
+<li>访问日期：2026-10-24</li>
+</ul>
+<h3>10. 换证窗口放宽至到期前 6 个月、全国通办</h3>
+<ul>
+<li>文中说法：2025 年以来多地把换证窗口从到期前 3 个月放宽至 6 个月；换领可携带原证在就近的公安派出所综合窗口申请，不限于户籍地。</li>
+<li>依据等级：Ⅱ</li>
+<li>来源名称：新华社《第二代居民身份证迎来换证高峰 换领身份证，这份指南请收好》（2025 年 7 月 12 日）</li>
+<li>URL：<a href="https://www.news.cn/politics/20250712/c3c03765e25b4530aed54fbc2755c91f/c.html">https://www.news.cn/politics/20250712/c3c03765e25b4530aed54fbc2755c91f/c.html</a></li>
+<li>原文摘录：「换领人即使不在户籍地居住，也可携带原居民身份证，选择就近的公安派出所综合窗口申请换领」；换证窗口「由原来的『有效期满之日前三个月』放宽至『有效期满之日前六个月』」；「加急办理身份证的时间已经缩短至 7 个工作日以内」。</li>
+<li>访问日期：2026-10-24</li>
+</ul>
+<h3>11. 电子身份证（网号网证）的适用边界</h3>
+<ul>
+<li>文中说法：网号、网证自愿申领，持有效法定身份证件即可申请；用于互联网服务中依法登记核验真实身份；主管部门和重点行业应保留其他合法核验方式。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源名称：《国家网络身份认证公共服务管理办法》，国家互联网信息办公室</li>
+<li>URL：<a href="https://www.cac.gov.cn/2025-05/23/c_1749711107835487.htm">https://www.cac.gov.cn/2025-05/23/c_1749711107835487.htm</a></li>
+<li>原文摘录：第二条「网证，是指承载网号及自然人非明文身份信息的网络身份认证凭证」；第四条「持有有效法定身份证件的自然人，可以自愿向公共服务平台申领网号、网证」；第五条「在互联网服务中需要登记、核验用户真实身份信息的，可以使用网号、网证依法进行登记、核验」；第六条「应当保留、提供现有的或者其他合法方式进行登记、核验真实身份」。</li>
+<li>访问日期：2026-10-24</li>
+</ul>
+<h3>12. 本人领取需现场核对、比对指纹并签字；公安内部 45 日时限</h3>
+<ul>
+<li>文中说法：本人领取时现场核对证件信息、比对指纹并签字确认。</li>
+<li>依据等级：Ⅰ</li>
+<li>来源名称：公安部《户口居民身份证管理工作规范（试行）》第八十一条、第八十条，北京市人民政府网站</li>
+<li>URL：<a href="https://www.beijing.gov.cn/zhengce/zhengcefagui/202211/t20221116_2860246.html">https://www.beijing.gov.cn/zhengce/zhengcefagui/202211/t20221116_2860246.html</a></li>
+<li>原文摘录：第八十一条，本人领取「应当现场核对证件信息，比对指纹信息，并签字确认」（页面摘录）；第八十条「应当自公民提交《居民身份证申领登记表》之日起四十五日内发放居民身份证」，交通不便地区延长不超过三十日。</li>
+<li>访问日期：2026-10-24</li>
+<li>处理说明：公安内部规范要求 45 日，严于法律上限 60 日。正文以法律 60 日为法定口径，实际时长写「多数地区 7–20 个工作日，以受理点告知为准」。</li>
+</ul>
+<h2 id="sec-1">未确定事项与处理</h2>
+<ol>
+<li>邮寄送达资费与全国统一规则：无全国统一收费文件，各地资费不同。正文写区间 10–25 元并注明「以当地邮政公示为准」。未摘录原文。</li>
+<li>加急办理时限：新华社报道「加急缩短至 7 个工作日以内」为报道表述，各地是否提供及具体时限不一。正文写「部分地区提供加急服务，以受理点告知为准」。</li>
+<li>临时身份证能否异地受理：各地执行不同，未找到全国统一文件。正文未写死，提示在受理环节向窗口问清。</li>
+<li>全程网办覆盖范围：媒体报道多地开通补领、损坏换领网办，未抓到全国性文件。正文写「部分地区已开通」。</li>
+<li>电子身份证在铁路、民航、住宿等具体场景的逐项适用清单：未逐项核实原文。正文只写网号网证的一般规则和「不能完全替代实体证」的边界，场景细节写「向运输方、场所方确认」。</li>
+<li>此前试点 CTID「居民身份证网上功能凭证」服务与国家网络身份认证公共服务的整合过渡：仅有搜索线索，未抓到官方公告原文，未写入正文。</li>
+<li>未成年人学生集体办理、委托办理：属地方做法，未找到全国统一文件，正文写「以当地政策为准」。</li>
+<li>首次申领异地受理（首申跨省通办）在全国的推进进度：《户口居民身份证管理工作规范》第八十三条包含异地申领，正文按此口径写「可在现居住地异地申领」，实际开放情况以当地为准。</li>
+</ol>
+<h2 id="sec-2">争议与差异</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>说法</th>
+<th>冲突来源</th>
+<th>采用口径</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>换证提前期</td>
+<td>原惯例到期前 3 个月 vs 新华社 2025 年报道放宽至 6 个月</td>
+<td>写「多地放宽至 6 个月，以当地为准」</td>
+<td>2025 年新口径，各地执行进度不一</td>
+</tr>
+<tr>
+<td>2</td>
+<td>办理时限</td>
+<td>法律 60 日 vs 公安内部规范 45 日 vs 实际多数 7–20 个工作日</td>
+<td>法定写 60 日，实际写区间</td>
+<td>法律是法定上限，内部规范更严，实际执行更快</td>
+</tr>
+<tr>
+<td>3</td>
+<td>60 日条款位置</td>
+<td>网络流传「第二十条」</td>
+<td>采用第十二条</td>
+<td>已核对法律全文页面，条款号以原文为准</td>
+</tr>
+<tr>
+<td>4</td>
+<td>异地补领材料</td>
+<td>第八十三条写「户口簿或居住证」vs 十条准则列出更多材料</td>
+<td>写「材料之一」并列举，注明以当地为准</td>
+<td>两份文件并集，地方执行有差异</td>
+</tr>
+</tbody></table></div>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

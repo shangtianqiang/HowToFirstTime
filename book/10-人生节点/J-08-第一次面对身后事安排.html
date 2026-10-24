@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次面对身后事安排 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 人生节点</nav>
+  <h1 class="post-title">第一次面对身后事安排</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>人生节点</b></span><span class="chip ">最近核实 <b>2026-10-23</b></span><span class="chip ">来源 <b>4 条</b></span><span class="chip ">耗时 <b>长期</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>分省</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：趁清醒时写清捐献意愿、殡葬方式和财产安排，告知家人并留下书面文件，别把难题全留给他们。
+<strong>适用</strong>：第一次为自己或父母安排遗体捐献、殡葬方式、遗产和数字资产的人。
+<strong>不适用</strong>：遗产纠纷诉讼、涉外继承，需要律师介入。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>捐献</strong>：器官、遗体捐献自愿无偿，可在红十字会登记，需家属配合。</li>
+<li><strong>殡葬</strong>：火葬区遗体应火化，殡仪服务找正规殡仪馆。</li>
+<li><strong>生态安葬</strong>：海葬、树葬、花坛葬，多地有补贴。</li>
+<li><strong>文件</strong>：死亡证明、火化证明、户口注销、社保注销。</li>
+<li><strong>待遇</strong>：丧葬补助金和抚恤金，向社保申请。</li>
+<li><strong>遗产</strong>：有遗嘱按遗嘱，无遗嘱按法定继承。</li>
+<li><strong>数字资产</strong>：账号、照片、支付账户，提前列清单。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 表达意愿</h3>
+<ul>
+<li>和家人沟通捐献、殡葬方式。</li>
+<li>写书面意愿，签名注日期。</li>
+<li>指定一位信任的人执行。</li>
+<li>告知医生和家属。</li>
+</ul>
+<h3>1.2 文件</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 身份证</li>
+<li><input disabled="" type="checkbox"> 捐献登记卡或志愿书</li>
+<li><input disabled="" type="checkbox"> 遗嘱</li>
+<li><input disabled="" type="checkbox"> 财产清单</li>
+<li><input disabled="" type="checkbox"> 保单</li>
+<li><input disabled="" type="checkbox"> 数字资产清单</li>
+<li><input disabled="" type="checkbox"> 紧急联系人</li>
+</ul>
+<h3>1.3 了解政策</h3>
+<ul>
+<li>当地是火葬区还是土葬改革区。</li>
+<li>殡仪馆收费和惠民殡葬政策。</li>
+<li>生态安葬补贴。</li>
+<li>器官捐献流程和红十字会联系方式。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 捐献登记</h3>
+<ul>
+<li>在哪：当地红十字会或官方平台。</li>
+<li>做什么：填写志愿书，登记器官或遗体捐献。</li>
+<li>看什么：捐献条件、家属配合要求。</li>
+<li>完成标志：拿到登记卡。</li>
+</ul>
+<h3>2.2 临终与死亡</h3>
+<ul>
+<li>医院死亡由医院开死亡医学证明。</li>
+<li>家中死亡联系社区卫生服务机构或报警。</li>
+<li>通知红十字会（如捐献）。</li>
+<li>完成标志：拿到死亡证明。</li>
+</ul>
+<h3>2.3 殡葬安排</h3>
+<ul>
+<li>联系正规殡仪馆接运。</li>
+<li>选择火化、告别仪式、骨灰安葬方式。</li>
+<li>了解惠民减免和生态安葬补贴。</li>
+<li>完成标志：火化完成，拿到火化证明。</li>
+</ul>
+<h3>2.4 注销与待遇</h3>
+<ul>
+<li>户口注销。</li>
+<li>社保、医保注销。</li>
+<li>申请丧葬补助金和抚恤金。</li>
+<li>完成标志：手续办结。</li>
+</ul>
+<h3>2.5 遗产与数字资产</h3>
+<ul>
+<li>清点财产和债务。</li>
+<li>按遗嘱或法定继承办理。</li>
+<li>处理手机、电脑、云盘、支付账户。</li>
+<li>完成标志：遗产分割，账号处理。</li>
+</ul>
+<h3>2.6 纪念与哀伤</h3>
+<ul>
+<li>家人相互支持。</li>
+<li>必要时寻求心理咨询。</li>
+<li>完成标志：逐步恢复生活。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 器官捐献要钱吗？</h3>
+<p>答：不收费，也不补偿。器官捐献自愿、无偿。[1]</p>
+<h3>Q2 捐献需要家属同意吗？</h3>
+<p>答：需要。即使本人生前登记，执行时通常也要家属配合。</p>
+<h3>Q3 遗体捐献和器官捐献一样吗？</h3>
+<p>答：不一样。器官捐献用于移植，遗体捐献用于医学教学研究。</p>
+<h3>Q4 火葬是必须的吗？</h3>
+<p>答：火葬区内遗体应当火化，土葬改革区按当地规定。[2]</p>
+<h3>Q5 生态安葬有补贴吗？</h3>
+<p>答：多地有，海葬、树葬、花坛葬补贴标准不同，问当地民政部门。</p>
+<h3>Q6 丧葬补助金怎么领？</h3>
+<p>答：参加企业职工基本养老保险的，遗属向社保经办机构申请。[3]</p>
+<h3>Q7 死亡证明去哪开？</h3>
+<p>答：医院死亡由医院开，家中死亡联系社区卫生服务机构或公安。</p>
+<h3>Q8 户口怎么注销？</h3>
+<p>答：凭死亡证明到户籍地派出所办理。</p>
+<h3>Q9 数字资产怎么处理？</h3>
+<p>答：提前列账号清单，按平台规则申请注销或继承，密码交信任的人保管。</p>
+<h3>Q10 生前预嘱有用吗？</h3>
+<p>答：可用于表达临终医疗意愿，建议书面并告知家属和医生。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>只口头说</strong>：家人意见不一，无法执行。</li>
+<li><strong>不告知家属</strong>：捐献意愿落空。</li>
+<li><strong>找殡葬中介</strong>：价格虚高，先问殡仪馆官方收费。</li>
+<li><strong>死亡证明丢失</strong>：补办麻烦，多复印。</li>
+<li><strong>不注销社保</strong>：多领待遇要退回。</li>
+<li><strong>遗产不清点</strong>：遗漏财产和债务。</li>
+<li><strong>数字账号不管</strong>：隐私泄露或被盗。</li>
+<li><strong>忽视家人情绪</strong>：哀伤需要支持。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>非正常死亡</strong>：保护现场，报警，不移动遗体。</li>
+<li><strong>捐献被拒</strong>：问清医学原因，尊重家属决定。</li>
+<li><strong>遗产纠纷</strong>：协商、调解、诉讼。</li>
+<li><strong>殡葬乱收费</strong>：向民政、市场监管投诉。</li>
+<li><strong>心理危机</strong>：联系家人、心理咨询、援助热线。</li>
+<li><strong>异地死亡</strong>：联系当地殡仪馆和户籍地民政部门。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>殡仪服务</td>
+<td>几千到几万元</td>
+<td>按项目</td>
+</tr>
+<tr>
+<td>火化</td>
+<td>几百到几千元</td>
+<td>有惠民减免</td>
+</tr>
+<tr>
+<td>生态安葬</td>
+<td>0–几千元</td>
+<td>有补贴</td>
+</tr>
+<tr>
+<td>公证</td>
+<td>几百到几千元</td>
+<td>按财产</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>3–7 天</td>
+<td>后事办理</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mca.gov.cn">民政部</a></li>
+<li><a href="https://www.nhc.gov.cn">国家卫生健康委员会</a></li>
+<li>中国红十字会</li>
+<li>当地殡仪馆、公证处</li>
+</ul>
+</li>
+<li>相关条目：<a href="J-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%AB%8B%E9%81%97%E5%98%B1%E6%84%8F%E5%AE%9A%E7%9B%91%E6%8A%A4.html">J-07 第一次立遗嘱/意定监护</a>、<a href="E-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%9D%A2%E5%AF%B9%E4%BA%B2%E4%BA%BA%E7%A6%BB%E4%B8%96.html">E-10 第一次面对亲人离世</a></li>
+<li>可打印清单：<a href="../../checklists/J-08-%E8%BA%AB%E5%90%8E%E4%BA%8B-%E5%AE%89%E6%8E%92%E6%B8%85%E5%8D%95.html">J-08 身后事清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《民法典》《殡葬管理条例》《人体器官捐献和移植条例》；Ⅱ 级为民政、卫健部门办事指南。</li>
+<li>主要来源：<ol>
+<li>《人体器官捐献和移植条例》，<a href="https://www.nhc.gov.cn">https://www.nhc.gov.cn</a></li>
+<li>《殡葬管理条例》，<a href="https://www.mca.gov.cn">https://www.mca.gov.cn</a></li>
+<li>《民法典》继承编，<a href="https://www.court.gov.cn">https://www.court.gov.cn</a></li>
+<li>企业职工基本养老保险遗属待遇规定，<a href="https://www.mohrss.gov.cn">https://www.mohrss.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-23</li>
+<li>适用范围：中国内地身后事安排。殡葬区和补贴分地区。</li>
+<li>易变项：殡葬政策、补贴标准（M）。</li>
+<li>核实记录：<a href="../../sources/J-08.%E6%A0%B8%E5%AE%9E.html">sources/J-08.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="J-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%AB%8B%E9%81%97%E5%98%B1%E6%84%8F%E5%AE%9A%E7%9B%91%E6%8A%A4.html"><span class="dir">← 上一篇</span><span class="name">J-07 第一次立遗嘱/意定监护</span></a><a class="next" href="J-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%9E%E7%A6%BB%E5%A9%9A%E7%99%BB%E8%AE%B0.html"><span class="dir">下一篇 →</span><span class="name">J-09 第一次办离婚登记</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>E-11 第一次给孩子报兴趣班 · 核实记录 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">E-11 第一次给孩子报兴趣班 · 核实记录</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">关键核实项</a><a href="#sec-1">未确定事项与处理</a><a href="#sec-2">争议与差异</a></nav>
+  <main class="content">
+
+<ul>
+<li>核实人：项目组</li>
+<li>核实日期：2026-10-24</li>
+<li>对应版本：v1.0</li>
+<li>当前状态：已核实</li>
+</ul>
+<h2 id="sec-0">关键核实项</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>文中说法</th>
+<th>依据等级</th>
+<th>来源</th>
+<th>URL</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>办学许可证加营业执照（或法人登记证书）两证齐全才能开展培训；县级教育部门审批颁发办学许可证</td>
+<td>Ⅰ</td>
+<td>《国务院办公厅关于规范校外培训机构发展的意见》（国办发〔2018〕80 号），国家信访局网站转载</td>
+<td><a href="https://www.gjxfj.gov.cn/gjxfj/fgwj/gwywj/webinfo/2018/08/1590610496451497.htm">https://www.gjxfj.gov.cn/gjxfj/fgwj/gwywj/webinfo/2018/08/1590610496451497.htm</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>2</td>
+<td>收费不得一次性超过 3 个月；退费按合同约定与法律规定办理</td>
+<td>Ⅰ</td>
+<td>同上（国办发〔2018〕80 号）</td>
+<td>同上</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>3</td>
+<td>不再新审批面向义务教育阶段学生的学科类机构，现有机构登记为非营利性；节假日、休息日、寒暑假不得学科培训；学科类收费实行政府指导价；预收费通过第三方托管等方式监管</td>
+<td>Ⅰ</td>
+<td>中办、国办《关于进一步减轻义务教育阶段学生作业负担和校外培训负担的意见》（「双减」），中国政府网</td>
+<td><a href="https://www.gov.cn/zhengce/2021-07/24/content_5627132.htm">https://www.gov.cn/zhengce/2021-07/24/content_5627132.htm</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>4</td>
+<td>学科类教师须具备教师资格并公示；禁止面向学龄前儿童的线上培训和线下学科类培训；严禁非学科类机构从事学科类培训</td>
+<td>Ⅰ</td>
+<td>同上（「双减」意见）</td>
+<td>同上</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>5</td>
+<td>非学科类分体育、文化艺术、科技等类别，省级制定设置标准；线下机构须取得县级主管部门行政许可后再法人登记；师资须职业能力或相应教师资格，不得聘用中小学在职在岗教师</td>
+<td>Ⅰ</td>
+<td>教育部等十三部门《关于规范面向中小学生的非学科类校外培训的意见》，教育部官网</td>
+<td><a href="http://www.moe.gov.cn/srcsite/A29/202212/t20221229_1036959.html">http://www.moe.gov.cn/srcsite/A29/202212/t20221229_1036959.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>6</td>
+<td>非学科类一次收费不超 3 个月或 60 课时且不超 5000 元；收费进专用账户并明码标价；不得使用培训贷；禁止虚构原价、虚假优惠折价</td>
+<td>Ⅰ</td>
+<td>同上（十三部门意见）</td>
+<td>同上</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>7</td>
+<td>非学科类线下结束不晚于 20:30、线上不晚于 21:00；全面使用合同示范文本；培训场所监控无死角；考级证书不得作为招生入学依据</td>
+<td>Ⅰ</td>
+<td>同上（十三部门意见）</td>
+<td>同上</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>8</td>
+<td>通过「校外培训家长端」App 选课、支付、退费、投诉；查机构黑白名单；未消课程费用支持原路退还</td>
+<td>Ⅱ</td>
+<td>教育部《全国校外教育培训监管与服务综合平台应用管理办法》，教育部官网</td>
+<td><a href="http://www.moe.gov.cn/srcsite/A29/202503/t20250326_1184786.html">http://www.moe.gov.cn/srcsite/A29/202503/t20250326_1184786.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>9</td>
+<td>体育类执教人员至少持一类证书（教练员职称、社会体育指导员等级、协会技能等级、职业技能等级、教师资格等）并公示证书编号；不得聘用中小学、幼儿园在职教师；入职前背景审查</td>
+<td>Ⅱ</td>
+<td>国家体育总局《青少年体育培训行为规范》，体育总局官网</td>
+<td><a href="https://www.sport.gov.cn/qss/n5015/c30066166/content.html">https://www.sport.gov.cn/qss/n5015/c30066166/content.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>10</td>
+<td>体育类每班原则不超 35 人、超 10 人配 2 名执教人员；高危项目每班不超 20 人并配持急救证书救护人员；视频数据保存不少于 90 日；极端天气熔断机制；高危项目须买专门保险</td>
+<td>Ⅱ</td>
+<td>同上（体育总局规范）</td>
+<td>同上</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>11</td>
+<td>体育类收费同样不超 3 个月或 60 课时且不超 5000 元，须使用合同示范文本</td>
+<td>Ⅱ</td>
+<td>同上（体育总局规范）</td>
+<td>同上</td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>12</td>
+<td>学科类教师须教师资格证，非学科类教师须职业（专业）能力证明；机构应对拟招用人员进行性侵等违法犯罪信息查询；人员信息在场所显著位置公示</td>
+<td>Ⅱ</td>
+<td>教育部办公厅、人社部办公厅《校外培训机构从业人员管理办法（试行）》，教育部官网</td>
+<td><a href="http://www.moe.gov.cn/srcsite/A29/202109/t20210914_562912.html">http://www.moe.gov.cn/srcsite/A29/202109/t20210914_562912.html</a></td>
+<td>已核实</td>
+</tr>
+<tr>
+<td>13</td>
+<td>《中小学生校外培训服务合同（示范文本）》（2021 年修订版）由教育部与市场监管总局联合修订印发</td>
+<td>Ⅱ</td>
+<td>教育部办公厅、市场监管总局办公厅印发通知，教育部官网</td>
+<td><a href="http://www.moe.gov.cn/srcsite/A29/202110/t20211013_571999.html">http://www.moe.gov.cn/srcsite/A29/202110/t20211013_571999.html</a></td>
+<td>已核实</td>
+</tr>
+</tbody></table></div>
+<p>以上各条的原文摘录（均为 2026-10-24 抓取页面中的原文，来源 URL 见表中对应行）：</p>
+<ol>
+<li>「校外培训机构必须经审批取得办学许可证后，登记取得营业执照（或事业单位法人证书、民办非企业单位登记证书，下同），才能开展培训。」「县级教育部门负责审批颁发办学许可证」</li>
+<li>「收费时段与教学安排应协调一致，不得一次性收取时间跨度超过3个月的费用。」「对于培训对象未完成的培训课程，有关退费事宜严格按双方合同约定以及相关法律规定办理。」</li>
+<li>「各地不再审批新的面向义务教育阶段学生的学科类校外培训机构，现有学科类培训机构统一登记为非营利性机构。」「校外培训机构不得占用国家法定节假日、休息日及寒暑假期组织学科类培训。」「将义务教育阶段学科类校外培训收费纳入政府指导价管理」「通过第三方托管、风险储备金等方式，对校外培训机构预收费进行风险管控，加强对培训领域贷款的监管，有效预防“退费难”、“卷钱跑路”等问题发生。」</li>
+<li>「从事学科类培训的人员必须具备相应教师资格，并将教师资格信息在培训机构场所及网站显著位置公布」「不得开展面向学龄前儿童的线上培训，严禁以学前班、幼小衔接班、思维训练班等名义面向学龄前儿童开展线下学科类（含外语）培训。」「严禁非学科类培训机构从事学科类培训」</li>
+<li>「各地要区分体育、文化艺术、科技等类别培训机构，明确相应主管部门。省级主管部门要结合本地实际，牵头制定相应类别线上和线下培训机构的基本设置标准。」「非学科类线下培训机构须取得县级有关主管部门的行政许可后，再依法进行法人登记」「所聘从事培训工作的人员必须具备体育、文化艺术、科技等相应类别的职业（专业）能力（具体由省级以上主管部门明确）或具有相应类别的教师资格证，不得聘用中小学在职在岗教师（含民办中小学在职在岗教师）」</li>
+<li>「培训机构不得一次性收取或以充值、次卡等形式变相收取时间跨度超过3个月或60课时的费用，且不得超过5000元。」「培训机构收费应当实行明码标价，培训内容、培训时长、收费项目、收费标准等信息应当向社会公开，接受社会监督。」「面向中小学生的非学科类培训不得使用培训贷方式缴纳培训费用。」「禁止虚构原价、虚假优惠折价等任何形式的价格欺诈行为。」</li>
+<li>「培训时间不得和当地中小学校教学时间相冲突，线下培训结束时间不得晚于20:30，线上培训结束时间不得晚于21:00。」「全面使用《中小学生校外培训服务合同（示范文本）》（2021年修订版）」「线下培训场所要配备符合相关技术标准的音视频监控设备，确保教室、户外活动场地、活动室、周边等场所无死角」「各类考级和竞赛的等级、名次、证书等，除另有规定外，不得作为体育艺术科技特长测评、招生入学的依据。」</li>
+<li>「家长学生可通过全国平台查询培训机构“黑白名单”，应树立安全意识，通过“校外培训家长端APP”进行选课、支付、退费、评价、投诉，维护自身合法权益。」「对通过全国平台购课的家长学生，支持其未消课程费用原路退还。」</li>
+<li>「青少年体育培训主体的执教人员应持有以下至少一种证书：1.体育教练员职称证书；2.社会体育指导员技术等级证书；3.全国性单项体育协会颁发的体育技能等级证书；4.经人力资源和社会保障部确定的人才评价机构颁发的体育职业技能等级证书；5.教师资格证书；6.其他与青少年体育培训相适应的法律法规规定的相关证书。」「青少年体育培训主体应公示执教人员的姓名、照片、资质证书编号等信息」「不得聘用中小学、幼儿园在职教师。」</li>
+<li>「原则上每班次培训的学员人数不超过35人，超过10名学员的培训应至少配有2名执教人员。高危体育项目的培训每班次不超过20人，应当配备1名以上经培训考核合格、持有急救证书的救护人员。」「视频数据保存期限不少于90日。」「建立极端天气培训熔断机制。」「青少年体育培训主体应为参加高危体育项目培训的人员购买专门保险。」</li>
+<li>「青少年体育培训机构不得一次性收取或以充值、次卡等形式变相收取时间跨度超过3个月或60课时的费用，且不得超过5000元。须使用《中小学生校外培训服务合同（示范文本）》。」</li>
+<li>「从事按照学科类管理培训的须具备相应教师资格证书，从事按照非学科类管理培训的须具备相应的职业（专业）能力证明」「校外培训机构应对拟招用人员和劳务派遣单位拟派遣至机构场所工作的人员进行性侵等违法犯罪信息查询」「教学、教研人员的基本信息（姓名、照片等）、教师资格、从教经历、任教课程等信息应在机构培训场所及平台、网站显著位置公示」</li>
+<li>「教育部和市场监管总局联合修订了《中小学生校外培训服务合同（示范文本）》（2021年修订版）……现予印发。」</li>
+</ol>
+<h2 id="sec-1">未确定事项与处理</h2>
+<ol>
+<li>全国平台官网网址：检索结果显示为 xwpx.eduyun.cn，抓取时返回反爬拦截页，未能核实页面内容。正文只写平台名称和「校外培训家长端」App 名称，官网入口以教育部官网公布为准。</li>
+<li>体育、艺术、科技类机构设置标准的具体条件和学科类政府指导价的具体金额由各省制定。正文写「以当地为准」，未写死数值。</li>
+<li>课时费、试听课收费区间为多方一致的通行做法（Ⅲ 级），正文注明以当地和机构公示为准，未在关键核实项中登记。</li>
+<li>「校外培训家长端」App 的应用商店上架信息来自检索结果，未逐商店核对。正文只写 App 名称和「应用商店搜索下载」。</li>
+</ol>
+<h2 id="sec-2">争议与差异</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>说法</th>
+<th>冲突来源</th>
+<th>采用口径</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>收费上限</td>
+<td>国办发〔2018〕80 号（不超 3 个月）与十三部门意见（不超 3 个月或 60 课时且不超 5000 元）</td>
+<td>两个上限同时适用，从严执行</td>
+<td>非学科类按 2022 年双限执行，学科类按 3 个月执行</td>
+</tr>
+<tr>
+<td>2</td>
+<td>体育类规范版本</td>
+<td>2021 年《课外体育培训行为规范》与 2026 年《青少年体育培训行为规范》</td>
+<td>采用 2026 年版</td>
+<td>新版自 2026 年 11 月 1 日起施行，旧版已失效</td>
+</tr>
+</tbody></table></div>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

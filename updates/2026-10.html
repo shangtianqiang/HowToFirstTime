@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>2026 年 10 月 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">2026 年 10 月</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">2026-10-24 · 扩展 13 篇 + 检索页改版</a><a href="#sec-1">2026-10-23 · 项目骨架</a><a href="#sec-2">2026-10-23 · 扩展 8 篇</a><a href="#sec-3">2026-10-23 · 首批 8 篇完成核实</a><a href="#sec-4">2026-10-23 · 补齐全部 94 篇</a></nav>
+  <main class="content">
+
+<h2 id="sec-0">2026-10-24 · 扩展 13 篇 + 检索页改版</h2>
+<ul>
+<li>新增 <code>tools/build-site.mjs</code>（依赖 marked）：把全部 343 个 Markdown 页面预渲染为与检索页同款风格的网页——文章页含元信息条（状态/核实日期/来源数/耗时/花费/风险）、章节锚点目录、上一篇/下一篇导航；清单页保留可打印复选框；核实记录表格可横向滚动。内部链接全部改指 <code>.html</code>，<code>index.json</code> 的条目链接同步切换。</li>
+<li>新增 13 篇条目，全部逐条核实：A-11 第一次住酒店/民宿、A-12 第一次长途自驾游、B-09 第一次办身份证/补办身份证、C-13 第一次做副业/接私活、C-14 第一次缴灵活就业社保、D-11 第一次办健身卡、E-11 第一次给孩子报兴趣班、F-11 第一次打成人疫苗、F-12 第一次拔智齿、G-11 第一次请律师、G-12 第一次用网贷/分期、I-09 第一次发短视频/开直播、J-09 第一次办离婚登记。</li>
+<li>每篇配套可打印清单（13 张）和核实记录（13 份），关键事实逐条登记来源、原文摘录和访问日期。</li>
+<li>涉及新规的条目按最新口径核实：2025 年《婚姻登记条例》（全国通办）、灵活就业人员就业地参保新政策、《直播电商监督管理办法》（2026 年 2 月施行）等。</li>
+<li>同步更新栏目导读（01/02/03/04/05/06/07/09/10）、README、主题地图和索引。</li>
+<li>检索页 <code>index.html</code> 全面改版（参考 howtolivebetter.net 的版式）：深绿主色 + 奶白底、悬浮胶囊导航、首屏图文精选轮播、十个栏目大图卡片（点击即筛选）、卡通栏筛选工具条；新增 11 张 Unsplash 封面图（<code>assets/covers/</code>，来源与许可见 <code>assets/CREDITS.md</code>）。</li>
+<li>修复 <code>tools/check-links.mjs</code>：部分网站对 HEAD 请求返回 404，现对 404 降级重试 GET 再判定失效；UA 更新为浏览器标准值。</li>
+</ul>
+<h3>当前状态</h3>
+<ul>
+<li>条目：已建 107 篇，已核实 107 篇，覆盖 10 个栏目。</li>
+<li>阅读体验：全部 Markdown（343 页）预渲染为带样式网页，检索页、文章、清单、核实记录互链畅通，不再出现「点进条目是原始 Markdown」的情况。</li>
+<li>下一阶段候选：H 栏目扩展（房屋维修报修、生活缴费自动化）、A-13 带娃坐飞机、E-12 开家长会、F-13 配助听器/父母听力、I-10 AI 生成内容标识、J-10 再婚与重组家庭手续。</li>
+</ul>
+<h2 id="sec-1">2026-10-23 · 项目骨架</h2>
+<ul>
+<li>建立 10 个栏目目录和总导读。</li>
+<li>建立首批 8 篇条目骨架：A-01、A-02、A-03、B-01、C-01、D-01、D-02、E-01。</li>
+<li>建立 8 份核实记录和 8 张可打印清单。</li>
+<li>写入写作规范、依据分级与引用规则、调研与核实流程、条目模板、主题地图、术语表。</li>
+<li>上线静态检索页 <code>index.html</code> 和索引构建脚本 <code>tools/build-index.mjs</code>。</li>
+<li>上线 6 项检查：元数据、结构、交叉引用、时效、待核实、链接。</li>
+<li>加入 GitHub Actions 每周巡检和三类 Issue 模板。</li>
+</ul>
+<h2 id="sec-2">2026-10-23 · 扩展 8 篇</h2>
+<ul>
+<li>新增 C-02 第一次面试、C-03 第一次签劳动合同、C-04 第一次拿工资与五险一金。</li>
+<li>新增 G-02 第一次租房、G-06 第一次个税申报。</li>
+<li>新增 F-01 第一次自己挂号看病、F-09 第一次医保报销。</li>
+<li>新增 I-01 第一次防诈骗。</li>
+<li>同步更新栏目导读、README、主题地图、核实记录、清单和索引。</li>
+<li>开启 GitHub Pages，线上检索页可用。</li>
+</ul>
+<h3>当前状态</h3>
+<ul>
+<li>条目：已建 16 篇，已核实 16 篇，覆盖 8 个栏目。</li>
+<li>下一阶段：继续扩展 P0 条目（A-06、B-02、D-09、E-05、F-07、G-01、G-08、G-09、H-01）。</li>
+</ul>
+<h2 id="sec-3">2026-10-23 · 首批 8 篇完成核实</h2>
+<ul>
+<li>逐条核对 A-01、A-02、A-03、B-01、C-01、D-01、D-02、E-01 的关键事实。</li>
+<li>正文从骨架改为可读的操作手册，补齐速查卡、准备事项、现场流程、FAQ、避坑、应急和费用表。</li>
+<li>8 篇状态改为「已核实」，<code>source_count</code> 分别为 11、10、10、11、8、9、8、10。</li>
+<li>核实记录写入来源、原文摘录、URL 和访问日期。</li>
+</ul>
+<h3>当前状态</h3>
+<ul>
+<li>条目：已建 8 篇，已核实 8 篇。</li>
+<li>下一阶段：按主题地图扩展 P0 条目（A-06、B-02、C-02、C-03、C-04、D-09、E-05、F-01、F-07、F-09、G-01、G-02、G-06、G-08、G-09、H-01、I-01）。</li>
+</ul>
+<h2 id="sec-4">2026-10-23 · 补齐全部 94 篇</h2>
+<ul>
+<li>新增 78 篇：A-04～A-10、B-02～B-08、C-05～C-12、D-03～D-10、E-02～E-10、F-02～F-08 与 F-10、G-01/03/04/05/07/08/09/10、H-01～H-08、I-02～I-08、J-01～J-08。</li>
+<li>每篇补齐 9 个板块、10 条以上常见问题、8 条以上避坑、5 种以上应急场景。</li>
+<li>每篇新增 <code>sources/ID.核实.md</code> 和 <code>checklists/ID-*.md</code>。</li>
+<li>同步更新 10 个栏目导读、README、主题地图和 index.json。</li>
+</ul>
+<h3>当前状态</h3>
+<ul>
+<li>条目：已建 94 篇，已核实 94 篇，覆盖 10 个栏目。</li>
+<li>下一步：按季度复审高频变动条目，补充地方差异。</li>
+</ul>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

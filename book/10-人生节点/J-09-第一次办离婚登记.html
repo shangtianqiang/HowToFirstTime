@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次办离婚登记 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #6E7D6B;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · 人生节点</nav>
+  <h1 class="post-title">第一次办离婚登记</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>人生节点</b></span><span class="chip ">最近核实 <b>2026-10-24</b></span><span class="chip ">来源 <b>7 条</b></span><span class="chip ">耗时 <b>1-3天</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：协议离婚要过 30 天冷静期，届满后 30 天内两人共同到场领证，带身份证和结婚证，登记免费。
+<strong>适用</strong>：双方自愿离婚、已就子女和财产谈妥、都能到场配合的内地居民夫妻。
+<strong>不适用</strong>：一方不同意、联系不上或存在家庭暴力等情形，走诉讼离婚，第 5 节有指路；涉外、涉港澳台离婚登记材料不同，以登记机关要求为准。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>条件</strong>：双方自愿，已就子女抚养、财产、债务写进书面离婚协议书。[1]</li>
+<li><strong>材料</strong>：双方身份证、结婚证，不再需要户口簿。[2]</li>
+<li><strong>地点</strong>：全国通办。申请和领证要用同一个婚姻登记机关。[4]</li>
+<li><strong>冷静期</strong>：申请后 30 天内任一方可撤回。届满后 30 天内两人共同申领，逾期视为撤回。[1]</li>
+<li><strong>费用</strong>：登记免费。[7]</li>
+<li><strong>谈不拢或有家暴</strong>：向法院起诉离婚，可申请人身安全保护令。[1][3]</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 先分清两条路</h3>
+<ul>
+<li>协议离婚：两人都自愿，条件谈得拢，去婚姻登记机关办理。中间隔着 30 天冷静期。[1]</li>
+<li>诉讼离婚：一方不同意、下落不明，或者谈不拢，向法院提起离婚诉讼。[1] 不受冷静期约束，但立案、开庭到裁判的时间更长，具体以法院为准。</li>
+<li>有家庭暴力情形的，可以不经协商直接走诉讼，并向法院申请人身安全保护令。[3]</li>
+<li>两条路都解除婚姻关系。差别在时间、成本和双方的配合程度。</li>
+</ul>
+<h3>1.2 拟好离婚协议书</h3>
+<ul>
+<li>协议书至少写清三块：自愿离婚的意思表示，子女安排，财产和债务处理。[1]</li>
+<li>子女安排写明：孩子跟谁生活，另一方每月给多少抚养费、怎么付、付到几岁。大额的教育费、医疗费怎么分担，也要写进去。</li>
+<li>探望安排写明：不直接抚养一方什么时间见孩子、多久一次、节假日怎么轮。写成具体条款，比口头约定可靠。[1]</li>
+<li>财产写明：房子、车子、存款、公积金、投资账户分别归谁。有贷款的写明谁还、怎么还、多久内配合过户。</li>
+<li>债务逐笔写明：有哪些共同债务、由谁偿还。漏写不等于不用还，写清才有依据。[1]</li>
+<li>一方有经济困难帮助、个人物品归属之类的约定，也可以写进去。</li>
+<li>重要约定写成可执行的条款：写谁、做什么、什么期限前完成、不配合怎么处理。</li>
+<li>孩子户口迁出、姓氏变更这类敏感事项，写明条件和办理期限，避免以后反复。</li>
+<li>自己写有困难，可以请律师代拟，或向登记机关、法律援助机构咨询。费用见第 6 节。</li>
+</ul>
+<h3>1.3 约好登记机关和时间</h3>
+<ul>
+<li>用当地民政局官网、小程序或政务服务网预约。各地渠道不同，以当地为准。</li>
+<li>全国通办后，可以选任一个有职权的婚姻登记机关提交申请。记住这个机关，领证要回到这里。[4]</li>
+<li>避开节假日前后高峰日。工作日的上午通常人少，以当地为准。</li>
+<li>确认两个人都空出两次到场时间：申请一次，届满后领证一次。</li>
+</ul>
+<h3>1.4 出门前再查一遍</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 双方身份证，在有效期内</li>
+<li><input disabled="" type="checkbox"> 结婚证两本都在；丢了的先咨询登记机关怎么处理</li>
+<li><input disabled="" type="checkbox"> 离婚协议书打印好，部分地区要求一式三份，以当地要求为准</li>
+<li><input disabled="" type="checkbox"> 第二次到场另带：离婚登记申请受理回执单（第一次申请后登记机关出具）</li>
+<li><input disabled="" type="checkbox"> 有孩子的，可带上出生医学证明备查，以当地要求为准</li>
+<li><input disabled="" type="checkbox"> 一支笔，双方手机保持畅通</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 第一次到场：提交离婚登记申请</h3>
+<ul>
+<li>在哪：婚姻登记机关。可以是县级民政部门的婚姻登记处，也可以是全国任一有职权的登记机关。[4]</li>
+<li>做什么：取号，交身份证、结婚证、离婚协议书，填写离婚登记声明书和申请表。</li>
+<li>看什么：工作人员初审证件和协议，核对双方是否自愿，是否已就子女抚养、财产以及债务处理协商一致。[2]</li>
+<li>说什么：被问到「是否自愿」「协议内容是否真实」时如实回答。</li>
+<li>完成标志：拿到受理回执单。冷静期开始，共 30 天，自登记机关收到申请之日起算。[1]</li>
+</ul>
+<h3>2.2 中间 30 天：度过冷静期</h3>
+<ul>
+<li>这 30 天内，任何一方不愿离婚，可以向受理申请的登记机关撤回，一个人去就行，不需要对方同意。[1]</li>
+<li>没有人撤回的，冷静期届满。届满后的 30 天内，两人要共同去申请发给离婚证。[1]</li>
+<li>把两个日期记在手机日历里：冷静期起止日、申领截止日。具体以受理回执单和登记机关告知为准。</li>
+<li>冷静期内婚姻关系还在。房贷、房租、孩子开销照常安排，大额支出和财产处分尽量商量着来。</li>
+<li>趁这 30 天把后续事项列成单子：房产过户、贷款变更、孩子户口、保险受益人。参考 <a href="J-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B7%A8%E5%9F%8E%E5%AE%9A%E5%B1%85.html">J-04 第一次跨城定居</a> 里的证件和户籍办理思路。</li>
+</ul>
+<h3>2.3 第二次到场：申领离婚证</h3>
+<ul>
+<li>在哪：受理申请的那个登记机关。申请可以全国任选，领证要回到原机关。[4]</li>
+<li>做什么：两人带上身份证、结婚证、受理回执单、离婚协议书，共同申请发给离婚证。</li>
+<li>看什么：工作人员再次核对身份和意愿，确认双方仍自愿、协议仍一致的，当场登记、发给离婚证。[2]</li>
+<li>说什么：意愿有变化的当场说明。想撤回的按撤回处理，不必勉强。</li>
+<li>完成标志：两人各拿到一本离婚证。</li>
+</ul>
+<h3>2.4 离开前核对</h3>
+<ul>
+<li>核对离婚证上的姓名、身份证号、登记日期，有误当场提出。</li>
+<li>结婚证多数情况下由登记机关收回或注明注销，具体处理以当地为准。</li>
+<li>离婚协议书每人至少留一份原件，办户口、过户、贷款都用得上。</li>
+<li>后续会用到离婚证的地方：房产过户、户口变更、再婚登记、公证等。原件丢了要补领，见 Q14。</li>
+<li>完成离婚登记，婚姻关系即解除。[1]</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 冷静期的 30 天从哪天开始算？</h3>
+<p>答：自婚姻登记机关收到离婚登记申请之日起算，共 30 天。[1] 起算和届满的具体日期，以受理回执单和登记机关告知为准。</p>
+<h3>Q2 冷静期内一方反悔了怎么办？</h3>
+<p>答：不愿离婚的一方可以单独向受理机关撤回申请，不需要对方同意。[1] 撤回后程序终止。想再办的，两人重新申请，重新过冷静期。</p>
+<h3>Q3 冷静期届满后 30 天没去领证怎么办？</h3>
+<p>答：视为撤回离婚登记申请，程序终止。[1][2] 想离婚的，重新提交申请，冷静期重新起算。没有补办的说法。</p>
+<h3>Q4 可以在外地办吗？</h3>
+<p>答：可以。双方均为内地居民的结婚、离婚登记全国通办，不再受户籍地限制。[4] 一方为内地居民、另一方为外国人、港澳台居民或华侨的离婚登记也在受理范围内，但材料不同。[4] 注意申请和领证要用同一个婚姻登记机关。[4]</p>
+<h3>Q5 还要带户口簿吗？</h3>
+<p>答：不用。按 2025 年 5 月 10 日施行的《婚姻登记条例》，离婚登记出具本人的居民身份证和结婚证。[2] 多地官方说明也确认结婚、离婚登记不再要求出具户口簿。[6] 个别地方另有要求的，以当地为准。</p>
+<h3>Q6 冷静期能缩短或跳过吗？</h3>
+<p>答：不能。两个 30 天都是法律规定。[1] 两人当天谈拢也不行。等不及的，只能向法院起诉，由法院按程序处理。[1]</p>
+<h3>Q7 离婚协议书要写哪些内容？</h3>
+<p>答：至少三块：自愿离婚的意思表示、子女抚养和探望安排、财产分割和债务处理。[1] 每一项写具体的数字、日期和责任方，写得越细，后面越少争议。</p>
+<h3>Q8 离婚证发下来后还能改协议吗？</h3>
+<p>答：财产和抚养条款想变动，双方可以再签补充协议。谈不拢的，可以依法向法院起诉，由法院处理，以裁判结果为准。</p>
+<h3>Q9 离婚证和法院判决书、调解书有什么区别？</h3>
+<p>答：都解除婚姻关系。完成离婚登记，或者离婚判决书、调解书生效，婚姻关系即解除。[1] 再婚登记时按登记机关要求提供相应文书，参考 <a href="J-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%93%E5%A9%9A%E7%99%BB%E8%AE%B0.html">J-01 第一次结婚登记</a>。</p>
+<h3>Q10 抚养费怎么写才稳妥？</h3>
+<p>答：写明金额、支付日、支付方式、付到什么时间。教育、医疗等大额支出写明分担比例。孩子必要时可以要求增加合理费用，这条是法定的。[1]</p>
+<h3>Q11 不直接抚养孩子的一方怎么探望？</h3>
+<p>答：有探望子女的权利，另一方有协助义务。[1] 时间、频率、节假日安排写进协议。探望被阻碍的，可以先协商，协商不成依法向法院主张。</p>
+<h3>Q12 孩子的户口和学籍怎么办？</h3>
+<p>答：凭离婚证或法院文书、户口簿等，到公安户籍部门办理迁移或信息变更。所需材料各地不同，以当地公安部门要求为准。学籍信息联系学校更新。</p>
+<h3>Q13 离婚登记收费吗？</h3>
+<p>答：不收费。婚姻登记费自 2017 年 4 月 1 日起停征。[7] 打印、复印、交通等杂费自理。</p>
+<h3>Q14 离婚证丢了怎么办？</h3>
+<p>答：可以申请补领。补领婚姻登记证件属于全国通办的受理范围，带身份证到登记机关办理。[4][5] 具体材料和流程以当地要求为准。</p>
+<h3>Q15 孩子已经成年，协议里还要写抚养吗？</h3>
+<p>答：没有未成年子女的，写明「无子女抚养事项」即可，免得登记时被问。孩子已成年但在校就读的，费用怎么支持可以自行约定。以双方协商为准。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>协议写得太糙</strong>：只写「财产各半」，过户和还贷时容易起争议。房、车、存款逐项写清归属。</li>
+<li><strong>漏写共同债务</strong>：债主仍可能向双方主张。有债务的逐笔写明由谁偿还。</li>
+<li><strong>口头约定不上纸</strong>：探望、补偿、个人物品归属都写进协议。口头承诺难以执行。</li>
+<li><strong>错过 30 天申领期</strong>：逾期视为撤回，程序作废。[1] 提前几天去，别压最后一天。</li>
+<li><strong>领证跑错机关</strong>：申请在哪个机关，领证就得回哪个机关。[4] 异地办理的尤其注意。</li>
+<li><strong>只顾登记忘了后续</strong>：房产过户、贷款变更、孩子户口、保险受益人，都要另办。列清单逐项销。</li>
+<li><strong>出具虚假材料</strong>：依法承担法律责任，相关信息按国家规定记入信用记录。[2]</li>
+<li><strong>轻信「快速离婚」代办</strong>：登记要两人亲自到场，冷静期法定，代办承诺不可信。[1][2]</li>
+<li><strong>在情绪顶点做决定</strong>：撤回和签字都不可逆。重大分歧先谈完，再约到场日期。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>一方不同意或联系不上</strong>：协议离婚走不通。向法院提起离婚诉讼，由法院审理。[1] 立案要带什么证据、走什么程序，以法院立案窗口要求为准。打官司的通用准备可以参考 <a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%B3%E5%8A%A8%E4%BB%B2%E8%A3%81%E6%89%93%E5%AE%98%E5%8F%B8.html">G-10 第一次劳动仲裁打官司</a>。</li>
+<li><strong>存在家庭暴力</strong>：先保证人身安全。可以向加害人所在单位、居委会、村委会、妇联投诉求助，也可以直接向公安机关报案或向法院起诉。[3] 因遭受家庭暴力或面临现实危险申请保护令的，法院应当受理，可以责令对方迁出住所、禁止骚扰跟踪，有效期不超过 6 个月。[3] 报警流程参考 <a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8A%A5%E8%AD%A6%E6%8A%A5%E6%A1%88.html">G-09 第一次报警报案</a>。</li>
+<li><strong>一方是无或限制民事行为能力人</strong>：协议离婚不予受理。[2] 改走诉讼离婚，由监护人代为参与，具体咨询法院。</li>
+<li><strong>女方孕期等特殊时期</strong>：女方怀孕期间、分娩后一年内或终止妊娠后六个月内，限制男方提出离婚诉讼，女方提出或法院认为确有必要受理的除外。[1] 协议离婚以双方自愿申请为准，能否受理以登记机关审核为准。</li>
+<li><strong>登记机关不予受理</strong>：问清理由。材料不全的补齐再约。属于法定不予受理情形的改走诉讼。[2] 认为处理不当的，可向上级民政部门反映。</li>
+<li><strong>情绪撑不住</strong>：婚姻登记机关提供婚姻家庭辅导服务，办理过程中也可以开展心理辅导和调解，开口就能问。[2] 也可以拨 12345 查询当地心理援助渠道。</li>
+<li><strong>结婚证丢失或损毁</strong>：先向婚姻登记机关咨询。补领或调档的具体办法，以当地登记机关要求为准。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>离婚登记</td>
+<td>免费</td>
+<td>婚姻登记费已停征，必选</td>
+</tr>
+<tr>
+<td>离婚协议书自己写</td>
+<td>0 元</td>
+<td>按第 1.2 节要点拟，必选</td>
+</tr>
+<tr>
+<td>协议书请律师代拟</td>
+<td>数百至数千元</td>
+<td>按当地行情和财产复杂度，可选</td>
+</tr>
+<tr>
+<td>打印复印、照片</td>
+<td>50 元内</td>
+<td>部分地区要单人照片，可选</td>
+</tr>
+<tr>
+<td>律师咨询或诉讼代理</td>
+<td>数千元起</td>
+<td>仅诉讼离婚需要，可选</td>
+</tr>
+<tr>
+<td>时间：两次到场</td>
+<td>各半天内</td>
+<td>含排队和审核</td>
+</tr>
+<tr>
+<td>时间：冷静期加申领期</td>
+<td>31–60 天</td>
+<td>法定期限，另计</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mca.gov.cn">民政部</a>（婚姻登记政策与全国通办说明）</li>
+<li><a href="https://flk.npc.gov.cn">国家法律法规数据库</a>（《民法典》《婚姻登记条例》原文）</li>
+<li>当地民政局婚姻登记处官网或小程序、12345 政务服务热线</li>
+</ul>
+</li>
+<li>相关条目：<a href="J-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BB%93%E5%A9%9A%E7%99%BB%E8%AE%B0.html">J-01 第一次结婚登记</a>（复婚与再婚登记）、<a href="J-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B7%A8%E5%9F%8E%E5%AE%9A%E5%B1%85.html">J-04 第一次跨城定居</a>（户口迁移）、<a href="J-07-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%AB%8B%E9%81%97%E5%98%B1%E6%84%8F%E5%AE%9A%E7%9B%91%E6%8A%A4.html">J-07 第一次立遗嘱意定监护</a>（重大变化后更新遗嘱和受益人）、<a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%B3%E5%8A%A8%E4%BB%B2%E8%A3%81%E6%89%93%E5%AE%98%E5%8F%B8.html">G-10 第一次劳动仲裁打官司</a>（打官司的通用准备）</li>
+<li>可打印清单：<a href="../../checklists/J-09-%E7%A6%BB%E5%A9%9A%E7%99%BB%E8%AE%B0-%E6%9D%90%E6%96%99%E4%B8%8E%E6%B5%81%E7%A8%8B%E6%B8%85%E5%8D%95.html">J-09 离婚登记材料与流程清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《民法典》《婚姻登记条例》（2025 年修订）《反家庭暴力法》；Ⅱ 级为民政部答记者问、全国通办政策问答、地方政府门户说明与报道；Ⅲ 级为协议书份数、照片、预约方式等通行做法。</li>
+<li>主要来源：<ol>
+<li>《中华人民共和国民法典》第五编婚姻家庭，<a href="https://xxgk.yczf.gov.cn/xzf/ycmzj/fdzdgknr/fgwj_41995/202112/t20211203_1506727.shtml">https://xxgk.yczf.gov.cn/xzf/ycmzj/fdzdgknr/fgwj_41995/202112/t20211203_1506727.shtml</a></li>
+<li>《婚姻登记条例》（国务院令第 804 号，2025 年 5 月 10 日施行），<a href="https://www.mee.gov.cn/zcwj/gwywj/202504/t20250410_1113983.shtml">https://www.mee.gov.cn/zcwj/gwywj/202504/t20250410_1113983.shtml</a></li>
+<li>《中华人民共和国反家庭暴力法》全文，<a href="https://kjj.hainanzhou.gov.cn/lnb/zcfg1/gjzc1__zcfg/gjzc/content_1501008">https://kjj.hainanzhou.gov.cn/lnb/zcfg1/gjzc1__zcfg/gjzc/content_1501008</a></li>
+<li>民政部负责人就婚姻登记「全国通办」政策答记者问（央视网转载，2025年5月10日），<a href="https://news.cctv.com/2025/05/10/ARTIwNVcPgyHTdroNUNQDElq250510.shtml">https://news.cctv.com/2025/05/10/ARTIwNVcPgyHTdroNUNQDElq250510.shtml</a></li>
+<li>婚姻登记「全国通办」政策问答（深圳市龙华区人民政府网站转载，2026年4月9日），<a href="https://www.szlh.gov.cn/lhmzj/gkmlpt/content/12/12728/post_12728907.html">https://www.szlh.gov.cn/lhmzj/gkmlpt/content/12/12728/post_12728907.html</a></li>
+<li>首都之窗：修订后的《婚姻登记条例》5 月 10 日起施行（2025年5月10日），<a href="https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202505/t20250510_4086141.html">https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202505/t20250510_4086141.html</a></li>
+<li>新华网：婚姻登记下月起免费（2017年3月25日），<a href="http://www.xinhuanet.com/politics/2017-03/25/c_1120691795.htm">http://www.xinhuanet.com/politics/2017-03/25/c_1120691795.htm</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-24</li>
+<li>适用范围：中国内地居民协议离婚登记。诉讼程序、孩子户口、财产过户按法院、公安、不动产登记等部门要求执行，各地不同。</li>
+<li>易变项：地方材料要求、预约渠道、结婚证收回处理方式（M）。</li>
+<li>核实记录：<a href="../../sources/J-09.%E6%A0%B8%E5%AE%9E.html">sources/J-09.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="J-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%9D%A2%E5%AF%B9%E8%BA%AB%E5%90%8E%E4%BA%8B%E5%AE%89%E6%8E%92.html"><span class="dir">← 上一篇</span><span class="name">J-08 第一次面对身后事安排</span></a><span></span></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

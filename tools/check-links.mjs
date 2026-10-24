@@ -21,13 +21,14 @@ async function check(url) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 15000);
   const headers = {
-    'user-agent': 'Mozilla/5.0 (compatible; life-firsts-link-check/1.0)',
+    'user-agent':
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',
     accept: 'text/html,application/xhtml+xml',
   };
 
   try {
     let response = await fetch(url, { method: 'HEAD', redirect: 'follow', signal: controller.signal, headers });
-    if ([403, 405, 501].includes(response.status)) {
+    if ([403, 404, 405, 501].includes(response.status)) {
       response = await fetch(url, { method: 'GET', redirect: 'follow', signal: controller.signal, headers });
     }
     return { url, status: response.status };

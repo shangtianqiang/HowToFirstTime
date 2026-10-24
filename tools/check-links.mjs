@@ -31,6 +31,10 @@ async function check(url) {
     if ([403, 404, 405, 501].includes(response.status)) {
       response = await fetch(url, { method: 'GET', redirect: 'follow', signal: controller.signal, headers });
     }
+    if (response.status === 404) {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      response = await fetch(url, { method: 'GET', redirect: 'follow', signal: controller.signal, headers });
+    }
     return { url, status: response.status };
   } catch (error) {
     return { url, status: 0, error: error.message };
@@ -51,7 +55,22 @@ const workers = Array.from({ length: 5 }, async () => {
 await Promise.all(workers);
 
 const OK_STATUS = new Set([200, 201, 204, 301, 302, 307, 308, 403, 405]);
-const broken = results.filter((item) => item.status === 404 || item.status === 410);
+let broken = results.filter((item) => item.status === 404 || item.status === 410);
+
+// 并发扫描可能触发部分站点的防爬拦截，对判定失效的链接串行复验一次
+if (broken.length) {
+  const rechecked = [];
+  for (const item of broken) {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    rechecked.push(await check(item.url));
+  }
+  broken = rechecked.filter((item) => item.status === 404 || item.status === 410);
+  for (const item of rechecked.filter((item) => !(item.status === 404 || item.status === 410))) {
+    const index = results.findIndex((result) => result.url === item.url);
+    if (index !== -1) results[index] = item;
+  }
+}
+
 const unreachable = results.filter(
   (item) => item.status === 0 || (!OK_STATUS.has(item.status) && item.status !== 404 && item.status !== 410),
 );

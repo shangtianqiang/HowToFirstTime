@@ -66,7 +66,7 @@ const CSS = `
     --paper: #FBFAF5;
     --card: #FFFFFF;
     --ink: #22301F;
-    --muted: #6E7D6B;
+    --muted: #5D6B5A;
     --line: #E7E3D6;
     --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
   }
@@ -349,7 +349,7 @@ function buildPage(page, html, headings, title, depth) {
 </header>
 
 <div class="page">
-  <nav class="crumbs"><a href="${rootLink}">检索首页</a> · <a href="${rootLink.replace(/index\.html$/, 'README.html')}">总目录</a>${isArticle ? ` · ${esc(meta.domain)}` : ''}</nav>
+  <nav class="crumbs"><a href="${rootLink}">检索首页</a> · <a href="${rootLink.replace(/index\.html$/, 'README.html')}">总目录</a>${isArticle ? ` · <a href="${rootLink}?domain=${encodeURIComponent(meta.domain)}">${esc(meta.domain)}</a>` : ''}</nav>
   <h1 class="post-title">${esc(title)}</h1>
   ${chips.length ? `<div class="meta-chips">${chips.join('')}</div>` : ''}
   ${toc}

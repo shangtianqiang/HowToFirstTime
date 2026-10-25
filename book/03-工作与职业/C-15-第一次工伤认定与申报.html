@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次工伤认定与申报 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #5D6B5A;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · <a href="../../index.html?domain=%E5%B7%A5%E4%BD%9C%E4%B8%8E%E8%81%8C%E4%B8%9A">工作与职业</a></nav>
+  <h1 class="post-title">第一次工伤认定与申报</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>工作与职业</b></span><span class="chip ">最近核实 <b>2026-10-25</b></span><span class="chip ">来源 <b>5 条</b></span><span class="chip ">耗时 <b>长期</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-high">风险 <b>高</b></span><span class="chip ">时效 <b>稳定</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先就医、留证据、报单位；单位不报，你在 1 年内自己向人社局申请，超过 1 年不再受理。
+<strong>适用</strong>：与单位存在劳动关系（含没签合同的事实劳动关系）的职工，因工作受伤或查出职业病，第一次走工伤认定；本人不便办理时，近亲属和工会组织也能申请。
+<strong>不适用</strong>：不涉及工作的疾病就医看 <a href="../06-%E5%81%A5%E5%BA%B7%E4%B8%8E%E5%8C%BB%E7%96%97/F-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%8F%E9%99%A2%E6%89%8B%E6%9C%AF.html">F-03 第一次住院手术</a>；实习生、退休返聘等一般不属于劳动关系的用工，受伤后的救济途径先咨询 12333 或律师；和单位的待遇纠纷走仲裁看 <a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%B3%E5%8A%A8%E4%BB%B2%E8%A3%81%E6%89%93%E5%AE%98%E5%8F%B8.html">G-10 第一次劳动仲裁打官司</a>。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>先就医</strong>：伤情第一，就近送医，如实告诉医生是工作中受的伤。</li>
+<li><strong>留证据</strong>：现场照片、同事电话、病历、票据，当天全部收好。</li>
+<li><strong>报单位</strong>：30 日内申报是单位的义务；你口头报告也要留下记录。</li>
+<li><strong>自己申请</strong>：单位不报，你、近亲属或工会在 1 年内直接交人社局。</li>
+<li><strong>做错的后果</strong>：超 1 年不再受理，医疗费、伤残补助金等待遇都拿不到。</li>
+<li><strong>卡住找谁</strong>：参保地或单位所在地人社局工伤认定窗口，电话 12333。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 平时就要备好（没出事时）</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 劳动合同原件，另拍照片存手机</li>
+<li><input disabled="" type="checkbox"> 工资流水：银行账单或转账记录</li>
+<li><input disabled="" type="checkbox"> 工牌、工作证、考勤记录截图</li>
+<li><input disabled="" type="checkbox"> 电子社保卡里的参保缴费记录</li>
+<li>说明：这些是证明劳动关系的凭证。没签合同也能认定，缺什么看 Q4。</li>
+<li>参保记录平时怎么查，见 <a href="C-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8B%BF%E5%B7%A5%E8%B5%84%E4%B8%8E%E4%BA%94%E9%99%A9%E4%B8%80%E9%87%91.html">C-04 第一次拿工资与五险一金</a>。</li>
+<li>合同签订时的注意事项，见 <a href="C-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%AD%BE%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C.html">C-03 第一次签劳动合同</a>。</li>
+</ul>
+<h3>1.2 出事后 24 小时内</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 就医，取病历、诊断证明、检查报告、缴费票据</li>
+<li><input disabled="" type="checkbox"> 让医生把受伤时间、地点、经过如实写进病历</li>
+<li><input disabled="" type="checkbox"> 拍照：现场环境、涉事设备、地面状况、伤情</li>
+<li><input disabled="" type="checkbox"> 记下在场同事的姓名和电话</li>
+<li><input disabled="" type="checkbox"> 向班组长或人事报告，保留聊天记录或邮件</li>
+<li><input disabled="" type="checkbox"> 上下班途中车祸的，等交警出具事故责任认定书</li>
+</ul>
+<h3>1.3 提交申请前</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 《工伤认定申请表》：人社局窗口领取或当地政务网下载</li>
+<li><input disabled="" type="checkbox"> 劳动关系证明：合同复印件，或工资记录、工牌等凭证</li>
+<li><input disabled="" type="checkbox"> 医疗诊断证明；职业病的另交职业病诊断证明书</li>
+<li><input disabled="" type="checkbox"> 交通事故的：事故责任认定书</li>
+<li><input disabled="" type="checkbox"> 全套材料复印留底，原件尽量自己保管</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 第一步：就医并管好病历</h3>
+<ul>
+<li>在哪：就近医院或医保定点医院。</li>
+<li>做什么：急诊或门诊，如实向医生说明受伤经过。</li>
+<li>说什么：「这是工作时候受的伤」，请医生把经过写进病历。</li>
+<li>看什么：病历和诊断证明上的受伤时间、地点、经过是否如实。</li>
+<li>完成标志：拿到诊断证明书，病历和票据在手。</li>
+<li>卡住了怎么办：单位让你「别说和工作有关」，你按事实陈述。病历写错的，请医院按流程更正。</li>
+</ul>
+<h3>2.2 第二步：向单位报告</h3>
+<ul>
+<li>做什么：告诉班组长、主管或人事，尽量发文字消息或邮件。</li>
+<li>看什么：报告有没有留下可查的记录。</li>
+<li>完成标志：有聊天截图、邮件或工单等凭证。</li>
+<li>制度背景：单位应在事故发生之日或确诊职业病之日起 30 日内申报，特殊情况经人社部门同意可以延长 [1]。单位超时不报，这期间的工伤待遇费用由单位负担 [1]。</li>
+</ul>
+<h3>2.3 第三步：别干等单位的 30 日</h3>
+<ul>
+<li>30 日是单位的义务时限，不是你的等待期。材料齐了，你随时可以自己去交。</li>
+<li>单位主动申报的，配合提供材料，问清提交日期。</li>
+<li>单位拖着不报的，第 31 天还不见动静，直接走下一步。</li>
+</ul>
+<h3>2.4 第四步：向人社局交申请</h3>
+<ul>
+<li>在哪：单位所在地或参保地的人社局工伤认定窗口；多地支持政务网或掌上 12333 线上申请，以当地为准。</li>
+<li>说什么：说明受伤时间、地点、经过。</li>
+<li>交什么：三样材料——申请表、劳动关系证明、医疗诊断证明 [1][2]。</li>
+<li>看什么：窗口出具的收件回执或受理通知。</li>
+<li>完成标志：拿到《工伤认定申请受理决定书》。</li>
+<li>材料不齐：人社部门 15 日内一次性书面告知补正内容 [2]，按单补齐再交。</li>
+<li>费用：工伤认定本身不收费 [4]。</li>
+</ul>
+<h3>2.5 第五步：等调查和认定决定</h3>
+<ul>
+<li>时限：受理后 60 日内作出决定；事实清楚、权利义务明确的 15 日内 [2]。</li>
+<li>调查：人社部门可以调查取证，可能找你和同事了解情况。</li>
+<li>举证责任：你认为是工伤、单位不认为是工伤的，由单位拿出证据 [1]。</li>
+<li>完成标志：收到《认定工伤决定书》或《不予认定工伤决定书》，一般 20 日内送达 [2]。</li>
+<li>对不予认定不服：可依法申请行政复议，或向法院提起行政诉讼 [1]。选哪条路、期限怎么算，问当地人社局或 12333。</li>
+</ul>
+<h3>2.6 第六步：劳动能力鉴定</h3>
+<ul>
+<li>谁需要：治疗伤情相对稳定后仍留残疾、影响劳动能力的，做鉴定 [1]。轻微伤不遗留障碍的，一般不需要。</li>
+<li>在哪：设区的市级劳动能力鉴定委员会；单位、你或近亲属都能提出申请 [1]。</li>
+<li>交什么：一般含认定决定书、病历、诊断证明，以当地要求为准。</li>
+<li>时限：60 日内出结论，必要时延长 30 日 [1]。</li>
+<li>等级：劳动功能障碍分 10 级，一级最重，十级最轻 [1]。</li>
+<li>不服市级结论：收到之日起 15 日内向省级劳动能力鉴定委员会申请再次鉴定，省级结论为最终结论 [1]。</li>
+<li>完成标志：拿到劳动能力鉴定结论书，伤残等级明确。</li>
+</ul>
+<h3>2.7 第七步：按等级领待遇</h3>
+<p>完成标志：按认定结论和鉴定等级，逐项拿到下列待遇。</p>
+<ul>
+<li>医疗费：符合工伤保险诊疗项目目录、药品目录、住院服务标准的，由工伤保险基金支付 [1]。</li>
+<li>停工留薪期工资：治疗期间原工资福利待遇不变，由单位按月支付；一般不超 12 个月，伤情严重的可延长，延长不超过 12 个月 [1]。</li>
+<li>一次性伤残补助金：按等级乘本人工资。一级 27 个月、二级 25 个月、三级 23 个月、四级 21 个月；五级 18 个月、六级 16 个月；七级 13 个月、八级 11 个月、九级 9 个月、十级 7 个月 [1]。</li>
+<li>按月津贴：一至四级有伤残津贴；五级、六级单位难以安排工作的，也有津贴 [1]。</li>
+<li>离职时的两金：合同期满终止或你提出解除时，工伤保险基金付一次性工伤医疗补助金，单位付一次性伤残就业补助金；具体标准由省级政府规定，以当地为准 [1]。</li>
+<li>单位没缴工伤保险：全部待遇改由单位按条例的项目和标准支付 [1]。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 工作时间自己摔一跤，算工伤吗？</h3>
+<p>答：条例列举了 7 种应认定工伤的情形。在工作时间和工作场所内，因工作原因受到事故伤害的，应当认定为工伤 [1]。算不算由人社部门认定，你按流程申请即可。</p>
+<h3>Q2 上下班途中受伤都算吗？</h3>
+<p>答：不是都算。上下班途中受到交通事故，或城市轨道交通、客运轮渡、火车事故伤害，且你不是主要责任的，应当认定为工伤 [1]。自己走路摔倒一般不在列。以交警的责任认定和人社部门的结论为准。</p>
+<h3>Q3 单位不给申报怎么办？</h3>
+<p>答：不影响你申请。单位应在 30 日内申报；单位不报的，你、近亲属或工会在事故发生之日或确诊职业病之日起 1 年内，直接向人社局申请 [2]。单位超时未报期间的待遇费用由单位负担 [1]。</p>
+<h3>Q4 没签劳动合同，还能认定工伤吗？</h3>
+<p>答：能。申请材料允许提交与用人单位存在劳动关系（包括事实劳动关系）的其他证明材料 [2]。工资支付记录、社保缴费记录、工作证、招工登记表、考勤记录、其他劳动者的证言，都可以作为参照凭证 [3]。</p>
+<h3>Q5 从交材料到出结果要多久？</h3>
+<p>答：材料完整的应当受理 [4]。受理后 60 日内作出认定决定；事实清楚、权利义务明确的 15 日内 [2]。决定书作出后 20 日内送达 [2]。</p>
+<h3>Q6 工伤认定和劳动能力鉴定是什么关系？</h3>
+<p>答：先认定，后鉴定。认定解决「算不算工伤」，鉴定解决「伤成几级」。治疗伤情相对稳定后仍留残疾、影响劳动能力的，才做鉴定 [1]。</p>
+<h3>Q7 伤残一共分几级？</h3>
+<p>答：劳动功能障碍分 10 个等级，一级最重，十级最轻 [1]。生活自理障碍另分 3 个等级 [1]。</p>
+<h3>Q8 十级伤残有哪些待遇？</h3>
+<p>答：一次性伤残补助金为 7 个月的本人工资 [1]。停工留薪期内原工资照发 [1]。离职时另有一次性工伤医疗补助金和一次性伤残就业补助金，标准以当地为准 [1]。具体数额按你的工资和当地规定计算。</p>
+<h3>Q9 单位没缴工伤保险，待遇还有吗？</h3>
+<p>答：有。应当参保而未参保的单位，职工发生工伤的，由单位按条例规定的待遇项目和标准支付费用 [1]。单位不付的，走劳动仲裁和诉讼，见 <a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%B3%E5%8A%A8%E4%BB%B2%E8%A3%81%E6%89%93%E5%AE%98%E5%8F%B8.html">G-10 第一次劳动仲裁打官司</a>。</p>
+<h3>Q10 停工留薪期工资怎么发？</h3>
+<p>答：原工资福利待遇不变，由单位按月支付。一般不超 12 个月；伤情严重需要延长的，延长不超过 12 个月 [1]。当地对期限的确认口径，以人社部门答复为准。</p>
+<h3>Q11 对不予认定工伤的决定不服，怎么办？</h3>
+<p>答：可依法申请行政复议，或向法院提起行政诉讼 [1]。先复议还是直接起诉，结合自身情况问 12333 或当地人社局 [5]。</p>
+<h3>Q12 试用期受伤算工伤吗？</h3>
+<p>答：试用期也属于劳动关系存续期间，按同一套流程申请。劳动关系自用工之日起建立，签没签合同、过没过试用期不改变申报路径，背景见 <a href="C-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%AD%BE%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C.html">C-03 第一次签劳动合同</a>。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>拖过 1 年才申请</strong>：超 1 年人社部门不再受理，全部工伤待遇随之落空。出事后尽早启动，单位拖着你更要自己动。</li>
+<li><strong>口头私了收了钱</strong>：一次性了结协议签完，伤情加重的差价很难再主张。先走认定，赔偿谈判放在等级明确之后。</li>
+<li><strong>病历写成「自己不小心」</strong>：受伤经过写成与工作无关，认定时要多费口舌。就医时如实陈述，写错了请医院按流程更正。</li>
+<li><strong>只等单位办</strong>：单位超 30 日不报，期间的待遇费用虽由单位负担 [1]，但你自己的 1 年时限照样在跑。两头都要盯。</li>
+<li><strong>不做鉴定就去谈赔偿</strong>：没有等级就没有补助金的计算基准。伤情稳定后先鉴定，再谈钱。</li>
+<li><strong>离职时忘记两金</strong>：合同到期或你提出解除时，还有一次性工伤医疗补助金和一次性伤残就业补助金可领 [1]。办离职手续时一并提出。</li>
+<li><strong>证据原件全交给单位</strong>：自己留一套复印件和扫描件。认定、鉴定、仲裁都可能反复要用。</li>
+<li><strong>伤不重就不报</strong>：部分伤情会延迟显现。报告和就医记录当天留痕，认不认定再决定，记录补不回来。</li>
+<li><strong>突发疾病不留抢救记录</strong>：在工作时间和工作岗位突发疾病死亡的，48 小时内抢救无效死亡视同工伤 [1]。抢救起止时间的记录是关键证据。</li>
+<li><strong>流程只问单位不问官方</strong>：材料、时限、口径拿不准就拨 12333 或去工伤认定窗口问 [5]，不靠单位转述。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>上下班途中车祸</strong>：第一步打 122 报警，拿事故责任认定书。你是不是「非本人主要责任」以交警认定为准，认定书是申请的核心材料 [1]。</li>
+<li><strong>单位否认劳动关系</strong>：第一步按 Q4 的凭证清单收集材料交人社局。劳动关系有争议的，通常要先经劳动仲裁确认，再继续认定，以当地人社部门指引为准。</li>
+<li><strong>工作岗位突发疾病</strong>：第一步送医，并要求完整记录抢救起止时间。在工作时间和工作岗位突发疾病死亡，或 48 小时内经抢救无效死亡的，视同工伤 [1]；其他情形以人社部门认定结论为准。</li>
+<li><strong>单位没参保</strong>：第一步照常申请认定，待遇改由单位按条例项目和标准支付 [1]。单位拒付的，向劳动人事争议仲裁委员会申请仲裁，流程见 <a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%B3%E5%8A%A8%E4%BB%B2%E8%A3%81%E6%89%93%E5%AE%98%E5%8F%B8.html">G-10 第一次劳动仲裁打官司</a>。</li>
+<li><strong>查出职业病</strong>：第一步到职业病防治机构做职业病诊断。职业病诊断证明书是申请材料之一 [1][2]，后续流程与普通工伤相同。</li>
+<li><strong>已经超过 1 年</strong>：第一步带齐材料去当地人社局工伤科当面问。时限的中止、中断情形以人社部门答复为准，别自行下结论。</li>
+<li><strong>第三人责任竞合</strong>：被打伤、车祸对方全责等，可能同时涉及侵权赔偿和工伤待遇。第一步照常申报工伤，两类钱怎么衔接，问当地人社部门和 12333，以当地口径为准。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>工伤认定申请</td>
+<td>0 元</td>
+<td>办事指南标注不收费 [4]，必选</td>
+</tr>
+<tr>
+<td>劳动能力鉴定费</td>
+<td>数百元</td>
+<td>各地标准不同，以当地为准；有残疾影响劳动能力才需要，可选</td>
+</tr>
+<tr>
+<td>停工留薪期工资</td>
+<td>单位按月支付</td>
+<td>原工资福利不变，一般不超 12 个月 [1]</td>
+</tr>
+<tr>
+<td>一次性伤残补助金</td>
+<td>7–27 个月本人工资</td>
+<td>月数按鉴定等级确定 [1]，以鉴定结论为准</td>
+</tr>
+<tr>
+<td>一次性工伤医疗补助金</td>
+<td>以当地为准</td>
+<td>离职时由工伤保险基金支付，标准由省级规定 [1]</td>
+</tr>
+<tr>
+<td>一次性伤残就业补助金</td>
+<td>以当地为准</td>
+<td>离职时由单位支付，标准由省级规定 [1]</td>
+</tr>
+<tr>
+<td>时间：认定</td>
+<td>15–60 日</td>
+<td>自受理之日起算，另有补正时间 [2]</td>
+</tr>
+<tr>
+<td>时间：鉴定</td>
+<td>60–90 日</td>
+<td>60 日内出结论，必要时延长 30 日 [1]</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li><a href="https://www.mohrss.gov.cn">人力资源和社会保障部</a></li>
+<li><a href="https://www.12333.gov.cn">全国人社政务服务平台（12333）</a></li>
+<li>12333 电话热线；部分城市热线已并入 12345，拨不通就拨 12345 转人社</li>
+<li>当地人社局工伤认定窗口，或当地政务服务网的工伤认定办事指南</li>
+</ul>
+</li>
+<li>相关条目：<a href="C-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%AD%BE%E5%8A%B3%E5%8A%A8%E5%90%88%E5%90%8C.html">C-03 第一次签劳动合同</a>、<a href="C-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8B%BF%E5%B7%A5%E8%B5%84%E4%B8%8E%E4%BA%94%E9%99%A9%E4%B8%80%E9%87%91.html">C-04 第一次拿工资与五险一金</a>、<a href="../06-%E5%81%A5%E5%BA%B7%E4%B8%8E%E5%8C%BB%E7%96%97/F-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%8F%E9%99%A2%E6%89%8B%E6%9C%AF.html">F-03 第一次住院手术</a>、<a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%B3%E5%8A%A8%E4%BB%B2%E8%A3%81%E6%89%93%E5%AE%98%E5%8F%B8.html">G-10 第一次劳动仲裁打官司</a></li>
+<li>可打印清单：<a href="../../checklists/C-15-%E5%B7%A5%E4%BC%A4%E7%94%B3%E6%8A%A5-%E8%AF%81%E6%8D%AE%E4%B8%8E%E6%B5%81%E7%A8%8B%E6%B8%85%E5%8D%95.html">C-15 工伤申报证据与流程清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《工伤保险条例》《工伤认定办法》；Ⅱ 级为劳社部发〔2005〕12 号、上海市一网通办办事指南、12333 官方平台；Ⅲ 级为留证据、催单位等通行做法。</li>
+<li>主要来源：<ol>
+<li>《工伤保险条例》（国务院令第 586 号），国家税务总局法规库，<a href="https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html</a></li>
+<li>《工伤认定办法》（人力资源和社会保障部令第 8 号），安康市人社局网站转载，<a href="https://rsj.ankang.gov.cn/Content-2810456.html">https://rsj.ankang.gov.cn/Content-2810456.html</a></li>
+<li>《关于确立劳动关系有关事项的通知》（劳社部发〔2005〕12 号），北京市人社局转发件，<a href="https://rsj.beijing.gov.cn/xxgk/2024zcwj/202409/t20240905_3791004.html">https://rsj.beijing.gov.cn/xxgk/2024zcwj/202409/t20240905_3791004.html</a></li>
+<li>上海市一网通办「工伤认定」办事指南，<a href="https://zwdt.sh.gov.cn/govPortals/bsfw/item/4a9e2bae-258e-43ae-8f91-29b199c2bbd8">https://zwdt.sh.gov.cn/govPortals/bsfw/item/4a9e2bae-258e-43ae-8f91-29b199c2bbd8</a></li>
+<li>全国人社政务服务平台（12333），<a href="https://www.12333.gov.cn">https://www.12333.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-25</li>
+<li>适用范围：中国内地职工工伤保险制度。两金标准、停工留薪期具体确认办法、鉴定费标准由省级或市级规定，以当地为准。</li>
+<li>易变项：两金标准、线上办理入口（分省）；条例主体稳定（S）。</li>
+<li>核实记录：<a href="../../sources/C-15.%E6%A0%B8%E5%AE%9E.html">sources/C-15.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="C-14-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%BC%B4%E7%81%B5%E6%B4%BB%E5%B0%B1%E4%B8%9A%E7%A4%BE%E4%BF%9D.html"><span class="dir">← 上一篇</span><span class="name">C-14 第一次缴灵活就业社保</span></a><a class="next" href="C-16-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%A4%84%E7%90%86%E6%AF%95%E4%B8%9A%E7%94%9F%E6%A1%A3%E6%A1%88.html"><span class="dir">下一篇 →</span><span class="name">C-16 第一次处理毕业生档案</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

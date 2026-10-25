@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次手机丢失应急处理 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #5D6B5A;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · <a href="../../index.html?domain=%E6%95%B0%E5%AD%97%E4%B8%8E%E7%BD%91%E7%BB%9C">数字与网络</a></nav>
+  <h1 class="post-title">第一次手机丢失应急处理</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>数字与网络</b></span><span class="chip ">最近核实 <b>2026-10-25</b></span><span class="chip ">来源 <b>6 条</b></span><span class="chip ">耗时 <b>半小时内</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-high">风险 <b>高</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：按顺序做三件事——挂失 SIM 卡、冻结支付宝、冻结微信支付；顺序错了，几分钟内钱可能被转走。
+<strong>适用</strong>：手机遗失或被盗，手机里有支付、银行 App 或常用账号的人。
+<strong>不适用</strong>：确定落在家里或熟人手里的情况，先打电话找；单纯手机损坏换机，看账号迁移。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>第 1 步挂 SIM</strong>：借个手机打运营商电话——移动 10086、联通 10010、电信 10000，挂失号码阻断验证码。</li>
+<li><strong>第 2 步冻支付宝</strong>：拨 95188，或用任意设备打开 110.alipay.com 快速挂失。</li>
+<li><strong>第 3 步冻微信支付</strong>：拨 95017 按 9 自助冻结。</li>
+<li><strong>银行卡也丢</strong>：逐个打银行客服挂失，冻结手机银行。</li>
+<li><strong>定位找回</strong>：iPhone 上 icloud.com/find 开「丢失模式」；安卓用厂商查找服务。</li>
+<li><strong>有损失就报警</strong>：拨 110 或到派出所，拿回执。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 丢失前就该做的（现在补也不晚）</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 开启查找功能：iPhone「查找」、安卓各厂商「查找设备」，登录账号保持开启。</li>
+<li><input disabled="" type="checkbox"> 设置 SIM 卡 PIN 码：SIM 被拔到别的手机也要 PIN 才能用。</li>
+<li><input disabled="" type="checkbox"> 锁屏密码用强密码，支付密码与锁屏密码不同。</li>
+<li><input disabled="" type="checkbox"> 把运营商、银行、95188、95017 客服电话记在备忘录之外的纸上或家人手机里。</li>
+<li><input disabled="" type="checkbox"> 重要账号开启双重验证，绑定紧急联系人。</li>
+</ul>
+<h3>1.2 丢失后立刻确认的事</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 回忆最后出现的位置，借电话拨打自己号码（还能打通说明在附近或被捡）。</li>
+<li><input disabled="" type="checkbox"> 判断是遗失还是被盗：被盗（有目击、被抢）直接报警。</li>
+<li><input disabled="" type="checkbox"> 盘点手机里有什么：支付 App、银行 App、邮箱、社交账号——决定冻结范围。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 黄金顺序：先断验证码，再冻支付</h3>
+<ul>
+<li>第一步 挂失 SIM 卡：借用任何一部手机拨打运营商客服，提供机主身份信息挂失。挂失后原卡立即失效，别人收不到你的验证码。</li>
+<li>第二步 冻结支付宝：拨 95188 转人工紧急冻结；或任意浏览器打开 110.alipay.com，用账号信息快速挂失。</li>
+<li>第三步 冻结微信支付：拨 95017 按 9 键自助冻结；或借他人设备登录微信，走「我 → 设置 → 账号与安全 → 微信安全中心 → 冻结账号」。</li>
+<li>第四步 银行卡：手机和卡一起丢的，逐个打银行客服挂失卡片；只有手机丢的，冻结手机银行（部分银行 App 支持客服冻结）。</li>
+<li>完成标志：SIM 已挂失、两大支付已冻结、银行 App 已冻结。</li>
+</ul>
+<h3>2.2 定位与锁定设备</h3>
+<ul>
+<li>iPhone：电脑或他人手机登录 icloud.com/find，开启「丢失模式」——锁定屏幕、显示你的联系号码、持续追踪位置。</li>
+<li>安卓：各品牌官网或 App 的查找服务（华为/小米/vivo/OPPO 等），可定位、响铃、锁定；Google 账号用户用查找中心。</li>
+<li>前提：丢失前已登录并开启查找功能，设备开机联网才可定位。</li>
+<li>完成标志：设备显示「已锁定」，留下联系方式。</li>
+</ul>
+<h3>2.3 补办与恢复</h3>
+<ul>
+<li>补 SIM 卡：带身份证到运营商营业厅补办，号码不变，原卡彻底作废。</li>
+<li>解除冻结：找回手机或确认安全后，按原渠道解除挂失，改一遍锁屏密码、支付密码。</li>
+<li>换新手机：先改重要账号密码（邮箱优先——它是找回其他账号的钥匙），再逐个恢复 App。</li>
+</ul>
+<h3>2.4 报警（有被盗或财产损失时）</h3>
+<ul>
+<li>做什么：拨 110 或到就近派出所，说明时间地点经过，提供购买凭证和 IMEI 号（包装盒上有）。</li>
+<li>拿什么：报案回执。涉及盗刷的，支付平台的赔付流程要它。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 为什么必须先挂 SIM 卡？</h3>
+<p>答：短信验证码是最后一道防线。SIM 不挂失，捡到的人可以用验证码重置你的支付密码。挂失后原卡失效，这条路就断了。</p>
+<h3>Q2 冻结支付会影响里面的钱吗？</h3>
+<p>答：不会。冻结只是暂停支付功能，余额原封不动，解除后照常使用。</p>
+<h3>Q3 没开查找功能还能找回吗？</h3>
+<p>答：定位基本无望，但账号安全不受影响——按挂失冻结顺序处理即可。找回靠电话联系捡到的人或警方调监控。</p>
+<h3>Q4 远程抹除数据该什么时候做？</h3>
+<p>答：确认找不回来、且里面有敏感资料时再做。抹除后部分品牌设备不再可定位，是最后手段，不是第一步。</p>
+<h3>Q5 捡到别人手机怎么办？</h3>
+<p>答：等失主来电、交给就近派出所或工作人员。解锁查看隐私、拒不归还有法律风险。</p>
+<h3>Q6 手机被捡走遭勒索怎么办？</h3>
+<p>答：不要私下转账。保留勒索记录，直接报警，这已经涉嫌违法。</p>
+<h3>Q7 补卡要花钱吗？</h3>
+<p>答：运营商补卡一般收费十元上下或免费，各地各套餐不同，以营业厅为准。</p>
+<h3>Q8 手机号绑了几十个账号，挨个改绑定吗？</h3>
+<p>答：优先级：邮箱 → 支付和银行 → 社交和工作账号 → 其他。换绑都需要验证码，所以先补卡再批量换绑。</p>
+<h3>Q9 eSIM 设备丢失怎么处理？</h3>
+<p>答：同样先挂失对应号码。eSIM 无实体卡，运营商挂失后无法在其他设备重新激活你的号码。</p>
+<h3>Q10 「丢失模式」里留什么信息？</h3>
+<p>答：留一个能打通的备用号码和一句话（如「拾到必有重谢」）。不要留家庭住址。</p>
+<h3>Q11 支付宝/微信被异地盗刷了怎么追回？</h3>
+<p>答：立即冻结并拨打平台客服申报盗刷，按流程提交报案回执和材料；同时报警。平台有相应的资金保障机制，及时申报是关键。</p>
+<h3>Q12 旧手机卖掉前要做什么？</h3>
+<p>答：退出所有账号、解除 SIM、恢复出厂设置并抹除数据；iPhone 还要在 iCloud 里移除设备，否则新机主用不了，你的账号也不安全。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>先报警再挂失</strong>：报警排队的时间够盗刷发生几十次。顺序是挂失冻结在前，报警紧随其后。</li>
+<li><strong>只冻结微信不冻结支付宝</strong>（或反过来）：两个支付是独立体系，都要冻。</li>
+<li><strong>用自己另一台设备慢慢操作</strong>：没第二设备就借手机打客服电话，客服通道不依赖你的手机。</li>
+<li><strong>抹除当第一步</strong>：一抹除就无法定位找回，也断了「留联系方式」的机会。先锁定，再考虑抹除。</li>
+<li><strong>锁屏密码和支付密码相同</strong>：等于一道锁管所有门。平时就要分开。</li>
+<li><strong>收到「官方」找回短信点链接</strong>：丢失后高发的钓鱼短信，一律不点，官方渠道只有客服电话和官网域名。</li>
+<li><strong>补卡后不改密码</strong>：SIM 补回来只防验证码，不防已经泄露的密码。解冻后重要密码全换。</li>
+<li><strong>不在锁屏显示通知内容</strong>：这是预防项——锁屏直接显示验证码短信等于密码裸奔，系统设置里关掉。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>人在外地手机被偷</strong>：第一步照常挂失冻结；补卡可异地营业厅办理（三大运营商均支持异地补卡），紧急时先用家人手机号过渡。</li>
+<li><strong>手机和身份证一起丢</strong>：先挂失 SIM 和支付，再挂失身份证（部分公安 App 支持线上挂失/申报丢失），补办时声明原证作废。</li>
+<li><strong>支付已被盗刷</strong>：第一步立即冻结并拨打平台客服申报，同时 110 报警拿回执，按平台保障流程提交材料。</li>
+<li><strong>手机落在出租车/网约车上</strong>：第一步联系平台客服或司机，定位明确的用「丢失模式」留联系方式；协商无果再报警。</li>
+<li><strong>公司手机丢失</strong>：第一时间报给 IT 部门远程擦除并停用企业账号，个人与公司账号风险都要处理。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>挂失 SIM</td>
+<td>0 元</td>
+<td>客服电话挂失免费，必选项为 0</td>
+</tr>
+<tr>
+<td>补办 SIM 卡</td>
+<td>0–20 元</td>
+<td>各地资费不同，当场可取</td>
+</tr>
+<tr>
+<td>冻结/解冻支付</td>
+<td>0 元</td>
+<td>支付宝、微信均免费</td>
+</tr>
+<tr>
+<td>挂失银行卡</td>
+<td>0–10 元</td>
+<td>多数银行免收挂失费</td>
+</tr>
+<tr>
+<td>远程查找与锁定</td>
+<td>0 元</td>
+<td>厂商免费功能</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半小时内</td>
+<td>挂失冻结三步 10 分钟内可完成</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li>支付宝应急挂失：<a href="https://110.alipay.com">https://110.alipay.com</a> ，客服 95188</li>
+<li>微信支付冻结专线 95017（按 9 自助冻结），微信安全中心</li>
+<li>Apple「查找」：<a href="https://www.icloud.com/find">https://www.icloud.com/find</a></li>
+<li>运营商客服：移动 10086、联通 10010、电信 10000；报警 110</li>
+</ul>
+</li>
+<li>相关条目：<a href="I-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B4%A6%E5%8F%B7%E8%A2%AB%E7%9B%97%E6%89%BE%E5%9B%9E.html">I-02 第一次账号被盗/找回</a>、<a href="I-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%98%B2%E8%AF%88%E9%AA%97.html">I-01 第一次防诈骗</a>、<a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%9E%E9%93%B6%E8%A1%8C%E5%8D%A1.html">G-01 第一次办银行卡</a>、<a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-05-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%A8%E4%BF%A1%E7%94%A8%E5%8D%A1.html">G-05 第一次用信用卡</a></li>
+<li>可打印清单：<a href="../../checklists/I-10-%E6%89%8B%E6%9C%BA%E4%B8%A2%E5%A4%B1-%E5%BA%94%E6%80%A5%E4%B8%8E%E9%A2%84%E9%98%B2%E6%B8%85%E5%8D%95.html">I-10 手机丢失清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅱ 级为支付平台、设备厂商和运营商官方通道；Ⅲ 级为应急顺序的通行口径。</li>
+<li>主要来源：<ol>
+<li>支付宝快速挂失官方页面，<a href="https://110.alipay.com/safety/emergency/index.htm">https://110.alipay.com/safety/emergency/index.htm</a></li>
+<li>微信支付安全中心（95017 冻结专线），<a href="https://support.weixin.qq.com">https://support.weixin.qq.com</a></li>
+<li>Apple 支持《在「查找」中使用「丢失模式」》，<a href="https://help.apple.com/icloud/zh_CN.lproj/mmfc0f0165.html">https://help.apple.com/icloud/zh_CN.lproj/mmfc0f0165.html</a></li>
+<li>Google 账号帮助《寻找、保护或清空设备》，<a href="https://support.google.com/accounts/answer/6160491">https://support.google.com/accounts/answer/6160491</a></li>
+<li>三大运营商客服挂失通道（10086/10010/10000）</li>
+<li>扬州市科普网《手机不慎遗失怎么办》，<a href="https://kx.yangzhou.gov.cn">https://kx.yangzhou.gov.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-25</li>
+<li>适用范围：中国内地。运营商异地补卡、警方受理流程各地略有差异，以当地为准。</li>
+<li>易变项：各平台冻结入口路径、厂商查找服务名称（M）。</li>
+<li>核实记录：<a href="../../sources/I-10.%E6%A0%B8%E5%AE%9E.html">sources/I-10.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="I-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8F%91%E7%9F%AD%E8%A7%86%E9%A2%91%E4%B8%8E%E5%BC%80%E7%9B%B4%E6%92%AD.html"><span class="dir">← 上一篇</span><span class="name">I-09 第一次发短视频/开直播</span></a><a class="next" href="I-11-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%A4%84%E7%90%86%E5%AD%A9%E5%AD%90%E6%B8%B8%E6%88%8F%E5%85%85%E5%80%BC%E9%80%80%E6%AC%BE.html"><span class="dir">下一篇 →</span><span class="name">I-11 第一次处理孩子游戏充值退款</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

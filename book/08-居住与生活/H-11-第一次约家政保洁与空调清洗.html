@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次约家政保洁与空调清洗 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #5D6B5A;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · <a href="../../index.html?domain=%E5%B1%85%E4%BD%8F%E4%B8%8E%E7%94%9F%E6%B4%BB">居住与生活</a></nav>
+  <h1 class="post-title">第一次约家政保洁与空调清洗</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>居住与生活</b></span><span class="chip ">最近核实 <b>2026-10-25</b></span><span class="chip ">来源 <b>5 条</b></span><span class="chip ">耗时 <b>半天</b></span><span class="chip ">花费 <b>百元内</b></span><span class="chip risk-low">风险 <b>低</b></span><span class="chip ">时效 <b>稳定</b></span><span class="chip ">适用 <b>分市</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：下单前定清计价方式（按小时还是按面积）和服务清单，用商务部「家政信用查」核验人员信用；验收合格再确认完工。
+<strong>适用</strong>：第一次预约日常保洁、深度保洁、开荒保洁或空调等家电清洗的人。
+<strong>不适用</strong>：长期住家保姆和育儿嫂看 H-08；房屋维修看 H-09。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>三类服务别混淆</strong>：日常保洁（小时计费，40–60 元/小时常见）、深度保洁（按面积 6–12 元/㎡ 或套餐）、开荒保洁（新装修首次，5–15 元/㎡）。</li>
+<li><strong>查信用</strong>：微信/支付宝搜「家政信用查」小程序——商务部官方平台，免费查家政员信用信息。</li>
+<li><strong>报价写清三样</strong>：计价方式、服务范围清单、耗材谁出。</li>
+<li><strong>家里三准备</strong>：收好贵重物品和现金、约定进门方式、留出水电。</li>
+<li><strong>当面验收</strong>：边角、玻璃、厨卫油污是验收重点，不合格当场返工。</li>
+<li><strong>空调清洗</strong>：按台计价，挂机和柜机价格不同；换季使用前洗最合理。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 选服务前想清楚</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 你要哪类：日常维持（每周/每月一次）、入住前大扫除、装修后开荒、单项（油烟机/空调/冰箱清洗）。</li>
+<li><input disabled="" type="checkbox"> 面积和重点区域：厨卫、玻璃、地板材质，报给客服估价才准。</li>
+<li><input disabled="" type="checkbox"> 时间：家里有人的时段；开荒保洁安排在家具进场前最划算。</li>
+</ul>
+<h3>1.2 选渠道并核验</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 平台下单（有订单记录、评价、客服介入）；或小区口碑师傅。</li>
+<li><input disabled="" type="checkbox"> 微信/支付宝搜「家政信用查」，输入家政员信息查信用记录。</li>
+<li><input disabled="" type="checkbox"> 问清人员是否持「居家上门服务证」（电子版即可出示）。</li>
+<li><input disabled="" type="checkbox"> 比价时对齐口径：同样是「深度保洁」，有的按小时、有的按面积，别只比总价。</li>
+</ul>
+<h3>1.3 下单确认的条款</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 计价方式：小时/面积/套餐，超时怎么算。</li>
+<li><input disabled="" type="checkbox"> 服务清单：擦玻璃、厨卫深度、家电外观包含与否。</li>
+<li><input disabled="" type="checkbox"> 耗材与设备：清洁剂、梯子、吸尘器谁提供。</li>
+<li><input disabled="" type="checkbox"> 取消和改期规则、损坏赔偿怎么约定。</li>
+</ul>
+<h3>1.4 服务当天的家里</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 贵重物品、现金、证件收好或随身。</li>
+<li><input disabled="" type="checkbox"> 交代宠物和易碎品。</li>
+<li><input disabled="" type="checkbox"> 提供水电和使用许可（洗衣机的自清洁、冰箱断电等）。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 进门与确认</h3>
+<ul>
+<li>做什么：核对上门人员与订单信息，确认服务范围和时长/面积口径。</li>
+<li>看什么：人员着装、工具有没有自带， professionalism 也是判断标准之一。</li>
+<li>完成标志：双方对服务内容和计价无分歧后开工。</li>
+</ul>
+<h3>2.2 服务过程中</h3>
+<ul>
+<li>做什么：带看重点区域（油污、水垢、玻璃），说明禁忌（不能用钢丝球的地板、不进的书房）。</li>
+<li>看什么：清洁剂是否对症（木地板、大理石各有专用），阳台外窗作业的让师傅系安全带。</li>
+<li>卡住了怎么办：临时加项（如加洗一台空调）按订单价目确认，别口头含糊。</li>
+</ul>
+<h3>2.3 验收</h3>
+<ul>
+<li>重点查：边角缝隙、玻璃正反面、厨卫油污和水垢、柜顶床底。</li>
+<li>不合格的当场指出来，正常范围内的返工不另收费。</li>
+<li>完成标志：验收确认，线上订单点完成；纸质单据留好。</li>
+</ul>
+<h3>2.4 空调清洗专项</h3>
+<ul>
+<li>内容区分：普通清洗（滤网+外壳）和深度清洗（拆机洗蒸发器、风轮）价格差数倍，下单时看清楚。</li>
+<li>时机：换季首次开机前最合理；长期未洗的制热有异味就该洗了。</li>
+<li>验收：看滤网和蒸发器是否明显干净、开机闻异味、滴水是否正常。</li>
+<li>中央空调按出风口数量计价，报价上门评估。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 日常保洁和深度保洁差在哪？</h3>
+<p>答：日常是维持性表面清洁，按小时算；深度含厨房油污、浴室水垢、玻璃、柜顶床底等死角，按面积或套餐，单价更高、耗时长。</p>
+<h3>Q2 开荒保洁什么时候做？</h3>
+<p>答：硬装完、家具家电进场前。家具进场后再做，边角就扫不到了，价格也更高。</p>
+<h3>Q3 价格大概什么行情？</h3>
+<p>答：日常约 40–60 元/小时（3 小时起）；深度约 6–12 元/㎡；开荒约 5–15 元/㎡；空调挂机清洗数十到百余元/台。城市和季节浮动，以当地报价为准。</p>
+<h3>Q4 「家政信用查」怎么用？</h3>
+<p>答：微信或支付宝搜索该小程序，免费查询家政服务员归集自公安、人社、市场监管等部门的信用信息，覆盖企业 2 万多家、人员 900 多万。</p>
+<h3>Q5 保洁员把东西损坏了怎么办？</h3>
+<p>答：先拍照留证，联系平台或公司按约定赔偿；个人接单的协商解决，谈不拢的凭记录走 12315 或起诉——所以别找完全无凭据的个人。</p>
+<h3>Q6 需要全程在家盯着吗？</h3>
+<p>答：首次服务建议在家；熟悉后可约定进门方式（密码锁临时密码、物业代开）。贵重物品始终收好。</p>
+<h3>Q7 钥匙或门禁密码交给师傅安全吗？</h3>
+<p>答：尽量不用交钥匙的方式。必须的用智能锁临时密码，服务后删除；订单备注留痕。</p>
+<h3>Q8 洗空调有必要拆机吗？</h3>
+<p>答：看脏污程度。滤网外壳清洗适合日常维护；制冷变差、有异味、滴水多的做深度清洗（拆洗蒸发器和风轮），效果差别明显。</p>
+<h3>Q9 自己买清洁剂让师傅用行吗？</h3>
+<p>答：可以，但要确认师傅会用；对特殊材质（实木、大理石）自备专用剂更稳妥。</p>
+<h3>Q10 保洁中把地板划了算谁的？</h3>
+<p>答：按责任认定：操作不当由服务方赔；前期没告知地板特殊性的，责任分摊。下单时和进场时都说一句「地板怕水/怕划」。</p>
+<h3>Q11 包年卡划算吗？</h3>
+<p>答：算清楚单价再决定：预付卡有商家跑路风险，买短周期（季卡）或按次付更稳；大额预付受预付卡管理规则约束。</p>
+<h3>Q12 服务的阿姨很好能私下长期约吗？</h3>
+<p>答：可以理解，但绕开平台后保障没了。折中办法：仍走平台下单指定人员，评价留底。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>只问总价不问计价</strong>：同样 300 元，按小时是 5 小时、按面积是 50㎡，服务量差很多。口径写进订单。</li>
+<li><strong>不核信用直接放人进门</strong>：花一分钟查「家政信用查」，把风险挡在门外。</li>
+<li><strong>开荒拖到家具进场后</strong>：边角做不了，加钱还做不干净。硬装完就约。</li>
+<li><strong>口头承诺加项免费</strong>：加项当场确认价格，写在订单里，完工不扯皮。</li>
+<li><strong>外窗作业不让系安全带</strong>：高层擦外窗是高危作业，要求规范作业，拒绝「胆子大」表演。</li>
+<li><strong>预付大额年卡</strong>：跑路风险真实存在。按次付费或小面额卡。</li>
+<li><strong>验收完才提问题</strong>：人走了再提返工，多半收费或不了了之。当面验收。</li>
+<li><strong>把密码锁永久密码给出去</strong>：临时密码用完即删，长期密码不给任何人。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>保洁员临时爽约</strong>：第一步联系平台改约或赔付（部分平台有爽约补偿），影响入住计划的换商家并留记录。</li>
+<li><strong>服务中被反锁/失窃怀疑</strong>：第一时间报警，物业调监控配合；订单和沟通记录是依据。</li>
+<li><strong>清洁剂把台面蚀坏</strong>：第一步拍照停工，联系商家定损赔偿；索要所用清洁剂名称留证。</li>
+<li><strong>深度保洁后发现遗漏区域</strong>：24 小时内带照片联系客服，正常范围内的补做不收费。</li>
+<li><strong>空调洗后漏水或不制冷</strong>：第一步联系清洗方复查，属于安装复位问题的现场解决；机器本身故障转 H-09 报修。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>日常保洁</td>
+<td>40–60 元/小时</td>
+<td>多数 3 小时起订</td>
+</tr>
+<tr>
+<td>深度保洁</td>
+<td>6–12 元/㎡</td>
+<td>或按时长计价，含厨卫玻璃</td>
+</tr>
+<tr>
+<td>开荒保洁</td>
+<td>5–15 元/㎡</td>
+<td>新装修首次，精开荒偏上限</td>
+</tr>
+<tr>
+<td>空调挂机清洗</td>
+<td>数十–百余元/台</td>
+<td>深度拆洗价更高</td>
+</tr>
+<tr>
+<td>油烟机清洗</td>
+<td>百元级/台</td>
+<td>按项目计价</td>
+</tr>
+<tr>
+<td>家政信用查</td>
+<td>0 元</td>
+<td>商务部官方平台</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半天</td>
+<td>日常 3–4 小时；深度开荒全天</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li>「家政信用查」小程序（微信/支付宝搜索；商务部全国家政服务信用信息平台）</li>
+<li>商务部《家政信用查消费者使用指南》，<a href="https://www.mofcom.gov.cn/dl/yjhx-static/file/jzxyc-1008.pdf">https://www.mofcom.gov.cn/dl/yjhx-static/file/jzxyc-1008.pdf</a></li>
+<li>商务部促进家政服务消费政策解读，<a href="https://www.mofcom.gov.cn/zwgk/zcjd/art/2025/art_cdf3a1fb5c99423189899758d61be0b1.html">https://www.mofcom.gov.cn/zwgk/zcjd/art/2025/art_cdf3a1fb5c99423189899758d61be0b1.html</a></li>
+<li>全国 12315 平台，<a href="https://www.12315.cn">https://www.12315.cn</a></li>
+</ul>
+</li>
+<li>相关条目：<a href="H-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%89%BE%E5%AE%B6%E6%94%BF%E4%BF%9D%E5%A7%86.html">H-08 第一次找家政/保姆</a>、<a href="H-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%8B%AC%E5%B1%85.html">H-01 第一次独居</a>、<a href="H-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%88%BF%E5%B1%8B%E6%8A%A5%E4%BF%AE%E4%B8%8E%E6%89%BE%E7%BB%B4%E4%BF%AE%E5%B8%88%E5%82%85.html">H-09 第一次房屋报修与找维修师傅</a>、<a href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-08-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%B6%88%E8%B4%B9%E7%BB%B4%E6%9D%83.html">G-08 第一次消费维权</a></li>
+<li>可打印清单：<a href="../../checklists/H-11-%E5%AE%B6%E6%94%BF%E4%BF%9D%E6%B4%81-%E4%B8%8B%E5%8D%95%E4%B8%8E%E9%AA%8C%E6%94%B6%E6%B8%85%E5%8D%95.html">H-11 家政保洁清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅱ 级为商务部官方平台与政策文件；Ⅲ 级为市场价格行情。</li>
+<li>主要来源：<ol>
+<li>商务部《「家政信用查」消费者使用指南》（归集公安、人社、市场监管等部门信用信息，免费开放，覆盖企业 2 万余家、人员 900 多万），<a href="https://www.mofcom.gov.cn/dl/yjhx-static/file/jzxyc-1008.pdf">https://www.mofcom.gov.cn/dl/yjhx-static/file/jzxyc-1008.pdf</a></li>
+<li>商务部《关于促进家政服务消费扩容升级若干措施的通知》政策解读（居家上门服务证、信用体系），<a href="https://www.mofcom.gov.cn/zwgk/zcjd/art/2025/art_cdf3a1fb5c99423189899758d61be0b1.html">https://www.mofcom.gov.cn/zwgk/zcjd/art/2025/art_cdf3a1fb5c99423189899758d61be0b1.html</a></li>
+<li>2026 年家政保洁价格行情汇总（日常/深度/开荒计价与区间），<a href="https://post.smzdm.com/p/arz22meq">https://post.smzdm.com/p/arz22meq</a></li>
+<li>上门家电清洗价格与频次分析（洗衣机月度深度清洁等建议），<a href="https://k.sina.com.cn/article_7879924051_1d5ae195306802d8co.html">https://k.sina.com.cn/article_7879924051_1d5ae195306802d8co.html</a></li>
+<li>全国 12315 平台，<a href="https://www.12315.cn">https://www.12315.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-25</li>
+<li>适用范围：中国内地城市。价格行情随城市和季节浮动，以当地实际报价为准。</li>
+<li>易变项：平台补贴与促销价格（S，行业规则层面稳定）。</li>
+<li>核实记录：<a href="../../sources/H-11.%E6%A0%B8%E5%AE%9E.html">sources/H-11.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="H-10-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B9%B0%E5%A4%A7%E5%AE%B6%E7%94%B5.html"><span class="dir">← 上一篇</span><span class="name">H-10 第一次买大家电</span></a><a class="next" href="../09-%E6%95%B0%E5%AD%97%E4%B8%8E%E7%BD%91%E7%BB%9C/I-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%98%B2%E8%AF%88%E9%AA%97.html"><span class="dir">下一篇 →</span><span class="name">I-01 第一次防诈骗</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次提取公积金与办公积金贷款 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #5D6B5A;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · <a href="../../index.html?domain=%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9">钱与消费</a></nav>
+  <h1 class="post-title">第一次提取公积金与办公积金贷款</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>钱与消费</b></span><span class="chip ">最近核实 <b>2026-10-25</b></span><span class="chip ">来源 <b>8 条</b></span><span class="chip ">耗时 <b>半天</b></span><span class="chip ">花费 <b>免费</b></span><span class="chip risk-low">风险 <b>低</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>分市</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：钱在单位和个人各缴一半、全归你的账户里；租房买房都能取，贷款利率比商贷低，先问当地公积金中心再动手。
+<strong>适用</strong>：正常缴存公积金、第一次办理提取或贷款的职工。
+<strong>不适用</strong>：没有缴存公积金的人；单位不缴公积金的劳动争议，看 C-04 和 G-10。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>钱是谁的</strong>：单位和你按同一比例缴，全部进你的个人账户，离职退休前一般取不出来。</li>
+<li><strong>租房能取</strong>：凭租赁合同（部分城市要求备案或发票），每城市有额度和频次限制。</li>
+<li><strong>买房一年内取</strong>：购房提取一般在合同生效或拿证后 1 年内办，同一套房通常只提一次。</li>
+<li><strong>贷款看缴存</strong>：一般要求连续足额缴存满 6 个月以上，额度与账户余额倍数挂钩。</li>
+<li><strong>利率比商贷低</strong>：2025 年 5 月 8 日起首套 5 年以上 2.6%，存量贷款次年 1 月 1 日自动调整。</li>
+<li><strong>查账户</strong>：当地公积金 App、小程序或支付宝/微信城市服务，先看余额再规划。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 先弄清自己的账户</h3>
+<ul>
+<li>查缴存状态：正常缴存还是封存（离职后单位停缴就是封存）。</li>
+<li>查余额和月缴存额：贷款额度和它直接相关。</li>
+<li>确认缴存城市：公积金按城市管理，跨城市要办转移接续。</li>
+</ul>
+<h3>1.2 按用途备材料</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 租房提取：身份证、租赁合同，部分城市要求备案回执或发票。</li>
+<li><input disabled="" type="checkbox"> 购房提取：身份证、购房合同或不动产权证书、购房发票或契税凭证、本人银行卡。</li>
+<li><input disabled="" type="checkbox"> 偿还房贷提取：贷款合同、还款流水。</li>
+<li><input disabled="" type="checkbox"> 离职销户提取：身份证、离职证明；多数城市要求封存满 6 个月未再缴存。</li>
+<li><input disabled="" type="checkbox"> 退休销户提取：身份证、退休证明，可全额取出并销户。</li>
+</ul>
+<h3>1.3 办贷款前自查</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 连续缴存月数够不够（一般满 6 个月，以当地为准）。</li>
+<li><input disabled="" type="checkbox"> 账户状态是否正常（申请时通常要求上月仍在缴）。</li>
+<li><input disabled="" type="checkbox"> 有没有未结清的公积金贷款（全国联网可查）。</li>
+<li><input disabled="" type="checkbox"> 征信报告有没有逾期记录。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 线上提取（多数情形首选）</h3>
+<ul>
+<li>在哪：当地公积金中心 App、微信小程序、政务服务平台。</li>
+<li>做什么：选提取情形 → 填信息 → 上传材料 → 提交。</li>
+<li>看什么：可提金额系统会按当地规则算好，一般当天到几个工作日到账。</li>
+<li>完成标志：款项到银行卡，App 里能看到提取记录。</li>
+</ul>
+<h3>2.2 线下提取（材料复杂或线上不过）</h3>
+<ul>
+<li>在哪：公积金中心服务大厅或合作银行网点。</li>
+<li>做什么：取号 → 窗口提交材料原件 → 签字确认。</li>
+<li>完成标志：受理回执到手，款项按告知时限到账。</li>
+</ul>
+<h3>2.3 公积金贷款申请</h3>
+<ul>
+<li>第一步 额度试算：在公积金 App 或官网用试算工具，输入余额、月缴存额、购房价格，得出预评估额度。</li>
+<li>第二步 提出申请：通过售楼处合作银行、公积金中心窗口或线上渠道提交；材料含身份证、户口簿、购房合同、首付款凭证、征信授权。</li>
+<li>第三步 审批与签约：中心审核额度期限 → 签借款合同 → 办理抵押（期房预抵押）。</li>
+<li>第四步 放款：抵押落实后放款给卖方或开发商，你从次月开始按月还款。</li>
+<li>完成标志：拿到放款通知和还款计划表。</li>
+</ul>
+<h3>2.4 组合贷（额度不够时）</h3>
+<ul>
+<li>做什么：公积金贷款满额度后，缺口部分同时向同一家银行申请商业贷款，两笔贷款一起审批、一起抵押。</li>
+<li>看什么：开发商或卖家是否接受组合贷（放款比纯商贷慢，有的卖家不接受）。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 公积金账户里的钱有利息吗？</h3>
+<p>答：有。每年 6 月 30 日结息，按央行规定的一年期定期存款基准利率计息，利息也归个人。</p>
+<h3>Q2 租房提取每次能提多少？</h3>
+<p>答：各地规定了每次额度和每年次数上限，多数城市支持按月或按季度提取。在 App 里发起时系统自动显示本年度剩余可提额度。</p>
+<h3>Q3 买房时没提取，过了 1 年还能提吗？</h3>
+<p>答：多数城市购房提取时限为合同生效或取得不动产权证书后 1 年内，逾期不能再按购房提取；但偿还房贷提取不受这个限制，可改按还贷提取。</p>
+<h3>Q4 我能贷多少？</h3>
+<p>答：常见算法是账户余额乘以倍数（各地 10–40 倍不等），再和最高限额、还贷能力、贷款成数取低。例：余额 2 万、当地 20 倍、上限 60 万，可贷 40 万。以当地中心试算为准。</p>
+<h3>Q5 断缴影响贷款吗？</h3>
+<p>答：影响。申请时一般要求连续足额缴存满 6 个月且处于缴存状态，断缴后重新计算月数。跳槽断档的看 C-08 的衔接办法。</p>
+<h3>Q6 公积金贷款比商贷划算多少？</h3>
+<p>答：2025 年 5 月 8 日起，首套 5 年以上公积金贷款利率 2.6%，显著低于同期商业房贷利率，几十万贷款总利息差以万计。额度不够就用组合贷补。</p>
+<h3>Q7 存量公积金贷款利率会降吗？</h3>
+<p>答：2025 年 5 月 8 日利率下调后，此前发放的未结清贷款自 2026 年 1 月 1 日起自动按新利率执行，不需要自己申请。</p>
+<h3>Q8 离职了能把钱全取出来吗？</h3>
+<p>答：非本地户籍离职、账户封存满一定期限（多数城市 6 个月）且未再缴存的，可销户提取；本地户籍一般要等退休。各地口径不同，先问当地中心。</p>
+<h3>Q9 换城市工作，公积金怎么办？</h3>
+<p>答：通过全国住房公积金小程序或当地中心申请转移接续，把原城市账户余额转到新城市，缴存年限累计计算，不影响贷款资格。</p>
+<h3>Q10 装修能提取公积金吗？</h3>
+<p>答：多数城市不支持单纯以装修名义提取。大修自住住房（结构性的）在条例情形内，但要提供鉴定等材料，以当地细则为准。</p>
+<h3>Q11 提取会影响贷款额度吗？</h3>
+<p>答：会。余额倍数法下，账户余额直接决定可贷额度。计划贷款买房的，先别把余额提空。</p>
+<h3>Q12 提前还款划算吗？</h3>
+<p>答：公积金贷款利率低，通常是最便宜的负债，提前还款的优先级一般排在商贷和高息负债之后；部分城市对提前还款有次数或金额限制，以合同为准。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>账户余额提空再申请贷款</strong>：余额倍数法下额度大幅缩水。先试算贷款额度，再决定提多少。</li>
+<li><strong>错过购房提取 1 年时限</strong>：过期不能按购房提取，只能改走还贷提取，材料更繁琐。</li>
+<li><strong>听信「代提公积金」中介</strong>：伪造租房合同、发票属于骗提，会被记入信用记录并追回资金，中介费也打水漂。</li>
+<li><strong>断缴无所谓</strong>：贷款要求的连续缴存月数断一次就清零重算，跳槽前问清衔接。</li>
+<li><strong>只看利率不看费用</strong>：贷款还有评估费、抵押登记费等杂项，办之前问清单。</li>
+<li><strong>租房不备案</strong>：部分城市租房提取要求租赁备案，白签合同办不了，先查当地规则。</li>
+<li><strong>组合贷没提前和卖家说</strong>：组合贷放款慢，卖家或开发商可能拒绝，签约前确认接受。</li>
+<li><strong>离职销户一时冲动</strong>：销户提取后重新缴存从头计算年限，未来一两年要贷款的别急着销户。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>单位没缴公积金</strong>：第一步与单位协商；不成的向当地公积金中心投诉责令补缴，也可拨 12329 咨询。</li>
+<li><strong>夫妻双方都想贷</strong>：多数城市可合并计算双方余额和额度，需提供婚姻证明，两人征信都查。</li>
+<li><strong>异地贷款</strong>：第一步确认购房城市是否支持异地缴存职工贷款（缴存证明在全国小程序开具），不行就考虑商贷转公积金（部分城市开通）。</li>
+<li><strong>提取被驳回</strong>：第一步看驳回原因（材料缺、时限过、额度超），补正后重新提交；仍不行的拨 12329 申诉。</li>
+<li><strong>贷款审批被拒</strong>：第一步问拒因（缴存月数、征信、房龄），征信问题修复后重报；额度不够转组合贷。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>提取手续费</td>
+<td>0 元</td>
+<td>公积金业务不收费，遇到收费的要警惕</td>
+</tr>
+<tr>
+<td>贷款发放相关费用</td>
+<td>百元内</td>
+<td>评估费、抵押登记费等，各地不同</td>
+</tr>
+<tr>
+<td>首套公积金贷款利率</td>
+<td>2.6%（5 年以上）</td>
+<td>2025-05-08 起口径，随央行调整</td>
+</tr>
+<tr>
+<td>商贷与公积金利差</td>
+<td>以当时报价为准</td>
+<td>组合贷中商业部分按商贷利率</td>
+</tr>
+<tr>
+<td>提取到账</td>
+<td>当天–3 个工作日</td>
+<td>线上一般最快</td>
+</tr>
+<tr>
+<td>贷款全流程</td>
+<td>2–6 周</td>
+<td>审批、抵押、放款，组合贷偏慢</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li>全国住房公积金小程序（微信/支付宝内搜索，转移接续、缴存证明）</li>
+<li>当地住房公积金管理中心官网和 App</li>
+<li>12329 住房公积金热线</li>
+</ul>
+</li>
+<li>相关条目：<a href="G-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%A7%9F%E6%88%BF.html">G-02 第一次租房</a>、<a href="G-03-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B9%B0%E6%88%BF%E5%8A%9E%E6%88%BF%E8%B4%B7.html">G-03 第一次买房/办房贷</a>、<a href="../03-%E5%B7%A5%E4%BD%9C%E4%B8%8E%E8%81%8C%E4%B8%9A/C-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8B%BF%E5%B7%A5%E8%B5%84%E4%B8%8E%E4%BA%94%E9%99%A9%E4%B8%80%E9%87%91.html">C-04 第一次拿工资与五险一金</a>、<a href="G-06-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%B8%AA%E7%A8%8E%E7%94%B3%E6%8A%A5.html">G-06 第一次个税申报</a></li>
+<li>可打印清单：<a href="../../checklists/G-13-%E5%85%AC%E7%A7%AF%E9%87%91-%E6%8F%90%E5%8F%96%E4%B8%8E%E8%B4%B7%E6%AC%BE%E6%B8%85%E5%8D%95.html">G-13 公积金清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ 级为《住房公积金管理条例》和央行利率文件；Ⅱ 级为各地公积金中心办事指南；Ⅲ 级为通行做法。</li>
+<li>主要来源：<ol>
+<li>《住房公积金管理条例》第二十四条（提取情形），国务院行政法规</li>
+<li>中国人民银行《关于下调个人住房公积金贷款利率的通知》（2025年5月8日起：首套 5 年以上 2.6%、5 年以下 2.1%），北京住房公积金管理中心转发，<a href="https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202505/t20250508_4084130.html">https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202505/t20250508_4084130.html</a></li>
+<li>存量贷款自 2026 年 1 月 1 日起自动执行新利率，央广财经报道，<a href="https://finance.cnr.cn/gstj/20260101/t20260101_527479955.shtml">https://finance.cnr.cn/gstj/20260101/t20260101_527479955.shtml</a></li>
+<li>海南省公积金管理局提取操作规程（购房提取 1 年内办理），<a href="https://gjj.hainan.gov.cn">https://gjj.hainan.gov.cn</a></li>
+<li>南京市住房公积金提取实施细则（购房提取时限），<a href="https://gjj.nanjing.gov.cn/zcfg/tql/202104/t20210428_2900168.html">https://gjj.nanjing.gov.cn/zcfg/tql/202104/t20210428_2900168.html</a></li>
+<li>宣城公积金中心销户提取政策简读（离职封存 6 个月），<a href="https://gjj.xuancheng.gov.cn/News/show/1572856.html">https://gjj.xuancheng.gov.cn/News/show/1572856.html</a></li>
+<li>武汉公积金贷款指南（连续缴存、余额要求），<a href="https://gjj.wuhan.gov.cn/wsbsdt/bszn/dkyw/202304/t20230406_2182033.html">https://gjj.wuhan.gov.cn/wsbsdt/bszn/dkyw/202304/t20230406_2182033.html</a></li>
+<li>苏州、重庆等地额度倍数规则，<a href="http://gjj.suzhou.gov.cn%E3%80%81https://www.cqgjj.cn">http://gjj.suzhou.gov.cn、https://www.cqgjj.cn</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-25</li>
+<li>适用范围：中国内地住房公积金缴存职工。提取情形、额度倍数、最高限额、缴存月数要求各城市差异大且逐年调整，以当地公积金中心最新公告为准。</li>
+<li>易变项：贷款利率、余额倍数、租房提取额度（H，用前查当年公告）。</li>
+<li>核实记录：<a href="../../sources/G-13.%E6%A0%B8%E5%AE%9E.html">sources/G-13.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="G-12-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%94%A8%E7%BD%91%E8%B4%B7%E4%B8%8E%E5%88%86%E6%9C%9F.html"><span class="dir">← 上一篇</span><span class="name">G-12 第一次用网贷/分期</span></a><a class="next" href="G-14-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BD%A6%E9%99%A9%E7%90%86%E8%B5%94.html"><span class="dir">下一篇 →</span><span class="name">G-14 第一次车险理赔</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>C-15 第一次工伤认定与申报 · 核实记录 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #5D6B5A;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../index.html">检索首页</a> · <a href="../README.html">总目录</a></nav>
+  <h1 class="post-title">C-15 第一次工伤认定与申报 · 核实记录</h1>
+  
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">关键核实项</a><a href="#sec-1">原文摘录（编号对应上表）</a><a href="#sec-2">未确定事项与处理</a><a href="#sec-3">争议与差异</a></nav>
+  <main class="content">
+
+<ul>
+<li>核实人：项目组</li>
+<li>核实日期：2026-10-25</li>
+<li>对应版本：v1.0</li>
+<li>当前状态：已核实</li>
+</ul>
+<h2 id="sec-0">关键核实项</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>文中说法</th>
+<th>依据等级</th>
+<th>来源</th>
+<th>URL</th>
+<th>访问日期</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>单位应在事故发生之日或确诊职业病之日起 30 日内申报，特殊情况经同意可延长</td>
+<td>Ⅰ</td>
+<td>《工伤保险条例》第 17 条（国务院令第 586 号，国家税务总局法规库）</td>
+<td><a href="https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>2</td>
+<td>单位超时未申报期间发生的工伤待遇费用由单位负担</td>
+<td>Ⅰ</td>
+<td>《工伤保险条例》第 17 条第 4 款</td>
+<td><a href="https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>3</td>
+<td>职工、近亲属、工会可在 1 年内直接申请工伤认定</td>
+<td>Ⅰ</td>
+<td>《工伤认定办法》第 5 条（人社部令第 8 号，安康市人社局转载）</td>
+<td><a href="https://rsj.ankang.gov.cn/Content-2810456.html">https://rsj.ankang.gov.cn/Content-2810456.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>4</td>
+<td>工作时间、工作场所、工作原因受伤应认定工伤；上下班途中非本人主要责任的交通事故应当认定</td>
+<td>Ⅰ</td>
+<td>《工伤保险条例》第 14 条</td>
+<td><a href="https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>5</td>
+<td>工作时间和工作岗位突发疾病死亡或 48 小时内抢救无效死亡视同工伤</td>
+<td>Ⅰ</td>
+<td>《工伤保险条例》第 15 条</td>
+<td><a href="https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>6</td>
+<td>申请交申请表、劳动关系证明（含事实劳动关系）、医疗诊断证明三样材料</td>
+<td>Ⅰ</td>
+<td>《工伤认定办法》第 6 条；并见《工伤保险条例》第 18 条</td>
+<td><a href="https://rsj.ankang.gov.cn/Content-2810456.html">https://rsj.ankang.gov.cn/Content-2810456.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>7</td>
+<td>收到申请 15 日内审核材料并一次性告知补正</td>
+<td>Ⅰ</td>
+<td>《工伤认定办法》第 8 条</td>
+<td><a href="https://rsj.ankang.gov.cn/Content-2810456.html">https://rsj.ankang.gov.cn/Content-2810456.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>8</td>
+<td>受理后 60 日内作出认定决定，事实清楚、权利义务明确的 15 日内</td>
+<td>Ⅰ</td>
+<td>《工伤认定办法》第 18 条、第 21 条</td>
+<td><a href="https://rsj.ankang.gov.cn/Content-2810456.html">https://rsj.ankang.gov.cn/Content-2810456.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>9</td>
+<td>认定决定作出后 20 日内送达</td>
+<td>Ⅰ</td>
+<td>《工伤认定办法》第 22 条（安康转载页及搜索摘要）</td>
+<td><a href="https://rsj.ankang.gov.cn/Content-2810456.html">https://rsj.ankang.gov.cn/Content-2810456.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>10</td>
+<td>职工认为是工伤、单位不认为的，由单位负举证责任</td>
+<td>Ⅰ</td>
+<td>《工伤保险条例》第 19 条第 2 款</td>
+<td><a href="https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>11</td>
+<td>伤情相对稳定后留残疾、影响劳动能力的做鉴定；由单位、职工或近亲属向市级劳鉴委申请；60 日内出结论可延 30 日；10 个伤残等级</td>
+<td>Ⅰ</td>
+<td>《工伤保险条例》第 21、22、23、25 条</td>
+<td><a href="https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>12</td>
+<td>对市级鉴定结论不服，15 日内向省级劳鉴委申请再次鉴定，省级结论为最终结论</td>
+<td>Ⅰ</td>
+<td>《工伤保险条例》第 26 条</td>
+<td><a href="https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>13</td>
+<td>停工留薪期原工资福利不变、一般不超 12 个月</td>
+<td>Ⅰ</td>
+<td>《工伤保险条例》第 33 条</td>
+<td><a href="https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>14</td>
+<td>一次性伤残补助金按等级 27/25/23/21/18/16/13/11/9/7 个月本人工资</td>
+<td>Ⅰ</td>
+<td>《工伤保险条例》第 35、36、37 条</td>
+<td><a href="https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>15</td>
+<td>离职时基金付一次性工伤医疗补助金、单位付一次性伤残就业补助金，标准由省级政府规定</td>
+<td>Ⅰ</td>
+<td>《工伤保险条例》第 36 条第 2 款、第 37 条</td>
+<td><a href="https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>16</td>
+<td>对工伤认定结论不服，可申请行政复议或提起行政诉讼</td>
+<td>Ⅰ</td>
+<td>《工伤保险条例》第 55 条</td>
+<td><a href="https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>17</td>
+<td>单位未参保的，由单位按条例待遇项目和标准支付费用</td>
+<td>Ⅰ</td>
+<td>《工伤保险条例》第 62 条第 2 款</td>
+<td><a href="https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html">https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194427/content.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>18</td>
+<td>无劳动合同时可参照工资记录、工作证、招工记录、考勤、同事证言认定劳动关系</td>
+<td>Ⅱ</td>
+<td>《关于确立劳动关系有关事项的通知》（劳社部发〔2005〕12 号），北京市人社局转发件</td>
+<td><a href="https://rsj.beijing.gov.cn/xxgk/2024zcwj/202409/t20240905_3791004.html">https://rsj.beijing.gov.cn/xxgk/2024zcwj/202409/t20240905_3791004.html</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>19</td>
+<td>工伤认定办理不收费</td>
+<td>Ⅱ</td>
+<td>上海市一网通办「工伤认定」办事指南</td>
+<td><a href="https://zwdt.sh.gov.cn/govPortals/bsfw/item/4a9e2bae-258e-43ae-8f91-29b199c2bbd8">https://zwdt.sh.gov.cn/govPortals/bsfw/item/4a9e2bae-258e-43ae-8f91-29b199c2bbd8</a></td>
+<td>2026-10-25</td>
+</tr>
+<tr>
+<td>20</td>
+<td>12333 为全国人社服务热线/平台</td>
+<td>Ⅱ</td>
+<td>全国人社政务服务平台（人社部主办）</td>
+<td><a href="https://www.12333.gov.cn">https://www.12333.gov.cn</a></td>
+<td>2026-10-25</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-1">原文摘录（编号对应上表）</h2>
+<ol>
+<li>第 17 条（法规库页摘要）：单位应在事故伤害发生之日或确诊职业病之日起 30 日内向统筹地区社保行政部门提出工伤认定申请；遇特殊情况，「经报社会保险行政部门同意，申请时限可以适当延长」。</li>
+<li>「用人单位未在本条第一款规定的时限内提交工伤认定申请，在此期间发生符合本条例规定的工伤待遇等有关费用由该用人单位负担。」</li>
+<li>「用人单位未在规定的时限内提出工伤认定申请的，受伤害职工或者其近亲属、工会组织在事故伤害发生之日或者被诊断、鉴定为职业病之日起1年内，可以直接按照本办法第四条规定提出工伤认定申请。」</li>
+<li>「(一)在工作时间和工作场所内，因工作原因受到事故伤害的」「(六)在上下班途中，受到非本人主要责任的交通事故或者城市轨道交通、客运轮渡、火车事故伤害的」</li>
+<li>「在工作时间和工作岗位，突发疾病死亡或者在48小时之内经抢救无效死亡的」</li>
+<li>「提出工伤认定申请应当填写《工伤认定申请表》，并提交下列材料：（一）劳动、聘用合同文本复印件或者与用人单位存在劳动关系（包括事实劳动关系）、人事关系的其他证明材料；」（第六条另含医疗机构出具的受伤后诊断证明书或者职业病诊断证明书。）</li>
+<li>「社会保险行政部门收到工伤认定申请后，应当在15日内对申请人提交的材料进行审核，材料完整的，作出受理或者不予受理的决定；材料不完整的，应当以书面形式一次性告知申请人需要补正的全部材料。」</li>
+<li>「社会保险行政部门应当自受理工伤认定申请之日起60日内作出工伤认定决定，出具《认定工伤决定书》或者《不予认定工伤决定书》。」「社会保险行政部门对于事实清楚、权利义务明确的工伤认定申请，应当自受理工伤认定申请之日起15日内作出工伤认定决定。」</li>
+<li>「社会保险行政部门应当自工伤认定决定作出之日起20日内，将《认定工伤决定书》（或《不予认定工伤决定书》）送达……」（搜索摘要中该页第 22 条文字。）</li>
+<li>「职工或者其近亲属认为是工伤，用人单位不认为是工伤的，由用人单位承担举证责任。」</li>
+<li>「劳动能力鉴定由用人单位、工伤职工或者其近亲属向设区的市级劳动能力鉴定委员会提出申请」；60 日内作出结论，「必要时，作出劳动能力鉴定结论的期限可以延长30日」；劳动功能障碍分十个伤残等级，最重一级，最轻十级。</li>
+<li>第 26 条（法规库页摘要）：对市级鉴定结论不服的，可在收到结论之日起 15 日内向省级劳鉴委申请再次鉴定，「省、自治区、直辖市劳动能力鉴定委员会作出的劳动能力鉴定结论为最终结论」。</li>
+<li>「停工留薪期一般不超过12个月」；停工留薪期内原工资福利待遇不变，由所在单位按月支付。</li>
+<li>「七级伤残为13个月的本人工资，八级伤残为11个月的本人工资，九级伤残为9个月的本人工资，十级伤残为7个月的本人工资」；一至四级分别为 27、25、23、21 个月，五级、六级分别为 18、16 个月（法规库页相应条文）。</li>
+<li>解除或终止劳动关系时由工伤保险基金支付一次性工伤医疗补助金、由用人单位支付一次性伤残就业补助金，「具体标准由省、自治区、直辖市人民政府规定」。</li>
+<li>第 55 条（法规库页摘要）：对工伤认定结论不服的，有关单位或个人可以依法申请行政复议，也可以依法向人民法院提起行政诉讼。</li>
+<li>「由该用人单位按照本条例规定的工伤保险待遇项目和标准支付费用。」</li>
+<li>「(一)工资支付凭证或记录(职工工资发放花名册)、缴纳各项社会保险费的记录；」；可参照凭证另含工作证/服务证、招工招聘登记表/报名表、考勤记录、其他劳动者的证言；「(一)、(三)、(四)项的有关凭证由用人单位负举证责任。」</li>
+<li>办事指南「审批收费」栏：「是否收费：否」；受理条件：「工伤认定申请人依法提出工伤认定申请，且提供的申请资料完整的，区人力资源社会保障局应当受理。」</li>
+<li>平台页面标注：「主办单位：中华人民共和国人力资源和社会保障部」（12333 智能咨询/投诉建议入口）。</li>
+</ol>
+<h2 id="sec-2">未确定事项与处理</h2>
+<ol>
+<li>劳动能力鉴定费的具体金额和承担方式：各地定价与规定不同，正文写「数百元、以当地为准」，未写具体数。待查：当地人社局或劳鉴委公示的收费标准。</li>
+<li>1 年申请时限的中止、中断情形：人社部相关意见有专门规定，本次未逐条核实原文。正文只写「以人社部门答复为准」。待查：人社部关于执行《工伤保险条例》若干问题的意见系列文件。</li>
+<li>行政复议、行政诉讼的具体法定期限：本次未核实《行政复议法》《行政诉讼法》现行条文，正文与清单均未写具体天数，指引问 12333 或当地人社局。</li>
+<li>工伤保险与第三人侵权赔偿的竞合规则（医疗费是否重复获赔等）：未核实权威原文，正文按语气边界指引「问当地人社部门和 12333，以当地口径为准」。</li>
+<li>线上申请入口的城市差异（政务网、掌上 12333 覆盖范围）：未逐一核实，正文写「以当地为准」。</li>
+<li>停工留薪期的具体确认办法（部分省份有分类目录）：未核实各省文件，正文只写条例上限口径。</li>
+</ol>
+<h2 id="sec-3">争议与差异</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>说法</th>
+<th>冲突来源</th>
+<th>采用口径</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>一次性工伤医疗补助金、伤残就业补助金金额</td>
+<td>各省级规定</td>
+<td>不写具体金额，写「以当地为准」</td>
+<td>条例明确授权省级政府规定</td>
+</tr>
+<tr>
+<td>2</td>
+<td>停工留薪期长短</td>
+<td>各地确认办法</td>
+<td>写「一般不超 12 个月，可延长不超 12 个月」</td>
+<td>条例只定上限</td>
+</tr>
+<tr>
+<td>3</td>
+<td>试用期受伤是否属工伤</td>
+<td>通行做法</td>
+<td>只写流程事实，不给个案结论</td>
+<td>认定权在人社部门，本手册不替代认定</td>
+</tr>
+</tbody></table></div>
+
+  </main>
+  
+  <div class="back-row"><a href="../index.html">← 返回检索首页</a><a href="../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

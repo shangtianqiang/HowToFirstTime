@@ -26,7 +26,7 @@ const items = entries.map((entry) => ({
 items.sort((a, b) => String(a.id).localeCompare(String(b.id)));
 
 const stats = {
-  planned: 107,
+  planned: 120,
   built: items.length,
   verified: items.filter((item) => item.status === '已核实').length,
   draft: items.filter((item) => item.status === '初稿').length,

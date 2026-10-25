@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次做牙齿矫正 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #5D6B5A;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · <a href="../../index.html?domain=%E5%81%A5%E5%BA%B7%E4%B8%8E%E5%8C%BB%E7%96%97">健康与医疗</a></nav>
+  <h1 class="post-title">第一次做牙齿矫正</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>健康与医疗</b></span><span class="chip ">最近核实 <b>2026-10-25</b></span><span class="chip ">来源 <b>5 条</b></span><span class="chip ">耗时 <b>长期</b></span><span class="chip ">花费 <b>万元级</b></span><span class="chip risk-mid">风险 <b>中</b></span><span class="chip ">时效 <b>稳定</b></span><span class="chip ">适用 <b>分机构</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先拍全景片和头颅侧位片出方案，要不要拔牙、用哪种牙套由正畸医生定；矫完还得长期戴保持器。
+<strong>适用</strong>：考虑矫正牙齿排列或咬合问题的青少年和成年人，第一次咨询正畸。
+<strong>不适用</strong>：单纯洗牙补牙看 F-04；拔智齿看 F-12；牙外伤当天处理的看 F-01。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>两个核心检查</strong>：全景片（看牙根和牙槽骨）+ 头颅侧位片（定方案），必要时加 CBCT。</li>
+<li><strong>四类牙套</strong>：金属（约 6 千–1.5 万）、陶瓷（约 1.2–2 万）、隐形（约 2–5 万）、舌侧（约 4–8 万），价格供参考。</li>
+<li><strong>周期 1.5–3 年</strong>：复杂病例更长，矫正结束还要戴保持器。</li>
+<li><strong>拔不拔牙听方案的</strong>：是否拔牙由医生按拥挤度和面型分析决定，不是必拔也不是必不拔。</li>
+<li><strong>矫治中保持清洁</strong>：牙套周围最容易堆菌斑，矫正期蛀牙和牙龈炎反而高发。</li>
+<li><strong>挑医生挑资质</strong>：正畸是长周期治疗，医生资质和病例经验比机构装修重要。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 初诊前想清楚的事</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 你想解决什么：牙齿拥挤、前突、咬合不上、缝隙，还是 purely 外观——写在手机里，初诊时逐条问。</li>
+<li><input disabled="" type="checkbox"> 预算区间：四类牙套价差可达数万元，先定预算上限再看方案。</li>
+<li><input disabled="" type="checkbox"> 时间账：矫正期 1.5–3 年，每 4–8 周复诊一次，工作日请假是否方便。</li>
+<li><input disabled="" type="checkbox"> 成年人要有的预期：骨骼已定型，重度骨性问题可能需要正畸-正颌联合方案，由医生评估。</li>
+</ul>
+<h3>1.2 初诊要带和要问的</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 带既往牙片和病历（有拔牙、补牙史的）。</li>
+<li><input disabled="" type="checkbox"> 问：我的问题属于哪种类型？方案是什么？要不要拔牙、打支抗钉？</li>
+<li><input disabled="" type="checkbox"> 问：总费用含不含复诊、保持器、中途换配件？分期怎么收？</li>
+<li><input disabled="" type="checkbox"> 问：主诊医生的正畸培训和病例量，中途换医生怎么办？</li>
+<li><input disabled="" type="checkbox"> 问：我的方案有什么替代选项，各自利弊？</li>
+</ul>
+<h3>1.3 身体准备</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 口腔里有蛀牙、牙结石的，正畸前先治疗和洁治。</li>
+<li><input disabled="" type="checkbox"> 牙周炎要先控制稳定——牙周病活动期直接矫正会加速牙齿松动。</li>
+<li><input disabled="" type="checkbox"> 戴隐形的评估自律性：每天佩戴不足 20–22 小时效果打折。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 初诊与检查</h3>
+<ul>
+<li>在哪：口腔正畸科（公立口腔医院或正规民营口腔机构）。</li>
+<li>做什么：口内检查 + 拍全景片和头颅侧位片，必要时 CBCT；取牙模或口内扫描。</li>
+<li>看什么：片子上有没有埋伏牙、牙根吸收、骨量问题。</li>
+<li>完成标志：医生给出问题诊断和初步方案选项。</li>
+</ul>
+<h3>2.2 定方案与缴费</h3>
+<ul>
+<li>做什么：比较方案（拔牙/不拔牙、牙套类型、是否打支抗钉、预期变化），确认费用构成，签知情同意。</li>
+<li>看什么：模拟效果（数字化排牙或示意图）只是预期，不是承诺。</li>
+<li>完成标志：方案确认，按约定缴费并预约装置安装。</li>
+</ul>
+<h3>2.3 安装与复诊</h3>
+<ul>
+<li>金属/陶瓷/舌侧：酸蚀、粘托槽、上弓丝，约 1–2 小时；之后每 4–8 周复诊加力调整。</li>
+<li>隐形：取模定制的牙套分批寄到，按顺序更换，每 6–10 周复诊检查进度。</li>
+<li>每次复诊后 2–3 天牙齿酸胀属常见反应，吃软食过渡。</li>
+<li>完成标志：医生确认目标达成，拆除矫治器，进入保持阶段。</li>
+</ul>
+<h3>2.4 保持阶段</h3>
+<ul>
+<li>做什么：取保持器——透明压膜（活动，白天或夜间佩戴）或舌侧固定丝（粘接长期保留），多数人两者结合。</li>
+<li>节奏：第一年基本全天或夜间佩戴，之后逐步减到夜间，按医嘱执行。</li>
+<li>完成标志：牙齿稳定，医生确认可以延长佩戴间隔；保持器定期复查到丢弃由医生说了算。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 多大年龄矫正合适？</h3>
+<p>答：多数错颌畸形在恒牙早期（11–13 岁前后）干预效果好；地包天、严重骨性问题要更早评估。成年人也能矫，周期和方案不同，由医生判断。</p>
+<h3>Q2 成人矫正来得及吗？</h3>
+<p>答：来得及。牙齿移动的生物学机制不分年龄，成年人主要是周期略长、骨骼问题代偿空间小，方案会更保守。</p>
+<h3>Q3 矫正一定要拔牙吗？</h3>
+<p>答：不一定。拔牙是为了给拥挤的牙齿腾位置，医生按拥挤度、突度和面型分析决定；也有关节、片切等替代手段。</p>
+<h3>Q4 隐形牙套效果比传统差吗？</h3>
+<p>答：适应症内效果相当，复杂病例传统托槽控制力更强。隐形胜在美观舒适可摘，败在对自律要求高——戴不够时间效果打折。</p>
+<h3>Q5 矫正会让牙齿松动、老了掉牙吗？</h3>
+<p>答：矫正中的轻微动度是牙齿移动的正常表现。规范正畸不会导致牙齿早失；但矫正期间口腔清洁差引发的牙周病才是掉牙主因。</p>
+<h3>Q6 矫正期间怎么刷牙？</h3>
+<p>答：正畸牙刷或间隙刷 + 牙线穿引器，每次进食后清洁托槽周围；冲牙器辅助但不能替代刷牙。</p>
+<h3>Q7 矫正痛吗？</h3>
+<p>答：加力后 2–3 天酸胀咬不动东西是常态，止痛药一般不需要。持续锐痛或托槽磨嘴要及时联系医生处理。</p>
+<h3>Q8 矫到一半搬家/换城市怎么办？</h3>
+<p>答：正畸尽量在同一位医生处完成。确实要转诊的，带走完整病历和牙模资料，与原机构结清费用并确认转移方案，新医生接手前会重新评估。</p>
+<h3>Q9 打支抗钉（骨钉）可怕吗？</h3>
+<p>答：局麻下植入，几分钟完成，术中基本无痛感；是帮牙齿精准移动的常用工具，费用一般单颗几百到一千余元，以机构报价为准。</p>
+<h3>Q10 矫正费用能医保报吗？</h3>
+<p>答：正畸属非疾病治疗项目，一般不进医保统筹；部分机构检查、拔牙等治疗性项目可按医保规定结算，以当地和机构为准。</p>
+<h3>Q11 保持器要戴多久？</h3>
+<p>答：普遍建议至少 1–2 年，之后夜间维持；越久越稳。舌侧固定丝可以长期保留。偷懒不戴是复发的最常见原因。</p>
+<h3>Q12 矫正后复发怎么办？</h3>
+<p>答：轻度复发重新戴一段保持器或短期矫治即可；明显复发的和医生评估原因（智齿、不良习惯、保持器依从性）再定方案。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>只看价格选机构</strong>：低价引流后分阶段加价是常见套路。签约前拿到含复诊、保持器、应急处理的完整报价。</li>
+<li><strong>没有全景片就出方案</strong>：不看牙根和骨量的方案是盲开。拍片是正畸的必经步骤。</li>
+<li><strong>牙周没评估就上牙套</strong>：牙周炎活动期矫正会加速松动，正规流程先治牙周。</li>
+<li><strong>隐形牙套当保健品戴</strong>：每天不戴够时数等于花钱买安慰，复诊时医生一眼就能看出来。</li>
+<li><strong>托槽掉了拖两周</strong>：脱落侧牙齿会退回原位，延长总周期。脱落 48 小时内联系机构重新粘接。</li>
+<li><strong>复诊随意改期</strong>：加力节奏被打乱，疗程拉长。按 4–8 周节奏固定复诊。</li>
+<li><strong>保持器第一年偷懒</strong>：复发多发生在拆除后第一年。按医嘱佩戴，别凭感觉停。</li>
+<li><strong>用网红「牙齿矫正器」自助矫治</strong>：无监控的自行加力可能造成牙根吸收等不可逆损伤。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>托槽脱落或弓丝扎嘴</strong>：第一步用正畸保护蜡覆盖扎嘴处，48 小时内联系机构处理，别自己剪弓丝。</li>
+<li><strong>保持器丢失或折断</strong>：第一步尽快联系机构重做，间隔越久牙齿移位越多；过渡期按原佩戴时段戴旧备用保持器（如有）。</li>
+<li><strong>矫正中出现关节弹响疼痛</strong>：第一步告知主诊医生，可能需调整方案或请口腔颌面外科/关节科会诊。</li>
+<li><strong>怀孕了</strong>：第一步告知医生，正畸加力一般可继续但方案和用药调整，拍摄 X 光片要避开（非急诊）。</li>
+<li><strong>矫正中发现牙根吸收</strong>：第一步与医生评估程度，轻则观察调整力度，重则暂停或终止并讨论替代方案。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>检查与拍片</td>
+<td>200–800 元</td>
+<td>全景片+侧位片，CBCT 另计，必选</td>
+</tr>
+<tr>
+<td>金属托槽矫治</td>
+<td>6000–15000 元</td>
+<td>双眼全周期常见区间，以机构为准</td>
+</tr>
+<tr>
+<td>陶瓷托槽矫治</td>
+<td>12000–20000 元</td>
+<td>较隐蔽</td>
+</tr>
+<tr>
+<td>隐形矫治</td>
+<td>20000–50000 元</td>
+<td>品牌与病例难度决定</td>
+</tr>
+<tr>
+<td>舌侧矫治</td>
+<td>40000–80000 元</td>
+<td>几乎不可见</td>
+</tr>
+<tr>
+<td>支抗钉</td>
+<td>数百–千余元/颗</td>
+<td>视方案需要</td>
+</tr>
+<tr>
+<td>保持器</td>
+<td>500–2000 元</td>
+<td>活动式或固定丝</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>1.5–3 年 + 保持期</td>
+<td>每 4–8 周复诊一次</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li>中华口腔医学会（正畸相关团体标准与科普），<a href="http://www.cndent.com">http://www.cndent.com</a></li>
+<li>当地卫健委官网可查医疗机构与医师执业资质</li>
+</ul>
+</li>
+<li>相关条目：<a href="F-12-%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%8B%94%E6%99%BA%E9%BD%BF.html">F-12 第一次拔智齿</a>、<a href="F-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9C%8B%E7%89%99.html">F-04 第一次看牙</a>、<a href="F-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%87%AA%E5%B7%B1%E6%8C%82%E5%8F%B7%E7%9C%8B%E7%97%85.html">F-01 第一次自己挂号看病</a></li>
+<li>可打印清单：<a href="../../checklists/F-14-%E7%89%99%E9%BD%BF%E7%9F%AB%E6%AD%A3-%E5%B0%B1%E8%AF%8A%E4%B8%8E%E6%8A%A4%E7%90%86%E6%B8%85%E5%8D%95.html">F-14 牙齿矫正清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅰ/Ⅱ 级为中华口腔医学会标准和公立医院科普；Ⅲ 级为市场价格区间和通行做法。</li>
+<li>主要来源：<ol>
+<li>北京儿童医院口腔科科普（正畸必拍全景片与头颅侧位片，必要时 CBCT），<a href="https://www.btch.edu.cn/ksdh/kqk/jkjy_kqk/df8b1acaffdb49128dc7c89d39241490.htm">https://www.btch.edu.cn/ksdh/kqk/jkjy_kqk/df8b1acaffdb49128dc7c89d39241490.htm</a></li>
+<li>中华口腔医学会官网及《牙周病患者正畸治疗指南》（T/CHSA 013—2023，含适应证、病历采集与风险规范），<a href="http://www.cndent.com">http://www.cndent.com</a></li>
+<li>保持器使用说明（固定舌侧丝与透明压膜两类、佩戴要求），<a href="https://www.mybracesclinic.com">https://www.mybracesclinic.com</a></li>
+<li>2026 年牙齿矫正收费价目表（四类牙套价格区间，Ⅲ 级市场信息）</li>
+<li>成人正畸指南（矫治周期、保持器类型），<a href="https://rodin-dental.jp/zh-cn/insights/clear-aligners-vs-traditional-braces">https://rodin-dental.jp/zh-cn/insights/clear-aligners-vs-traditional-braces</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-25</li>
+<li>适用范围：中国内地。四类牙套价格随地区、机构和病例差异很大，以就诊机构完整报价为准；是否矫正、方案与拔牙决策由正畸医生评估，本篇不构成医疗建议。</li>
+<li>易变项：价格区间、隐形矫治品牌与产品（S，治疗规范层面稳定）。</li>
+<li>核实记录：<a href="../../sources/F-14.%E6%A0%B8%E5%AE%9E.html">sources/F-14.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="F-13-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%81%9A%E8%BF%91%E8%A7%86%E6%89%8B%E6%9C%AF.html"><span class="dir">← 上一篇</span><span class="name">F-13 第一次做近视手术</span></a><a class="next" href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%9E%E9%93%B6%E8%A1%8C%E5%8D%A1.html"><span class="dir">下一篇 →</span><span class="name">G-01 第一次办银行卡</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

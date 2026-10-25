@@ -372,6 +372,39 @@
 
   .section-desc { margin: 12px 0 0; color: var(--muted); max-width: 560px; }
 
+  /* ---------- 人生任务包 ---------- */
+
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 14px;
+    margin-top: 30px;
+  }
+
+  .topic-card {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--green-700);
+    border-radius: 14px;
+    padding: 16px 18px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  }
+
+  .topic-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); border-left-color: var(--green-900); }
+
+  .topic-card .t-emoji { font-size: 22px; line-height: 1; }
+
+  .topic-card h3 { margin: 0; font-size: 16.5px; font-weight: 800; }
+
+  .topic-card p { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+
+  .topic-card .t-go { margin-top: auto; padding-top: 6px; font-size: 12.5px; font-weight: 600; color: var(--green-700); }
+
   /* ============ 栏目卡片区 ============ */
 
   .cat-grid {
@@ -864,7 +897,7 @@
       </div>
       <a class="hero-more" href="README.html">查看全部条目与核实说明 →</a>
       <div class="hero-stats">
-        <div class="hero-stat"><b>120</b><span>篇条目</span></div>
+        <div class="hero-stat"><b>122</b><span>篇条目</span></div>
         <div class="hero-stat"><b>10</b><span>个栏目</span></div>
         <div class="hero-stat"><b>100%</b><span>逐条核实</span></div>
       </div>
@@ -904,6 +937,40 @@
 
 <main>
 
+<section class="section" id="topics">
+  <div class="wrap">
+    <p class="section-kicker">按任务包走</p>
+    <h2>人生大事，<em>一条线走完</em></h2>
+    <p class="section-desc">不知道该查哪一篇？按人生事件串好的任务包，到哪一步看哪一步。</p>
+    <div class="topic-grid">
+      <a class="topic-card" href="collections/毕业第一年.html">
+        <span class="t-emoji" aria-hidden="true">🎓</span>
+        <h3>毕业第一年</h3>
+        <p>档案 → 面试 → 入职 → 工资社保 → 租房安顿 → 个税汇算，18 篇串成一条线。</p>
+        <span class="t-go">进入专题 →</span>
+      </a>
+      <a class="topic-card" href="collections/宝宝出生90天.html">
+        <span class="t-emoji" aria-hidden="true">🍼</span>
+        <h3>宝宝出生 90 天</h3>
+        <p>备孕产检 → 陪产 → 新生儿 → 上户口办医保 → 疫苗体检，13 篇按时间排好。</p>
+        <span class="t-go">进入专题 →</span>
+      </a>
+      <a class="topic-card" href="collections/带爸妈看病.html">
+        <span class="t-emoji" aria-hidden="true">🩺</span>
+        <h3>带爸妈看病</h3>
+        <p>挂号陪诊 → 医保异地 → 体检配助听器 → 长期照护与安排，15 篇按需查。</p>
+        <span class="t-go">进入专题 →</span>
+      </a>
+      <a class="topic-card" href="collections/跨城搬家.html">
+        <span class="t-emoji" aria-hidden="true">📦</span>
+        <h3>跨城搬家</h3>
+        <p>落脚租房 → 搬家 → 居住证 → 社保档案公积金迁移，16 篇照单办完。</p>
+        <span class="t-go">进入专题 →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="categories">
   <div class="wrap">
     <p class="section-kicker">按栏目逛</p>
@@ -916,7 +983,7 @@
 <section class="section search-section" id="search">
   <div class="wrap">
     <p class="section-kicker">逐条检索</p>
-    <h2>120 篇，<em>按你的情况筛</em></h2>
+    <h2>122 篇，<em>按你的情况筛</em></h2>
     <p class="section-desc">按栏目、人生阶段、耗时、花费和风险筛选。默认只显示已核实的条目。</p>
 
     <div class="toolbar" id="toolbar">
@@ -981,7 +1048,7 @@
       <div>
         <h4>快速入口</h4>
         <ul>
-          <li><a href="README.html">总目录（全部 120 篇）</a></li>
+          <li><a href="README.html">总目录（全部 122 篇）</a></li>
           <li><a href="meta/主题地图.html">主题地图</a></li>
           <li><a href="updates/2026-10.html">更新日志</a></li>
           <li><a href="DISCLAIMER.html">免责声明</a></li>

@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次带娃坐飞机 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #5D6B5A;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · <a href="../../index.html?domain=%E5%87%BA%E8%A1%8C%E4%B8%8E%E4%BA%A4%E9%80%9A">出行与交通</a></nav>
+  <h1 class="post-title">第一次带娃坐飞机</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>出行与交通</b></span><span class="chip ">最近核实 <b>2026-10-25</b></span><span class="chip ">来源 <b>6 条</b></span><span class="chip ">耗时 <b>半天</b></span><span class="chip ">花费 <b>百元内</b></span><span class="chip risk-low">风险 <b>低</b></span><span class="chip ">时效 <b>易变</b></span><span class="chip ">适用 <b>全国</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：满 14 天才能坐飞机，2 岁前买婴儿票（成人全价 10%、不占座）；起飞降落靠吸吮吞咽护耳，婴儿车可以推到登机口再托运。
+<strong>适用</strong>：第一次带婴幼儿或儿童坐飞机的家长（国内航班为主）。
+<strong>不适用</strong>：孩子独自乘机（无成人陪伴儿童服务另行向航司申请）；跨境航线的证件要求看 B-01。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>年龄线</strong>：出生满 14 天才能登机；满 14 天至未满 2 周岁是婴儿票；2 至未满 12 周岁是儿童票（按起飞当日算）。</li>
+<li><strong>票价</strong>：婴儿票按成人票面全价 10%、不单独占座；儿童票 50%、有座有行李额；婴儿要占座就买儿童票。</li>
+<li><strong>证件</strong>：出生医学证明、户口簿、身份证任选其一，能证明出生日期就行。</li>
+<li><strong>摇篮要抢</strong>：一周岁内、身长体重达标的婴儿可申请机上摇篮，隔板座位数量少，订票后就申请。</li>
+<li><strong>婴儿车</strong>：折叠的一般可推到登机口免费托运，落地取。</li>
+<li><strong>护耳</strong>：起飞离地和下降开始时喂奶或安抚奶嘴——吸吮吞咽是关键，别在滑行时就喂完。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 订票前</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 核对年龄：以航班起飞当日计算，临近生日的算清楚买哪种票。</li>
+<li><input disabled="" type="checkbox"> 婴儿票、儿童票多数航司不能在第三方平台直接下单，先在航司 App/官网买成人票，再电话或柜台加购儿童票。</li>
+<li><input disabled="" type="checkbox"> 一名成人带两名婴儿：一名可购婴儿票，另一名须购儿童票占座。</li>
+<li><input disabled="" type="checkbox"> 长航线申请婴儿摇篮：官网/App 特殊旅客服务或客服电话，注明婴儿月龄、身长、体重。</li>
+</ul>
+<h3>1.2 证件与物品</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 出生医学证明或户口簿原件随身带（安检和登机核对）。</li>
+<li><input disabled="" type="checkbox"> 奶粉分装好、保温杯装温水（过安检说明是冲奶用）；母乳/配方奶/辅食不受常规液体量限制，单独取出过检。</li>
+<li><input disabled="" type="checkbox"> 安抚奶嘴、小玩具、一件熟悉的毯子。</li>
+<li><input disabled="" type="checkbox"> 尿不湿、湿巾、换洗衣服一套放随身包。</li>
+<li><input disabled="" type="checkbox"> 婴儿车确认折叠尺寸；背带随身带（起飞降落不能只用背带抱，要配合婴儿安全带）。</li>
+</ul>
+<h3>1.3 出门当天</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 比平时再提前 30 分钟到机场：值机、安检带娃都慢。</li>
+<li><input disabled="" type="checkbox"> 孩子当天有发烧、明显不适，先咨询医生是否适合乘机。</li>
+<li><input disabled="" type="checkbox"> 吃饱睡好再出发，机上哄睡比地面上难。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 值机与选座</h3>
+<ul>
+<li>做什么：柜台值机时报婴儿/儿童票，要隔板前排座位（摇篮位）或前排宽敞位；婴儿车询问能否登机口托运。</li>
+<li>看什么：登机牌上儿童票是否独立成票；安全出口排不能带婴幼儿坐。</li>
+<li>完成标志：拿到全家人连座登机牌，婴儿车挂上托运牌。</li>
+</ul>
+<h3>2.2 安检</h3>
+<ul>
+<li>做什么：婴儿食品（奶、辅食）单独取出放盒过检，主动说明；孩子一般随大人一起过安检门，必要时配合开包检查。</li>
+<li>看什么：随身液体仍是成人 100 毫升限制，婴儿食品按合理数量放行。</li>
+<li>卡住了怎么办：保温杯里的水多数机场要求倒掉或现场试喝，用现场饮水机重新接。</li>
+</ul>
+<h3>2.3 候机与登机</h3>
+<ul>
+<li>带娃多数航司可申请优先登机，听广播或到登机口问。</li>
+<li>婴儿车推到登机口交给地勤挂牌托运，落地后在廊桥或行李带边领取（听机组指引）。</li>
+<li>完成标志：登机入座，婴儿安全带（系在成人安全带上的短带）扣好。</li>
+</ul>
+<h3>2.4 起飞与降落（护耳关键段）</h3>
+<ul>
+<li>时机：舱门关闭后先别喂，等引擎轰鸣、飞机真正滑跑离地时再喂奶或给安抚奶嘴；下降开始（广播「开始下降」）时再喂一次。</li>
+<li>原理：吸吮吞咽动作打开咽鼓管，平衡中耳压力。</li>
+<li>起降全程抱紧孩子，别只依赖背带；醒着比睡着更容易做吞咽动作。</li>
+<li>完成标志：平飞后孩子安静下来。</li>
+</ul>
+<h3>2.5 落地后</h3>
+<ul>
+<li>别急着起立抢行李，等人流转完再走，婴儿车在廊桥口等。</li>
+<li>检查随身物品：奶瓶、玩具、证件最容易落在座位口袋。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 多大的孩子能坐飞机？</h3>
+<p>答：出生满 14 天。早产儿和出生 14 天内的婴儿，多数航司要求医生证明或不承运，购票前问航司。</p>
+<h3>Q2 婴儿票怎么买、多少钱？</h3>
+<p>答：按成人票面全价的 10% 收费（不打折的「票面价」，不是你抢到的折扣价），不占座、一般无免费托运行李额。在航司 App/官网或客服处购买。</p>
+<h3>Q3 儿童票比成人特价票贵怎么办？</h3>
+<p>答：确实可能出现：儿童票按成人全价 50%，而成人促销票更低。多数航司允许儿童按成人促销价购票（占座、有行李额），购票时两种价格都问一下。</p>
+<h3>Q4 没有身份证能登机吗？</h3>
+<p>答：能。16 周岁以下可用出生医学证明、户口簿、身份证任一证件；注意带原件，照片复印件不一定被接受。</p>
+<h3>Q5 婴儿车要托运吗？</h3>
+<p>答：折叠婴儿车多数航司可免费托运，且支持推到登机口再交（登机口托运），落地即取，比托运口省事。伞车和高景观车规则不同，出发前问航司。</p>
+<h3>Q6 奶粉、母乳能带上飞机吗？</h3>
+<p>答：可以，婴儿食品不受成人 100 毫升液体限制，按航程合理数量携带，过检时单独取出说明。冲泡用的热水可在安检后接。</p>
+<h3>Q7 婴儿摇篮怎么申请？</h3>
+<p>答：适用一周岁内、身长体重有限制（常见约 74–75 厘米、10–11 公斤内，各航司不同）的婴儿；国际宽体机配置多，国内航线少。订票后立即通过官网特殊旅客服务或客服申请，数量有限先到先得。</p>
+<h3>Q8 孩子在机上哭闹怎么办？</h3>
+<p>答：起身抱着在过道轻晃、换玩具、看窗外；起降时哭反而有助于吞咽护耳，别焦虑。提前告知邻座、备好耳塞送人是常见做法。</p>
+<h3>Q9 能给孩子用手机或平板吗？</h3>
+<p>答：平飞阶段按机组要求开飞行模式后可用；起降时收起小桌板并收好设备。带儿童耳机控制音量。</p>
+<h3>Q10 换尿布在哪换？</h3>
+<p>答：宽体机洗手间多数有可翻下的换尿布台；窄体机没有的，问乘务员协助找合适位置，别在座位上直接换。</p>
+<h3>Q11 儿童餐怎么订？</h3>
+<p>答：多数航司提供儿童餐，需提前 24 小时以上在官网/App 或客服预订，机上现场要不到。</p>
+<h3>Q12 孩子 5 岁以上能自己飞吗？</h3>
+<p>答：满 5 周岁未满 12 周岁可申请「无成人陪伴儿童」服务，需提前向航司申请并办理接送手续，有专人照护，部分航司收服务费。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>第三方平台直接下单漏买儿童票</strong>：婴儿/儿童票常需航司渠道补购，到了机场才发现没票。出票后打航司客服核对人头。</li>
+<li><strong>只带复印件/照片</strong>：证件要原件。出生证明没办的，先去办（E-05 有流程）。</li>
+<li><strong>滑行就开始喂奶</strong>：喂完了，真正起降时孩子反而睡着不吞咽。把吸吮留到离地和下降时。</li>
+<li><strong>婴儿车在托运口托运</strong>：多背一路。问清楚能不能登机口托运。</li>
+<li><strong>安全出口排选座</strong>：带婴幼儿不能坐安全出口排，选座时避开。</li>
+<li><strong>摇篮以为自动有</strong>：要单独申请且数量有限，订完票立刻约。</li>
+<li><strong>热水过安检被倒掉就慌</strong>：安检后有饮水机，候机时接满。</li>
+<li><strong>把熟睡的孩子单独放座位</strong>：起降必须抱在身上系婴儿安全带，全程看护。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>孩子起飞前突发发烧</strong>：第一步联系航司客服说明情况改签（婴儿病退规则较宽松，提供病历）；硬飞的机上不适风险更高。</li>
+<li><strong>机上持续哭闹哄不住</strong>：第一步找乘务员要帮助（温水、安静角落），排除饿、热、胀气、耳痛；家长冷静比技巧更重要。</li>
+<li><strong>落地后婴儿车没送到廊桥</strong>：第一步找登机口地勤确认领取位置，个别机场需到超规行李处取。</li>
+<li><strong>证件忘带</strong>：第一时间到机场警务室办理临时乘机证明（部分支持线上办理），儿童证件问题同步联系航司。</li>
+<li><strong>耳痛剧烈持续哭喊</strong>：继续引导吞咽（喂奶、安抚奶嘴），落地后仍哭闹抓耳或流水样分泌物的，尽快就医排查中耳问题。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>婴儿票（14 天–2 周岁）</td>
+<td>成人全价 ×10%</td>
+<td>不占座，一般无免费行李额</td>
+</tr>
+<tr>
+<td>儿童票（2–12 周岁）</td>
+<td>成人全价 ×50%</td>
+<td>占座有行李额；促销价可能更低</td>
+</tr>
+<tr>
+<td>婴儿摇篮</td>
+<td>0 元</td>
+<td>符合条件的航线免费申请</td>
+</tr>
+<tr>
+<td>婴儿车托运</td>
+<td>0 元</td>
+<td>多数航司免费</td>
+</tr>
+<tr>
+<td>儿童餐</td>
+<td>0 元</td>
+<td>提前预订</td>
+</tr>
+<tr>
+<td>无成人陪伴儿童服务</td>
+<td>0–数百元</td>
+<td>部分航司收费，可选</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半天</td>
+<td>提前 1.5–2 小时到机场</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li>中国民用航空局官网（旅客服务与各航司链接），<a href="https://www.caac.gov.cn">https://www.caac.gov.cn</a></li>
+<li>所乘航司官网「婴儿及儿童旅客」须知（国航/东航/南航等均有专页）</li>
+<li>机场公安临时乘机证明（民航临时乘机证明微信小程序）</li>
+</ul>
+</li>
+<li>相关条目：<a href="A-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9D%90%E9%A3%9E%E6%9C%BA.html">A-01 第一次坐飞机</a>、<a href="../05-%E5%AE%B6%E5%BA%AD%E4%B8%8E%E8%82%B2%E5%84%BF/E-04-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%85%A7%E9%A1%BE%E6%96%B0%E7%94%9F%E5%84%BF.html">E-04 第一次照顾新生儿</a>、<a href="A-11-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%8F%E9%85%92%E5%BA%97%E4%B8%8E%E6%B0%91%E5%AE%BF.html">A-11 第一次住酒店/民宿</a>、<a href="A-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%8B%AC%E8%87%AA%E6%97%85%E8%A1%8C.html">A-09 第一次独自旅行</a></li>
+<li>可打印清单：<a href="../../checklists/A-14-%E5%B8%A6%E5%A8%83%E5%9D%90%E9%A3%9E%E6%9C%BA-%E8%A1%8C%E5%89%8D%E4%B8%8E%E6%9C%BA%E4%B8%8A%E6%B8%85%E5%8D%95.html">A-14 带娃坐飞机清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅱ 级为民航局咨询口径和航司官方旅客须知；Ⅲ 级为机上操作经验。</li>
+<li>主要来源：<ol>
+<li>中国民用航空局官网（旅客服务总入口），<a href="https://www.caac.gov.cn">https://www.caac.gov.cn</a></li>
+<li>中国国航《携带婴儿乘机》（每名成人可带婴儿数量、占座规则），<a href="https://www.airchina.us/US/CN/info/assistance/infants.html">https://www.airchina.us/US/CN/info/assistance/infants.html</a></li>
+<li>东方航空《婴儿及儿童旅客服务须知》（年龄界定、票价、证件要求、无成人陪伴儿童），<a href="https://global.ceair.com/global/static/Announcement/TravelTips/SpecialPassengerServiceNotice/InfantAndChildren">https://global.ceair.com/global/static/Announcement/TravelTips/SpecialPassengerServiceNotice/InfantAndChildren</a></li>
+<li>航司与机场对婴儿食品安检的通行口径（不受成人液体限制、单独过检）</li>
+<li>婴儿摇篮申请条件（周龄、身长体重限制、隔板座位、数量有限），国航/东航等航司专页</li>
+<li>起降护耳的吸吮吞咽时机建议（航司与医疗机构通行建议），<a href="https://www.united.com/zh-hans/cn/fly/travel/accessibility-and-assistance/traveling-with-children.html">https://www.united.com/zh-hans/cn/fly/travel/accessibility-and-assistance/traveling-with-children.html</a></li>
+</ol>
+</li>
+<li>核实日期：2026-10-25</li>
+<li>适用范围：中国内地航线。各航司对婴儿车尺寸、摇篮条件、儿童餐预订时限等细节不同，出行前以所乘航司官网为准；婴儿食品安检执行以现场为准。</li>
+<li>易变项：各航司儿童票促销规则、机上设施（M）。</li>
+<li>核实记录：<a href="../../sources/A-14.%E6%A0%B8%E5%AE%9E.html">sources/A-14.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="A-13-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%A9%BE%E9%A9%B6%E8%AF%81%E6%9C%9F%E6%BB%A1%E6%8D%A2%E8%AF%81%E4%B8%8E%E5%A4%84%E7%90%86%E6%89%A3%E5%88%86.html"><span class="dir">← 上一篇</span><span class="name">A-13 第一次驾驶证期满换证与处理扣分</span></a><a class="next" href="../02-%E8%AF%81%E4%BB%B6%E4%B8%8E%E8%B7%A8%E5%A2%83/B-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%87%BA%E5%9B%BD.html"><span class="dir">下一篇 →</span><span class="name">B-01 第一次出国</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>

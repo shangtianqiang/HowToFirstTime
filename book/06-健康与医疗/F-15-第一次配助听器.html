@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' rx='8' fill='%23d9edbd'/%3E%3Ctext x='16' y='23' font-family='serif' font-size='18' font-weight='bold' fill='%231e3a2b' text-anchor='middle'%3E一%3C/text%3E%3C/svg%3E">
+<title>第一次配助听器 · 人生第一次</title>
+<style>
+  :root {
+    --green-900: #1E3A2B;
+    --green-800: #284B37;
+    --green-700: #34644A;
+    --green-link: #2F6B3F;
+    --lime: #D9EDBD;
+    --green-soft: #E6F1D4;
+    --paper: #FBFAF5;
+    --card: #FFFFFF;
+    --ink: #22301F;
+    --muted: #5D6B5A;
+    --line: #E7E3D6;
+    --serif: "Songti SC", "Noto Serif SC", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    line-height: 1.85;
+    font-size: 15.5px;
+  }
+  a { color: var(--green-link); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--green-700); outline-offset: 2px; border-radius: 4px; }
+
+  .topbar {
+    background: var(--green-900);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 6px 20px rgba(21, 42, 29, .18);
+  }
+  .topbar-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: 9px;
+    color: #fff; text-decoration: none;
+  }
+  .brand-mark {
+    width: 30px; height: 30px;
+    display: grid; place-content: center;
+    background: var(--lime); color: var(--green-900);
+    border-radius: 9px;
+    font-family: var(--serif); font-size: 15px; font-weight: 700;
+  }
+  .brand strong { font-size: 14.5px; letter-spacing: .02em; }
+  .topbar-in > .home {
+    margin-left: auto;
+    color: #D8E6CF; text-decoration: none;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 999px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+  .topbar-in > .home:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+  .page { width: min(760px, calc(100% - 32px)); margin: 0 auto; padding: 30px 0 60px; }
+
+  .crumbs { font-size: 12.5px; color: var(--muted); margin-bottom: 18px; }
+  .crumbs a { color: var(--muted); }
+
+  h1.post-title {
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.3;
+    font-weight: 800;
+    margin: 6px 0 14px;
+    letter-spacing: .01em;
+  }
+
+  .meta-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 8px; }
+  .chip {
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 2.5px 11px;
+    white-space: nowrap;
+  }
+  .chip b { font-weight: 600; color: var(--ink); }
+  .chip.status-verified { color: var(--green-700); background: var(--green-soft); border-color: #D5E4BC; }
+  .chip.status-draft { color: #A05A14; background: #F7ECD9; border-color: #EBD9B4; }
+  .chip.status-stale, .chip.status-disputed { color: #B0452F; background: #F9E7E1; border-color: #EBCDC4; }
+  .chip.risk-low b { color: #2E7D4F; }
+  .chip.risk-mid b { color: #A8690F; }
+  .chip.risk-high b { color: #B0452F; }
+
+  .toc {
+    display: flex; flex-wrap: wrap; gap: 7px;
+    margin: 16px 0 4px;
+    padding: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+  }
+  .toc a {
+    font-size: 12.5px;
+    color: var(--green-800);
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 3.5px 12px;
+    text-decoration: none;
+  }
+  .toc a:hover { background: var(--green-soft); border-color: #D5E4BC; }
+
+  .content { margin-top: 10px; }
+  .content h2 {
+    font-size: 21px;
+    font-weight: 800;
+    margin: 40px 0 12px;
+    padding-left: 12px;
+    border-left: 4px solid var(--green-700);
+    line-height: 1.4;
+    scroll-margin-top: 70px;
+  }
+  .content h3 { font-size: 16.5px; font-weight: 700; margin: 24px 0 8px; }
+  .content p { margin: 10px 0; }
+  .content ul, .content ol { margin: 10px 0; padding-left: 24px; }
+  .content li { margin: 4px 0; }
+  .content li input[type="checkbox"] { margin-right: 7px; accent-color: var(--green-700); }
+  .content blockquote {
+    margin: 14px 0;
+    padding: 12px 18px;
+    background: var(--green-soft);
+    border-left: 4px solid var(--green-700);
+    border-radius: 0 12px 12px 0;
+    color: #3A4A38;
+  }
+  .content blockquote p { margin: 4px 0; }
+  .content code {
+    background: #F0EDE2;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: .86em;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    word-break: break-all;
+  }
+  .content pre {
+    background: #1E3A2B;
+    color: #E8F0DC;
+    border-radius: 12px;
+    padding: 14px 18px;
+    overflow-x: auto;
+  }
+  .content pre code { background: transparent; border: 0; color: inherit; padding: 0; word-break: normal; }
+  .table-wrap { overflow-x: auto; margin: 14px 0; }
+  .content table { border-collapse: collapse; width: 100%; font-size: 13.5px; background: var(--card); }
+  .content th, .content td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .content th { background: var(--green-soft); color: var(--green-900); font-weight: 700; white-space: nowrap; }
+  .content tr:nth-child(even) td { background: #FAF8F0; }
+  .content td code { word-break: break-all; }
+  .content td a { word-break: break-all; }
+  .content td { min-width: 3.5em; }
+  .content hr { border: 0; border-top: 1px solid var(--line); margin: 30px 0 0; }
+  .content img { max-width: 100%; border-radius: 12px; }
+
+  .neighbor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .neighbor a {
+    display: flex; flex-direction: column; gap: 3px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 13px 16px;
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .neighbor a:hover { border-color: var(--green-700); }
+  .neighbor a.next { text-align: right; }
+  .neighbor .dir { font-size: 11.5px; color: var(--muted); letter-spacing: .08em; }
+  .neighbor .name { font-size: 13.5px; font-weight: 700; color: var(--ink); }
+
+  .back-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--line);
+  }
+  .back-row a {
+    font-size: 13px;
+    color: var(--green-800);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 18px;
+    text-decoration: none;
+  }
+  .back-row a:hover { border-color: var(--green-700); background: var(--green-soft); }
+
+  footer.site {
+    background: var(--green-900);
+    color: #B9CFBB;
+    padding: 26px 0 34px;
+  }
+  .footer-in {
+    width: min(880px, calc(100% - 32px));
+    margin: 0 auto;
+    display: flex; flex-wrap: wrap; gap: 8px 26px; justify-content: space-between;
+    font-size: 12px;
+  }
+  footer.site a { color: #A8C79B; }
+
+  @media (max-width: 560px) {
+    .neighbor { grid-template-columns: 1fr; }
+    .neighbor a.next { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="../../index.html"><span class="brand-mark" aria-hidden="true">一</span><strong>人生第一次</strong></a>
+    <a class="home" href="../../index.html">检索全部条目</a>
+  </div>
+</header>
+
+<div class="page">
+  <nav class="crumbs"><a href="../../index.html">检索首页</a> · <a href="../../README.html">总目录</a> · <a href="../../index.html?domain=%E5%81%A5%E5%BA%B7%E4%B8%8E%E5%8C%BB%E7%96%97">健康与医疗</a></nav>
+  <h1 class="post-title">第一次配助听器</h1>
+  <div class="meta-chips"><span class="chip status-已核实"><b>已核实</b></span><span class="chip ">栏目 <b>健康与医疗</b></span><span class="chip ">最近核实 <b>2026-10-25</b></span><span class="chip ">来源 <b>6 条</b></span><span class="chip ">耗时 <b>半天</b></span><span class="chip ">花费 <b>千元级</b></span><span class="chip risk-low">风险 <b>低</b></span><span class="chip ">时效 <b>稳定</b></span><span class="chip ">适用 <b>分机构</b></span></div>
+  <nav class="toc" aria-label="本页目录"><a href="#sec-0">0. 30 秒速查</a><a href="#sec-1">1. 准备事项</a><a href="#sec-2">2. 现场流程</a><a href="#sec-3">3. 常见问题</a><a href="#sec-4">4. 避坑提醒</a><a href="#sec-5">5. 特殊情况与应急</a><a href="#sec-6">6. 费用与时间预算</a><a href="#sec-7">7. 延伸资源</a><a href="#sec-8">8. 依据与核实</a></nav>
+  <main class="content">
+
+<blockquote>
+<p><strong>一句话</strong>：先做听力测试再选机器，验配比机器更重要；持证听力残疾人可向户籍地残联申请适配补贴。
+<strong>适用</strong>：自己或父母出现听不清、电视越开越大声，第一次了解助听器的人。
+<strong>不适用</strong>：突发耳聋、耳痛流液——先看病（F-01），那不是配机器的事；儿童听力干预走专业儿童听力中心。</p>
+</blockquote>
+<h2 id="sec-0">0. 30 秒速查</h2>
+<ul>
+<li><strong>先测听再选配</strong>：纯音测听等检查是第一步，直接买机器戴可能不合适甚至加重问题。</li>
+<li><strong>两条渠道</strong>：医院耳鼻喉科（先排除疾病）→ 助听器专业验配中心（选配调试）。</li>
+<li><strong>三类型</strong>：耳背式（适用范围最宽）、受话器外置式（较隐蔽）、耳内定制式（轻至中重度）。</li>
+<li><strong>价格三档</strong>：入门约 1000–3000 元，进阶 3000–6000 元，高端数万元（单只）。</li>
+<li><strong>补贴记得查</strong>：各省都有残疾人辅助器具补贴，流程是听力残疾评定 → 办证 → 向县级残联申请。</li>
+<li><strong>适应期以周计</strong>：从每天短时间戴起，大脑重新学习听声音，别第一天就全天戴。</li>
+</ul>
+<h2 id="sec-1">1. 准备事项</h2>
+<h3>1.1 先判断是不是该配了</h3>
+<ul>
+<li>电视音量开得比家人习惯的大很多。</li>
+<li>面对面说话还行，人多嘈杂或电话里就听不清。</li>
+<li>常要求别人重复、答非所问、回避社交。</li>
+<li>出现这些信号先去医院查听力——也可能是耵聍（耳屎）堵塞、中耳炎等可逆原因。</li>
+</ul>
+<h3>1.2 就诊/验配前</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 带身份证、既往病历和用药记录（部分药物影响听力）。</li>
+<li><input disabled="" type="checkbox"> 老人陪同记录：提前把「什么场合听不清」写成清单，代述更准确。</li>
+<li><input disabled="" type="checkbox"> 糖尿病、高血压患者控制好病情再测，结果更准。</li>
+<li><input disabled="" type="checkbox"> 预算区间先想好：单只还是双耳、三档价位。</li>
+</ul>
+<h3>1.3 选渠道</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 第一步医院耳鼻喉科：排除疾病 + 出具听力报告。</li>
+<li><input disabled="" type="checkbox"> 第二步验配中心：认准有资质验配师和售后网点的连锁品牌店；验配报告留底。</li>
+<li><input disabled="" type="checkbox"> 同一品牌多店比价：机器同价，调试服务和保修年限可谈。</li>
+</ul>
+<h2 id="sec-2">2. 现场流程</h2>
+<h3>2.1 听力检查</h3>
+<ul>
+<li>在哪：医院耳鼻喉科或验配中心测听室。</li>
+<li>做什么：耳镜检查、纯音测听、言语测听，必要时声导抗。</li>
+<li>看什么：听力图上的气导骨导曲线——下降类型和程度决定选配方案。</li>
+<li>完成标志：拿到听力报告和听力损失程度结论。</li>
+</ul>
+<h3>2.2 选型与试听</h3>
+<ul>
+<li>做什么：按听力图选功率和外形（耳背/受话器外置/耳内定制），现场试听并调试。</li>
+<li>看什么：安静和嘈杂两种环境下的清晰度；定制式需取耳模，等待周期数天到两周。</li>
+<li>问什么：保修几年、免费调试次数、电池或充电方案、退换规则。</li>
+<li>完成标志：确定型号，定制式的付定取模。</li>
+</ul>
+<h3>2.3 取机与调试</h3>
+<ul>
+<li>做什么：戴上后按反馈微调（真耳测量更准），学习开关机、换电池、清洁保养。</li>
+<li>看什么：佩戴是否舒适、有无啸叫；啸叫多数是耳模不密合或没戴好。</li>
+<li>完成标志：机器到手，约定复调时间（一般 1 个月内多次）。</li>
+</ul>
+<h3>2.4 适应期（2–8 周）</h3>
+<ul>
+<li>第 1 周：每天 1–2 小时，安静环境一对一交流。</li>
+<li>第 2–3 周：延长到半天，过渡到户外和多人场合。</li>
+<li>之后：逐步全天佩戴；听不清、吵得难受随时回店调试，调试是免费的。</li>
+<li>完成标志：日常交流明显改善，适应期结束进入正常随访。</li>
+</ul>
+<h3>2.5 补贴申请（可选）</h3>
+<ul>
+<li>条件：多数地区要求先做听力残疾评定并办理残疾人证。</li>
+<li>路径：向户籍所在地县级残联提出辅助器具适配申请，经评估后按当地目录和标准适配。</li>
+<li>各地差异大：有的直接配发基本型，有的按比例补贴；儿童补贴力度普遍更大（部分地区儿童免费适配）。</li>
+</ul>
+<h2 id="sec-3">3. 常见问题</h2>
+<h3>Q1 网上几百块的助听器能买吗？</h3>
+<p>答：那种多数是「放大器」，所有声音一刀切放大，没有按听力图验配，嘈杂环境更吵，长期戴可能损害残余听力。助听器的核心价值在验配和调试。</p>
+<h3>Q2 单耳还是双耳配？</h3>
+<p>答：双耳都有听损的一般建议双耳配：方向感和嘈杂环境分辨明显更好。预算有限的先配差耳侧较重的一侧，具体听验配师建议。</p>
+<h3>Q3 配了机器听力会越来越差吗？</h3>
+<p>答：经过规范验配的助听器不会加速听力下降；不合适的放大才会。听力本身随年龄和病因变化，每年复查听力。</p>
+<h3>Q4 耳背式是不是最老气的？</h3>
+<p>答：耳背式适用听损范围最宽、功率最足，现在的机型很小巧。外形选择主要看听损程度、耳道条件和手部灵活度，老人操作耳背式反而更容易。</p>
+<h3>Q5 电池和充电怎么选？</h3>
+<p>答：充电款省去每周换电池，适合手抖、视力弱的老人；电池款续航更长、应急方便。同型号常有两种版本。</p>
+<h3>Q6 戴助听器还耳鸣怎么办？</h3>
+<p>答：不少助听器有耳鸣掩蔽功能，验配时说明。耳鸣病因复杂，持续明显的先回耳鼻喉科评估。</p>
+<h3>Q7 助听器能用医保吗？</h3>
+<p>答：助听器属辅助器具，一般不进医保报销；听力检查、耳科治疗按医保规定结算。残联补贴是另一条线。</p>
+<h3>Q8 补贴能省多少？</h3>
+<p>答：各地差异大：从免费配发基本型到数千元限额补贴都有，部分地区儿童有专项（如免费适配或数千元标准）。带上户口本和残疾人证去县级残联问最准。</p>
+<h3>Q9 助听器寿命几年？</h3>
+<p>答：一般 5–8 年。日常防潮防震、定期到店保养（多数免费）能延长；听力明显变化时及时复调或换机。</p>
+<h3>Q10 洗澡、睡觉要戴吗？</h3>
+<p>答：不戴。进水是损坏主因，睡觉压着也不舒服。养成摘下就放干燥盒的习惯。</p>
+<h3>Q11 定制式和耳背式哪个隔音好、啸叫少？</h3>
+<p>答：密合度决定啸叫，定制式贴合耳道密封好，但功率上限低。具体按听损程度由验配师定。</p>
+<h3>Q12 老人不愿意戴怎么办？</h3>
+<p>答：从「想听的场合」戴起（看电视、家庭聚餐），别强迫全天佩戴；把「听不清导致的答非所问」实例摆出来，比讲道理有用。</p>
+<h2 id="sec-4">4. 避坑提醒</h2>
+<ul>
+<li><strong>跳过测听直接网购</strong>：没有听力图的选配是盲选。先测听，再谈机器。</li>
+<li><strong>「包治耳背」的保健品/理疗仪</strong>：助听器是辅助器具不是治疗仪，宣称治好听力的一律不买。</li>
+<li><strong>只比机器价格不比服务</strong>：调试次数、保修、保养都在总价里。低价机配一次性服务，后患大。</li>
+<li><strong>适应期没挺过去就闲置</strong>：多数「戴了没用」是调试没到位+适应期太短。回店复调是免费的，别浪费。</li>
+<li><strong>残联补贴不知道、不去问</strong>：办证虽然麻烦，补贴可能覆盖一大半费用，先去问再自费。</li>
+<li><strong>双耳只配一耳省钱</strong>：长期单耳 listening 会让另一侧的言语分辨退化，权衡后多数人后悔。</li>
+<li><strong>洗澡睡觉也戴着</strong>：进水损坏不保修。干燥盒是标配习惯。</li>
+<li><strong>验配报告随手丢</strong>：后续调试、换机、申请补贴都要它。</li>
+</ul>
+<h2 id="sec-5">5. 特殊情况与应急</h2>
+<ul>
+<li><strong>突发一侧听力骤降</strong>：第一步立即挂耳鼻喉科急诊（72 小时内是治疗窗口），不是配助听器的事。</li>
+<li><strong>耳道流液流水伴听不清</strong>：第一步先治中耳炎等疾病，炎症控制后再评估选配。</li>
+<li><strong>戴上就啸叫不止</strong>：第一步检查是否戴到位、耳模是否密合，回店调整或重做耳模。</li>
+<li><strong>机器进水或摔了</strong>：第一步断电取出电池，自然晾干后送修，别用吹风机加热风猛吹。</li>
+<li><strong>老人听力快速加重</strong>：第一步复查听力并排查药物、心脑血管因素，机器参数同步复调。</li>
+</ul>
+<h2 id="sec-6">6. 费用与时间预算</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>大概金额</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>听力检查</td>
+<td>0–200 元</td>
+<td>医院按医保结算；验配中心常免费</td>
+</tr>
+<tr>
+<td>入门型（单只）</td>
+<td>1000–3000 元</td>
+<td>基础数字机型</td>
+</tr>
+<tr>
+<td>进阶型（单只）</td>
+<td>3000–6000 元</td>
+<td>降噪、方向性更好</td>
+</tr>
+<tr>
+<td>高端型（单只）</td>
+<td>6000–数万元</td>
+<td>顶级芯片与无线功能</td>
+</tr>
+<tr>
+<td>电池/干燥保养</td>
+<td>百元级/年</td>
+<td>充电款免电池</td>
+</tr>
+<tr>
+<td>残联补贴</td>
+<td>视当地目录</td>
+<td>评定办证后申请</td>
+</tr>
+<tr>
+<td>时间</td>
+<td>半天</td>
+<td>检查+试听；适应期 2–8 周另计</td>
+</tr>
+</tbody></table></div>
+<h2 id="sec-7">7. 延伸资源</h2>
+<ul>
+<li>官方入口：<ul>
+<li>户籍所在地县级残联（辅助器具适配补贴申请）</li>
+<li>中国残疾人联合会及各省残联官网（补贴政策查询）</li>
+<li>当地三甲医院耳鼻喉科听力中心</li>
+</ul>
+</li>
+<li>相关条目：<a href="../05-%E5%AE%B6%E5%BA%AD%E4%B8%8E%E8%82%B2%E5%84%BF/E-09-%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%85%A7%E9%A1%BE%E5%B9%B4%E8%BF%88%E7%88%B6%E6%AF%8D.html">E-09 第一次照顾年迈父母</a>、<a href="F-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%87%AA%E5%B7%B1%E6%8C%82%E5%8F%B7%E7%9C%8B%E7%97%85.html">F-01 第一次自己挂号看病</a>、<a href="F-02-%E7%AC%AC%E4%B8%80%E6%AC%A1%E4%BD%93%E6%A3%80.html">F-02 第一次体检</a>、<a href="F-05-%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%85%8D%E7%9C%BC%E9%95%9C.html">F-05 第一次配眼镜</a></li>
+<li>可打印清单：<a href="../../checklists/F-15-%E5%8A%A9%E5%90%AC%E5%99%A8-%E9%AA%8C%E9%85%8D%E4%B8%8E%E9%80%82%E5%BA%94%E6%B8%85%E5%8D%95.html">F-15 配助听器清单</a></li>
+</ul>
+<h2 id="sec-8">8. 依据与核实</h2>
+<ul>
+<li>依据等级构成：Ⅱ 级为厂商验配科普、验配机构规范和残联政策；Ⅲ 级为价格区间和适应期节奏。</li>
+<li>主要来源：<ol>
+<li>飞利浦听力方案：耳背式（BTE）适用范围与验配原理，<a href="https://www.hearingsolutions.philips.com.cn/hearing-loss/hearing-terms-guide/terms/bte">https://www.hearingsolutions.philips.com.cn/hearing-loss/hearing-terms-guide/terms/bte</a></li>
+<li>验配机构科普：耳内式/耳道式适合轻至中重度听损；先测听再选配，不合适的放大可能加重听损，<a href="https://www.thehearingspecialist.com.sg/zh/hearing-aids-hearing-solutions/hearing-aid-models">https://www.thehearingspecialist.com.sg/zh/hearing-aids-hearing-solutions/hearing-aid-models</a></li>
+<li>真耳测量与适应期说明（重新佩戴时大脑需重新适应），<a href="https://www.audioclinique.it/zh-hans/hearing-aid-fitting-real-ear-measurement">https://www.audioclinique.it/zh-hans/hearing-aid-fitting-real-ear-measurement</a></li>
+<li>2025 年助听器价格三档区间（入门/进阶/高端），<a href="https://kuku.baidu.com/landing/tscp_doc/61bd90cd64e9c6536e359cacdd8d55cf">https://kuku.baidu.com/landing/tscp_doc/61bd90cd64e9c6536e359cacdd8d55cf</a></li>
+<li>各省残联残疾人辅助器具补贴（助听器）政策汇编（浙江/江苏/山东/重庆/天津），<a href="https://www.szhstl.com/select/policy-subsidy/zhejiang/canlian-hearingaid.php">https://www.szhstl.com/select/policy-subsidy/zhejiang/canlian-hearingaid.php</a></li>
+<li>残疾人基本型辅助器具补贴制度与申请路径（县级残联、听力残疾评定），地方残联公开信息</li>
+</ol>
+</li>
+<li>核实日期：2026-10-25</li>
+<li>适用范围：中国内地成人助听器验配。各省补贴标准、残疾评定流程差异大，以户籍地残联答复为准；选配方案以医院和验配师评估为准，本篇不构成医疗建议。</li>
+<li>易变项：补贴目录与标准、机型价格（S，验配规范层面稳定）。</li>
+<li>核实记录：<a href="../../sources/F-15.%E6%A0%B8%E5%AE%9E.html">sources/F-15.核实.html</a></li>
+<li>状态：已核实。</li>
+</ul>
+<p><a href="../../README.html">← 回总目录</a></p>
+
+  </main>
+  <div class="neighbor"><a class="prev" href="F-14-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%81%9A%E7%89%99%E9%BD%BF%E7%9F%AB%E6%AD%A3.html"><span class="dir">← 上一篇</span><span class="name">F-14 第一次做牙齿矫正</span></a><a class="next" href="../07-%E9%92%B1%E4%B8%8E%E6%B6%88%E8%B4%B9/G-01-%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%8A%9E%E9%93%B6%E8%A1%8C%E5%8D%A1.html"><span class="dir">下一篇 →</span><span class="name">G-01 第一次办银行卡</span></a></div>
+  <div class="back-row"><a href="../../index.html">← 返回检索首页</a><a href="../../README.html">总目录</a></div>
+</div>
+
+<footer class="site">
+  <div class="footer-in">
+    <span>文字内容 CC BY 4.0 · 图片来自 Unsplash（<a href="../../assets/CREDITS.html">来源与许可</a>）</span>
+    <span>内容不构成医疗、法律、投资建议 · 办事前以官方最新公告为准</span>
+  </div>
+</footer>
+</body>
+</html>
